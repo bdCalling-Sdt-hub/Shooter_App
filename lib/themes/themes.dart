@@ -1,35 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 
+import '../utils/dimentions.dart';
+
 class Themes {
-  final lightTheme = ThemeData.light().copyWith(
-    ///-------------------------elevated button theme------------------------->
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20),
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-          minimumSize: const Size(double.maxFinite, 56),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-        ),
-      ),
-
-      ///-----------------app bar theme------------------>
-      appBarTheme: const AppBarTheme(
-          color: Colors.white,
-          // backgroundColor: Colors.white10,
-          centerTitle: true,
-          elevation: 5,
-          shadowColor: Colors.green)
-  );
-
+  // final lightTheme = ThemeData.light().copyWith(
+  //   ///-------------------------elevated button theme------------------------->
+  //     elevatedButtonTheme: ElevatedButtonThemeData(
+  //       style: ElevatedButton.styleFrom(
+  //         padding: EdgeInsets.all(20),
+  //         backgroundColor: Colors.red,
+  //         foregroundColor: Colors.white,
+  //         minimumSize: const Size(double.maxFinite, 56),
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(8),
+  //         ),
+  //         textStyle: const TextStyle(
+  //           fontSize: 16,
+  //           fontWeight: FontWeight.w600,
+  //           color: Colors.white,
+  //         ),
+  //       ),
+  //     ),
+  //
+  //     ///-----------------app bar theme------------------>
+  //     appBarTheme: const AppBarTheme(
+  //         color: Colors.white,
+  //         // backgroundColor: Colors.white10,
+  //         centerTitle: true,
+  //         elevation: 5,
+  //         shadowColor: Colors.green)
+  // );
+  //
 
 
 
@@ -63,6 +66,23 @@ class Themes {
           centerTitle: false,
           color: Colors.black54,
           elevation: 0,
-          shadowColor: Colors.white10)
+          shadowColor: Colors.white10),
+
+
+
+    ///--------------------text filed themes----------------------->
+    inputDecorationTheme:InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.fieldColor,
+      labelStyle: TextStyle(
+        fontSize: 16.h,
+        fontWeight: FontWeight.w400,
+        color: Colors.white
+      ),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+          borderSide: BorderSide(color: AppColors.borderColor,width: 2)
+      )
+    )
   );
 }
