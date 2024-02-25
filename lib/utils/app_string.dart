@@ -9,7 +9,13 @@ class AppString {
 
   //================> Verify Email Screen <====================
   static String verifyEmail = "Verify Email";
-  static String weHaveSent = "We have sent a verification code to your \nemail. Please check your email and \nenter the code.";
+  static String weHaveSent =
+      "We have sent a verification code to your \nemail. Please check your email and \nenter the code.";
   static String didntGet = "Didn’t get the code?";
   static String resend = "Resend";
+
+//================> Set password Screen <====================
+  static String setPassword = "Set password";
+  static String confirmPassword = "Confirm Password";
+  static String yourEmail = "Your email is verified successfully! \nPlease set a new password to continue.";
 }
