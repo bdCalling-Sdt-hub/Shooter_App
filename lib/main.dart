@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'package:shooter_app/views/screens/sign_up/sign_up_screen.dart';
 
+import 'routes/app_routes.dart';
+import 'views/screens/onboardingsScreen/onboardings_screen.dart';
+import 'views/screens/splashScreen/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +26,12 @@ class MyApp extends StatelessWidget {
         home: SignUpScreen(),
       ),
       designSize: const Size(393, 852),
+          title: 'shooter app',
+          theme: Themes().lightTheme,
+          darkTheme: Themes().darkTheme,
+          initialRoute: AppRoutes.onboardingsScreen,
+          getPages: AppRoutes.routes,
+          home: OnboardingsScreen()),
     );
   }
 }
