@@ -28,14 +28,10 @@ class TextFieldWidget extends StatelessWidget {
             horizontal: Dimensions.paddingSizeDefault,
             vertical: Dimensions.paddingSizeDefault),
         decoration: BoxDecoration(
-
-
-
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40.r),
             topRight: Radius.circular(40.r),
           ),
-
           gradient: LinearGradient(
             colors: [
               const Color(0xFFFA1131).withOpacity(.12),
@@ -45,7 +41,6 @@ class TextFieldWidget extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
-
         ),
         child: Form(
           key: _formKey,
@@ -57,9 +52,10 @@ class TextFieldWidget extends StatelessWidget {
                 height: 56.h,
                 child: TextFormField(
                   decoration: InputDecoration(
-                      hintText : "User name",
+                      hintText: "User name",
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor))),
+                          borderSide:
+                              BorderSide(color: AppColors.borderColor))),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter your name";
@@ -67,13 +63,9 @@ class TextFieldWidget extends StatelessWidget {
                     return null;
                   },
                 ),
-                
-                
-              SizedBox(
-                height: 16.h,
               ),
 
-
+              SizedBox(height: 16.h),
 
               ///--------------------------Email------------------------------------>
               SizedBox(
@@ -82,7 +74,8 @@ class TextFieldWidget extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "Email",
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor))),
+                          borderSide:
+                              BorderSide(color: AppColors.borderColor))),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter your email";
@@ -90,14 +83,10 @@ class TextFieldWidget extends StatelessWidget {
                     return null;
                   },
                 ),
-
-
               ),
               SizedBox(
                 height: 16.h,
               ),
-
-
 
               ///--------------------------Password------------------------------------>
               SizedBox(
@@ -108,17 +97,13 @@ class TextFieldWidget extends StatelessWidget {
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: AppColors.borderColor)),
                       suffixIcon: Padding(
-                        padding:  EdgeInsets.all(10.0),
-
-
+                        padding: EdgeInsets.all(10.0),
                         child: SvgPicture.asset(
                           AppIcons.obscure_true,
                           width: 12.h,
                           height: 12.h,
                           fit: BoxFit.contain,
                         ),
-
-
                       )),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -133,26 +118,30 @@ class TextFieldWidget extends StatelessWidget {
                 height: 24.h,
               ),
 
-
               ///------------------------------------By creating an account, I accept the Terms & conditions and Privacy Policy text----------------->
               Row(
                 children: [
-                  SvgPicture.asset(AppIcons.check_box,height: 20.h,width: 20.w,),
+                  SvgPicture.asset(
+                    AppIcons.check_box,
+                    height: 20.h,
+                    width: 20.w,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 16.h),
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: RichText(
                         text: TextSpan(
-                          style:  TextStyle(
+                          style: TextStyle(
                             fontSize: 14.0.h,
                             height: 1.5,
                             color: Colors.black,
                             overflow: TextOverflow.ellipsis,
                           ),
                           children: <TextSpan>[
-                             TextSpan(
-                              text: '   By creating an account, I accept the \n',
+                            TextSpan(
+                              text:
+                                  '   By creating an account, I accept the \n',
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: Dimensions.fontSizeDefault.h,
@@ -171,7 +160,7 @@ class TextFieldWidget extends StatelessWidget {
                                 fontFamily: "Aldrich",
                               ),
                             ),
-                             TextSpan(
+                            TextSpan(
                               text: ' and ',
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -204,8 +193,8 @@ class TextFieldWidget extends StatelessWidget {
               CustomButton(
                 color: AppColors.primaryColor,
                 onpress: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const SignUpScreen()));
-
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SignUpScreen()));
                 },
                 title: "Sign Up",
                 titlecolor: Colors.white,
@@ -214,8 +203,6 @@ class TextFieldWidget extends StatelessWidget {
               SizedBox(
                 height: 24.h,
               ),
-
-
 
               ///------------------------------Already have an account? ------------------------>
               RichText(
@@ -226,7 +213,7 @@ class TextFieldWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   children: <TextSpan>[
-                     TextSpan(
+                    TextSpan(
                       text: 'Already have an account? ',
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
@@ -248,7 +235,6 @@ class TextFieldWidget extends StatelessWidget {
                 ),
               ),
 
-
               SizedBox(
                 height: 15.h,
               ),
@@ -259,12 +245,6 @@ class TextFieldWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
 
 //
 // onPressed: () {

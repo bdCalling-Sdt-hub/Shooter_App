@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
+import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_string.dart';
@@ -21,7 +22,7 @@ class VerifyEmailScreen extends StatelessWidget {
       body: Stack(
         children: [
           Opacity(
-            opacity: 0.6,
+            opacity: 0.5,
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(
@@ -92,7 +93,9 @@ class VerifyEmailScreen extends StatelessWidget {
                   color: AppColors.primaryColor,
                   title: AppString.verifyEmail,
                   titlecolor: Colors.white,
-                  onpress: () {},
+                  onpress: () {
+                    Get.toNamed(AppRoutes.setPasswordScreen);
+                  },
                 ),
                 SizedBox(height: 248.h),
               ],
