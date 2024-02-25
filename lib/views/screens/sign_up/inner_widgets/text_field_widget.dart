@@ -67,7 +67,7 @@ class TextFieldWidget extends StatelessWidget {
                     return null;
                   },
                 ),
-                
+              ),
                 
               SizedBox(
                 height: 16.h,
@@ -129,73 +129,11 @@ class TextFieldWidget extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(
-                height: 24.h,
-              ),
+
 
 
               ///------------------------------------By creating an account, I accept the Terms & conditions and Privacy Policy text----------------->
-              Row(
-                children: [
-                  SvgPicture.asset(AppIcons.check_box,height: 20.h,width: 20.w,),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.h),
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: RichText(
-                        text: TextSpan(
-                          style:  TextStyle(
-                            fontSize: 14.0.h,
-                            height: 1.5,
-                            color: Colors.black,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          children: <TextSpan>[
-                             TextSpan(
-                              text: '   By creating an account, I accept the \n',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                overflow: TextOverflow.ellipsis,
-                                color: Colors.white,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                            TextSpan(
-                              text: '   Terms & conditions',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                color: AppColors.primaryColor,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                             TextSpan(
-                              text: ' and ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                color: Colors.white,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Privacy Policy',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                color: AppColors.primaryColor,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _ByCreating(),
 
               ///------------------------------------botton------------------------------>
               SizedBox(
@@ -262,7 +200,69 @@ class TextFieldWidget extends StatelessWidget {
 
 
 
-
+_ByCreating(){
+  return     Row(
+    children: [
+      SvgPicture.asset(AppIcons.check_box,height: 20.h,width: 20.w,),
+      Padding(
+        padding: EdgeInsets.only(top: 16.h),
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: RichText(
+            text: TextSpan(
+              style:  TextStyle(
+                fontSize: 14.0.h,
+                height: 1.5,
+                color: Colors.black,
+                overflow: TextOverflow.ellipsis,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: '   By creating an account, I accept the \n',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: Dimensions.fontSizeDefault.h,
+                    overflow: TextOverflow.ellipsis,
+                    color: Colors.white,
+                    fontFamily: "Aldrich",
+                  ),
+                ),
+                TextSpan(
+                  text: '   Terms & conditions',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: Dimensions.fontSizeDefault.h,
+                    color: AppColors.primaryColor,
+                    fontFamily: "Aldrich",
+                  ),
+                ),
+                TextSpan(
+                  text: ' and ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: Dimensions.fontSizeDefault.h,
+                    color: Colors.white,
+                    fontFamily: "Aldrich",
+                  ),
+                ),
+                TextSpan(
+                  text: 'Privacy Policy',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: Dimensions.fontSizeDefault.h,
+                    color: AppColors.primaryColor,
+                    fontFamily: "Aldrich",
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
 
 
 

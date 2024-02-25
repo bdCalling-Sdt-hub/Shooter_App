@@ -72,7 +72,7 @@ class Themes {
 
     ///--------------------text filed themes----------------------->
     inputDecorationTheme:InputDecorationTheme(
-        contentPadding:  EdgeInsets.symmetric(vertical: 14.h, horizontal: 10.w),
+        contentPadding:  const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
 
       filled: true,
       fillColor: AppColors.fieldColor,

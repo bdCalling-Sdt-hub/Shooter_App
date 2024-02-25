@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/dimentions.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_text.dart';
-import '../../log_in/log_in_screen.dart';
 
 class TextFields extends StatelessWidget {
   TextFields({
@@ -47,51 +46,10 @@ class TextFields extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: [
-              ///--------------------------Email------------------------------------>
-              SizedBox(
-                height: 56.h,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "Email",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor))),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your email";
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
 
-              ///--------------------------Password------------------------------------>
-              SizedBox(
-                height: 56.h,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor)),
-                      suffixIcon: Padding(
-                        padding: EdgeInsets.all(8.0.r),
-                        child: SvgPicture.asset(
-                          AppIcons.obscure_true,
-                          width: 12.w,
-                          height: 12.h,
-                          fit: BoxFit.contain,
-                        ),
-                      )),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your Password";
-                    }
-                    return null;
-                  },
-                ),
-              ),
+
+              ///--------------------------Email and password text field section-------------------------------------------?>
+              _TextFieldSection(),
 
               ///---------------------------------------forgot password--------------------------------->
               Align(
@@ -109,9 +67,13 @@ class TextFields extends StatelessWidget {
               CustomButton(
                 color: AppColors.primaryColor,
                 onpress: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const SignUpScreen()));
+
+                  // if (_formKey.currentState!.validate()) {
+                  //   Get.back();
+                  // }
+
                 },
+
                 title: "Log In",
                 titlecolor: Colors.white,
               ),
@@ -199,24 +161,75 @@ class TextFields extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(
-                height: 15.h,
-              ),
             ],
           ),
         ),
       ),
     );
   }
+
+
+
+
+
+
+
+
+///-----------------------------text field section---------------------------->
+   _TextFieldSection(){
+    return Column(
+      children: [
+
+        ///--------------------------Email------------------------------------>
+        SizedBox(
+            height: 56.h,
+          child: TextFormField(
+            decoration: InputDecoration(
+                hintText: "Email",
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderColor))),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Please enter your email";
+              }
+              return null;
+            },
+          ),
+        ),
+        SizedBox(
+          height: 16.h,
+        ),
+
+        ///--------------------------Password------------------------------------>
+        SizedBox(
+          // height: 56.h,
+          child: TextFormField(
+            decoration: InputDecoration(
+                hintText: "Password",
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderColor)),
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: SvgPicture.asset(
+                    AppIcons.obscure_true,
+                    width: 12.h,
+                    height: 12.h,
+                    fit: BoxFit.contain,
+                  ),
+                )),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Please enter your Password";
+              }
+              return null;
+            },
+          ),
+        ),
+      ],
+    );
+  }
 }
 
-//
-// onPressed: () {
-// if (_formKey.currentState.validate()) {
-// // Form is valid, proceed with sign up logic
-// // For demonstration, let's just print the entered values
-// print('Email: ${_emailController.text}');
-// print('Password: ${_passwordController.text}');
-// // You can implement your sign-up logic here
-// }
-// },
+
+
+
