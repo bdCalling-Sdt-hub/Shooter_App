@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
-import '../../../routes/app_routes.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_images.dart';
-import '../../../utils/app_string.dart';
-import '../../../utils/dimentions.dart';
-import '../../widgets/custom_button.dart';
+import '../../../../routes/app_routes.dart';
+import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_images.dart';
+import '../../../../utils/app_string.dart';
+import '../../../../utils/dimentions.dart';
+
+import '../../../widgets/custom_button.dart';
 import 'InnerWidget/pin_code_field.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
@@ -90,7 +91,6 @@ class VerifyEmailScreen extends StatelessWidget {
                 SizedBox(height: 44.h),
                 //================================> VerifyEmail Button <=======================
                 CustomButton(
-                  color: AppColors.primaryColor,
                   title: AppString.verifyEmail,
                   titlecolor: Colors.white,
                   onpress: () {
