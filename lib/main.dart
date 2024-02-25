@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'package:shooter_app/views/screens/sign_up/sign_up_screen.dart';
-
 import 'routes/app_routes.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
 import 'views/screens/setPasswordScreen/set_password_screen.dart';

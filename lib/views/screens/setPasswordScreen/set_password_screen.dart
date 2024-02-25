@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_icons.dart';
@@ -75,7 +76,8 @@ class SetPasswordScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: 16.h),
 
-                      SizedBox(
+
+                     /* SizedBox(
                         height: 56.h,
                         child: TextFormField(
                           decoration: InputDecoration(
@@ -90,12 +92,22 @@ class SetPasswordScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
+                      ),*/
+
+                      CustomTextField(
+                          title: AppString.setPassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter your password";
+                          }
+                          return null;
+                        },
                       ),
 
-                      SizedBox(
+
+                      SizedBox(height: 16.h),
+
+                      /*SizedBox(
                         height: 56.h,
                         child: TextFormField(
                           decoration: InputDecoration(
@@ -119,7 +131,20 @@ class SetPasswordScreen extends StatelessWidget {
                             return null;
                           },
                         ),
+                      ),*/
+
+
+                      CustomTextField(
+                        title: AppString.confirmPassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please Re-enter your password";
+                          }
+                          return null;
+                        },
                       ),
+
+
 
                       SizedBox(height: 44.h),
                       //================================> SetPassword Button <=======================
