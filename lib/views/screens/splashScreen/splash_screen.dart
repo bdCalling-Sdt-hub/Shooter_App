@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/app_images.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -9,13 +12,32 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 200,
-            height:200,
-            child: Image.asset(AppImages.appLogo),
+
+          SizedBox(height: 276.h),
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Image.asset(
+                AppImages.splashBg,
+                fit: BoxFit.cover,
+                height: 576.h,
+                width: 393.w,
+              ),
+              Positioned(
+                top: -160.h,
+                right: 50.w,
+                left: 50.w,
+                child: SizedBox(
+                  width: 200.w,
+                  height: 200.h,
+                  child: Image.asset(AppImages.appLogo),
+                ),
+              )
+            ],
           ),
-          Image.asset(AppImages.splashBg),
         ],
       ),
     );

@@ -3,8 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'package:shooter_app/views/screens/sign_up/sign_up_screen.dart';
+import 'routes/app_routes.dart';
+import 'views/screens/splashScreen/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

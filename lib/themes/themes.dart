@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shooter_app/utils/app_colors.dart';
 
 class Themes {
   final lightTheme = ThemeData.light().copyWith(
@@ -37,6 +38,9 @@ class Themes {
   final darkTheme = ThemeData.dark().copyWith(
 
     ///-------------------------elevated button theme------------------------->
+    primaryColor:AppColors.primaryColor,
+      scaffoldBackgroundColor:AppColors.backgroundColor,
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(20),
