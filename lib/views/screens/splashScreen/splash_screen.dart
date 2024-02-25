@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,15 +15,18 @@ class SplashScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 276.h),
+          SizedBox(height: 242.h),
           Stack(
             clipBehavior: Clip.none,
             children: [
-              Image.asset(
-                AppImages.splashBg,
-                fit: BoxFit.cover,
-                height: 576.h,
-                width: 393.w,
+              Opacity(
+                opacity: 0.6,
+                child: Image.asset(
+                  AppImages.splashBg,
+                  fit: BoxFit.cover,
+                  height: 610.h,
+                  width: 393.w,
+                ),
               ),
               Positioned(
                 top: -160.h,

@@ -1,10 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
+import '../../../routes/app_routes.dart';
 import '../../../utils/app_images.dart';
 
 class OnboardingsScreen extends StatelessWidget {
@@ -15,13 +18,20 @@ class OnboardingsScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(AppImages.onboardingsBg), fit: BoxFit.cover),
+      body: Stack(
+          children: [
+        Opacity(
+          opacity: 0.6,
+          child: Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AppImages.onboardingsBg),
+                  fit: BoxFit.cover),
+            ),
+          ),
         ),
-        child: Padding(
+        Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: Dimensions.paddingSizeDefault),
           child: Column(
@@ -47,20 +57,24 @@ class OnboardingsScreen extends StatelessWidget {
                 color: AppColors.primaryColor,
                 title: AppString.logIn,
                 titlecolor: Colors.white,
-                onpress: () {},
+                onpress: () {
+                  Get.toNamed(AppRoutes.verifyEmailScreen);
+                },
               ),
               SizedBox(height: 16.h),
               CustomButton(
                 color: Colors.white,
                 titlecolor: AppColors.primaryColor,
                 title: AppString.signUp,
-                onpress: () {},
+                onpress: () {
+                  //Get.toNamed(AppRoutes.signUpScreen);
+                },
               ),
               SizedBox(height: 66.h),
             ],
           ),
         ),
-      ),
+      ]),
     );
   }
 }

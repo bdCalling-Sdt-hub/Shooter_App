@@ -14,40 +14,44 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       ///-----------------------body sction--------------------------->
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/sign_up_bgImage.png"),
-          )
-        ),
+            image: DecorationImage(
+          image: AssetImage("assets/images/sign_up_bgImage.png"),
+        )),
         child: Column(
-
-         crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 152.h,),
+            SizedBox(
+              height: 152.h,
+            ),
 
             ///-----------------------------logo image----------------------------------->
-            Center(child: Image.asset(AppImages.appLogo,width: 144.w,height: 144.h,)),
-
+            Center(
+                child: Image.asset(
+              AppImages.appLogo,
+              width: 144.w,
+              height: 144.h,
+            )),
 
             ///---------------------------sign up to continue text------------------------>
-            CustomText(text: "Sign up to continue!",fontsize: 20.h,fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8,top: 16.h,bottom: 66.h,),
-
-
+            CustomText(
+              text: "Sign up to continue!",
+              fontsize: 20.h,
+              fontWeight: FontWeight.w400,
+              color: AppColors.whiteE8E8E8,
+              top: 16.h,
+              bottom: 66.h,
+            ),
 
             Spacer(),
 
             ///----------------------all text field section------------------------------>
             TextFieldWidget()
-
           ],
         ),
       ),
     );
   }
 }
-
-
