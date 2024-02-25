@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'routes/app_routes.dart';
+import 'views/screens/onboardingsScreen/onboardings_screen.dart';
 import 'views/screens/splashScreen/splash_screen.dart';
 
 void main() {
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
           title: 'shooter app',
           theme: Themes().lightTheme,
           darkTheme: Themes().darkTheme,
-          initialRoute: AppRoutes.splashScreen,
+          initialRoute: AppRoutes.onboardingsScreen,
           getPages: AppRoutes.routes,
-          home: SplashScreen()),
+          home: OnboardingsScreen()),
     );
   }
 }
