@@ -23,15 +23,11 @@ class MyApp extends StatelessWidget {
         title: 'shooter app',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
+        initialRoute: AppRoutes.onboardingsScreen,
+        getPages: AppRoutes.routes,
         home: SignUpScreen(),
       ),
       designSize: const Size(393, 852),
-          title: 'shooter app',
-          theme: Themes().lightTheme,
-          darkTheme: Themes().darkTheme,
-          initialRoute: AppRoutes.onboardingsScreen,
-          getPages: AppRoutes.routes,
-          home: OnboardingsScreen()),
     );
   }
 }
