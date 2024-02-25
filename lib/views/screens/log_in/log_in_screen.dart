@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
-
-import 'inner_widgets/text_field_widget.dart';
+import 'inner_widgets/text_field.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -18,10 +17,11 @@ class SignUpScreen extends StatelessWidget {
       ///-----------------------body sction--------------------------->
       body: Container(
         decoration:  BoxDecoration(
-          image: DecorationImage(
-            image: const AssetImage("assets/images/sign_up_bgImage.png"),fit: BoxFit.fill,colorFilter: ColorFilter.mode( Colors.black.withOpacity(0.8), BlendMode.srcOver,)
-          )
+            image: DecorationImage(
+              image: const AssetImage("assets/images/sign_up_bgImage.png"),fit: BoxFit.fill,colorFilter: ColorFilter.mode( Colors.black.withOpacity(0.8), BlendMode.srcOver,),
+            )
         ),
+
 
         child: Column(
 
@@ -37,12 +37,10 @@ class SignUpScreen extends StatelessWidget {
             CustomText(text: "Sign up to continue!",fontsize: 20.h,fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8,top: 16.h,bottom: 66.h,),
 
 
+            const Spacer(),
 
-
-
-            // const Spacer(),
             ///----------------------all text field section------------------------------>
-            TextFieldWidget()
+            TextFields()
 
           ],
         ),
