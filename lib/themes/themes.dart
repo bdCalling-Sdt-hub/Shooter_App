@@ -72,17 +72,26 @@ class Themes {
 
     ///--------------------text filed themes----------------------->
     inputDecorationTheme:InputDecorationTheme(
+        contentPadding:  EdgeInsets.symmetric(vertical: 14.h, horizontal: 10.w),
+
       filled: true,
       fillColor: AppColors.fieldColor,
-      labelStyle: TextStyle(
+      hintStyle: TextStyle(
         fontSize: 16.h,
         fontWeight: FontWeight.w400,
         color: Colors.white
       ),
-      border: OutlineInputBorder(
+      focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-          borderSide: BorderSide(color: AppColors.borderColor,width: 2)
-      )
+          borderSide: BorderSide(color: AppColors.borderColor,width: 1)
+      ),
+
+
+
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+            borderSide: BorderSide(color: AppColors.borderColor,width: 1)
+        )
     )
   );
 }
