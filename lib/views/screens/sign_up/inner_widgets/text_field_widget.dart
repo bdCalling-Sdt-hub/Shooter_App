@@ -35,6 +35,7 @@ class TextFieldWidget extends StatelessWidget {
             topLeft: Radius.circular(40.r),
             topRight: Radius.circular(40.r),
           ),
+
           gradient: LinearGradient(
             colors: [
               const Color(0xFFFA1131).withOpacity(.12),
@@ -44,14 +45,14 @@ class TextFieldWidget extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
+
         ),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-
-
               ///--------------------------user name------------------------------------>
+
               SizedBox(
                 height: 56.h,
                 child: TextFormField(
@@ -66,11 +67,12 @@ class TextFieldWidget extends StatelessWidget {
                     return null;
                   },
                 ),
-              ),
-
+                
+                
               SizedBox(
                 height: 16.h,
               ),
+
 
 
               ///--------------------------Email------------------------------------>
@@ -88,10 +90,13 @@ class TextFieldWidget extends StatelessWidget {
                     return null;
                   },
                 ),
+
+
               ),
               SizedBox(
                 height: 16.h,
               ),
+
 
 
               ///--------------------------Password------------------------------------>
@@ -200,6 +205,7 @@ class TextFieldWidget extends StatelessWidget {
                 color: AppColors.primaryColor,
                 onpress: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const SignUpScreen()));
+
                 },
                 title: "Sign Up",
                 titlecolor: Colors.white,
@@ -241,6 +247,7 @@ class TextFieldWidget extends StatelessWidget {
                   ],
                 ),
               ),
+
 
               SizedBox(
                 height: 15.h,
