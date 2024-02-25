@@ -6,7 +6,6 @@ import 'package:shooter_app/views/screens/sign_up/sign_up_screen.dart';
 
 import 'routes/app_routes.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
-import 'views/screens/setPasswordScreen/set_password_screen.dart';
 import 'views/screens/splashScreen/splash_screen.dart';
 import 'views/screens/verifyEmailScreen/verify_email_screen.dart';
 
@@ -25,9 +24,9 @@ class MyApp extends StatelessWidget {
         title: 'shooter app',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
-        initialRoute: AppRoutes.setPasswordScreen,
+        initialRoute: AppRoutes.onboardingsScreen,
         getPages: AppRoutes.routes,
-        home: SetPasswordScreen(),
+        home: OnboardingsScreen(),
       ),
       designSize: const Size(393, 852),
     );
