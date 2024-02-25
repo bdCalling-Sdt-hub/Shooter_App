@@ -58,7 +58,7 @@ class OnboardingsScreen extends StatelessWidget {
                 title: AppString.logIn,
                 titlecolor: Colors.white,
                 onpress: () {
-                  Get.toNamed(AppRoutes.verifyEmailScreen);
+
                 },
               ),
               SizedBox(height: 16.h),

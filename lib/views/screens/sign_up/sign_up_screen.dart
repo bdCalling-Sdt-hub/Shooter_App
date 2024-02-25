@@ -50,8 +50,8 @@ class SignUpScreen extends StatelessWidget {
             ),
 
 
+            Spacer(),
 
-            // const Spacer(),
             ///----------------------all text field section------------------------------>
             TextFieldWidget()
           ],
