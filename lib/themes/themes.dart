@@ -33,6 +33,7 @@ class Themes {
 
 
 
+  ///----------------------------dart theme------------------------------->
   final darkTheme = ThemeData.dark().copyWith(
 
     ///-------------------------elevated button theme------------------------->

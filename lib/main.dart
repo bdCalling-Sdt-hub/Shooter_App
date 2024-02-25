@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
+import 'package:shooter_app/views/screens/sign_up/sign_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'shooter app',
-        theme: Themes().lightTheme,
+        theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
         home: SignUpScreen(),
       ),
