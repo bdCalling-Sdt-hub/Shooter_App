@@ -12,4 +12,10 @@ class AppIcons{
   static const String cake = "assets/icons/cake.svg";
   static const String mail = "assets/icons/mail.svg";
   static const String groupEdit = "assets/icons/GroupEdit.svg";
+
+
+  ///--------------------------------home screen----------------------------->
+  static const String bell_icon = "assets/icons/bell_icon.svg";
+  static const String handEmoji = "assets/icons/handEmoji.svg";
+  static const String menu = "assets/icons/menu.svg";
 }

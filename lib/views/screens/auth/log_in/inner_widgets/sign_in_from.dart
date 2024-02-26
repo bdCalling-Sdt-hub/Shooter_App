@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/dimentions.dart';
@@ -12,11 +11,15 @@ import '../../../../widgets/custom_text.dart';
 import '../../verifyEmailScreen/verify_email_screen.dart';
 
 class SignInForm extends StatelessWidget {
-  SignInForm({
-    super.key,
-  });
+  const SignInForm({
+    Key? key,
+    required this.formKey,
+  }) : super(key: key);
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> formKey;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ class SignInForm extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(
             horizontal: Dimensions.paddingSizeDefault,
-            vertical: Dimensions.paddingSizeDefault),
+            vertical: Dimensions.paddingSizeDefault
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40.r),
@@ -45,7 +49,7 @@ class SignInForm extends StatelessWidget {
           ),
         ),
         child: Form(
-          key: _formKey,
+           key: formKey,
           child: Column(
             children: [
 
@@ -69,9 +73,9 @@ class SignInForm extends StatelessWidget {
               CustomButton(
 
                 onpress: () {
-
-                  Get.to(()=> VerifyEmailScreen());
-
+                  if(formKey.currentState!.validate()){
+                    Get.to(()=> VerifyEmailScreen());
+                  }
                 },
 
                 title: "Log In",
@@ -182,7 +186,7 @@ class SignInForm extends StatelessWidget {
 
         ///--------------------------Email------------------------------------>
         SizedBox(
-            height: 56.h,
+             height: 56.h,
           child: TextFormField(
             decoration: InputDecoration(
                 hintText: "Email",
@@ -202,7 +206,7 @@ class SignInForm extends StatelessWidget {
 
         ///--------------------------Password------------------------------------>
         SizedBox(
-          // height: 56.h,
+           height: 56.h,
           child: TextFormField(
             decoration: InputDecoration(
                 hintText: "Password",

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
@@ -51,7 +52,7 @@ class OnboardingsScreen extends StatelessWidget {
               CustomButton(
                 title: AppString.logIn,
                 onpress: () {
-                  Get.to(() => SignInScreen());
+                  Get.toNamed(AppRoutes.signInScreen);
                 },
               ),
               SizedBox(height: 16.h),
@@ -60,8 +61,7 @@ class OnboardingsScreen extends StatelessWidget {
                 titlecolor: AppColors.primaryColor,
                 title: AppString.signUp,
                 onpress: () {
-                  // Navigator.of(context).push(route)
-                  Get.to(() => SignUpScreen());
+                  Get.toNamed(AppRoutes.signUpScreen);
                 },
               ),
               SizedBox(height: 66.h),

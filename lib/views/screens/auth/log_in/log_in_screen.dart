@@ -10,6 +10,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.black,
 
@@ -25,7 +26,7 @@ class SignInScreen extends StatelessWidget {
 
         child: Column(
 
-          crossAxisAlignment: CrossAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 152.h,),
 
@@ -37,10 +38,11 @@ class SignInScreen extends StatelessWidget {
             CustomText(text: "Sign up to continue!",fontsize: 20.h,fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8,top: 16.h,bottom: 66.h,),
 
 
-            const Spacer(),
+
+             const Spacer(),
 
             ///----------------------all text field section------------------------------>
-            SignInForm()
+            SignInForm(formKey: _formKey)
 
           ],
         ),
