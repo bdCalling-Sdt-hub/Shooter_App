@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   CustomTextField(
                     contenpaddingHorizontal: 10,
                     contenpaddingVertical:0 ,
-                    title: "02/20/2024",
+                    hintText: "02/20/2024",
 
                     sufixicons: IconButton(onPressed: (){
                       _selectDate(context);

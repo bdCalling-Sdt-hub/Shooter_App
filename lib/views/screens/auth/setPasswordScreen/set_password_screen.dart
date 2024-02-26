@@ -101,7 +101,7 @@ class SetPasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          title: AppString.setPassword,
+          hintText: AppString.setPassword,
           sufixicons: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SvgPicture.asset(
@@ -122,7 +122,7 @@ class SetPasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          title: AppString.confirmPassword,
+          hintText: AppString.confirmPassword,
           sufixicons: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SvgPicture.asset(

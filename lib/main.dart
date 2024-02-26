@@ -6,8 +6,10 @@ import 'package:shooter_app/views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
 import 'package:shooter_app/views/screens/notification/notification_screen.dart';
 import 'routes/app_routes.dart';
+import 'views/screens/EditprofileScreen/editprofile_screen.dart';
 import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
+import 'views/screens/profileScreen/profile_screen.dart';
 import 'views/screens/splashScreen/splash_screen.dart';
 
 void main() {
