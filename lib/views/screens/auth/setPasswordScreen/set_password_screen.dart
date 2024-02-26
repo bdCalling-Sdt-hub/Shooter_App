@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
-import '../../../routes/app_routes.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_icons.dart';
-import '../../../utils/app_images.dart';
-import '../../../utils/app_string.dart';
-import '../../../utils/dimentions.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/custom_text.dart';
+import '../../../../routes/app_routes.dart';
+import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_images.dart';
+import '../../../../utils/app_string.dart';
+import '../../../../utils/dimentions.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_text.dart';
 
 class SetPasswordScreen extends StatelessWidget {
   SetPasswordScreen({super.key});
@@ -23,6 +23,7 @@ class SetPasswordScreen extends StatelessWidget {
         extendBody: true,
         backgroundColor: Colors.black,
         body: Stack(children: [
+          //================================> Background Image and Back Arrow Section <=======================
           Opacity(
             opacity: 0.5,
             child: Container(
@@ -37,7 +38,7 @@ class SetPasswordScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 34.h),
                 Align(
@@ -91,6 +92,7 @@ class SetPasswordScreen extends StatelessWidget {
           ),
         ]));
   }
+
   //================================>TextFormField Section <=======================
   _formFieldSection() {
     return Column(
