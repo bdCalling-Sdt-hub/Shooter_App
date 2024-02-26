@@ -24,4 +24,8 @@ class AppString {
   static String forgetPassword = "Forget password";
   static String sendOTP = "Send OTP";
   static String pleaseEnter = "Please enter your email address to \nreset password.";
+
+  //================> Profile Screen <====================
+  static String profile = "Profile";
+
 }
