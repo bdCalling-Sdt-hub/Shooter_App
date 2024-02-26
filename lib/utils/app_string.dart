@@ -20,8 +20,21 @@ class AppString {
   static String confirmPassword = "Confirm Password";
   static String yourEmail = "Your email is verified successfully! \nPlease set a new password to continue.";
 
+
+  
+
+
+  ///-------------------------------home screen----------------------------------->
+  static String hello = "Hello  ";
+  static String arnold = "Arnold";
+  static String pickadate = "Pick a date";
+  static String upcomingMatches = "Upcoming Matches";
+
+  
   //================> Forget password Screen <====================
   static String forgetPassword = "Forget password";
   static String sendOTP = "Send OTP";
   static String pleaseEnter = "Please enter your email address to \nreset password.";
+
+  
 }
