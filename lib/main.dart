@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
 import 'routes/app_routes.dart';
+import 'views/screens/EditprofileScreen/editprofile_screen.dart';
 import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
+import 'views/screens/profileScreen/profile_screen.dart';
 import 'views/screens/splashScreen/splash_screen.dart';
 
 void main() {
