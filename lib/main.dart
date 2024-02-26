@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
+import 'package:shooter_app/views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
+import 'package:shooter_app/views/screens/notification/notification_screen.dart';
 import 'routes/app_routes.dart';
 import 'views/screens/EditprofileScreen/editprofile_screen.dart';
 import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
@@ -26,11 +28,12 @@ class MyApp extends StatelessWidget {
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
 
-        initialRoute: AppRoutes.homeScreen,
+        // initialRoute: AppRoutes.notificationScreen,
         getPages: AppRoutes.routes,
-        home: HomeScreen(),
+        home: BottomNavBar(),
       ),
       designSize: const Size(393, 852),
     );
   }
 }
+
