@@ -18,4 +18,12 @@ class AppString {
   static String setPassword = "Set password";
   static String confirmPassword = "Confirm Password";
   static String yourEmail = "Your email is verified successfully! \nPlease set a new password to continue.";
+
+
+
+  ///-------------------------------home screen----------------------------------->
+  static String hello = "Hello  ";
+  static String arnold = "Arnold";
+  static String pickadate = "Pick a date";
+  static String upcomingMatches = "Upcoming Matches";
 }
