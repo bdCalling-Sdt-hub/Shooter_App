@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import '../../../../utils/app_colors.dart';
+import '../../../../../utils/app_colors.dart';
+
 
 class PinCodeField extends StatelessWidget {
   const PinCodeField({

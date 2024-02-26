@@ -37,6 +37,7 @@ class SetPasswordScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 34.h),
                 Align(
