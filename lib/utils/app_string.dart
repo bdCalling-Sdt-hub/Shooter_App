@@ -13,9 +13,15 @@ class AppString {
       "We have sent a verification code to your \nemail. Please check your email and \nenter the code.";
   static String didntGet = "Didn’t get the code?";
   static String resend = "Resend";
+  static String email = "Email";
 
 //================> Set password Screen <====================
   static String setPassword = "Set password";
   static String confirmPassword = "Confirm Password";
   static String yourEmail = "Your email is verified successfully! \nPlease set a new password to continue.";
+
+  //================> Forget password Screen <====================
+  static String forgetPassword = "Forget password";
+  static String sendOTP = "Send OTP";
+  static String pleaseEnter = "Please enter your email address to \nreset password.";
 }

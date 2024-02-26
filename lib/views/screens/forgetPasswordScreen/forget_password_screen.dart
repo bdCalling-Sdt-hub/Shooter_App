@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_icons.dart';
-import '../../../utils/app_images.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text.dart';
 
-class SetPasswordScreen extends StatelessWidget {
-  SetPasswordScreen({super.key});
+class ForgetPasswordScreen extends StatelessWidget {
+  ForgetPasswordScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -62,19 +62,20 @@ class SetPasswordScreen extends StatelessWidget {
 
                 const Spacer(),
                 CustomText(
-                  text: AppString.setPassword,
+                  text: AppString.forgetPassword,
                   fontWeight: FontWeight.w400,
                   fontsize: 18.h,
                   fontName: 'Aldrich',
                 ),
                 SizedBox(height: 12.h),
                 CustomText(
-                  text: AppString.yourEmail,
+                  text: AppString.pleaseEnter,
                   fontWeight: FontWeight.w400,
                   fontsize: 16.h,
                   fontName: 'Aldrich',
                 ),
                 SizedBox(height: 16.h),
+
                 //================================>TextFormField Method <=======================
 
                 Form(
@@ -90,6 +91,7 @@ class SetPasswordScreen extends StatelessWidget {
           ),
         ]));
   }
+
   //================================>TextFormField Section <=======================
   _formFieldSection() {
     return Column(
@@ -98,7 +100,7 @@ class SetPasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          title: AppString.setPassword,
+          title: AppString.email,
           sufixicons: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SvgPicture.asset(
@@ -110,28 +112,7 @@ class SetPasswordScreen extends StatelessWidget {
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please enter your password";
-            }
-            return null;
-          },
-        ),
-        SizedBox(height: 16.h),
-        CustomTextField(
-          contenpaddingHorizontal: 12.w,
-          contenpaddingVertical: 16.h,
-          title: AppString.confirmPassword,
-          sufixicons: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SvgPicture.asset(
-              AppIcons.obscure_true,
-              width: 12.h,
-              height: 12.h,
-              fit: BoxFit.contain,
-            ),
-          ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Please Re-enter your password";
+              return "Please enter your email";
             }
             return null;
           },
@@ -139,11 +120,11 @@ class SetPasswordScreen extends StatelessWidget {
         SizedBox(height: 44.h),
         CustomButton(
           color: AppColors.primaryColor,
-          title: AppString.setPassword,
+          title: AppString.sendOTP,
           titlecolor: Colors.white,
           onpress: () {
             if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.signUpScreen);
+              Get.toNamed(AppRoutes.verifyEmailScreen);
             }
           },
         ),
