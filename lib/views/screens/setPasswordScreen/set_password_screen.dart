@@ -23,34 +23,13 @@ class SetPasswordScreen extends StatelessWidget {
         extendBody: true,
         backgroundColor: Colors.black,
         body: Stack(children: [
-          Opacity(
-            opacity: 0.5,
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AppImages.onboardingsBg),
-                    fit: BoxFit.cover),
-              ),
-            ),
-          ),
+          _backgroundAndBackArrowSection(),
           Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: Dimensions.paddingSizeDefault),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 34.h),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    alignment: Alignment.centerLeft,
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ),
                 //================================> Body Strings Section <=======================
 
                 const Spacer(),
@@ -68,97 +47,13 @@ class SetPasswordScreen extends StatelessWidget {
                   fontName: 'Aldrich',
                 ),
                 SizedBox(height: 16.h),
-                //================================>TextFormField Section <=======================
+                //================================>TextFormField Method <=======================
 
                 Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                      SizedBox(height: 16.h),
-
-
-                     /* SizedBox(
-                        height: 56.h,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                              hintText: AppString.setPassword,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.borderColor))),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter your password";
-                            }
-                            return null;
-                          },
-                        ),
-                      ),*/
-
-                      CustomTextField(
-                          title: AppString.setPassword,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter your password";
-                          }
-                          return null;
-                        },
-                      ),
-
-
-                      SizedBox(height: 16.h),
-
-                      /*SizedBox(
-                        height: 56.h,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                              hintText: AppString.confirmPassword,
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.borderColor)),
-                              suffixIcon: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: SvgPicture.asset(
-                                  AppIcons.obscure_true,
-                                  width: 12.h,
-                                  height: 12.h,
-                                  fit: BoxFit.contain,
-                                ),
-                              )),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please Re-enter your Password";
-                            }
-                            return null;
-                          },
-                        ),
-                      ),*/
-
-
-                      CustomTextField(
-                        title: AppString.confirmPassword,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please Re-enter your password";
-                          }
-                          return null;
-                        },
-                      ),
-
-
-
-                      SizedBox(height: 44.h),
-                      //================================> SetPassword Button <=======================
-                      CustomButton(
-                        color: AppColors.primaryColor,
-                        title: AppString.setPassword,
-                        titlecolor: Colors.white,
-                        onpress: () {
-                          if (_formKey.currentState!.validate()) {
-                            Get.toNamed(AppRoutes.signUpScreen);
-                          }
-                        },
-                      ),
-                      SizedBox(height: 248.h),
+                      _formFieldSection(),
                     ],
                   ),
                 ),
@@ -166,5 +61,104 @@ class SetPasswordScreen extends StatelessWidget {
             ),
           ),
         ]));
+  }
+  //================================> BackgroundAndBackArrow Section <=======================
+
+  _backgroundAndBackArrowSection() {
+    return Column(
+      children: [
+        Opacity(
+          opacity: 0.5,
+          child: Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AppImages.onboardingsBg),
+                  fit: BoxFit.cover),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          child: Column(
+            children: [
+              SizedBox(height: 34.h),
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  alignment: Alignment.centerLeft,
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Get.back();
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  //================================>TextFormField Section <=======================
+  _formFieldSection() {
+    return Column(
+      children: [
+        SizedBox(height: 16.h),
+        CustomTextField(
+          contenpaddingHorizontal: 12.w,
+          contenpaddingVertical: 16.h,
+          title: AppString.setPassword,
+          sufixicons: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SvgPicture.asset(
+              AppIcons.obscure_true,
+              width: 12.h,
+              height: 12.h,
+              fit: BoxFit.contain,
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter your password";
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 16.h),
+        CustomTextField(
+          contenpaddingHorizontal: 12.w,
+          contenpaddingVertical: 16.h,
+          title: AppString.confirmPassword,
+          sufixicons: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SvgPicture.asset(
+              AppIcons.obscure_true,
+              width: 12.h,
+              height: 12.h,
+              fit: BoxFit.contain,
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please Re-enter your password";
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 44.h),
+        CustomButton(
+          color: AppColors.primaryColor,
+          title: AppString.setPassword,
+          titlecolor: Colors.white,
+          onpress: () {
+            if (_formKey.currentState!.validate()) {
+              Get.toNamed(AppRoutes.signUpScreen);
+            }
+          },
+        ),
+        SizedBox(height: 248.h),
+      ],
+    );
   }
 }
