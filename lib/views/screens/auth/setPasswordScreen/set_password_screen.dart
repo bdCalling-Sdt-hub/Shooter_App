@@ -3,14 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
-import '../../../routes/app_routes.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_icons.dart';
-import '../../../utils/app_images.dart';
-import '../../../utils/app_string.dart';
-import '../../../utils/dimentions.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/custom_text.dart';
+
+import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_images.dart';
+import '../../../../utils/app_string.dart';
+import '../../../../utils/dimentions.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_text.dart';
+
 
 class SetPasswordScreen extends StatelessWidget {
   SetPasswordScreen({super.key});
@@ -35,7 +36,7 @@ class SetPasswordScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
+            padding:  const EdgeInsets.symmetric(
                 horizontal: Dimensions.paddingSizeDefault),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +78,7 @@ class SetPasswordScreen extends StatelessWidget {
                       SizedBox(height: 16.h),
 
 
-                     /* SizedBox(
+                      SizedBox(
                         height: 56.h,
                         child: TextFormField(
                           decoration: InputDecoration(
@@ -92,9 +93,9 @@ class SetPasswordScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                      ),*/
+                      ),
 
-                      CustomTextField(
+                     /* CustomTextField(
                           title: AppString.setPassword,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -102,12 +103,12 @@ class SetPasswordScreen extends StatelessWidget {
                           }
                           return null;
                         },
-                      ),
+                      ),*/
 
 
                       SizedBox(height: 16.h),
 
-                      /*SizedBox(
+                      SizedBox(
                         height: 56.h,
                         child: TextFormField(
                           decoration: InputDecoration(
@@ -131,31 +132,29 @@ class SetPasswordScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                      ),*/
-
-
-                      CustomTextField(
-                        title: AppString.confirmPassword,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please Re-enter your password";
-                          }
-                          return null;
-                        },
                       ),
+
+
+                      // CustomTextField(
+                      //   title: AppString.confirmPassword,
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return "Please Re-enter your password";
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
 
 
 
                       SizedBox(height: 44.h),
                       //================================> SetPassword Button <=======================
                       CustomButton(
-                        color: AppColors.primaryColor,
+
                         title: AppString.setPassword,
                         titlecolor: Colors.white,
                         onpress: () {
-                          if (_formKey.currentState!.validate()) {
-                            Get.toNamed(AppRoutes.signUpScreen);
-                          }
+
                         },
                       ),
                       SizedBox(height: 248.h),

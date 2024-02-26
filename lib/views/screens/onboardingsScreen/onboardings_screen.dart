@@ -5,10 +5,13 @@ import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
+import 'package:shooter_app/views/screens/auth/log_in/log_in_screen.dart';
+
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
-import '../../../routes/app_routes.dart';
 import '../../../utils/app_images.dart';
+import '../auth/sign_up/sign_up_screen.dart';
+
 
 class OnboardingsScreen extends StatelessWidget {
   const OnboardingsScreen({super.key});
@@ -54,10 +57,12 @@ class OnboardingsScreen extends StatelessWidget {
               ),
               SizedBox(height: 36.h),
               CustomButton(
-                color: AppColors.primaryColor,
+
                 title: AppString.logIn,
                 titlecolor: Colors.white,
                 onpress: () {
+
+                  Get.to(()=>SignInScreen());
 
                 },
               ),
@@ -67,7 +72,8 @@ class OnboardingsScreen extends StatelessWidget {
                 titlecolor: AppColors.primaryColor,
                 title: AppString.signUp,
                 onpress: () {
-                  //Get.toNamed(AppRoutes.signUpScreen);
+                  // Navigator.of(context).push(route)
+                  Get.to(()=>SignUpScreen());
                 },
               ),
               SizedBox(height: 66.h),

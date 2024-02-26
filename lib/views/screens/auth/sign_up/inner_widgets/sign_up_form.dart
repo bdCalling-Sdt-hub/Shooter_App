@@ -3,14 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
-import '../../../../utils/dimentions.dart';
-import '../../../widgets/custom_button.dart';
-import '../../log_in/log_in_screen.dart';
+import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_icons.dart';
+import '../../../../../utils/dimentions.dart';
 
-class TextFieldWidget extends StatelessWidget {
-  TextFieldWidget({
+import '../../../../widgets/custom_button.dart';
+import '../../log_in/log_in_screen.dart';
+import '../sign_up_screen.dart';
+
+class SignUpForm extends StatelessWidget {
+  SignUpForm({
     super.key,
   });
 
@@ -37,7 +39,7 @@ class TextFieldWidget extends StatelessWidget {
               const Color(0xFFFA1131).withOpacity(.12),
               const Color(0xFF130D13).withOpacity(1),
             ],
-            stops: const [0.0, 2.0],
+            stops: const [0.0, 1.0],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -64,11 +66,7 @@ class TextFieldWidget extends StatelessWidget {
                   },
                 ),
               ),
-                
-              SizedBox(
-                height: 16.h,
 
-              ),
 
               SizedBox(height: 16.h),
 
@@ -102,7 +100,7 @@ class TextFieldWidget extends StatelessWidget {
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: AppColors.borderColor)),
                       suffixIcon: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(13.0),
                         child: SvgPicture.asset(
                           AppIcons.obscure_true,
                           width: 12.h,
@@ -125,90 +123,23 @@ class TextFieldWidget extends StatelessWidget {
 
               _ByCreating(),
 
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.check_box,
-                    height: 20.h,
-                    width: 20.w,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.h),
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            fontSize: 14.0.h,
-                            height: 1.5,
-                            color: Colors.black,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text:
-                                  '   By creating an account, I accept the \n',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                overflow: TextOverflow.ellipsis,
-                                color: Colors.white,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                            TextSpan(
-                              text: '   Terms & conditions',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                color: AppColors.primaryColor,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' and ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                color: Colors.white,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Privacy Policy',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: Dimensions.fontSizeDefault.h,
-                                color: AppColors.primaryColor,
-                                fontFamily: "Aldrich",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
 
               ///------------------------------------botton------------------------------>
               SizedBox(
-                height: 24.h,
+                height: 20.h,
               ),
               CustomButton(
-                color: AppColors.primaryColor,
+
                 onpress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SignUpScreen()));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) =>  SignUpScreen()));
                 },
                 title: "Sign Up",
                 titlecolor: Colors.white,
               ),
 
               SizedBox(
-                height: 24.h,
+                height: 20.h,
               ),
 
               ///------------------------------Already have an account? ------------------------>
@@ -242,9 +173,6 @@ class TextFieldWidget extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(
-                height: 15.h,
-              ),
             ],
           ),
         ),

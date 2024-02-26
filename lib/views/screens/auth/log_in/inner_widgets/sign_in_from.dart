@@ -3,14 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
-import '../../../../utils/dimentions.dart';
-import '../../../widgets/custom_button.dart';
-import '../../../widgets/custom_text.dart';
 
-class TextFields extends StatelessWidget {
-  TextFields({
+import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_icons.dart';
+import '../../../../../utils/dimentions.dart';
+import '../../../../widgets/custom_button.dart';
+import '../../../../widgets/custom_text.dart';
+import '../../verifyEmailScreen/verify_email_screen.dart';
+
+class SignInForm extends StatelessWidget {
+  SignInForm({
     super.key,
   });
 
@@ -20,7 +22,7 @@ class TextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassContainer(
       opacity: 0.1,
-      blur: 10,
+      blur: 15,
       borderRadius: BorderRadius.only(
           topRight: Radius.circular(40.r), topLeft: Radius.circular(42.r)),
       child: Container(
@@ -65,12 +67,10 @@ class TextFields extends StatelessWidget {
 
               ///-------------------------------------Log In botton------------------------------->
               CustomButton(
-                color: AppColors.primaryColor,
+
                 onpress: () {
 
-                  // if (_formKey.currentState!.validate()) {
-                  //   Get.back();
-                  // }
+                  Get.to(()=> VerifyEmailScreen());
 
                 },
 
@@ -209,7 +209,7 @@ class TextFields extends StatelessWidget {
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.borderColor)),
                 suffixIcon: Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(13),
                   child: SvgPicture.asset(
                     AppIcons.obscure_true,
                     width: 12.h,
