@@ -22,6 +22,7 @@ class VerifyEmailScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
+          //================================> Background Image and Back Arrow Section <=======================
           Opacity(
             opacity: 0.5,
             child: Container(
@@ -34,10 +35,9 @@ class VerifyEmailScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: Dimensions.paddingSizeDefault),
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 34.h),
                 Align(
@@ -50,6 +50,15 @@ class VerifyEmailScreen extends StatelessWidget {
                     },
                   ),
                 ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: Dimensions.paddingSizeDefault),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 //================================> Body Strings Section <=======================
 
                 const Spacer(),

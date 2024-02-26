@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:shooter_app/views/screens/splashScreen/splash_screen.dart';
 import '../views/screens/auth/log_in/log_in_screen.dart';
+import '../views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import '../views/screens/auth/setPasswordScreen/set_password_screen.dart';
 import '../views/screens/auth/sign_up/sign_up_screen.dart';
 import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
 import '../views/screens/home/home_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
+
 
 
 class AppRoutes {
@@ -14,6 +16,7 @@ class AppRoutes {
   static const String verifyEmailScreen = "/verify_email_screen.dart";
   static const String setPasswordScreen = "/set_password_screen.dart";
   static const String signInScreen = "/SignInScreen.dart";
+  static const String forgetPasswordScreen = "/forget_password_screen.dart";
   static const String signUpScreen = "/SignUpScreen.dart";
   static const String homeScreen = "/HomeScreen.dart";
 
@@ -24,5 +27,7 @@ class AppRoutes {
         GetPage(name: setPasswordScreen, page: () => SetPasswordScreen()),
         GetPage(name: signInScreen, page: () => SignInScreen()),
         GetPage(name: homeScreen, page: () => HomeScreen()),
+        GetPage(name: forgetPasswordScreen, page: () => ForgetPasswordScreen()),
+
       ];
 }
