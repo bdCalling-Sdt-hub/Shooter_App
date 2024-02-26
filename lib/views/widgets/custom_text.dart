@@ -5,6 +5,7 @@ class CustomText extends StatelessWidget {
   const CustomText(
       {super.key,
         this.maxline,
+        this.textOverflow,
         this.fontName,
         this.textAlign = TextAlign.center,
         this.left = 0,
@@ -17,6 +18,7 @@ class CustomText extends StatelessWidget {
         this.text = ""});
 
   final double left;
+  final TextOverflow? textOverflow;
   final double right;
   final double top;
   final double bottom;
@@ -37,7 +39,7 @@ class CustomText extends StatelessWidget {
         textAlign: textAlign,
         text,
         maxLines: maxline,
-        overflow: TextOverflow.ellipsis,
+        overflow: textOverflow??TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: fontsize,
           fontFamily: "Aldrich",
