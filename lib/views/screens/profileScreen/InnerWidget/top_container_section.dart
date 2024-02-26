@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
@@ -41,10 +43,12 @@ class TopContainerSection extends StatelessWidget {
                   text: 'Arnold Bailie',
                   fontName: 'Aldrich',
                   fontWeight: FontWeight.w400,
-                  fontsize: 24.h,
+                  fontsize: 24.sp,
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.editprofileScreen);
+                    },
                     icon: SvgPicture.asset(
                       AppIcons.edit,
                     )),

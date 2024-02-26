@@ -6,12 +6,10 @@ import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/screens/auth/log_in/log_in_screen.dart';
-
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
 import '../../../utils/app_images.dart';
 import '../auth/sign_up/sign_up_screen.dart';
-
 
 class OnboardingsScreen extends StatelessWidget {
   const OnboardingsScreen({super.key});
@@ -20,9 +18,7 @@ class OnboardingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
-      body: Stack(
-          children: [
+      body: Stack(children: [
         Opacity(
           opacity: 0.6,
           child: Container(
@@ -44,26 +40,18 @@ class OnboardingsScreen extends StatelessWidget {
               CustomText(
                 text: AppString.smallBore,
                 maxline: 2,
-                fontWeight: FontWeight.w400,
                 fontsize: 32.h,
-                fontName: 'Aldrich',
               ),
               SizedBox(height: 16.h),
               CustomText(
                 text: AppString.exciting,
-                fontWeight: FontWeight.w400,
                 fontsize: 16.h,
-                fontName: 'Aldrich',
               ),
               SizedBox(height: 36.h),
               CustomButton(
-
                 title: AppString.logIn,
-                titlecolor: Colors.white,
                 onpress: () {
-
-                  Get.to(()=>SignInScreen());
-
+                  Get.to(() => SignInScreen());
                 },
               ),
               SizedBox(height: 16.h),
@@ -73,7 +61,7 @@ class OnboardingsScreen extends StatelessWidget {
                 title: AppString.signUp,
                 onpress: () {
                   // Navigator.of(context).push(route)
-                  Get.to(()=>SignUpScreen());
+                  Get.to(() => SignUpScreen());
                 },
               ),
               SizedBox(height: 66.h),

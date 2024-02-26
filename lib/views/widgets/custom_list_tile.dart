@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../utils/app_colors.dart';
 import 'custom_text.dart';
 
 class CustomListTile extends StatelessWidget {
   final String title;
-  final IconData? prefixIcon;
-  final IconData? sufixIcon;
+  final Widget? prefixIcon;
+  final Widget? sufixIcon;
   const CustomListTile({
     super.key,
     required this.title,
@@ -23,7 +24,7 @@ class CustomListTile extends StatelessWidget {
           color: AppColors.fieldColor,
           border: Border.all(width: 1.w, color: AppColors.primaryColor)),
       child: ListTile(
-        leading: Icon(prefixIcon, size: 24.w),
+        leading: prefixIcon,
         horizontalTitleGap: 16.w,
         dense: true,
         title: CustomText(

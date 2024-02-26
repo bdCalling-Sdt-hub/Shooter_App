@@ -34,16 +34,12 @@ class Themes {
   // );
   //
 
-
-
-
   ///----------------------------dart theme------------------------------->
   final darkTheme = ThemeData.dark().copyWith(
 
-    ///-------------------------elevated button theme------------------------->
-    primaryColor:AppColors.primaryColor,
-      scaffoldBackgroundColor:AppColors.backgroundColor,
-
+      ///-------------------------elevated button theme------------------------->
+      primaryColor: AppColors.primaryColor,
+      scaffoldBackgroundColor: AppColors.backgroundColor,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(20),
@@ -68,30 +64,18 @@ class Themes {
           elevation: 0,
           shadowColor: Colors.white10),
 
-
-
-    ///--------------------text filed themes----------------------->
-    inputDecorationTheme:InputDecorationTheme(
-        contentPadding:  const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-
-      filled: true,
-      fillColor: AppColors.fieldColor,
-      hintStyle: TextStyle(
-        fontSize: 16.h,
-        fontWeight: FontWeight.w400,
-        color: Colors.white
-      ),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-          borderSide: BorderSide(color: AppColors.borderColor,width: 1)
-      ),
-
-
-
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-            borderSide: BorderSide(color: AppColors.borderColor,width: 1)
-        )
-    )
-  );
+      ///--------------------text filed themes----------------------->
+      inputDecorationTheme: InputDecorationTheme(
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+          filled: true,
+          fillColor: AppColors.fieldColor,
+          hintStyle: TextStyle(
+              fontSize: 16.h, fontWeight: FontWeight.w400, color: Colors.white),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+              borderSide: BorderSide(color: AppColors.borderColor, width: 1)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+              borderSide: BorderSide(color: AppColors.borderColor, width: 1))));
 }

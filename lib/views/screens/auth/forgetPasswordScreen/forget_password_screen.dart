@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,12 +22,11 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        extendBody: true,
-        backgroundColor: Colors.black,
+        // extendBody: true,
         body: Stack(children: [
           //================================> Background Image and Back Arrow Section <=======================
           Opacity(
-            opacity: 0.5,
+            opacity: 0.4,
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(
@@ -35,62 +36,66 @@ class ForgetPasswordScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 34.h),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    alignment: Alignment.centerLeft,
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: Dimensions.paddingSizeDefault),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //================================> Body Strings Section <=======================
 
-                const Spacer(),
-                CustomText(
-                  text: AppString.forgetPassword,
-                  fontWeight: FontWeight.w400,
-                  fontsize: 18.h,
-                  fontName: 'Aldrich',
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 34.h),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        alignment: Alignment.centerLeft,
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 12.h),
-                CustomText(
-                  text: AppString.pleaseEnter,
-                  fontWeight: FontWeight.w400,
-                  fontsize: 16.h,
-                  fontName: 'Aldrich',
-                ),
-                SizedBox(height: 16.h),
-
-                //================================>TextFormField Method <=======================
-
-                Form(
-                  key: _formKey,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: Dimensions.paddingSizeDefault),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _formFieldSection(),
+                      SizedBox(
+                        height: 208.h,
+                      ),
+                      //================================> Body Strings Section <=======================
+                      CustomText(
+                        text: AppString.forgetPassword,
+                        fontsize: 18.h,
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomText(
+                        text: AppString.pleaseEnter,
+                        fontsize: 16.h,
+                      ),
+                      SizedBox(height: 16.h),
+
+                      //================================>TextFormField Method <=======================
+
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            _formFieldSection(),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            ],
+          )
         ]));
   }
 
@@ -102,16 +107,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          title: AppString.email,
-          sufixicons: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SvgPicture.asset(
-              AppIcons.obscure_true,
-              width: 12.h,
-              height: 12.h,
-              fit: BoxFit.contain,
-            ),
-          ),
+          hintText: AppString.email,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Please enter your email";
@@ -121,7 +117,6 @@ class ForgetPasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 44.h),
         CustomButton(
-          color: AppColors.primaryColor,
           title: AppString.sendOTP,
           titlecolor: Colors.white,
           onpress: () {

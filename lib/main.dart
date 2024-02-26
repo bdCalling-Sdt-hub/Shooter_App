@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'routes/app_routes.dart';
+import 'views/screens/EditprofileScreen/editprofile_screen.dart';
 import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
 import 'views/screens/profileScreen/profile_screen.dart';
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
         title: 'shooter app',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
-        initialRoute: AppRoutes.profileScreen,
+        initialRoute: AppRoutes.forgetPasswordScreen,
         getPages: AppRoutes.routes,
-        home: ProfileScreen(),
+        home: ForgetPasswordScreen(),
       ),
       designSize: const Size(393, 852),
     );

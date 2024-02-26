@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shooter_app/views/screens/splashScreen/splash_screen.dart';
+import '../views/screens/EditprofileScreen/editprofile_screen.dart';
 import '../views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import '../views/screens/auth/setPasswordScreen/set_password_screen.dart';
 import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const String forgetPasswordScreen = "/forget_password_screen.dart";
   static const String profileScreen = "/profile_screen.dart";
   static const String signUpScreen = "/SignUpScreen.dart";
+  static const String editprofileScreen = "/editprofile_screen.dart";
 
   static List<GetPage> get routes => [
         GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -24,5 +26,6 @@ class AppRoutes {
         GetPage(name: setPasswordScreen, page: () => SetPasswordScreen()),
         GetPage(name: forgetPasswordScreen, page: () => ForgetPasswordScreen()),
         GetPage(name: profileScreen, page: () => ProfileScreen()),
+        GetPage(name: editprofileScreen, page: () => EditprofileScreen()),
       ];
 }
