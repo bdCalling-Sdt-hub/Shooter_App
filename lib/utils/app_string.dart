@@ -29,6 +29,11 @@ class AppString {
   static String arnold = "Arnold";
   static String pickadate = "Pick a date";
   static String upcomingMatches = "Upcoming Matches";
+  static String upcomingEvents = "Upcoming Events";
+
+
+  ///----------------------Notification screen-------------------------------------->
+  static String notification = "Notification";
 
   
   //================> Forget password Screen <====================

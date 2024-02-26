@@ -5,9 +5,11 @@ import 'package:shooter_app/utils/app_icons.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
+import 'package:shooter_app/views/widgets/custom_text_field.dart';
 
 import '../../../utils/app_colors.dart';
 import 'inner_widgets/homescreen_app_bar.dart';
+import 'inner_widgets/up_comiing_events_listview.dart';
 import 'inner_widgets/up_coming_matches_listview.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,44 +20,112 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       ///-------------------------------app bar section-------------------------->
 
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20.h),
-        child: ListView(
+      body: SafeArea(
+        child: Column(
           children:  [
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
 
-            ///-----------------app bar------------------------->
-            const HomeScreenAppBar(),
+                  ///-----------------app bar------------------------->
+                  const HomeScreenAppBar(),
 
 
 
-            CustomText(
-              textAlign: TextAlign.start,
-              text: AppString.pickadate,
-              fontsize: Dimensions.fontSizeExtraLarge.h,
-              fontWeight: FontWeight.w400,
-              color: AppColors.white,
-              top: 31.h,
+                  ///----------------------------picka date time text---------------------->
+                  CustomText(
+                    textAlign: TextAlign.start,
+                    text: AppString.pickadate,
+                    fontsize: Dimensions.fontSizeExtraLarge.h,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.white,
+                    top: 20.h,
+                    bottom: 12.h,
+                  ),
+
+
+
+                  ///-------------------------date time form------------------------>
+                  CustomTextField(
+                    contenpaddingHorizontal: 10,
+                    contenpaddingVertical:0 ,
+                    title: "02/20/2024",
+
+                    sufixicons: IconButton(onPressed: (){
+                      _selectDate(context);
+                    }, icon: SvgPicture.asset(AppIcons.calander)),
+                  ),
+
+
+
+
+
+                    SizedBox(height: 10.h,)
+
+
+
+                ],
+              ),
             ),
+             
+             
+             
+             Expanded(
+               child: SingleChildScrollView(
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     ///------------------------up Coming Matches text-------------------->
+                     Padding(
+                       padding: EdgeInsets.only(left: 20.w),
+                       child: CustomText(
+                         textAlign: TextAlign.start,
+                         text: AppString.upcomingMatches,
+                         fontsize: Dimensions.fontSizeExtraLarge.h,
+                         fontWeight: FontWeight.w400,
+                         color: AppColors.white,
+                         bottom: 16.h,
+                         top: 10.h,
+                       ),
+                     ),
+                     const UpComingMatchesListView(),
 
 
 
+                     ///------------------------up Coming Matches text-------------------->
+                     Container(
+                       margin: EdgeInsets.only(left: 20.w),
+                       child: CustomText(
+                         textAlign: TextAlign.start,
+                         text: AppString.upcomingEvents,
+                         fontsize: Dimensions.fontSizeExtraLarge.h,
+                         fontWeight: FontWeight.w400,
+                         color: AppColors.white,
+                         top: 20.h,
+                         bottom: 12.h,
+                       ),
+                     ),
 
 
-            CustomText(
-              textAlign: TextAlign.start,
-              text: AppString.upcomingMatches,
-              fontsize: Dimensions.fontSizeExtraLarge.h,
-              fontWeight: FontWeight.w400,
-              color: AppColors.white,
-              top: 31.h,
-            ),
+
+                     ///------------------------up Coming Events text-------------------->
+                     const UpComingEventsListView(),
+
+
+                     SizedBox(height: 20.h,),
+                     
+                   ],
+                 ),
+               ),
+             )
 
 
 
+           
 
-
-            UpComingMatchesListView()
 
           ],
         ),
