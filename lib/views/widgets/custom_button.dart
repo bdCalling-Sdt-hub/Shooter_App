@@ -7,21 +7,18 @@ class CustomButton extends StatelessWidget {
   final String title;
   final Color? color;
 
-  final Color titlecolor;
+  final Color? titlecolor;
   final double? height;
   final double? fontSize;
-
 
   const CustomButton({
     super.key,
     required this.title,
     required this.onpress,
-
-     this.color,
+    this.color,
     this.height,
     this.fontSize,
-    required this.titlecolor,
-
+    this.titlecolor,
   });
 
   @override
@@ -30,7 +27,7 @@ class CustomButton extends StatelessWidget {
       onTap: onpress,
       child: Container(
         width: 345.w,
-        height:height?? 52.h,
+        height: height ?? 52.h,
         padding: const EdgeInsets.all(10),
         decoration: color == null
             ? ShapeDecoration(
@@ -53,7 +50,7 @@ class CustomButton extends StatelessWidget {
           children: [
             CustomText(
               text: title,
-              fontsize:fontSize??20.h,
+              fontsize: fontSize ?? 20.h,
               color: titlecolor ?? Colors.white,
               fontName: 'Aldrich',
               fontWeight: FontWeight.w400,
