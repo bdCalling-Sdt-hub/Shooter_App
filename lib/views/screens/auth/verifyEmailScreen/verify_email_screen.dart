@@ -14,6 +14,7 @@ import 'InnerWidget/pin_code_field.dart';
 class VerifyEmailScreen extends StatelessWidget {
   const VerifyEmailScreen({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
