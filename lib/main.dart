@@ -11,6 +11,7 @@ import 'views/screens/EditprofileScreen/editprofile_screen.dart';
 import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
 import 'views/screens/profileScreen/profile_screen.dart';
+import 'views/screens/registrationScreen/registration_screen.dart';
 import 'views/screens/settingsScreen/settings_screen.dart';
 import 'views/screens/splashScreen/splash_screen.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
 
         // initialRoute: AppRoutes.notificationScreen,
         getPages: AppRoutes.routes,
-        home: SettingsScreen(),
+        home: RegistrationScreen(),
       ),
       designSize: const Size(393, 852),
     );

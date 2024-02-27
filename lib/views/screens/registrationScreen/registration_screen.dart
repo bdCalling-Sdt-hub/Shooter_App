@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:shooter_app/utils/app_colors.dart';
-import 'package:shooter_app/views/widgets/custom_text_field.dart';
+
 import '../../../routes/app_routes.dart';
+import '../../../utils/app_colors.dart';
 import '../../../utils/app_icons.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text.dart';
+import '../../widgets/custom_text_field.dart';
 
-class ChangepasswordScreen extends StatelessWidget {
-  ChangepasswordScreen({super.key});
+class RegistrationScreen extends StatelessWidget {
+   RegistrationScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,7 +24,7 @@ class ChangepasswordScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: CustomText(
-          text: AppString.changePassword,
+          text: AppString.registration,
           fontsize: 18.h,
         ),
         centerTitle: true,
@@ -47,20 +48,18 @@ class ChangepasswordScreen extends StatelessWidget {
       ),
     );
   }
-
   //================================>TextFormField Section <=======================
   _formFieldSection() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          hintText: AppString.currentPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
+          hintText: AppString.fullName,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please enter your current password";
+              return "please enter your full name";
             }
             return null;
           },
@@ -69,11 +68,10 @@ class ChangepasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          hintText: AppString.setPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
+          hintText: AppString.email,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please Set new password";
+              return "please enter your email";
             }
             return null;
           },
@@ -82,23 +80,55 @@ class ChangepasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          hintText: AppString.setnewPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
+          hintText: AppString.phoneNumber,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please re-enter new password";
+              return "please enter your phone number";
             }
             return null;
           },
         ),
         SizedBox(height: 16.h),
         CustomText(
-          text: AppString.forgotPass,
-          color: AppColors.primaryColor,
+          text: AppString.gender,
         ),
-        SizedBox(height: 359.h),
+
+        //================================================================================================================
+
+
+
+
+
+
+
+
+        SizedBox(height: 52.h),
+        CustomTextField(
+          contenpaddingHorizontal: 12.w,
+          contenpaddingVertical: 16.h,
+          hintText: AppString.age,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "please enter your age";
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 16.h),
+        CustomTextField(
+          contenpaddingHorizontal: 12.w,
+          contenpaddingVertical: 16.h,
+          hintText: AppString.clubName,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "please enter your club name";
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 174.h),
         CustomButton(
-          title: AppString.updatePassword,
+          title: AppString.makePayment,
           titlecolor: Colors.white,
           onpress: () {
             if (_formKey.currentState!.validate()) {
@@ -107,17 +137,6 @@ class ChangepasswordScreen extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-  _sufixIcon(String icon) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SvgPicture.asset(
-        icon,
-        width: 12.h,
-        height: 12.h,
-        fit: BoxFit.contain,
-      ),
     );
   }
 }

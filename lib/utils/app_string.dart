@@ -62,4 +62,15 @@ class AppString {
   static String forgotPass = "Forgot Password?";
   static String verify = "Verify";
 
+  //================> Registration Screen <====================
+  static String registration = "Registration";
+  static String fullName = "Full name";
+  static String phoneNumber = "Phone number";
+  static String gender = "Gender";
+  static String male = "Male";
+  static String female = "Female";
+  static String age = "Age";
+  static String clubName = "Club name";
+  static String makePayment = "Make payment";
+
 }

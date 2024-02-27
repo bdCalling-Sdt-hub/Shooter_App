@@ -14,6 +14,7 @@ import '../views/screens/notification/notification_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
 import '../views/screens/privacypolicyScreen/privacypolicy_screen.dart';
 import '../views/screens/profileScreen/profile_screen.dart';
+import '../views/screens/registrationScreen/registration_screen.dart';
 import '../views/screens/setnewpasswordScreen/setnewpassword_screen.dart';
 import '../views/screens/settingsScreen/settings_screen.dart';
 import '../views/screens/termsconditionsScreen/termsconditions_screen.dart';
@@ -37,6 +38,7 @@ class AppRoutes {
   static const String privacypolicyScreen = "/privacypolicy_screen.dart";
   static const String termsconditionsScreen = "/termsconditions_screen.dart";
   static const String aboutusScreen = "/aboutus_screen.dart";
+  static const String registrationScreen = "/registration_screen.dart";
 
   static List<GetPage> get routes => [
         GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -57,5 +59,6 @@ class AppRoutes {
         GetPage(name: privacypolicyScreen, page: () => PrivacypolicyScreen()),
         GetPage(name: termsconditionsScreen, page: () => TermsconditionsScreen()),
         GetPage(name: aboutusScreen, page: () => AboutusScreen()),
+        GetPage(name: registrationScreen, page: () => RegistrationScreen()),
       ];
 }
