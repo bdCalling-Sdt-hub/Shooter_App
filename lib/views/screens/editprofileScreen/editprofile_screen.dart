@@ -20,9 +20,7 @@ class EditprofileScreen extends StatelessWidget {
       appBar: AppBar(
         title: CustomText(
           text: AppString.editProfile,
-          fontName: 'Aldrich',
           fontsize: 18.h,
-          fontWeight: FontWeight.w400,
         ),
         centerTitle: true,
       ),

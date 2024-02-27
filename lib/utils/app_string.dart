@@ -46,4 +46,20 @@ class AppString {
   static String profile = "Profile";
   static String editProfile = "Edit profile";
   static String update = "Update";
+
+  //================> Settings Screen <====================
+  static String settings = "Settings";
+  static String changePassword = "Change password";
+  static String privacyPolicy = "Privacy policy";
+  static String termsConditions = "Terms & conditions";
+  static String aboutUs = "About us";
+
+  //================> Change password Screen <====================
+  static String currentPassword = "Current password";
+  static String setnewPassword = "Set new password";
+  static String reenterPassword = "Re-enter new password";
+  static String updatePassword = "Update password";
+  static String forgotPass = "Forgot Password?";
+  static String verify = "Verify";
+
 }

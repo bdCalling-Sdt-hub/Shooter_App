@@ -102,15 +102,7 @@ class SetPasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.setPassword,
-          sufixicons: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SvgPicture.asset(
-              AppIcons.obscure_true,
-              width: 12.h,
-              height: 12.h,
-              fit: BoxFit.contain,
-            ),
-          ),
+          sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Please enter your password";
@@ -123,15 +115,7 @@ class SetPasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.confirmPassword,
-          sufixicons: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SvgPicture.asset(
-              AppIcons.obscure_true,
-              width: 12.h,
-              height: 12.h,
-              fit: BoxFit.contain,
-            ),
-          ),
+          sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Please Re-enter your password";
@@ -150,6 +134,18 @@ class SetPasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 248.h),
       ],
+    );
+  }
+
+  _sufixIcon(String icon) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SvgPicture.asset(
+        icon,
+        width: 12.h,
+        height: 12.h,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
