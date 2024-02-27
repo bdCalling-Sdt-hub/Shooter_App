@@ -37,24 +37,33 @@ class ProfileScreen extends StatelessWidget {
 
             SizedBox(height: 24.h),
             CustomListTile(
-                title: 'Arnold Bailie', prefixIcon: SvgPicture.asset(AppIcons.user,color: Colors.white,)),
+                title: 'Arnold Bailie', prefixIcon: _prefixIcon(AppIcons.user)),
             SizedBox(height: 16.h),
             CustomListTile(
-                title: '20-01-1996', prefixIcon: SvgPicture.asset(AppIcons.cake, color: Colors.white)),
+                title: '20-01-1996', prefixIcon: _prefixIcon(AppIcons.cake)),
             SizedBox(height: 16.h),
             CustomListTile(
-                title: 'arnold.07@gmail.com', prefixIcon: SvgPicture.asset(AppIcons.mail, color: Colors.white)),
+                title: 'arnold.07@gmail.com',
+                prefixIcon: _prefixIcon(AppIcons.mail)),
             SizedBox(height: 16.h),
             CustomListTile(
-                title: '(406) 555-0120', prefixIcon: SvgPicture.asset(AppIcons.phone, color: Colors.white)),
+                title: '(406) 555-0120',
+                prefixIcon: _prefixIcon(
+                  AppIcons.phone,
+                )),
             SizedBox(height: 16.h),
             CustomListTile(
-                title: '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
-                prefixIcon: SvgPicture.asset(AppIcons.location, color: Colors.white)),
+              title: '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
+              prefixIcon: _prefixIcon(AppIcons.locationMarker),
+            ),
             SizedBox(height: 16.h),
           ],
         ),
       ),
     );
+  }
+
+  _prefixIcon(String icon) {
+    return SvgPicture.asset(icon, color: Colors.white);
   }
 }

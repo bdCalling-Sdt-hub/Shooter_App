@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/routes/app_routes.dart';
-
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_images.dart';
@@ -42,7 +41,6 @@ class TopContainerSection extends StatelessWidget {
                 CustomText(
                   text: 'Arnold Bailie',
                   fontName: 'Aldrich',
-                  fontWeight: FontWeight.w400,
                   fontsize: 24.sp,
                 ),
                 IconButton(
@@ -62,7 +60,6 @@ class TopContainerSection extends StatelessWidget {
                 CustomText(
                   text: 'Premium Member',
                   fontName: 'Aldrich',
-                  fontWeight: FontWeight.w400,
                   fontsize: 18.h,
                 ),
               ],

@@ -141,9 +141,7 @@ class SetPasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 44.h),
         CustomButton(
-          color: AppColors.primaryColor,
           title: AppString.setPassword,
-          titlecolor: Colors.white,
           onpress: () {
             if (_formKey.currentState!.validate()) {
               Get.toNamed(AppRoutes.signUpScreen);

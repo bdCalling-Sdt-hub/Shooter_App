@@ -42,7 +42,7 @@ class CustomTextField extends StatelessWidget {
         suffixIconColor: AppColors.primaryColor,
         prefixIconColor: AppColors.primaryColor,
         hintText: hintText,
-        hintStyle: const TextStyle(color:AppColors.whiteE8E8E8),
+        hintStyle: const TextStyle(color:AppColors.whiteE8E8E8, fontFamily: 'Aldrich'),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),
           borderSide: BorderSide(

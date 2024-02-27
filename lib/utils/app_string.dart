@@ -45,4 +45,5 @@ class AppString {
   //================> Profile Screen <====================
   static String profile = "Profile";
   static String editProfile = "Edit profile";
+  static String update = "Update";
 }
