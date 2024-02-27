@@ -13,6 +13,11 @@ class AppIcons{
   static const String cake = "assets/icons/cake.svg";
   static const String mail = "assets/icons/mail.svg";
   static const String groupEdit = "assets/icons/GroupEdit.svg";
+  static const String terms = "assets/icons/exclamation.svg";
+  static const String lock = "assets/icons/lock-closed.svg";
+  static const String privacy = "assets/icons/shield-check.svg";
+  static const String about = "assets/icons/information-circle.svg";
+  static const String rightArrow = "assets/icons/chevron-right.svg";
 
 
   ///--------------------------------home screen----------------------------->
