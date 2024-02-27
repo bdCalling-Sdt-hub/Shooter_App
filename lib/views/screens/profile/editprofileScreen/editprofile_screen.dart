@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
-import '../../../utils/app_icons.dart';
-import '../../../utils/app_images.dart';
-import '../../../utils/app_string.dart';
-import '../../widgets/custom_text.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_images.dart';
+import '../../../../utils/app_string.dart';
+import '../../../widgets/custom_text.dart';
 
 class EditprofileScreen extends StatelessWidget {
   const EditprofileScreen({super.key});

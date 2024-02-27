@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shooter_app/utils/app_string.dart';
-import '../../../utils/app_icons.dart';
-import '../../widgets/custom_list_tile.dart';
-import '../../widgets/custom_text.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../widgets/custom_list_tile.dart';
+import '../../../widgets/custom_text.dart';
 import 'InnerWidget/top_container_section.dart';
 
 class ProfileScreen extends StatelessWidget {

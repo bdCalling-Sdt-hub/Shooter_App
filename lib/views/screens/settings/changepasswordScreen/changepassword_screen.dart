@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/utils/app_colors.dart';
+import 'package:shooter_app/views/widgets/custom_text_field.dart';
+import '../../../../routes/app_routes.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_string.dart';
+import '../../../../utils/dimentions.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_text.dart';
 
-import '../../../routes/app_routes.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_icons.dart';
-import '../../../utils/app_string.dart';
-import '../../../utils/dimentions.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/custom_text.dart';
-import '../../widgets/custom_text_field.dart';
-
-class SetnewpasswordScreen extends StatelessWidget {
-  SetnewpasswordScreen({super.key});
+class ChangepasswordScreen extends StatelessWidget {
+  ChangepasswordScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -34,10 +33,6 @@ class SetnewpasswordScreen extends StatelessWidget {
             horizontal: Dimensions.paddingSizeDefault),
         child: Column(
           children: [
-            SizedBox(height: 24.h),
-            CustomText(
-              text: AppString.yourEmail,
-            ),
             SizedBox(height: 24.h),
             Form(
               key: _formKey,
@@ -61,11 +56,11 @@ class SetnewpasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          hintText: AppString.setPassword,
+          hintText: AppString.currentPassword,
           sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please Set New Password";
+              return "please enter your current password";
             }
             return null;
           },
@@ -74,23 +69,40 @@ class SetnewpasswordScreen extends StatelessWidget {
         CustomTextField(
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
-          hintText: AppString.confirmPassword,
+          hintText: AppString.setPassword,
           sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please Re-enter New Password";
+              return "please Set new password";
             }
             return null;
           },
         ),
         SizedBox(height: 16.h),
-        SizedBox(height: 399.h),
+        CustomTextField(
+          contenpaddingHorizontal: 12.w,
+          contenpaddingVertical: 16.h,
+          hintText: AppString.setnewPassword,
+          sufixicons: _sufixIcon(AppIcons.obscure_true),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "please re-enter new password";
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 16.h),
+        CustomText(
+          text: AppString.forgotPass,
+          color: AppColors.primaryColor,
+        ),
+        SizedBox(height: 359.h),
         CustomButton(
-          title: AppString.setPassword,
+          title: AppString.updatePassword,
           titlecolor: Colors.white,
           onpress: () {
             if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.verifyEmailScreen);
+              Get.toNamed(AppRoutes.getOtpSceeen);
             }
           },
         ),

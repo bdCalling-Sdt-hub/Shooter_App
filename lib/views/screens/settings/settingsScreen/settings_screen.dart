@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_list_tile.dart';
-import '../../../utils/app_icons.dart';
-import '../../../utils/app_string.dart';
-import '../../widgets/custom_text.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_string.dart';
+import '../../../widgets/custom_text.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
