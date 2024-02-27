@@ -64,16 +64,12 @@ class VerifyEmailScreen extends StatelessWidget {
                 const Spacer(),
                 CustomText(
                   text: AppString.verifyEmail,
-                  fontWeight: FontWeight.w400,
                   fontsize: 20.h,
-                  fontName: 'Aldrich',
                 ),
                 SizedBox(height: 12.h),
                 CustomText(
                   text: AppString.weHaveSent,
-                  fontWeight: FontWeight.w400,
                   fontsize: 16.h,
-                  fontName: 'Aldrich',
                 ),
                 SizedBox(height: 16.h),
                 //================================> PinCodeField Section <=======================
@@ -83,17 +79,13 @@ class VerifyEmailScreen extends StatelessWidget {
                   children: [
                     CustomText(
                       text: AppString.didntGet,
-                      fontWeight: FontWeight.w400,
                       fontsize: 16.h,
-                      fontName: 'Aldrich',
                     ),
                     const Spacer(),
                     CustomText(
                       color: AppColors.primaryColor,
                       text: AppString.resend,
-                      fontWeight: FontWeight.w400,
                       fontsize: 16.h,
-                      fontName: 'Aldrich',
                     ),
                   ],
                 ),
@@ -101,7 +93,6 @@ class VerifyEmailScreen extends StatelessWidget {
                 //================================> VerifyEmail Button <=======================
                 CustomButton(
                   title: AppString.verifyEmail,
-                  titlecolor: Colors.white,
                   onpress: () {
                     Get.toNamed(AppRoutes.setPasswordScreen);
                   },

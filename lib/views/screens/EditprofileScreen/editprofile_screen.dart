@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../utils/app_icons.dart';
 import '../../../utils/app_images.dart';
@@ -57,7 +58,8 @@ class EditprofileScreen extends StatelessWidget {
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: 'Enter your name',
-              prifixicon: _prefixIcon(AppIcons.user),),
+              prifixicon: _prefixIcon(AppIcons.user),
+            ),
             SizedBox(height: 16.h),
             CustomTextField(
               contenpaddingHorizontal: 12.w,
@@ -70,7 +72,7 @@ class EditprofileScreen extends StatelessWidget {
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: 'Enter your email',
-              prifixicon:  _prefixIcon(AppIcons.mail),
+              prifixicon: _prefixIcon(AppIcons.mail),
             ),
             SizedBox(height: 16.h),
             CustomTextField(
@@ -84,8 +86,13 @@ class EditprofileScreen extends StatelessWidget {
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: "Enter your location",
-              prifixicon: _prefixIcon(AppIcons.location,),),
-            SizedBox(height: 16.h),
+              prifixicon: _prefixIcon(
+                AppIcons.locationMarker,
+              ),
+            ),
+            const Spacer(),
+            CustomButton(title: AppString.update, onpress: () {}),
+            SizedBox(height: 69.h),
           ],
         ),
       ),
@@ -94,13 +101,12 @@ class EditprofileScreen extends StatelessWidget {
 
   _prefixIcon(String icon) {
     return Padding(
-              padding:  EdgeInsets.only(left:8.w,right: 16.w
-              ),
-              child: SvgPicture.asset(
-                icon,
-                fit: BoxFit.contain,
-                color: Colors.white,
-              ),
-            );
+      padding: EdgeInsets.only(left: 8.w, right: 16.w),
+      child: SvgPicture.asset(
+        icon,
+        fit: BoxFit.contain,
+        color: Colors.white,
+      ),
+    );
   }
 }

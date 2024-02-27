@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
+import 'package:shooter_app/views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
 import 'package:shooter_app/views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
 import 'package:shooter_app/views/screens/notification/notification_screen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
 
         // initialRoute: AppRoutes.notificationScreen,
         getPages: AppRoutes.routes,
-        home: BottomNavBar(),
+        home: VerifyEmailScreen(),
       ),
       designSize: const Size(393, 852),
     );
