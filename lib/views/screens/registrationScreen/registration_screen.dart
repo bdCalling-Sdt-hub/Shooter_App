@@ -164,7 +164,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           onpress: () {
             //Get.toNamed(AppRoutes.getOtpSceeen);
             /*if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.getOtpSceeen);
+              Get.toNamed(AppRoutes.getOtpSceee n);
             }*/
           },
         ),
