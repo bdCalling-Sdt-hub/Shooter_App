@@ -78,4 +78,13 @@ class AppString {
   static String currentlyYou = "Currently you are using our app on a free \ntrial for 10 days!";
   static String continueS = "Continue";
 
+  //================> Subscription Screen <====================
+  static String youHave = "You have completed 10 days free trial.";
+  static String pleaseBuy = "Please buy a subscription \npackage to continue!";
+  static String months12 = "12 Months";
+  static String months6 = "6 Months";
+  static String rand120 = "Rand 120/Month";
+  static String rand80 = "Rand 80/Month";
+  static String days10 = "10 days free trial";
+  static String purchaseSubscription = "Purchase Subscription";
 }

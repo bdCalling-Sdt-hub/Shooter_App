@@ -5,7 +5,6 @@ import '../views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import '../views/screens/auth/setPasswordScreen/set_password_screen.dart';
 import '../views/screens/auth/sign_up/sign_up_screen.dart';
 import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
-import '../views/screens/freetrialScreen/freetrial_screen.dart';
 import '../views/screens/home/home_screen.dart';
 import '../views/screens/notification/notification_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
@@ -19,6 +18,8 @@ import '../views/screens/settings/privacypolicyScreen/privacypolicy_screen.dart'
 import '../views/screens/settings/setnewpasswordScreen/setnewpassword_screen.dart';
 import '../views/screens/settings/settingsScreen/settings_screen.dart';
 import '../views/screens/settings/termsconditionsScreen/termsconditions_screen.dart';
+import '../views/screens/subscription/freetrialScreen/freetrial_screen.dart';
+import '../views/screens/subscription/subscriptionScreen/subscription_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = "/splash_screen.dart";
@@ -41,6 +42,7 @@ class AppRoutes {
   static const String aboutusScreen = "/aboutus_screen.dart";
   static const String registrationScreen = "/registration_screen.dart";
   static const String freetrialScreen = "/freetrial_screen.dart";
+  static const String subscriptionScreen = "/subscription_screen.dart";
 
   static List<GetPage> get routes => [
         GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -63,6 +65,6 @@ class AppRoutes {
             name: termsconditionsScreen, page: () => TermsconditionsScreen()),
         GetPage(name: aboutusScreen, page: () => AboutusScreen()),
         GetPage(name: registrationScreen, page: () => RegistrationScreen()),
-        GetPage(name: freetrialScreen, page: () => FreetrialScreen()),
+        GetPage(name: subscriptionScreen, page: () => SubscriptionScreen()),
       ];
 }
