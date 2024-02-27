@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -33,6 +31,7 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 24.h),
+            //=================================> Change Password Section <=======================
             GestureDetector(
               onTap: () {
                 Get.toNamed(AppRoutes.changepasswordScreen);
@@ -50,8 +49,12 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
+            //=================================> Privacy Policy Section <=======================
+
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.privacypolicyScreen);
+              },
               child: CustomListTile(
                 title: AppString.privacyPolicy,
                 prefixIcon: SvgPicture.asset(
@@ -65,8 +68,12 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
+            //=================================> Terms & Conditions Section <=======================
+
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.termsconditionsScreen);
+              },
               child: CustomListTile(
                 title: AppString.termsConditions,
                 prefixIcon: SvgPicture.asset(
@@ -80,8 +87,11 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
+            //=================================> About Us Section <=======================
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.aboutusScreen);
+              },
               child: CustomListTile(
                 title: AppString.aboutUs,
                 prefixIcon: SvgPicture.asset(
