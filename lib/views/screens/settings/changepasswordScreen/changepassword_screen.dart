@@ -28,21 +28,23 @@ class ChangepasswordScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.paddingSizeDefault),
-        child: Column(
-          children: [
-            SizedBox(height: 24.h),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  _formFieldSection(),
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.paddingSizeDefault),
+          child: Column(
+            children: [
+              SizedBox(height: 24.h),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    _formFieldSection(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

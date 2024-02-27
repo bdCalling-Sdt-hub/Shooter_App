@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../../utils/app_colors.dart';
 
-
 class PinCodeField extends StatelessWidget {
   const PinCodeField({
     super.key,
@@ -16,7 +15,6 @@ class PinCodeField extends StatelessWidget {
       cursorColor: AppColors.primaryColor,
       textStyle: TextStyle(color: AppColors.primaryColor),
       autoFocus: false,
-      focusNode: primaryFocus,
       appContext: context,
       length: 6,
       pinTheme: PinTheme(
