@@ -73,4 +73,9 @@ class AppString {
   static String clubName = "Club name";
   static String makePayment = "Make payment";
 
+//================> Freetrial Screen <====================
+  static String welcomeBore = "Welcome to bore shooting \nApp";
+  static String currentlyYou = "Currently you are using our app on a free \ntrial for 10 days!";
+  static String continueS = "Continue";
+
 }

@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
@@ -65,16 +64,12 @@ class SetPasswordScreen extends StatelessWidget {
                 const Spacer(),
                 CustomText(
                   text: AppString.setPassword,
-                  fontWeight: FontWeight.w400,
                   fontsize: 18.h,
-                  fontName: 'Aldrich',
                 ),
                 SizedBox(height: 12.h),
                 CustomText(
                   text: AppString.yourEmail,
-                  fontWeight: FontWeight.w400,
                   fontsize: 16.h,
-                  fontName: 'Aldrich',
                 ),
                 SizedBox(height: 16.h),
                 //================================>TextFormField Method <=======================
