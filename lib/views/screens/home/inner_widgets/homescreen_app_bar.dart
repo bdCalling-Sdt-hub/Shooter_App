@@ -52,7 +52,7 @@ class HomeScreenAppBar extends StatelessWidget {
                 ],
               ),
               CustomText(
-                text: "sfsdkfsdjljflsdljlflsdfljdlfjlsjdlflsjdfljsdjljj",
+                text: "Sagor Ahamed",
                 fontsize: 20.h,
                 fontWeight: FontWeight.w400,
                 color: AppColors.white,

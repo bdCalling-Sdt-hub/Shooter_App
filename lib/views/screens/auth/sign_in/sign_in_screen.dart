@@ -12,6 +12,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
 
 

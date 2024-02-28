@@ -88,7 +88,9 @@ class DrawerSection extends StatelessWidget {
             SizedBox(height: 24.h),
             //=====================================>  MyMatches  Container <=============================
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.myMatchesScreen);
+              },
               child: CustomListTile(
                 title: AppString.myMatches,
                 borderColor: AppColors.fieldColor,
@@ -104,7 +106,7 @@ class DrawerSection extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoutes.subscriptionScreen);
+                Get.toNamed(AppRoutes.freetrialScreen);
               },
               child: CustomListTile(
                 title: AppString.subscription,
