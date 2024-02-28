@@ -12,6 +12,7 @@ import '../views/screens/onboardingsScreen/onboardings_screen.dart';
 import '../views/screens/profile/editprofileScreen/editprofile_screen.dart';
 import '../views/screens/profile/profileScreen/profile_screen.dart';
 import '../views/screens/registrationScreen/registration_screen.dart';
+import '../views/screens/scoresScreen/scores_screen.dart';
 import '../views/screens/settings/aboutusScreen/aboutus_screen.dart';
 import '../views/screens/settings/changepasswordScreen/changepassword_screen.dart';
 import '../views/screens/settings/getOtpSceeen/get_otp_sceeen.dart';
@@ -45,6 +46,7 @@ class AppRoutes {
   static const String freetrialScreen = "/freetrial_screen.dart";
   static const String subscriptionScreen = "/subscription_screen.dart";
   static const String eventDetailsScreen = "/EventDetailsScreen.dart";
+  static const String scoresScreen = "/scores_screen.dart";
 
   static List<GetPage> get routes => [
         GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -69,5 +71,6 @@ class AppRoutes {
         GetPage(name: registrationScreen, page: () => RegistrationScreen()),
         GetPage(name: subscriptionScreen, page: () => SubscriptionScreen()),
         GetPage(name: eventDetailsScreen, page: () => EventDetailsScreen()),
+        GetPage(name: scoresScreen, page: () => ScoresScreen()),
       ];
 }
