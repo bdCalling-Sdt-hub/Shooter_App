@@ -65,7 +65,7 @@ class CustomMatchesCard extends StatelessWidget {
         ),
 
         Container(
-          margin: EdgeInsets.only(left: 12.w, right: 12, top: 8.h),
+          margin: EdgeInsets.only(left: 12.w, right: 12,),
           child: Column(
             children: [
               ///-----------------------3 position and text---------------------->
@@ -124,7 +124,8 @@ class CustomMatchesCard extends StatelessWidget {
               SizedBox(height: 10.h,),
 
               ///-----------------------amount ---------------------->
-              Row(
+
+              amount ==  null ? SizedBox() : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
@@ -134,7 +135,7 @@ class CustomMatchesCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   CustomText(
-                    text: "$amount",
+                    text: amount ?? "",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeDefault.h,
                     fontWeight: FontWeight.w400,
@@ -142,10 +143,13 @@ class CustomMatchesCard extends StatelessWidget {
                 ],
               ),
 
-              SizedBox(height: 12.h,),
+              SizedBox(height: 16.h,),
 
               ///---------------------------botton----------------------------------->
-              CustomButton(title: "$buttonText", onpress: (){}, titlecolor: AppColors.white)
+              buttonText == null ? SizedBox() :
+
+                CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
+
             ],
           ),
         )

@@ -111,7 +111,7 @@ class EventMatchCard extends StatelessWidget {
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "Male : $firstDetail",
+                    text: "$firstDetail",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,
@@ -164,7 +164,7 @@ class EventMatchCard extends StatelessWidget {
               SizedBox(height: 12.h,),
 
               ///---------------------------botton----------------------------------->
-              CustomButton(title: "Register", onpress: (){}, titlecolor: AppColors.white),
+              CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
 
 
               SizedBox(height: 12.h,)

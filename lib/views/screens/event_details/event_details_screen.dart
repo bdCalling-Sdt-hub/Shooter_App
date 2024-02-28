@@ -265,7 +265,7 @@ class EventDetailsScreen extends StatelessWidget {
         SizedBox(height: 16.h,),
 
 
-        ///-----------------------------up coming match card----------------------->
+        ///-----------------------------up coming match card 1st----------------------->
         Container(
           width: 350.w,
           decoration: BoxDecoration(
@@ -287,7 +287,7 @@ class EventDetailsScreen extends StatelessWidget {
 
         SizedBox(height: 16.h,),
 
-        ///-----------------------------up coming match card----------------------->
+        ///-----------------------------up coming match card 2nd----------------------->
         Container(
           width: 350.w,
           decoration: BoxDecoration(
@@ -300,7 +300,7 @@ class EventDetailsScreen extends StatelessWidget {
             time: "11.00 AM",
             peepAndTelescope: "(Peep and telescope)",
             meter: "50m Prone",
-            firstDetail: "First detail",
+            firstDetail: "Male : 2 Classes",
             score: "1x600",
             entryFree: "R 40-00 Per Entry",
           ),

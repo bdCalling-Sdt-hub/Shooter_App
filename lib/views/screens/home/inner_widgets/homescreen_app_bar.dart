@@ -16,7 +16,7 @@ class HomeScreenAppBar extends StatelessWidget {
     super.key,
   });
 
-  final HomeController _homeController = Get.put(HomeController());
+   final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

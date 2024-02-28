@@ -17,7 +17,7 @@ import 'inner_widgets/up_coming_matches_listview.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final HomeController _homeController = Get.put(HomeController());
+   final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

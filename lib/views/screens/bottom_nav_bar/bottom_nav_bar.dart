@@ -7,6 +7,8 @@ import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.d
 import '../../../utils/app_icons.dart';
 import '../event/events_screen.dart';
 import '../../../utils/app_colors.dart';
+import '../matches/matches_screen.dart';
+import '../my_matches/my_matches_screen.dart';
 
 
 class BottomNavBar extends StatefulWidget {
@@ -24,8 +26,8 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
  static  final List _widgetOptions = [
     HomeScreen(),
     EventsScreen(),
-    ProfileScreen(),
-    ProfileScreen(),
+   MatchesScreen(),
+   MyMatchesScreen(),
 ];
 
 
