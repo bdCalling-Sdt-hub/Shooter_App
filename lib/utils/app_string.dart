@@ -106,5 +106,11 @@ class AppString {
   static String subscription = "Subscription";
   static String doYou = "Do you want to logout your profile?";
 
+//================> Scores Screen <====================
+  static String scores = "Scores";
+  static String clasS = "Class";
+  static String playerName = "Player name";
+  static String club = "Club";
+
 
 }
