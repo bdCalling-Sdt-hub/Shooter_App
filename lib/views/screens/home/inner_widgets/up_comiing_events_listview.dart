@@ -16,7 +16,7 @@ class UpComingEventsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 253.h,
+      height: 257.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,

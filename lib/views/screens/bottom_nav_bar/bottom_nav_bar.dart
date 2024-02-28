@@ -6,6 +6,7 @@ import 'package:shooter_app/views/screens/home/home_screen.dart';
 import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.dart';
 
 import '../../../utils/app_icons.dart';
+import '../event/events_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -20,7 +21,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
 
  static const List _widgetOptions = [
     HomeScreen(),
-    ProfileScreen(),
+   EventsScreen(),
     ProfileScreen(),
     ProfileScreen(),
   ];

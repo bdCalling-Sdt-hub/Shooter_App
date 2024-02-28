@@ -87,4 +87,8 @@ class AppString {
   static String rand80 = "Rand 80/Month";
   static String days10 = "10 days free trial";
   static String purchaseSubscription = "Purchase Subscription";
+
+  ///---------------------------Events screen---------------------->?
+  static String events = "Events";
+  static String eventdetails = "Event details";
 }
