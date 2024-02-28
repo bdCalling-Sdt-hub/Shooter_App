@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 
         // initialRoute: AppRoutes.notificationScreen,
         getPages: AppRoutes.routes,
-        home: SettingsScreen(),
+        home: BottomNavBar(),
       ),
       designSize: const Size(393, 852),
     );

@@ -18,6 +18,10 @@ class AppIcons{
   static const String privacy = "assets/icons/shield-check.svg";
   static const String about = "assets/icons/information-circle.svg";
   static const String rightArrow = "assets/icons/chevron-right.svg";
+  static const String myMatch = "assets/icons/myMatch.svg";
+  static const String subscriptions = "assets/icons/subscriptions.svg";
+  static const String settings = "assets/icons/settings.svg";
+  static const String logOut = "assets/icons/logOut.svg";
 
 
   ///--------------------------------home screen----------------------------->

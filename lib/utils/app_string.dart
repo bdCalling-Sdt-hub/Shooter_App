@@ -87,4 +87,11 @@ class AppString {
   static String rand80 = "Rand 80/Month";
   static String days10 = "10 days free trial";
   static String purchaseSubscription = "Purchase Subscription";
+
+//================> Drawer Screen <====================
+  static String myMatches = "My matches";
+  static String logOut = "Log out";
+  static String subscription = "Subscription";
+  static String doYou = "Do you want to logout your profile?";
+
 }
