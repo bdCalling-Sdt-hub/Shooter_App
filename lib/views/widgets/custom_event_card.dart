@@ -1,6 +1,4 @@
 
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -74,7 +72,8 @@ class CustomEventsCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child:Column(
+                Expanded(
+                    child:Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
@@ -86,7 +85,7 @@ class CustomEventsCard extends StatelessWidget {
                     SizedBox(height: 5.h,),
                     Row(
                       children: [
-                        SvgPicture.asset(AppIcons.location),
+                        SvgPicture.asset(AppIcons.locationMarker,height: 12.h,width: 12.w,),
                         Flexible(
                           child: CustomText(
                             text:location??"",
@@ -132,7 +131,9 @@ class CustomEventsCard extends StatelessWidget {
             padding:  EdgeInsets.symmetric(horizontal:12.w
             ),
             child: CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:onTap??(){}, titlecolor: AppColors.white),
-          )
+          ),
+
+          const SizedBox(height: 13,)
 
         ],
       ),

@@ -4,4 +4,5 @@ class AppImages{
   static const String splashBg = "$basePath/splashBg.png";
   static const String onboardingsBg = "$basePath/OnboardingsBg.png";
   static const String profileImg = "$basePath/img.png";
+  static const String details_screen_image = "$basePath/details_screen_image.png";
 }
