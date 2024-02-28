@@ -15,37 +15,39 @@ class EventsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         centerTitle: true,
-        title: CustomText(text: AppString.events,fontsize: Dimensions.fontSizeLarge,color: AppColors.white,fontWeight: FontWeight.w400,),
+        leading: SizedBox(),
+        title: CustomText(
+          text: AppString.events,
+          fontsize: Dimensions.fontSizeLarge,
+          color: AppColors.white,
+          fontWeight: FontWeight.w400,
+        ),
       ),
-
-
-
       body: ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index) {
-          return  Column(
+          return Column(
             children: [
               Container(
                 height: 264.h,
-                padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault.w),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.paddingSizeDefault.w),
                 child: CustomEventsCard(
-                  image:"assets/images/upcomingmatchImage.png",
+                  image: "assets/images/upcomingmatchImage.png",
                   title: "EEUFEES SHOOTING RANGE",
                   location: "Carl Osburn (USA)",
                   date: "12 \n Dec",
                   startDate: "20d : 14h : 24m",
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed(AppRoutes.eventDetailsScreen);
-
                   },
                 ),
               ),
-
-
-              SizedBox(height: 16.h,)
+              SizedBox(
+                height: 16.h,
+              )
             ],
           );
         },
@@ -53,6 +55,3 @@ class EventsScreen extends StatelessWidget {
     );
   }
 }
-
-
-

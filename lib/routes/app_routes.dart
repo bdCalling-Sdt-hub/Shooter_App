@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 import 'package:shooter_app/views/screens/splashScreen/splash_screen.dart';
-import '../views/screens/auth/log_in/log_in_screen.dart';
 import '../views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import '../views/screens/auth/setPasswordScreen/set_password_screen.dart';
+import '../views/screens/auth/sign_in/sign_in_screen.dart';
 import '../views/screens/auth/sign_up/sign_up_screen.dart';
 import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
+import '../views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import '../views/screens/event_details/event_details_screen.dart';
 import '../views/screens/home/home_screen.dart';
+import '../views/screens/my_matches/my_matches_screen.dart';
 import '../views/screens/notification/notification_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
 import '../views/screens/profile/editprofileScreen/editprofile_screen.dart';
@@ -20,7 +22,6 @@ import '../views/screens/settings/privacypolicyScreen/privacypolicy_screen.dart'
 import '../views/screens/settings/setnewpasswordScreen/setnewpassword_screen.dart';
 import '../views/screens/settings/settingsScreen/settings_screen.dart';
 import '../views/screens/settings/termsconditionsScreen/termsconditions_screen.dart';
-import '../views/screens/subscription/freetrialScreen/freetrial_screen.dart';
 import '../views/screens/subscription/subscriptionScreen/subscription_screen.dart';
 
 class AppRoutes {
@@ -47,6 +48,8 @@ class AppRoutes {
   static const String subscriptionScreen = "/subscription_screen.dart";
   static const String eventDetailsScreen = "/EventDetailsScreen.dart";
   static const String scoresScreen = "/scores_screen.dart";
+  static const String bottomNavBar = "/BottomNavBar.dart";
+  static const String myMatchesScreen = "/MyMatchesScreen.dart";
 
   static List<GetPage> get routes => [
         GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -72,5 +75,7 @@ class AppRoutes {
         GetPage(name: subscriptionScreen, page: () => SubscriptionScreen()),
         GetPage(name: eventDetailsScreen, page: () => EventDetailsScreen()),
         GetPage(name: scoresScreen, page: () => ScoresScreen()),
+        GetPage(name: bottomNavBar, page: () => BottomNavBar()),
+        GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
       ];
 }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/dimentions.dart';
 
 import '../../../../widgets/custom_button.dart';
-import '../../log_in/log_in_screen.dart';
-import '../sign_up_screen.dart';
+
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({
@@ -129,10 +130,8 @@ class SignUpForm extends StatelessWidget {
                 height: 20.h,
               ),
               CustomButton(
-
                 onpress: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) =>  SignUpScreen()));
+                 Get.toNamed(AppRoutes.signInScreen);
                 },
                 title: "Sign Up",
                 titlecolor: Colors.white,

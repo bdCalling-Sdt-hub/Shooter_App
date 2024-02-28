@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/dimentions.dart';
@@ -58,24 +59,29 @@ class SignInForm extends StatelessWidget {
               _TextFieldSection(),
 
               ///---------------------------------------forgot password--------------------------------->
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: CustomText(
-                    text: "Forgot Password?",
-                    fontsize: 16.h,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.primaryColor,
-                    top: 16.h,
-                    bottom: 16.h,
-                  )),
+              GestureDetector(
+                onTap: (){
+                  Get.toNamed(AppRoutes.forgetPasswordScreen);
+                },
+                child: Align(
+                    alignment: Alignment.centerRight,
+                    child: CustomText(
+                      text: "Forgot Password?",
+                      fontsize: 16.h,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.primaryColor,
+                      top: 16.h,
+                      bottom: 16.h,
+                    )),
+              ),
 
               ///-------------------------------------Log In botton------------------------------->
               CustomButton(
 
                 onpress: () {
-                  if(formKey.currentState!.validate()){
-                    Get.to(()=> VerifyEmailScreen());
-                  }
+                  // if(formKey.currentState!.validate()){
+                    Get.toNamed(AppRoutes.bottomNavBar);
+                  // }
                 },
 
                 title: "Log In",

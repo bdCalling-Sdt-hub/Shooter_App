@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_icons.dart';
 import '../../utils/dimentions.dart';
@@ -148,7 +150,9 @@ class CustomMatchesCard extends StatelessWidget {
               ///---------------------------botton----------------------------------->
               buttonText == null ? SizedBox() :
 
-                CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
+                CustomButton(title: "${buttonText}",height:40.h,fontSize: 12.h, onpress:(){
+                  Get.toNamed(AppRoutes.scoresScreen);
+                }, titlecolor: AppColors.white),
 
             ],
           ),

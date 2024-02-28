@@ -1,24 +1,22 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
-import 'package:shooter_app/views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
-import 'package:shooter_app/views/screens/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:shooter_app/views/screens/home/home_screen.dart';
-import 'package:shooter_app/views/screens/notification/notification_screen.dart';
-import 'package:shooter_app/views/screens/settings/settingsScreen/settings_screen.dart';
 import 'routes/app_routes.dart';
-import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
-import 'views/screens/registrationScreen/registration_screen.dart';
-import 'views/screens/scoresScreen/scores_screen.dart';
-import 'views/screens/splashScreen/splash_screen.dart';
-import 'views/screens/subscription/freetrialScreen/freetrial_screen.dart';
-import 'views/screens/subscription/subscriptionScreen/subscription_screen.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
+
 }
 
 class MyApp extends StatelessWidget {
@@ -27,14 +25,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (context, child) => GetMaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         title: 'shooter app',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
 
-        // initialRoute: AppRoutes.notificationScreen,
+         initialRoute: AppRoutes.onboardingsScreen,
         getPages: AppRoutes.routes,
-        home: ScoresScreen(),
+        home: const OnboardingsScreen(),
       ),
       designSize: const Size(393, 852),
     );
