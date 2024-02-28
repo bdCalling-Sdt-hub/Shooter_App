@@ -93,6 +93,13 @@ class AppString {
   static String events = "Events";
   static String eventdetails = "Event details";
 
+  ///------------------------Matches screen------------------------->
+  static String matches = "Matches";
+
+  ///---------------------my matches Screen---------------------->
+  static String upcoming = "Upcoming";
+  static String completed = "Completed";
+
 //================> Drawer Screen <====================
   static String myMatches = "My matches";
   static String logOut = "Log out";

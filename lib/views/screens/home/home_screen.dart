@@ -18,6 +18,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
 
+   final HomeController _homeController = Get.put(HomeController());
+
 
   @override
   Widget build(BuildContext context) {

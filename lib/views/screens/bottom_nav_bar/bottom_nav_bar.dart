@@ -9,7 +9,10 @@ import '../../../controller/home_controller.dart';
 import '../../../utils/app_icons.dart';
 import '../event/events_screen.dart';
 import '../../../utils/app_colors.dart';
+import '../matches/matches_screen.dart';
+import '../my_matches/my_matches_screen.dart';
 import '../home/inner_widgets/drawer_section.dart';
+
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -28,6 +31,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
     ProfileScreen(),
     ProfileScreen(),
   ];
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -101,90 +105,3 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   }
 }
 
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
-// import 'package:shooter_app/views/screens/home/home_screen.dart';
-// import '../../../utils/app_colors.dart';
-// import '../../../utils/app_icons.dart';
-//
-// class BottomNavBar extends StatefulWidget {
-//   const BottomNavBar({Key? key}) : super(key: key);
-//
-//   @override
-//   State<BottomNavBar> createState() => _BottomNavBarState();
-// }
-//
-// class _BottomNavBarState extends State<BottomNavBar> {
-//   List<TabItem> items = [
-//     TabItem(
-//       icon: SvgPicture.asset(
-//          AppIcons.home_icon,
-//         width: 24,
-//         height: 24,
-//       ),
-//       title: 'Home',
-//     ),
-//     TabItem(
-//       icon: SvgPicture.asset(
-//         AppIcons.home_icon,
-//         width: 24,
-//         height: 24,
-//       ),
-//       title: 'Events',
-//     ),
-//     TabItem(
-//       icon: SvgPicture.asset(
-//         AppIcons.home_icon,
-//         width: 24,
-//         height: 24,
-//       ),
-//       title: 'Matches',
-//     ),
-//     TabItem(
-//       icon: SvgPicture.asset(
-//         AppIcons.home_icon,
-//         width: 24,
-//         height: 24,
-//       ),
-//       title: 'Profile',
-//     ),
-//   ];
-//
-//   int selected = 0;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: _PageManage(selected),
-//       bottomNavigationBar: BottomBarDefault(
-//         enableShadow: false,
-//
-//        items: items,
-//         backgroundColor: AppColors.backgroundColor,
-//         color: AppColors.whiteB5B5B5,
-//         colorSelected: AppColors.primaryColor,
-//         indexSelected: selected,
-//         paddingVertical: 25,
-//         onTap: (int index) => setState(() {
-//           selected = index;
-//         }),
-//       ),
-//     );
-//   }
-//
-//   Widget _PageManage(int index) {
-//     switch (index) {
-//       case 0:
-//         return HomeScreen();
-//       case 1:
-//         return HomeScreen();
-//       case 2:
-//         return HomeScreen();
-//       case 3:
-//         return HomeScreen();
-//       default:
-//         return Container(); // Handle invalid index.
-//     }
-//   }
-// }

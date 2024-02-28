@@ -1,30 +1,39 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/app_icons.dart';
-import '../../utils/dimentions.dart';
-import 'custom_button.dart';
-import 'custom_text.dart';
 
-class CustomMatchesCard extends StatelessWidget {
+import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_icons.dart';
+import '../../../../utils/dimentions.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_text.dart';
+
+class EventMatchCard extends StatelessWidget {
 
   final String? date;
   final String? image;
   final String? time;
-  final String? genderText;
-  final String? description;
-  final String? amount;
+  final String? firstDetail;
+  final String? meter;
+  final String? score;
+  final String? peepAndTelescope;
+  final String? entryFree;
   final String? buttonText;
 
-  CustomMatchesCard({
+  EventMatchCard({
     this.date,
     this.image,
     this.time,
-    this.genderText,
-    this.description,
-    this.amount,
+    this.peepAndTelescope,
+    this.meter,
+    this.entryFree,
+    this.firstDetail,
+    this.score,
     this.buttonText});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +74,15 @@ class CustomMatchesCard extends StatelessWidget {
         ),
 
         Container(
-          margin: EdgeInsets.only(left: 12.w, right: 12,),
+          margin: EdgeInsets.only(left: 12.w, right: 12, top: 8.h),
           child: Column(
             children: [
-              ///-----------------------3 position and text---------------------->
+              ///-----------------------meter text---------------------->
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: "3 Position",
+                    text: "$meter",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeDefault.h,
                     fontWeight: FontWeight.w400,
@@ -98,22 +107,22 @@ class CustomMatchesCard extends StatelessWidget {
                 ],
               ),
 
-              ///---------------------------------Male/Female : genderText------------------------------>
+              ///---------------------------------Male : genderText------------------------------>
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "Male/Female : $genderText",
+                    text: "$firstDetail",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,
                     top: 5.h,
                   )),
 
-              ///---------------------------------desciption  text------------------------------>
+              ///---------------------------------score  text------------------------------>
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "$description",
+                    text: "$score",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,
@@ -121,35 +130,44 @@ class CustomMatchesCard extends StatelessWidget {
                   )),
 
 
-              SizedBox(height: 10.h,),
+              peepAndTelescope == null ? SizedBox(height: 30.h,) :    Align(
+                alignment: Alignment.centerLeft,
+                child: CustomText(
+                  text: "$peepAndTelescope",
+                  color: const Color(0xFF414141),
+                  fontsize: Dimensions.fontSizeExtraSmall.h,
+                  fontWeight: FontWeight.w400,
+                  top: 8.h,
+                  bottom: 12.h,
+                ),
+              ),
 
               ///-----------------------amount ---------------------->
-
-              amount ==  null ? SizedBox() : Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
                     text: "Registration fee :",
                     color: AppColors.backgroundColor,
-                    fontsize: Dimensions.fontSizeDefault.h,
+                    fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,
                   ),
                   CustomText(
-                    text: amount ?? "",
+                    text: "$entryFree",
                     color: AppColors.backgroundColor,
-                    fontsize: Dimensions.fontSizeDefault.h,
+                    fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,
                   ),
                 ],
               ),
 
-              SizedBox(height: 16.h,),
+              SizedBox(height: 12.h,),
 
               ///---------------------------botton----------------------------------->
-              buttonText == null ? SizedBox() :
+              CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
 
-                CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
 
+              SizedBox(height: 12.h,)
             ],
           ),
         )
@@ -157,3 +175,4 @@ class CustomMatchesCard extends StatelessWidget {
     );
   }
 }
+

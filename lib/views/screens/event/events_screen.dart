@@ -26,27 +26,27 @@ class EventsScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index) {
-          return  Padding(
-            padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault.w,vertical: 10),
-            child: CustomEventsCard(
-              image:"assets/images/upcomingmatchImage.png",
-              title: "EEUFEES SHOOTING RANGE",
-              location: "Carl Osburn (USA)",
-              date: "12 \n Dec",
-              startDate: "20d : 14h : 24m",
-              onTap: (){
-                Get.toNamed(AppRoutes.eventDetailsScreen, arguments : {
+          return  Column(
+            children: [
+              Container(
+                height: 264.h,
+                padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault.w),
+                child: CustomEventsCard(
+                  image:"assets/images/upcomingmatchImage.png",
+                  title: "EEUFEES SHOOTING RANGE",
+                  location: "Carl Osburn (USA)",
+                  date: "12 \n Dec",
+                  startDate: "20d : 14h : 24m",
+                  onTap: (){
+                    Get.toNamed(AppRoutes.eventDetailsScreen);
 
-                  "image":"assets/images/upcomingmatchImage.png",
-                  "title": "EEUFEES SHOOTING RANGE",
-                  "location": "Carl Osburn (USA)",
-                  "date": "12 Dec 2024",
-                  "startDate": "20d : 14h : 24m",
+                  },
+                ),
+              ),
 
-                });
 
-              },
-            ),
+              SizedBox(height: 16.h,)
+            ],
           );
         },
       ),
