@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,21 +29,23 @@ class ChangepasswordScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.paddingSizeDefault),
-        child: Column(
-          children: [
-            SizedBox(height: 24.h),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  _formFieldSection(),
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.paddingSizeDefault),
+          child: Column(
+            children: [
+              SizedBox(height: 24.h),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    _formFieldSection(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -73,7 +76,7 @@ class ChangepasswordScreen extends StatelessWidget {
           sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please Set new password";
+              return "please set new password";
             }
             return null;
           },
@@ -92,9 +95,14 @@ class ChangepasswordScreen extends StatelessWidget {
           },
         ),
         SizedBox(height: 16.h),
-        CustomText(
-          text: AppString.forgotPass,
-          color: AppColors.primaryColor,
+        GestureDetector(
+          onTap: (){
+            Get.toNamed(AppRoutes.forgetPasswordScreen);
+          },
+          child: CustomText(
+            text: AppString.forgotPass,
+            color: AppColors.primaryColor,
+          ),
         ),
         SizedBox(height: 359.h),
         CustomButton(

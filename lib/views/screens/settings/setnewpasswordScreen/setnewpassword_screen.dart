@@ -22,30 +22,32 @@ class SetnewpasswordScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: CustomText(
-          text: AppString.changePassword,
+          text: AppString.setPassword,
           fontsize: 18.h,
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.paddingSizeDefault),
-        child: Column(
-          children: [
-            SizedBox(height: 24.h),
-            CustomText(
-              text: AppString.yourEmail,
-            ),
-            SizedBox(height: 24.h),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  _formFieldSection(),
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.paddingSizeDefault),
+          child: Column(
+            children: [
+              SizedBox(height: 24.h),
+              CustomText(
+                text: AppString.yourEmail,
               ),
-            ),
-          ],
+              SizedBox(height: 24.h),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    _formFieldSection(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -88,7 +88,16 @@ class AppString {
   static String days10 = "10 days free trial";
   static String purchaseSubscription = "Purchase Subscription";
 
+
   ///---------------------------Events screen---------------------->?
   static String events = "Events";
   static String eventdetails = "Event details";
+
+//================> Drawer Screen <====================
+  static String myMatches = "My matches";
+  static String logOut = "Log out";
+  static String subscription = "Subscription";
+  static String doYou = "Do you want to logout your profile?";
+
+
 }

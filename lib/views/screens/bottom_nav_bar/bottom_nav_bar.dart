@@ -4,9 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
 import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.dart';
-
 import '../../../utils/app_icons.dart';
 import '../event/events_screen.dart';
+import '../../../utils/app_colors.dart';
+
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -16,6 +17,7 @@ class BottomNavBar extends StatefulWidget {
   State<BottomNavBar> createState() => _BottomNavigationBarExampleState();
 }
 
+
 class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
@@ -24,6 +26,9 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
    EventsScreen(),
     ProfileScreen(),
     ProfileScreen(),
+
+class _BottomNavBarState extends State<BottomNavBar> {
+
   ];
 
   void _onItemTapped(int index) {
@@ -35,6 +40,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: _widgetOptions.elementAt(_selectedIndex),
 
 

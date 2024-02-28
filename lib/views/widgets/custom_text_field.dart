@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       validator: validator,
       cursorColor: AppColors.primaryColor,
-      style: const TextStyle(color:Colors.white),
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
             horizontal: contenpaddingHorizontal.toDouble(),
@@ -34,15 +34,13 @@ class CustomTextField extends StatelessWidget {
         fillColor: const Color(0xFF716665),
         prefixIcon: prifixicon,
         suffixIcon: sufixicons,
-        prefixIconConstraints: BoxConstraints(
-          minHeight: 24.w,
-          minWidth: 24.w
-        ),
+        prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
         errorStyle: TextStyle(color: AppColors.primaryColor),
         suffixIconColor: AppColors.primaryColor,
         prefixIconColor: AppColors.primaryColor,
         hintText: hintText,
-        hintStyle: const TextStyle(color:AppColors.whiteE8E8E8, fontFamily: 'Aldrich'),
+        hintStyle: const TextStyle(
+            color: AppColors.whiteE8E8E8, fontFamily: 'Aldrich'),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),
           borderSide: BorderSide(
@@ -58,12 +56,12 @@ class CustomTextField extends StatelessWidget {
     );
   }
 
-   _buildOutlineInputBorder() {
+  _buildOutlineInputBorder() {
     return OutlineInputBorder(
-        borderSide: BorderSide(
-          width: 1.w,
-          color: AppColors.primaryColor,
-        ),
-      );
+      borderSide: BorderSide(
+        width: 1.w,
+        color: AppColors.primaryColor,
+      ),
+    );
   }
 }
