@@ -11,6 +11,7 @@ import 'routes/app_routes.dart';
 import 'views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
 import 'views/screens/registrationScreen/registration_screen.dart';
+import 'views/screens/scoresScreen/scores_screen.dart';
 import 'views/screens/splashScreen/splash_screen.dart';
 import 'views/screens/subscription/freetrialScreen/freetrial_screen.dart';
 import 'views/screens/subscription/subscriptionScreen/subscription_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
 
         // initialRoute: AppRoutes.notificationScreen,
         getPages: AppRoutes.routes,
-        home: BottomNavBar(),
+        home: ScoresScreen(),
       ),
       designSize: const Size(393, 852),
     );

@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
 import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.dart';
+import '../../../controller/home_controller.dart';
 import '../../../utils/app_icons.dart';
 import '../event/events_screen.dart';
 import '../../../utils/app_colors.dart';
-
+import '../home/inner_widgets/drawer_section.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
-
 
   @override
   State<BottomNavBar> createState() => _BottomNavigationBarExampleState();
 }
 
-
 class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   int _selectedIndex = 0;
+  final HomeController _homeController = Get.put(HomeController());
 
- static  final List _widgetOptions = [
+  static final List _widgetOptions = [
     HomeScreen(),
     EventsScreen(),
     ProfileScreen(),
     ProfileScreen(),
-];
-
-
-
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -40,14 +38,13 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      key: _homeController.scaffoldKey,
+      endDrawer: DrawerSection(),
       body: _widgetOptions.elementAt(_selectedIndex),
-
 
       ///------------------------bottom nav bar----------------------------?>
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-
           ///---------------home---------------->
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -79,7 +76,6 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
                   : AppColors.whiteB5B5B5,
             ),
             label: 'Matches',
-
           ),
 
           ///---------------profile---------------->
@@ -100,15 +96,10 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
         selectedFontSize: 14.h,
         selectedItemColor: AppColors.primaryColor,
         unselectedItemColor: AppColors.whiteB5B5B5,
-
       ),
     );
   }
 }
-
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
