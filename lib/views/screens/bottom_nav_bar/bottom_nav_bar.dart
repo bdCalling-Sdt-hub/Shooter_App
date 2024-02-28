@@ -21,15 +21,15 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
- static const List _widgetOptions = [
+ static  final List _widgetOptions = [
     HomeScreen(),
-   EventsScreen(),
+    EventsScreen(),
     ProfileScreen(),
     ProfileScreen(),
+];
 
-class _BottomNavBarState extends State<BottomNavBar> {
 
-  ];
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -105,22 +105,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
