@@ -43,7 +43,7 @@ class CustomEventsCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
                     ),
-                    child: Image.asset(image??"",height: 115.h,)),
+                    child: Image.asset(image??"",height: 115.h,width: 321.w,fit: BoxFit.fill,)),
                 ///--------------------------------- Date card---------------------->
 
                 Positioned(
@@ -133,7 +133,6 @@ class CustomEventsCard extends StatelessWidget {
             child: CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:onTap??(){}, titlecolor: AppColors.white),
           ),
 
-          const SizedBox(height: 13,)
 
         ],
       ),
