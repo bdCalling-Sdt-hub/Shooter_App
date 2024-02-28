@@ -1,11 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 
+import '../../../../controller/home_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
@@ -13,9 +12,11 @@ import '../../../../utils/dimentions.dart';
 import '../../../widgets/custom_text.dart';
 
 class HomeScreenAppBar extends StatelessWidget {
-  const HomeScreenAppBar({
+   HomeScreenAppBar({
     super.key,
   });
+
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,11 @@ class HomeScreenAppBar extends StatelessWidget {
         ///---------------------profile image------------------------>
         CircleAvatar(
           radius: 20.r,
-          backgroundImage:
-          const AssetImage("assets/images/profile_Image.png"),
+          backgroundImage: const AssetImage("assets/images/profile_Image.png"),
         ),
-        SizedBox(width: 12.w,),
+        SizedBox(
+          width: 12.w,
+        ),
 
         ///---------------------------hello (profile name)----------------------->
         Expanded(
@@ -59,9 +61,11 @@ class HomeScreenAppBar extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(width: 10.w,),
+        SizedBox(
+          width: 10.w,
+        ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.toNamed(AppRoutes.notificationScreen);
           },
           child: Badge(
@@ -72,18 +76,22 @@ class HomeScreenAppBar extends StatelessWidget {
                 width: 32.w,
               )),
         ),
-        SizedBox(width:5.w,),
-        Padding(
-          padding: EdgeInsets.only(left:8.w,right: 8.w),
-          child: SvgPicture.asset(
-            AppIcons.menu,
-            height: 32.h,
-            width: 32.w,
+        SizedBox(
+          width: 5.w,
+        ),
+        InkWell(
+          onTap: (){
+            _homeController.scaffoldKey.currentState!.openEndDrawer();
+          },
+          child: Padding(
+            padding: EdgeInsets.only(left: 8.w, right: 8.w),
+            child: SvgPicture.asset(
+              AppIcons.menu,
+              height: 32.h,
+              width: 32.w,
+            ),
           ),
         ),
-
-
-
       ],
     );
   }

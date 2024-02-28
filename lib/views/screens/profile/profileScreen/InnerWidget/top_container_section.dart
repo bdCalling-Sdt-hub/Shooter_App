@@ -40,7 +40,6 @@ class TopContainerSection extends StatelessWidget {
                 ),
                 CustomText(
                   text: 'Arnold Bailie',
-                  fontName: 'Aldrich',
                   fontsize: 24.sp,
                 ),
                 IconButton(
@@ -59,7 +58,6 @@ class TopContainerSection extends StatelessWidget {
                 SvgPicture.asset(AppIcons.crown),
                 CustomText(
                   text: 'Premium Member',
-                  fontName: 'Aldrich',
                   fontsize: 18.h,
                 ),
               ],

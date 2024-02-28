@@ -1,9 +1,8 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
+import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.dart';
 import '../../../utils/app_colors.dart';
-
-
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -13,8 +12,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-
-   List<TabItem> items = [
+  List<TabItem> items = [
     const TabItem(
       icon: Icons.home,
       title: 'Home',
@@ -38,8 +36,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     print("------------------------$selected");
     return Scaffold(
-
-
       ///------------------------body and manage page------------------------>
       body: _PageManage(selected),
 
@@ -56,20 +52,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
           selected = index;
         }),
       ),
-
-
     );
   }
 
-
-
   ///--------------------------page navigate------------------------->
-  _PageManage(int index){
-   switch(index){
-     case 0 : return HomeScreen();
-     case 1 : return HomeScreen();
-     case 2 : return HomeScreen();
-     case 3 : return HomeScreen();
-   }
+  _PageManage(int index) {
+    switch (index) {
+      case 0:
+        return HomeScreen();
+      case 1:
+        return HomeScreen();
+      case 2:
+        return HomeScreen();
+      case 3:
+        return ProfileScreen();
+    }
   }
 }

@@ -7,11 +7,13 @@ class CustomListTile extends StatelessWidget {
   final String title;
   final Widget? prefixIcon;
   final Widget? sufixIcon;
+  final Color? borderColor;
   const CustomListTile({
     super.key,
     required this.title,
     this.prefixIcon,
     this.sufixIcon,
+    this.borderColor,
   });
 
   @override
@@ -21,7 +23,7 @@ class CustomListTile extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           color: AppColors.fieldColor,
-          border: Border.all(width: 1.w, color: AppColors.primaryColor)),
+          border: Border.all(width: 1.w, color: borderColor ?? AppColors.primaryColor)),
       child: ListTile(
         leading: prefixIcon,
         trailing: sufixIcon,
