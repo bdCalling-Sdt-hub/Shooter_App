@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'dart:math' as math;
-
 import '../../../routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +13,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late final AnimationController _animationController =
       AnimationController(duration: const Duration(seconds: 10), vsync: this)
         ..repeat();
@@ -27,7 +26,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     _animationController.dispose();
   }
 
-
   void initState() {
     super.initState();
     _navigateToHome();
@@ -38,8 +36,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       Get.toNamed(AppRoutes.onboardingsScreen);
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
