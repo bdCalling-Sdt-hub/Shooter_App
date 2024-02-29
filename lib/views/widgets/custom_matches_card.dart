@@ -107,6 +107,7 @@ class CustomMatchesCard extends StatelessWidget {
                     text: "Male/Female : $genderText",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
+                     textHeight: 1.3.h,
                     fontWeight: FontWeight.w400,
                     top: 5.h,
                   )),

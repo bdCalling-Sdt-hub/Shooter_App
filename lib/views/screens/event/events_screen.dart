@@ -41,7 +41,7 @@ class EventsScreen extends StatelessWidget {
                   date: "12 \n Dec",
                   startDate: "20d : 14h : 24m",
                   onTap: () {
-                    Get.toNamed(AppRoutes.eventDetailsScreen);
+                    Get.toNamed(AppRoutes.eventDetailsScreen,);
                   },
                 ),
               ),
