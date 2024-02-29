@@ -1,8 +1,9 @@
 import 'dart:async';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'dart:math' as math;
 
@@ -30,15 +31,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   void initState() {
     super.initState();
-    _navigateToHome();
+    streamSubscription;
+    getConnectivity();
   }
-
-  void _navigateToHome() {
-    Timer(const Duration(seconds: 4), () {
-      Get.toNamed(AppRoutes.onboardingsScreen);
-    });
-  }
-
 
 
   @override
@@ -58,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 child: Image.asset(
                   AppImages.splashBg,
                   fit: BoxFit.cover,
-                  height: 610.h,
+                   height: 610.h,
                   width: 393.w,
                 ),
               ),
@@ -90,4 +85,25 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       ),
     );
   }
+
+
+
+  StreamSubscription? streamSubscription;
+  bool isConnection = false;
+
+  void getConnectivity() {
+    streamSubscription = Connectivity().onConnectivityChanged.listen((event) async {
+          isConnection = await InternetConnectionChecker().hasConnection;
+          if (isConnection) {
+            print("------------------Internet available");
+            Timer(const Duration(seconds: 4), () {
+              Get.toNamed(AppRoutes.onboardingsScreen);
+            });
+          } else {
+            print("----------------------No internet");
+            return null;
+          }
+        });
+  }
+
 }
