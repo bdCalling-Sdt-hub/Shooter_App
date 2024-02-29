@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
@@ -164,7 +166,7 @@ class EventMatchCard extends StatelessWidget {
               SizedBox(height: 12.h,),
 
               ///---------------------------botton----------------------------------->
-              CustomButton(title: "$buttonText",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
+              CustomButton(title: "$buttonText",height:40.h,fontSize: 12.h, onpress:(){Get.toNamed(AppRoutes.registrationScreen);}, titlecolor: AppColors.white),
 
 
               SizedBox(height: 12.h,)
