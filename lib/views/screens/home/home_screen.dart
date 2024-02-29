@@ -9,17 +9,15 @@ import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../utils/app_colors.dart';
-import 'inner_widgets/drawer_section.dart';
 import 'inner_widgets/homescreen_app_bar.dart';
 import 'inner_widgets/up_comiing_events_listview.dart';
 import 'inner_widgets/up_coming_matches_listview.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
+  final _pickDateController = TextEditingController();
 
-
-   final HomeController _homeController = Get.put(HomeController());
-
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +48,7 @@ class HomeScreen extends StatelessWidget {
 
                   ///-------------------------date time form------------------------>
                   CustomTextField(
+                    controller: _pickDateController,
                     contenpaddingHorizontal: 10,
                     contenpaddingVertical: 0,
                     hintText: "02/20/2024",
@@ -130,5 +129,3 @@ class HomeScreen extends StatelessWidget {
     }
   }
 }
-
-
