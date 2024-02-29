@@ -31,7 +31,7 @@ class EventsScreen extends StatelessWidget {
           return Column(
             children: [
               Container(
-                height: 264.h,
+                height: 255.h,
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensions.paddingSizeDefault.w),
                 child: CustomEventsCard(

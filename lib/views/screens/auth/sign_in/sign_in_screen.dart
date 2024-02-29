@@ -38,7 +38,7 @@ class SignInScreen extends StatelessWidget {
 
 
 
-             const Spacer(),
+            const Spacer(),
 
             ///----------------------all text field section------------------------------>
             SignInForm(formKey: _formKey)
