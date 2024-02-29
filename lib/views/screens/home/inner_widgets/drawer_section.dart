@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../../../../controller/home_controller.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
@@ -15,7 +16,6 @@ class DrawerSection extends StatelessWidget {
   const DrawerSection({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -176,7 +176,10 @@ class DrawerSection extends StatelessWidget {
                                       child: CustomButton(
                                           title: 'Yes',
                                           fontSize: 16.h,
-                                          onpress: () {})),
+                                          onpress: () {
+                                            Get.offAllNamed(
+                                                AppRoutes.signInScreen);
+                                          })),
                                 ],
                               )
                             ],
