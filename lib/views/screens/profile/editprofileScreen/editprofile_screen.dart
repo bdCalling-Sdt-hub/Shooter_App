@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widgets/custom_text.dart';
@@ -50,15 +51,15 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 children: [
                   _image != null
                       ? CircleAvatar(
-                          radius: 70.r, backgroundImage: MemoryImage(_image!))
+                          radius: 60.r, backgroundImage: MemoryImage(_image!))
                       : CircleAvatar(
-                          radius: 70.r,
+                          radius: 60.r,
                           backgroundImage: const NetworkImage(
                               "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                         ),
                   Positioned(
-                      bottom: 0,
-                      right: 0,
+                      bottom: 12.h,
+                      right: 0.w,
                       child: GestureDetector(
                           onTap: () {
                             showImagePickerOption(context);
@@ -130,17 +131,20 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
     );
   }
 
+  //==================================> ShowImagePickerOption Function <===============================
+
   void showImagePickerOption(BuildContext context) {
     showModalBottomSheet(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.backgroundColor,
         context: context,
         builder: (builder) {
           return Padding(
             padding: const EdgeInsets.all(18.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4.5,
+              height: MediaQuery.of(context).size.height / 4.2,
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
                     child: InkWell(
@@ -185,7 +189,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
         });
   }
 
-//Gallery
+  //==================================> Gallery <===============================
   Future _pickImageFromGallery() async {
     final returnImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -197,7 +201,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
     Navigator.of(context).pop(); //close the model sheet
   }
 
-//Camera
+//==================================> Camera <===============================
   Future _pickImageFromCamera() async {
     final returnImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
