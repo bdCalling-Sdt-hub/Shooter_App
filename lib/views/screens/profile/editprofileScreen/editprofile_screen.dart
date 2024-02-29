@@ -9,7 +9,12 @@ import '../../../../utils/app_string.dart';
 import '../../../widgets/custom_text.dart';
 
 class EditprofileScreen extends StatelessWidget {
-  const EditprofileScreen({super.key});
+   EditprofileScreen({super.key});
+  final _nameController = TextEditingController();
+  final _dateOfBirthController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _locationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +58,7 @@ class EditprofileScreen extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
             CustomTextField(
+              controller: _nameController,
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: 'Enter your name',
@@ -60,6 +66,7 @@ class EditprofileScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             CustomTextField(
+              controller: _dateOfBirthController,
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: 'Enter your date of birth',
@@ -67,6 +74,7 @@ class EditprofileScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             CustomTextField(
+              controller: _emailController,
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: 'Enter your email',
@@ -74,6 +82,7 @@ class EditprofileScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             CustomTextField(
+              controller: _phoneNumberController,
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: '(406) 555-0120',
@@ -81,6 +90,7 @@ class EditprofileScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             CustomTextField(
+              controller: _locationController,
               contenpaddingHorizontal: 12.w,
               contenpaddingVertical: 16.h,
               hintText: "Enter your location",

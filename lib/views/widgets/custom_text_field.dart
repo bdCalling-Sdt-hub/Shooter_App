@@ -3,6 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final TextInputType? keyboardType;
+  final bool? isObscureText;
+  final String? obscureCharacrter;
   final Widget? prifixicon;
   final String hintText;
   final double contenpaddingHorizontal;
@@ -18,11 +22,19 @@ class CustomTextField extends StatelessWidget {
     this.prifixicon,
     this.sufixicons,
     this.validator,
+    required this.controller,
+    this.keyboardType = TextInputType.text,
+    this.isObscureText = false,
+    this.obscureCharacrter = '*',
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      obscureText: isObscureText!,
+      obscuringCharacter: obscureCharacrter!,
       validator: validator,
       cursorColor: AppColors.primaryColor,
       style: const TextStyle(color: Colors.white),

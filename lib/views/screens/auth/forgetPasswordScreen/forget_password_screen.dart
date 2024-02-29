@@ -17,6 +17,8 @@ import '../../../widgets/custom_text.dart';
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,8 @@ class ForgetPasswordScreen extends StatelessWidget {
       children: [
         SizedBox(height: 16.h),
         CustomTextField(
+          controller: _emailController,
+          keyboardType: TextInputType.emailAddress,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.email,

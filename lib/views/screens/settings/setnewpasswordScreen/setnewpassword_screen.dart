@@ -13,6 +13,8 @@ import '../../../widgets/custom_text_field.dart';
 class SetnewpasswordScreen extends StatelessWidget {
   SetnewpasswordScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _setPassController = TextEditingController();
+  final _confirmPassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class SetnewpasswordScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         CustomTextField(
+          controller: _setPassController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.setPassword,
@@ -72,6 +75,7 @@ class SetnewpasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          controller: _confirmPassController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.confirmPassword,

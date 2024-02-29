@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
@@ -11,7 +10,7 @@ import '../../widgets/custom_text.dart';
 import '../../widgets/custom_text_field.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key});
+  RegistrationScreen({super.key});
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -19,6 +18,11 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _ageController = TextEditingController();
+  final _clubNameController = TextEditingController();
   String groupValue = '';
   /*void _handleRadioValueChange(String value) {
     setState(() {
@@ -65,6 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomTextField(
+          controller: _nameController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.fullName,
@@ -77,6 +82,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          controller: _emailController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.email,
@@ -89,6 +95,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          controller: _phoneNumberController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.phoneNumber,
@@ -135,6 +142,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          controller: _ageController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.age,
@@ -147,6 +155,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          controller: _clubNameController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.clubName,
