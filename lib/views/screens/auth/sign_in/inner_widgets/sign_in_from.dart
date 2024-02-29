@@ -79,9 +79,9 @@ class SignInForm extends StatelessWidget {
               CustomButton(
 
                 onpress: () {
-                  // if(formKey.currentState!.validate()){
+                   if(formKey.currentState!.validate()){
                     Get.toNamed(AppRoutes.bottomNavBar);
-                  // }
+                   }
                 },
 
                 title: "Log In",
@@ -192,7 +192,7 @@ class SignInForm extends StatelessWidget {
 
         ///--------------------------Email------------------------------------>
         SizedBox(
-             height: 56.h,
+             // height: 56,
           child: TextFormField(
             decoration: InputDecoration(
                 hintText: "Email",
@@ -212,14 +212,14 @@ class SignInForm extends StatelessWidget {
 
         ///--------------------------Password------------------------------------>
         SizedBox(
-           height: 56.h,
+            // height:  56,
           child: TextFormField(
             decoration: InputDecoration(
                 hintText: "Password",
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.borderColor)),
                 suffixIcon: Padding(
-                  padding: const EdgeInsets.all(13),
+                  padding:  EdgeInsets.all(13.r),
                   child: SvgPicture.asset(
                     AppIcons.obscure_true,
                     width: 12.h,
