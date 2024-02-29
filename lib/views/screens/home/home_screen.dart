@@ -15,9 +15,10 @@ import 'inner_widgets/up_coming_matches_listview.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final _pickDateController = TextEditingController();
+  var _pickDateController = TextEditingController();
 
   final HomeController _homeController = Get.put(HomeController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () {
                           _selectDate(context);
                         },
-                        icon: SvgPicture.asset(AppIcons.calander)),
+                        icon: SvgPicture.asset(AppIcons.calander,width: 24.w,height: 24.h,)),
                   ),
 
                   SizedBox(
@@ -114,6 +115,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(

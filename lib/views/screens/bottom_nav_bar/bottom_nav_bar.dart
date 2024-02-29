@@ -96,10 +96,11 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         showUnselectedLabels: true,
-        iconSize: 20,
+        iconSize: 20.h,
         selectedFontSize: 14.h,
         selectedItemColor: AppColors.primaryColor,
         unselectedItemColor: AppColors.whiteB5B5B5,
+
       ),
     );
   }

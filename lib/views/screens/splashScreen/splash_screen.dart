@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'dart:math' as math;
+
+import '../../../routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,6 +26,20 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     super.dispose();
     _animationController.dispose();
   }
+
+
+  void initState() {
+    super.initState();
+    _navigateToHome();
+  }
+
+  void _navigateToHome() {
+    Timer(const Duration(seconds: 4), () {
+      Get.toNamed(AppRoutes.onboardingsScreen);
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

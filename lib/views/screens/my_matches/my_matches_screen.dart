@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
@@ -22,6 +23,21 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
     return Scaffold(
       ///-----------------------------app bar----------------------------------->
       appBar: AppBar(
+
+        ///---------------------------bace arrow--------------------------->
+        leading: Padding(
+          padding: EdgeInsets.all(20.r),
+          child: GestureDetector(
+            onTap: (){
+              Get.back();
+            },
+            child: SvgPicture.asset(
+              "assets/icons/back_arrow.svg",
+              width: 14.w,
+              height: 14.h,
+            ),
+          ),
+        ),
         centerTitle: true,
         title: CustomText(
           text: AppString.matches,

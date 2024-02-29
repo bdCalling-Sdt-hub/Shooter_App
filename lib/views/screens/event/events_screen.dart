@@ -30,6 +30,7 @@ class EventsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return Column(
             children: [
+              index == 0 ? SizedBox(height: 12.h,) : SizedBox(),
               Container(
                 height: 255.h,
                 padding: EdgeInsets.symmetric(
