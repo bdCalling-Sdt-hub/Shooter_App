@@ -83,6 +83,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         SizedBox(height: 16.h),
         CustomTextField(
           controller: _emailController,
+          keyboardType: TextInputType.emailAddress,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.email,
