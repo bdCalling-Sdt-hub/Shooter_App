@@ -15,39 +15,46 @@ class SignInScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
 
-
       ///-----------------------body sction--------------------------->
       body: Container(
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
-              image: const AssetImage("assets/images/sign_up_bgImage.png"),fit: BoxFit.fill,colorFilter: ColorFilter.mode( Colors.black.withOpacity(0.5), BlendMode.srcOver,),
-            )
-        ),
-
-
+          image: const AssetImage(AppImages.backgroundImg),
+          fit: BoxFit.fill,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.5),
+            BlendMode.srcOver,
+          ),
+        )),
         child: Column(
           children: [
-            SizedBox(height: 152.h,),
+            SizedBox(
+              height: 152.h,
+            ),
 
             ///-----------------------------logo image----------------------------------->
-            Center(child: Image.asset(AppImages.appLogo,width: 144.w,height: 144.h,)),
-
+            Center(
+                child: Image.asset(
+              AppImages.appLogo,
+              width: 144.w,
+              height: 144.h,
+            )),
 
             ///---------------------------sign up to continue text------------------------>
-            CustomText(text: "Sign up to continue!",fontsize: 20.h,fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8,top: 16.h),
-
-
+            CustomText(
+                text: "Sign up to continue!",
+                fontsize: 20.h,
+                fontWeight: FontWeight.w400,
+                color: AppColors.whiteE8E8E8,
+                top: 16.h),
 
             const Spacer(),
 
             ///----------------------all text field section------------------------------>
             SignInForm(formKey: _formKey)
-
           ],
         ),
       ),
     );
   }
 }
-
-

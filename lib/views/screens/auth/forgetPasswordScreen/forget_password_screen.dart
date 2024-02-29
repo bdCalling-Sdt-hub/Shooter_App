@@ -1,14 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../../routes/app_routes.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
 import '../../../../utils/dimentions.dart';
 import '../../../widgets/custom_button.dart';
@@ -33,7 +28,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(AppImages.onboardingsBg),
+                    image: AssetImage(AppImages.backgroundImg),
                     fit: BoxFit.cover),
               ),
             ),

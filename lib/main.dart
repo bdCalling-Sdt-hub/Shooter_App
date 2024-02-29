@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:shooter_app/themes/themes.dart';
 import 'routes/app_routes.dart';
 import 'views/screens/onboardingsScreen/onboardings_screen.dart';
+import 'views/screens/profile/editprofileScreen/editprofile_screen.dart';
+import 'views/screens/splashScreen/splash_screen.dart';
 
 
 void main() {
@@ -33,10 +35,9 @@ class MyApp extends StatelessWidget {
         title: 'shooter app',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
-
-         initialRoute: AppRoutes.onboardingsScreen,
+         initialRoute: AppRoutes.editprofileScreen,
         getPages: AppRoutes.routes,
-        home: const OnboardingsScreen(),
+        home: EditprofileScreen(),
       ),
       designSize: const Size(393, 852),
     );

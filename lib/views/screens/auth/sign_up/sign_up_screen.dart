@@ -12,18 +12,18 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.black,
-
 
       ///-----------------------body sction--------------------------->
       body: Container(
-        decoration:  BoxDecoration(
-          image: DecorationImage(
-            image: const AssetImage("assets/images/sign_up_bgImage.png"),fit: BoxFit.fill,colorFilter: ColorFilter.mode( Colors.black.withOpacity(0.5), BlendMode.srcOver,)
-          )
-        ),
-
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: const AssetImage(AppImages.backgroundImg),
+                fit: BoxFit.fill,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5),
+                  BlendMode.srcOver,
+                ))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -46,9 +46,7 @@ class SignUpScreen extends StatelessWidget {
               fontWeight: FontWeight.w400,
               color: AppColors.whiteE8E8E8,
               top: 16.h,
-
             ),
-
 
             Spacer(),
 
