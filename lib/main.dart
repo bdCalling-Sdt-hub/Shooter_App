@@ -12,13 +12,13 @@ import 'views/screens/splashScreen/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => MyApp(), // Wrap your app
-    ),
-  );
-  // runApp(MyApp());
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => MyApp(), // Wrap your app
+  //   ),
+  // );
+  runApp(MyApp());
 
 }
 
