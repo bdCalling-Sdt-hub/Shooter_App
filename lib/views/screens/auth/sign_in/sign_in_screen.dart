@@ -26,8 +26,6 @@ class SignInScreen extends StatelessWidget {
 
 
         child: Column(
-
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 152.h,),
 
@@ -36,7 +34,7 @@ class SignInScreen extends StatelessWidget {
 
 
             ///---------------------------sign up to continue text------------------------>
-            CustomText(text: "Sign up to continue!",fontsize: 20.h,fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8,top: 16.h,bottom: 66.h,),
+            CustomText(text: "Sign up to continue!",fontsize: 20.h,fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8,top: 16.h),
 
 
 

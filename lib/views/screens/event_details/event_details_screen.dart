@@ -280,6 +280,7 @@ class EventDetailsScreen extends StatelessWidget {
             firstDetail: "First detail",
             score: "1x600",
             entryFree: "R 40-00 Per Entry",
+            buttonText: "Register",
           ),
         ),
 
@@ -303,6 +304,7 @@ class EventDetailsScreen extends StatelessWidget {
             firstDetail: "Male : 2 Classes",
             score: "1x600",
             entryFree: "R 40-00 Per Entry",
+            buttonText: "Register",
           ),
         ),
 

@@ -52,7 +52,7 @@ class SignUpForm extends StatelessWidget {
               ///--------------------------user name------------------------------------>
 
               SizedBox(
-                height: 56.h,
+                // height: 56.h,
                 child: TextFormField(
                   decoration: InputDecoration(
                       hintText: "User name",
@@ -73,7 +73,7 @@ class SignUpForm extends StatelessWidget {
 
               ///--------------------------Email------------------------------------>
               SizedBox(
-                height: 56.h,
+                // height: 56.h,
                 child: TextFormField(
                   decoration: InputDecoration(
                       hintText: "Email",
@@ -94,7 +94,7 @@ class SignUpForm extends StatelessWidget {
 
               ///--------------------------Password------------------------------------>
               SizedBox(
-                height: 56.h,
+                // height: 56.h,
                 child: TextFormField(
                   decoration: InputDecoration(
                       hintText: "Password",
@@ -131,7 +131,9 @@ class SignUpForm extends StatelessWidget {
               ),
               CustomButton(
                 onpress: () {
-                 Get.toNamed(AppRoutes.signInScreen);
+                  if(_formKey.currentState!.validate()){
+                    Get.toNamed(AppRoutes.signInScreen);
+                  }
                 },
                 title: "Sign Up",
                 titlecolor: Colors.white,

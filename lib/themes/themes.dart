@@ -42,7 +42,7 @@ class Themes {
       scaffoldBackgroundColor: AppColors.backgroundColor,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
           minimumSize: const Size(double.maxFinite, 56),
@@ -67,7 +67,7 @@ class Themes {
       ///--------------------text filed themes----------------------->
       inputDecorationTheme: InputDecorationTheme(
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+               EdgeInsets.symmetric(vertical: 14.h, horizontal: 10.h),
           filled: true,
           fillColor: AppColors.fieldColor,
           hintStyle: TextStyle(

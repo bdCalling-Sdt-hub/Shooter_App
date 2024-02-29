@@ -164,7 +164,7 @@ class EventMatchCard extends StatelessWidget {
               SizedBox(height: 12.h,),
 
               ///---------------------------botton----------------------------------->
-              CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
+              CustomButton(title: "$buttonText",height:40.h,fontSize: 12.h, onpress:(){}, titlecolor: AppColors.white),
 
 
               SizedBox(height: 12.h,)

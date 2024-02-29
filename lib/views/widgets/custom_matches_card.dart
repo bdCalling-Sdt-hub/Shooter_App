@@ -67,7 +67,7 @@ class CustomMatchesCard extends StatelessWidget {
         ),
 
         Container(
-          margin: EdgeInsets.only(left: 12.w, right: 12,),
+          margin: EdgeInsets.only(left: 12.w, right: 12.w,),
           child: Column(
             children: [
               ///-----------------------3 position and text---------------------->
@@ -84,7 +84,7 @@ class CustomMatchesCard extends StatelessWidget {
                     children: [
 
                       Container(
-                          margin: EdgeInsets.only(bottom: 5.h,right: 5),
+                          margin: EdgeInsets.only(bottom: 5.h,right: 5.w),
                           child: SvgPicture.asset(AppIcons.clock,width: 12.w,height: 15.h,)),
 
 
@@ -92,7 +92,7 @@ class CustomMatchesCard extends StatelessWidget {
                       CustomText(
                         text: "$time",
                         color: AppColors.backgroundColor,
-                        fontsize: Dimensions.fontSizeDefault,
+                        fontsize: Dimensions.fontSizeDefault.h,
                         fontWeight: FontWeight.w400,
                       ),
                     ],
