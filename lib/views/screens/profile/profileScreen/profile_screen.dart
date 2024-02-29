@@ -17,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
       extendBody: true,
       backgroundColor: Colors.black,
       appBar: AppBar(
+        leading: const SizedBox(),
         title: CustomText(
           text: AppString.profile,
           fontName: 'Aldrich',

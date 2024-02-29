@@ -79,7 +79,7 @@ class HomeScreenAppBar extends StatelessWidget {
         SizedBox(
           width: 5.w,
         ),
-        InkWell(
+        GestureDetector(
           onTap: (){
             _homeController.scaffoldKey.currentState!.openEndDrawer();
           },

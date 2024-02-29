@@ -17,6 +17,7 @@ class MatchesScreen extends StatelessWidget {
 
 
       appBar: AppBar(
+        leading: const SizedBox(),
         centerTitle: true,
         title: CustomText(text: AppString.matches,fontsize: Dimensions.fontSizeLarge,color: AppColors.white,fontWeight: FontWeight.w400,),
       ),

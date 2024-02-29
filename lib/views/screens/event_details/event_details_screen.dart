@@ -257,7 +257,6 @@ class EventDetailsScreen extends StatelessWidget {
             description: "(First 200 of prone to count for 3P)",
             amount: "R 40-00 Per Entry",
             buttonText: "Register",
-
           ),
         ),
 
