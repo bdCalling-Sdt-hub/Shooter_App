@@ -25,7 +25,7 @@ class SubscriptionScreen extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(AppImages.onboardingsBg),
+                    image: AssetImage(AppImages.backgroundImg),
                     fit: BoxFit.cover),
               ),
             ),
