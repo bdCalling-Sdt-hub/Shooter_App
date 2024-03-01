@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_images.dart';
+import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
 
 import 'inner_widgets/sign_up_form.dart';
@@ -41,10 +42,8 @@ class SignUpScreen extends StatelessWidget {
 
             ///---------------------------sign up to continue text------------------------>
             CustomText(
-              text: "Sign up to continue!",
+              text: AppString.signUpContinue,
               fontsize: 20.h,
-              fontWeight: FontWeight.w400,
-              color: AppColors.whiteE8E8E8,
               top: 16.h,
             ),
 

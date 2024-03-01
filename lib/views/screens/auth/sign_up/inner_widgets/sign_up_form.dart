@@ -5,13 +5,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:shooter_app/routes/app_routes.dart';
+import 'package:shooter_app/utils/app_string.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/dimentions.dart';
 
 import '../../../../widgets/custom_button.dart';
-
+import '../../../../widgets/custom_text_field.dart';
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({
@@ -19,6 +20,9 @@ class SignUpForm extends StatelessWidget {
   });
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _userNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,8 @@ class SignUpForm extends StatelessWidget {
             horizontal: Dimensions.paddingSizeDefault,
             vertical: Dimensions.paddingSizeDefault),
         decoration: BoxDecoration(
+          border: Border(
+              top: BorderSide(width: 2.w, color: AppColors.primaryColor)),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40.r),
             topRight: Radius.circular(40.r),
@@ -52,79 +58,58 @@ class SignUpForm extends StatelessWidget {
             children: [
               ///--------------------------user name------------------------------------>
 
-              SizedBox(
-                // height: 56.h,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "User name",
-                      border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.borderColor))),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your name";
-                    }
-                    return null;
-                  },
-                ),
+              CustomTextField(
+                controller: _userNameController,
+                contenpaddingHorizontal: 12.w,
+                contenpaddingVertical: 16.h,
+                hintText: AppString.userName,
+                filColor: AppColors.fieldColor,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "please enter your user name";
+                  }
+                  return null;
+                },
               ),
-
 
               SizedBox(height: 16.h),
 
               ///--------------------------Email------------------------------------>
-              SizedBox(
-                // height: 56.h,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "Email",
-                      border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.borderColor))),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your email";
-                    }
-                    return null;
-                  },
-                ),
+              CustomTextField(
+                controller: _emailController,
+                contenpaddingHorizontal: 12.w,
+                contenpaddingVertical: 16.h,
+                hintText: AppString.email,
+                filColor: AppColors.fieldColor,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "please enter your email";
+                  }
+                  return null;
+                },
               ),
-              SizedBox(
-                height: 16.h,
-              ),
+
+              SizedBox(height: 16.h),
 
               ///--------------------------Password------------------------------------>
-              SizedBox(
-                // height: 56.h,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.borderColor)),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(13.0),
-                        child: SvgPicture.asset(
-                          AppIcons.obscure_true,
-                          width: 12.h,
-                          height: 12.h,
-                          fit: BoxFit.contain,
-                        ),
-                      )),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your Password";
-                    }
-                    return null;
-                  },
-                ),
+              CustomTextField(
+                controller: _passController,
+                contenpaddingHorizontal: 12.w,
+                contenpaddingVertical: 16.h,
+                hintText: AppString.password,
+                filColor: AppColors.fieldColor,
+                sufixicons: _sufixIcon(AppIcons.obscure_true),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "please enter your password";
+                  }
+                  return null;
+                },
               ),
-
-
 
               ///------------------------------------By creating an account, I accept the Terms & conditions and Privacy Policy text----------------->
 
               _ByCreating(),
-
 
               ///------------------------------------botton------------------------------>
               SizedBox(
@@ -132,12 +117,11 @@ class SignUpForm extends StatelessWidget {
               ),
               CustomButton(
                 onpress: () {
-                  if(_formKey.currentState!.validate()){
+                  if (_formKey.currentState!.validate()) {
                     Get.toNamed(AppRoutes.signInScreen);
                   }
                 },
-                title: "Sign Up",
-                titlecolor: Colors.white,
+                title: AppString.signUp,
               ),
 
               SizedBox(
@@ -154,7 +138,7 @@ class SignUpForm extends StatelessWidget {
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Already have an account? ',
+                      text: AppString.alreadyHave,
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: Dimensions.fontSizeDefault.h,
@@ -163,43 +147,55 @@ class SignUpForm extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: 'Log In',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: Dimensions.fontSizeDefault.h,
-                        color: AppColors.primaryColor,
-                        fontFamily: "Aldrich",
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = (){
-                     Get.toNamed(AppRoutes.signInScreen);
-                    }
-                    ),
+                        text: AppString.logIn,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: Dimensions.fontSizeDefault.h,
+                          color: AppColors.primaryColor,
+                          fontFamily: "Aldrich",
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Get.toNamed(AppRoutes.signInScreen);
+                          }),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
   }
+
+  _sufixIcon(String icon) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SvgPicture.asset(
+        icon,
+        width: 12.h,
+        height: 12.h,
+        fit: BoxFit.contain,
+      ),
+    );
+  }
 }
 
-
-
-_ByCreating(){
-  return     Row(
+_ByCreating() {
+  return Row(
     children: [
-      SvgPicture.asset(AppIcons.check_box,height: 20.h,width: 20.w,),
+      SvgPicture.asset(
+        AppIcons.check_box,
+        height: 20.h,
+        width: 20.w,
+      ),
       Padding(
         padding: EdgeInsets.only(top: 16.h),
         child: FittedBox(
           fit: BoxFit.cover,
           child: RichText(
             text: TextSpan(
-              style:  TextStyle(
+              style: TextStyle(
                 fontSize: 14.0.h,
                 height: 1.5,
                 color: Colors.black,
@@ -207,7 +203,7 @@ _ByCreating(){
               ),
               children: <TextSpan>[
                 TextSpan(
-                  text: '   By creating an account, I accept the \n',
+                  text: AppString.byCreating,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: Dimensions.fontSizeDefault.h,
@@ -217,7 +213,7 @@ _ByCreating(){
                   ),
                 ),
                 TextSpan(
-                  text: '   Terms & conditions',
+                  text: AppString.termsConditionsS,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     overflow: TextOverflow.ellipsis,
@@ -236,7 +232,7 @@ _ByCreating(){
                   ),
                 ),
                 TextSpan(
-                  text: 'Privacy Policy',
+                  text: AppString.privacyPolicyS,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: Dimensions.fontSizeDefault.h,
@@ -252,7 +248,3 @@ _ByCreating(){
     ],
   );
 }
-
-
-
-

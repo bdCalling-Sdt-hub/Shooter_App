@@ -6,6 +6,16 @@ class AppString {
       "Exciting competitions with small guns,\n aiming at targets for precision and \nsafety in South Africa's vibrant shooting \nscene.";
   static String logIn = "Log In";
   static String signUp = "Sign Up";
+  static String orLogin = "Or Login with";
+  static String signUpContinue = "Sign up to continue!";
+  static String signInContinue = "Log in to continue!";
+  static String dontHave = "Don’t have an account? ";
+  static String password = "Password";
+  static String alreadyHave = "Already have an account? ";
+  static String byCreating = "   By creating an account, I accept the \n";
+  static String termsConditionsS = "   Terms & conditions";
+  static String privacyPolicyS = "Privacy Policy";
+  static String userName = "User name";
 
   //================> Verify Email Screen <====================
   static String verifyEmail = "Verify Email";
