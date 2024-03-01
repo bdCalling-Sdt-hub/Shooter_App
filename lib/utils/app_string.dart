@@ -119,8 +119,10 @@ class AppString {
 //================> Scores Screen <====================
   static String scores = "Scores";
   static String clasS = "Class";
+  static String clasName = "Class Name";
   static String playerName = "Player name";
   static String club = "Club";
+  static String clubNameS = "Club Name";
 
 
 }

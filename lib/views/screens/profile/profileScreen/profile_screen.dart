@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shooter_app/utils/app_string.dart';
+import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../widgets/custom_list_tile.dart';
 import '../../../widgets/custom_text.dart';
@@ -32,7 +33,21 @@ class ProfileScreen extends StatelessWidget {
           children: [
             SizedBox(height: 24.h),
             //==================================> TopContainer Section <=================================
-            TopContainerSection(),
+            const TopContainerSection(),
+            SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _customContainer(
+                  AppString.clasS,
+                  "A",
+                ),
+                _customContainer(
+                  AppString.club,
+                  "LINDEN",
+                ),
+              ],
+            ),
 
             //==================================> CustomContainer Section <=================================
 
@@ -58,6 +73,31 @@ class ProfileScreen extends StatelessWidget {
               prefixIcon: _prefixIcon(AppIcons.locationMarker),
             ),
             SizedBox(height: 16.h),
+          ],
+        ),
+      ),
+    );
+  }
+//===========================================> CustomContainer Section <=================================
+
+  _customContainer(String name, String title) {
+    return Container(
+      width: 165.w,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.r),
+          color: AppColors.fieldColor,
+          border: Border.all(width: 1.w, color: AppColors.primaryColor)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 9.h),
+        child: Column(
+          children: [
+            CustomText(
+              text: name,
+            ),
+            CustomText(
+              text: title,
+            ),
           ],
         ),
       ),

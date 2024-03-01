@@ -53,9 +53,10 @@ class TopContainerSection extends StatelessWidget {
             ),
             const Divider(color: Colors.red),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(AppIcons.crown),
+                SizedBox(width: 16.w),
                 CustomText(
                   text: 'Premium Member',
                   fontsize: 18.h,
