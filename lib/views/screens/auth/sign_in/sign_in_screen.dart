@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';

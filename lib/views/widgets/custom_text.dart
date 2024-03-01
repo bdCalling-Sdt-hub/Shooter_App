@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shooter_app/utils/app_colors.dart';
 
 
 class CustomText extends StatelessWidget {
@@ -16,7 +17,7 @@ class CustomText extends StatelessWidget {
         this.fontsize = 14,
         this.textHeight,
         this.fontWeight = FontWeight.w400,
-        this.color = Colors.white,
+        this.color = AppColors.whiteE8E8E8,
         this.text = ""});
 
   final double left;
