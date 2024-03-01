@@ -3,31 +3,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../../utils/app_colors.dart';
 
-class LineChartScreen extends StatefulWidget {
-  const LineChartScreen({super.key});
+class LineChart extends StatefulWidget {
+  const LineChart({super.key});
 
 
   @override
-  State<LineChartScreen> createState() => _LineChartScreenState();
+  State<LineChart> createState() => _LineChartState();
 }
 
-class _LineChartScreenState extends State<LineChartScreen> {
+class _LineChartState extends State<LineChart> {
   List chartData = [
-    [2024, 300, 30,40],
-    [2025, 200, 200, 20],
+    [2024, 300, 30,120],
+    [2025, 200, 200, 85],
     [2026, 400, 200,400],
     [2027, 300, 100,300],
-    [2028, 700, 600,700],
+    [2028, 700, 600,800],
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
-          SizedBox(height: 100.h),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: SfCartesianChart(
@@ -67,7 +65,7 @@ class _LineChartScreenState extends State<LineChartScreen> {
             ),
           )
         ],
-      ),
+
     );
   }
 }

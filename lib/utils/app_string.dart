@@ -123,6 +123,7 @@ class AppString {
   static String playerName = "Player name";
   static String club = "Club";
   static String clubNameS = "Club Name";
+  static String overview = "Overview";
 
 
 }
