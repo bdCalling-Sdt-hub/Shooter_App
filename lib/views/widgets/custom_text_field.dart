@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? isObscureText;
   final String? obscureCharacrter;
+  final Color? filColor;
   final Widget? prifixicon;
   final String hintText;
   final double contenpaddingHorizontal;
@@ -26,6 +27,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.isObscureText = false,
     this.obscureCharacrter = '*',
+    this.filColor,
   });
 
   @override
@@ -43,7 +45,7 @@ class CustomTextField extends StatelessWidget {
             horizontal: contenpaddingHorizontal.toDouble(),
             vertical: contenpaddingVertical.toDouble()),
         filled: true,
-        fillColor: const Color(0xFF716665),
+        fillColor: filColor ?? const Color(0xFF716665),
         prefixIcon: prifixicon,
         suffixIcon: sufixicons,
         prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
