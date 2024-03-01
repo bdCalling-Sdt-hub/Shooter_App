@@ -21,7 +21,7 @@ class FreetrialScreen extends StatelessWidget {
         body: Stack(children: [
           //================================> Background Image and Close Icon Section <=======================
           Opacity(
-            opacity: 0.5,
+            opacity: 0.3,
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(
