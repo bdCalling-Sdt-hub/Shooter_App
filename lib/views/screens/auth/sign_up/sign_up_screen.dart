@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
                 image: const AssetImage(AppImages.backgroundImg),
                 fit: BoxFit.fill,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.5),
+                  Colors.black.withOpacity(0.3),
                   BlendMode.srcOver,
                 ))),
         child: Column(

@@ -26,7 +26,7 @@ class SetPasswordScreen extends StatelessWidget {
         body: Stack(children: [
           //================================> Background Image and Back Arrow Section <=======================
           Opacity(
-            opacity: 0.5,
+            opacity: 0.3,
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(

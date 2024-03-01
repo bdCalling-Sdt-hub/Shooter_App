@@ -18,7 +18,7 @@ class OnboardingsScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Stack(children: [
         Opacity(
-          opacity: 0.6,
+          opacity: 0.3,
           child: Container(
             width: double.infinity,
             decoration: const BoxDecoration(
