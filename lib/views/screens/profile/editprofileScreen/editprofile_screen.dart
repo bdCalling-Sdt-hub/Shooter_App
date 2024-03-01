@@ -19,6 +19,8 @@ class EditprofileScreen extends StatefulWidget {
 }
 
 class _EditprofileScreenState extends State<EditprofileScreen> {
+  final _classController = TextEditingController();
+  final _clubController = TextEditingController();
   final _nameController = TextEditingController();
   final _dateOfBirthController = TextEditingController();
   final _emailController = TextEditingController();
@@ -68,7 +70,32 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 ],
               ),
             ),
+            //======================================> Text From Field Section <===============================================
             SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 165.w,
+                  child: CustomTextField(
+                    controller: _classController,
+                    contenpaddingHorizontal: 20.w,
+                    contenpaddingVertical: 9.h,
+                    hintText: AppString.clasName,
+                  ),
+                ),
+                SizedBox(
+                  width: 165.w,
+                  child: CustomTextField(
+                    controller: _clubController,
+                    contenpaddingHorizontal: 20.w,
+                    contenpaddingVertical: 9.h,
+                    hintText: AppString.clubNameS,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.h),
             CustomTextField(
               controller: _nameController,
               contenpaddingHorizontal: 12.w,
