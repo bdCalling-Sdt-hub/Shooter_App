@@ -32,7 +32,7 @@ class EventsScreen extends StatelessWidget {
             children: [
               index == 0 ? SizedBox(height: 12.h,) : SizedBox(),
               Container(
-                height: 255.h,
+                height: 262.h,
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensions.paddingSizeDefault.w),
                 child: CustomEventsCard(

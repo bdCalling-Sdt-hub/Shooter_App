@@ -34,7 +34,7 @@ class MatchesScreen extends StatelessWidget {
               children: [
                 index == 0? SizedBox(height: 24.h,) : SizedBox(),
                 Container(
-                  height: 300.h,
+                  height: 316.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
                       color: AppColors.white

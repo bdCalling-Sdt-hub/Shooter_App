@@ -11,7 +11,7 @@ class UpComingMatchesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 297.h,
+      height: 315.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,

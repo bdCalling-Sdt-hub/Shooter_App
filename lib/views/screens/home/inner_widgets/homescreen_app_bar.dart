@@ -69,6 +69,7 @@ class HomeScreenAppBar extends StatelessWidget {
             Get.toNamed(AppRoutes.notificationScreen);
           },
           child: Badge(
+            backgroundColor: AppColors.primaryColor,
               smallSize: 10,
               child: SvgPicture.asset(
                 AppIcons.bell_icon,

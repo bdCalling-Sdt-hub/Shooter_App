@@ -90,8 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
   StreamSubscription? streamSubscription;
   bool isConnection = false;
 
-  void getConnectivity() {
-    streamSubscription = Connectivity().onConnectivityChanged.listen((event) async {
+  void getConnectivity() {streamSubscription = Connectivity().onConnectivityChanged.listen((event) async {
           isConnection = await InternetConnectionChecker().hasConnection;
           if (isConnection) {
             print("------------------Internet available");

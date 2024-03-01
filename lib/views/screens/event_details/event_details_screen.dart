@@ -242,7 +242,7 @@ class EventDetailsScreen extends StatelessWidget {
 
         ///-----------------------------up coming match card----------------------->
         Container(
-          height: 296.h,
+          height: 316.h,
           width: 350.w,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),

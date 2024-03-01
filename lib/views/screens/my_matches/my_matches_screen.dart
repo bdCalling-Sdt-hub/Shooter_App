@@ -7,6 +7,7 @@ import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
 import '../../widgets/custom_matches_card.dart';
 import '../../widgets/custom_text.dart';
+import 'inner_widgets/comming_and_complete_card.dart';
 
 class MyMatchesScreen extends StatefulWidget {
   MyMatchesScreen({Key? key});
@@ -16,7 +17,7 @@ class MyMatchesScreen extends StatefulWidget {
 }
 
 class _MyMatchesScreenState extends State<MyMatchesScreen> {
-  bool isComplete = false;
+  bool isComplete = true;
 
   @override
   Widget build(BuildContext context) {
@@ -139,77 +140,6 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
   }
 }
 
-class CommingAndCompleteCard extends StatelessWidget {
-  bool? iscomplete;
-
-  CommingAndCompleteCard({super.key, this.iscomplete});
-
-  @override
-  Widget build(BuildContext context) {
-    return iscomplete == false
-        ?
-
-        ///------------------------------complete match------------------------------->
-        ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Container(
-                  height: 281.h,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radiusDefault.r),
-                      color: AppColors.white),
-                  child: CustomMatchesCard(
-                    date: "12 \n Dec",
-                    image: "assets/images/upcomingmatchImage.png",
-                    time: "08.00 AM",
-                    genderText: "3x20 Shots \nProne,standing & kneeling ",
-                    description: "(First 200 of prone to count for 3P)",
-                    buttonText: "See scores",
-                  ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                )
-              ],
-            );
-          },
-        )
 
 
-    ///------------------------------upcoming match------------------------------->
 
-        : ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Container(
-                  height: 244.h,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radiusDefault.r),
-                      color: AppColors.white),
-                  child: CustomMatchesCard(
-                    date: "12 \n Dec",
-                    image: "assets/images/upcomingmatchImage.png",
-                    time: "08.00 AM",
-                    genderText: "3x20 Shots \nProne,standing & kneeling ",
-                    description: "(First 200 of prone to count for 3P)",
-                    amount: "Completed",
-                    // buttonText: "See scores",
-                  ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                )
-              ],
-            );
-          },
-        );
-  }
-}
