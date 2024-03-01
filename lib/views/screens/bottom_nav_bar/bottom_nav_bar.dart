@@ -9,6 +9,7 @@ import '../../../controller/home_controller.dart';
 import '../../../utils/app_icons.dart';
 import '../event/events_screen.dart';
 import '../../../utils/app_colors.dart';
+import '../line_chart/line_chart_screen.dart';
 import '../matches/matches_screen.dart';
 import '../my_matches/my_matches_screen.dart';
 import '../home/inner_widgets/drawer_section.dart';
@@ -29,7 +30,8 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
     HomeScreen(),
     const EventsScreen(),
     const MatchesScreen(),
-    const ProfileScreen(),
+    // const ProfileScreen(),
+     const LineChartScreen(),
   ];
 
 
