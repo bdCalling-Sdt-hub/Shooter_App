@@ -109,7 +109,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           hintText: AppString.email,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please enter your email";
+              return "please enter your email";
             }
             return null;
           },

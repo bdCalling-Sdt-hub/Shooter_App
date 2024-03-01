@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
         title: 'shooter app',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
-        initialRoute: AppRoutes.signInScreen,
+        initialRoute: AppRoutes.splashScreen,
         getPages: AppRoutes.routes,
-        home: SignInScreen(),
+        home: SplashScreen(),
       ),
       designSize: const Size(393, 852),
     );
