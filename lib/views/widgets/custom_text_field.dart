@@ -7,8 +7,10 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? isObscureText;
   final String? obscureCharacrter;
+  final Color? filColor;
   final Widget? prifixicon;
-  final String hintText;
+  final String? labelText;
+  final String? hintText;
   final double contenpaddingHorizontal;
   final double contenpaddingVertical;
   final Widget? sufixicons;
@@ -18,7 +20,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.contenpaddingHorizontal,
     required this.contenpaddingVertical,
-    required this.hintText,
+    this.hintText,
     this.prifixicon,
     this.sufixicons,
     this.validator,
@@ -26,6 +28,8 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.isObscureText = false,
     this.obscureCharacrter = '*',
+    this.filColor,
+    this.labelText,
   });
 
   @override
@@ -43,13 +47,14 @@ class CustomTextField extends StatelessWidget {
             horizontal: contenpaddingHorizontal.toDouble(),
             vertical: contenpaddingVertical.toDouble()),
         filled: true,
-        fillColor: const Color(0xFF716665),
+        fillColor: filColor ?? const Color(0xFF716665),
         prefixIcon: prifixicon,
         suffixIcon: sufixicons,
         prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
         errorStyle: TextStyle(color: AppColors.primaryColor),
         suffixIconColor: AppColors.primaryColor,
         prefixIconColor: AppColors.primaryColor,
+        labelText: labelText,
         hintText: hintText,
         hintStyle: const TextStyle(
             color: AppColors.whiteE8E8E8, fontFamily: 'Aldrich'),

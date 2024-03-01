@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'dart:math' as math;
-
 import '../../../routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +15,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late final AnimationController _animationController =
       AnimationController(duration: const Duration(seconds: 10), vsync: this)
         ..repeat();
@@ -27,7 +27,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     super.dispose();
     _animationController.dispose();
   }
-
 
   void initState() {
     super.initState();

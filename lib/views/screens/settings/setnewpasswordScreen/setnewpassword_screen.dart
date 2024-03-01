@@ -68,7 +68,7 @@ class SetnewpasswordScreen extends StatelessWidget {
           sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please Set New Password";
+              return "please set new password";
             }
             return null;
           },
@@ -82,7 +82,7 @@ class SetnewpasswordScreen extends StatelessWidget {
           sufixicons: _sufixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please Re-enter New Password";
+              return "please re-enter new password";
             }
             return null;
           },

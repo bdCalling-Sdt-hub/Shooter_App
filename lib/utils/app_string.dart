@@ -2,10 +2,19 @@ class AppString {
   //================> Onboardings Screen <====================
   static String smallBore = "Small-Bore Shooting South Africa";
   static String southAfrica = "South Africa";
-  static String exciting =
-      "Exciting competitions with small guns,\n aiming at targets for precision and \nsafety in South Africa's vibrant shooting \nscene.";
+  static String exciting ="“Experience the thrill of precision \nshooting amidst the vibrant competitions \nof South Africa, where every shot is a \ntestament to your skill and dedication.”";
   static String logIn = "Log In";
   static String signUp = "Sign Up";
+  static String orLogin = "Or Login with";
+  static String signUpContinue = "Sign up to continue!";
+  static String signInContinue = "Log in to continue!";
+  static String dontHave = "Don’t have an account? ";
+  static String password = "Password";
+  static String alreadyHave = "Already have an account? ";
+  static String byCreating = "   By creating an account, I accept the \n";
+  static String termsConditionsS = "   Terms & conditions";
+  static String privacyPolicyS = "Privacy Policy";
+  static String userName = "User name";
 
   //================> Verify Email Screen <====================
   static String verifyEmail = "Verify Email";
@@ -75,17 +84,17 @@ class AppString {
 
 //================> Freetrial Screen <====================
   static String welcomeBore = "Welcome to bore shooting \nApp";
-  static String currentlyYou = "Currently you are using our app on a free \ntrial for 10 days!";
+  static String currentlyYou = "Currently you are using our app on a free \ntrial for 30 days!";
   static String continueS = "Continue";
 
   //================> Subscription Screen <====================
-  static String youHave = "You have completed 10 days free trial.";
+  static String youHave = "You have completed 30 days free trial.";
   static String pleaseBuy = "Please buy a subscription \npackage to continue!";
   static String months12 = "12 Months";
   static String months6 = "6 Months";
   static String rand120 = "Rand 120/Month";
   static String rand80 = "Rand 80/Month";
-  static String days10 = "10 days free trial";
+  static String days10 = "30 days free trial";
   static String purchaseSubscription = "Purchase Subscription";
 
 
@@ -103,14 +112,17 @@ class AppString {
 //================> Drawer Screen <====================
   static String myMatches = "My matches";
   static String logOut = "Log out";
+  static String myScores = "My scores";
   static String subscription = "Subscription";
   static String doYou = "Do you want to logout your profile?";
 
 //================> Scores Screen <====================
   static String scores = "Scores";
   static String clasS = "Class";
+  static String clasName = "Class Name";
   static String playerName = "Player name";
   static String club = "Club";
+  static String clubNameS = "Club Name";
 
 
 }

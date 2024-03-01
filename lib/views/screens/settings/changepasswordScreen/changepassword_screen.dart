@@ -102,7 +102,7 @@ class ChangepasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.toNamed(AppRoutes.forgetPasswordScreen);
           },
           child: CustomText(
