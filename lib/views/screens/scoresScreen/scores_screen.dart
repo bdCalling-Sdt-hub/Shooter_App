@@ -16,10 +16,8 @@ class ScoresScreen extends StatefulWidget {
 }
 
 class _ScoresScreenState extends State<ScoresScreen> {
-
   var _pickDateController = TextEditingController();
   bool isComplete = true;
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +35,12 @@ class _ScoresScreenState extends State<ScoresScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
-          SizedBox(height: 24.h,),
-
+          SizedBox(
+            height: 24.h,
+          ),
 
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               children: [
                 ///---------------------------------two bottom------------------------------>
@@ -51,7 +49,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius:
-                      BorderRadius.circular(Dimensions.radiusDefault.r),
+                          BorderRadius.circular(Dimensions.radiusDefault.r),
                       border: Border.all(color: AppColors.primaryColor)),
                   child: Row(
                     children: [
@@ -123,7 +121,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   ),
                 ),
 
-                SizedBox(height: 24.h,),
+                SizedBox(
+                  height: 24.h,
+                ),
 
                 ///------------------------------date time pick from------------------->
                 Align(
@@ -131,39 +131,54 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   child: Container(
                     width: 140.w,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r)
-                    ),
-
-                    child:  TextField(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radiusDefault.r)),
+                    child: TextField(
                       controller: _pickDateController,
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20.h),
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 10.h,vertical: 1.h),
                           hintText: "Feb 02-2024",
-                          hintStyle: TextStyle(fontSize: 12.h, fontWeight: FontWeight.w400,color: AppColors.whiteE8E8E8),
-                          suffixIcon: IconButton(onPressed: (){
-                            _selectDate(context);
-                          }, icon: SvgPicture.asset(AppIcons.calander,width: 12.w,height: 12.h,color: AppColors.white,fit: BoxFit.contain,),)
-                      ),
+                          hintStyle: TextStyle(
+                              fontSize: 12.h,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.whiteE8E8E8),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              _selectDate(context);
+                            },
+                            icon: SvgPicture.asset(
+                              AppIcons.calander,
+                              width: 12.w,
+                              height: 12.h,
+                              color: AppColors.white,
+                              fit: BoxFit.contain,
+                            ),
+                          )),
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
 
-
-          SizedBox(height: 16.h,),
+          SizedBox(
+            height: 16.h,
+          ),
 
           ///---------------------table section----------------------------->
-          isComplete ? Padding(padding: EdgeInsets.symmetric(horizontal: 20.w),child:  _TableSection(),) : LineChart(),
+          isComplete
+              ? Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: _TableSection(),
+                )
+              : LineChart(),
         ],
       ),
     );
   }
 
-
-///--------------------------------calender------------------------------:>
+  ///--------------------------------calender------------------------------:>
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -178,8 +193,6 @@ class _ScoresScreenState extends State<ScoresScreen> {
     }
   }
 
-
-
   ///--------------------------row text-------------------------->
   _rowText(String title) {
     return Padding(
@@ -191,9 +204,8 @@ class _ScoresScreenState extends State<ScoresScreen> {
     );
   }
 
-
   ///---------------------------------table section------------------------------->
-  _TableSection(){
+  _TableSection() {
     return Column(
       children: [
         Table(
@@ -282,5 +294,3 @@ class _ScoresScreenState extends State<ScoresScreen> {
     );
   }
 }
-
-

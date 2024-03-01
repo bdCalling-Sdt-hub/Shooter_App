@@ -17,8 +17,8 @@ class _LineChartState extends State<LineChart> {
   List chartData = [
     [2024, 300, 30,120],
     [2025, 200, 200, 85],
-    [2026, 400, 200,400],
-    [2027, 300, 100,300],
+    [2026, 400, 300,600],
+    [2027, 300, 100,500],
     [2028, 700, 600,800],
   ];
 
@@ -26,13 +26,17 @@ class _LineChartState extends State<LineChart> {
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+          Container(
+            height: 400.h,
+            margin : const EdgeInsets.symmetric(horizontal: 3),
+            decoration: BoxDecoration(
+                color: const Color(0xff302d2d),
+              borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+              border: Border.all(color: AppColors.primaryColor)
+            ),
             child: SfCartesianChart(
-              borderColor: AppColors.primaryColor,
-              borderWidth: 1,
-              backgroundColor: Color(0xff302d2d),
-              legend: Legend(isVisible: true),
+              legend: const Legend(isVisible: true),
+              title: const ChartTitle(text: "Scores Ratio"),
               series: [
                 SplineSeries(
                   dataSource: chartData,
@@ -41,6 +45,7 @@ class _LineChartState extends State<LineChart> {
                   markerSettings: const MarkerSettings(shape: DataMarkerType.circle),
                   color: const Color(0xff4B91F1),
                   name: "Event 1",
+                  legendIconType: LegendIconType.circle,
                 ),
                 SplineSeries(
                   dataSource: chartData,
@@ -49,9 +54,8 @@ class _LineChartState extends State<LineChart> {
                   markerSettings: const MarkerSettings(shape: DataMarkerType.circle),
                   color: const Color(0xffFFFFFF),
                   name: "Match 1",
+                  legendIconType: LegendIconType.circle,
                 ),
-
-
 
                 SplineSeries(
                   dataSource: chartData,
@@ -60,6 +64,7 @@ class _LineChartState extends State<LineChart> {
                   markerSettings: const MarkerSettings(shape: DataMarkerType.circle),
                   color: const Color(0xffFA1131),
                   name: "Match 2",
+                  legendIconType: LegendIconType.circle,
                 ),
               ],
             ),
