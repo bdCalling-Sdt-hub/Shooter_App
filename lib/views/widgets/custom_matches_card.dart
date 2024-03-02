@@ -152,7 +152,7 @@ class CustomMatchesCard extends StatelessWidget {
               buttonText == null ? SizedBox() :
 
                 CustomButton(title: "${buttonText}",height:40.h,fontSize: 12.h, onpress:(){
-                  Get.toNamed(AppRoutes.scoresScreen);
+                  Get.toNamed(AppRoutes.registrationScreen);
                 }, titlecolor: AppColors.white),
 
             ],

@@ -30,8 +30,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
     HomeScreen(),
     const EventsScreen(),
     const MatchesScreen(),
-    // const ProfileScreen(),
-     const LineChart(),
+    const ProfileScreen(),
   ];
 
 
