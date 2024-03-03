@@ -23,6 +23,7 @@ class AppIcons{
   static const String settings = "assets/icons/settings.svg";
   static const String logOut = "assets/icons/logOut.svg";
   static const String myScores = "assets/icons/myScores.svg";
+  static const String eye = "assets/icons/eye.svg";
 
 
   ///--------------------------------home screen----------------------------->

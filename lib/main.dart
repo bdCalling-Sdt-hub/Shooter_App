@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         darkTheme: Themes().darkTheme,
         initialRoute: AppRoutes.splashScreen,
         getPages: AppRoutes.routes,
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
       designSize: const Size(393, 852),
     );

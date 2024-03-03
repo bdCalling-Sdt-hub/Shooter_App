@@ -205,7 +205,7 @@ class SignInForm extends StatelessWidget {
           contenpaddingVertical: 16.h,
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
-          sufixicons: _suffixIcon(AppIcons.obscure_true),
+          isPassword: true,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "please enter your password";
@@ -217,15 +217,5 @@ class SignInForm extends StatelessWidget {
     );
   }
 
-  _suffixIcon(String icon) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SvgPicture.asset(
-        icon,
-        width: 12.h,
-        height: 12.h,
-        fit: BoxFit.contain,
-      ),
-    );
-  }
+
 }

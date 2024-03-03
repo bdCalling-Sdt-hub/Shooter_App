@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 
-class CustomTextField extends StatelessWidget {
+import '../../utils/app_icons.dart';
+
+class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final bool? isObscureText;
@@ -15,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final double contenpaddingVertical;
   final Widget? sufixicons;
   final FormFieldValidator? validator;
+  final bool isPassword;
 
   const CustomTextField({
     super.key,
@@ -30,32 +34,49 @@ class CustomTextField extends StatelessWidget {
     this.obscureCharacrter = '*',
     this.filColor,
     this.labelText,
+    this.isPassword=false
   });
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool obscureText = true;
+
+  void toggle() {
+    setState(() {
+      obscureText = !obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: isObscureText!,
-      obscuringCharacter: obscureCharacrter!,
-      validator: validator,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      obscuringCharacter: widget.obscureCharacrter!,
+      validator: widget.validator,
       cursorColor: AppColors.primaryColor,
+      obscureText: widget.isPassword ? obscureText : false,
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
-            horizontal: contenpaddingHorizontal.toDouble(),
-            vertical: contenpaddingVertical.toDouble()),
+            horizontal: widget.contenpaddingHorizontal.toDouble(),
+            vertical: widget.contenpaddingVertical.toDouble()),
         filled: true,
-        fillColor: filColor ?? const Color(0xFF716665),
-        prefixIcon: prifixicon,
-        suffixIcon: sufixicons,
+        fillColor: widget.filColor ?? const Color(0xFF716665),
+        prefixIcon: widget.prifixicon,
+        suffixIcon:widget.isPassword ? GestureDetector(
+          onTap: toggle,
+          child: _suffixIcon(obscureText?AppIcons.obscure_true:AppIcons.eye),
+        ) : widget.sufixicons,
         prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
         errorStyle: TextStyle(color: AppColors.primaryColor),
         suffixIconColor: AppColors.primaryColor,
         prefixIconColor: AppColors.primaryColor,
-        labelText: labelText,
-        hintText: hintText,
+        labelText: widget.labelText,
+        hintText: widget.hintText,
         hintStyle: const TextStyle(
             color: AppColors.whiteE8E8E8, fontFamily: 'Aldrich'),
         border: OutlineInputBorder(
@@ -69,6 +90,18 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: _buildOutlineInputBorder(),
         enabledBorder: _buildOutlineInputBorder(),
         disabledBorder: _buildOutlineInputBorder(),
+      ),
+    );
+  }
+
+  _suffixIcon(String icon) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SvgPicture.asset(
+        icon,
+        width: 12.h,
+        height: 12.h,
+        fit: BoxFit.contain,
       ),
     );
   }
