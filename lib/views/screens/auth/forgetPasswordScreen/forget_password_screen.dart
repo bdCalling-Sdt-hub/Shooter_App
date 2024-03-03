@@ -81,11 +81,7 @@ class ForgetPasswordScreen extends StatelessWidget {
 
                       Form(
                         key: _formKey,
-                        child: Column(
-                          children: [
-                            _formFieldSection(),
-                          ],
-                        ),
+                        child: _formFieldSection(),
                       ),
                     ],
                   ),
@@ -107,12 +103,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.email,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter your email";
-            }
-            return null;
-          },
+         isEmail: true,
         ),
         SizedBox(height: 44.h),
         CustomButton(

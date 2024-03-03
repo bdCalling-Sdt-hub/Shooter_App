@@ -86,6 +86,7 @@ class VerifyEmailScreen extends StatelessWidget {
                     CustomText(
                       color: AppColors.primaryColor,
                       text: AppString.resend,
+                      decoration: TextDecoration.underline,
                       fontsize: 16.h,
                     ),
                   ],

@@ -62,10 +62,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       keyboardType: widget.keyboardType,
       obscuringCharacter: widget.obscureCharacrter!,
       // validator: widget.validator,
-      validator: (value) {
+      validator:widget.validator?? (value) {
         if (widget.isEmail == null) {
           if (value!.isEmpty) {
-            return "Please enter ${widget.hintText}";
+            return "Please enter ${widget.hintText!.toLowerCase()}";
           }else if(widget.isPassword) {
             bool data = AppConstants.passwordValidator.hasMatch(value);
             if (value.isEmpty) {

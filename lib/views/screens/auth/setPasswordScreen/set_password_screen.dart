@@ -20,8 +20,6 @@ class SetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        extendBody: true,
         backgroundColor: Colors.black,
         body: Stack(children: [
           //================================> Background Image and Back Arrow Section <=======================
@@ -100,13 +98,8 @@ class SetPasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.setPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter your password";
-            }
-            return null;
-          },
+          isPassword: true,
+
         ),
         SizedBox(height: 16.h),
         CustomTextField(
@@ -114,13 +107,7 @@ class SetPasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.confirmPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please re-enter your password";
-            }
-            return null;
-          },
+         isPassword: true,
         ),
         SizedBox(height: 44.h),
         CustomButton(
@@ -136,15 +123,4 @@ class SetPasswordScreen extends StatelessWidget {
     );
   }
 
-  _sufixIcon(String icon) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SvgPicture.asset(
-        icon,
-        width: 12.h,
-        height: 12.h,
-        fit: BoxFit.contain,
-      ),
-    );
-  }
 }
