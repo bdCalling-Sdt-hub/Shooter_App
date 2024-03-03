@@ -9,6 +9,7 @@ class CustomButton extends StatelessWidget {
 
   final Color? titlecolor;
   final double? height;
+  final double? width;
   final double? fontSize;
 
   const CustomButton({
@@ -17,6 +18,7 @@ class CustomButton extends StatelessWidget {
     required this.onpress,
     this.color,
     this.height,
+    this.width,
     this.fontSize,
     this.titlecolor,
   });
@@ -26,7 +28,7 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onpress,
       child: Container(
-        width: 345.w,
+        width:width?? 345.w,
         height: height ?? 52.h,
         padding: const EdgeInsets.all(10),
         decoration: color == null
