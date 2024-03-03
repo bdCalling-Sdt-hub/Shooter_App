@@ -15,8 +15,8 @@ class CustomTextField extends StatefulWidget {
   final Widget? prifixicon;
   final String? labelText;
   final String? hintText;
-  final double contenpaddingHorizontal;
-  final double contenpaddingVertical;
+  final double? contenpaddingHorizontal;
+  final double? contenpaddingVertical;
   final Widget? sufixicons;
   final FormFieldValidator? validator;
   final bool isPassword;
@@ -24,8 +24,8 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField({
     super.key,
-    required this.contenpaddingHorizontal,
-    required this.contenpaddingVertical,
+     this.contenpaddingHorizontal,
+     this.contenpaddingVertical,
     this.hintText,
     this.prifixicon,
     this.sufixicons,
@@ -90,8 +90,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
-            horizontal: widget.contenpaddingHorizontal.toDouble(),
-            vertical: widget.contenpaddingVertical.toDouble()),
+            horizontal: widget.contenpaddingHorizontal??20.w,
+            vertical: widget.contenpaddingVertical??20.w),
         filled: true,
         fillColor: widget.filColor ?? const Color(0xFF716665),
         prefixIcon: widget.prifixicon,

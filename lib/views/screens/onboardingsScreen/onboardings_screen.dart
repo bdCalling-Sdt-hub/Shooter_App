@@ -35,26 +35,26 @@ class OnboardingsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
-              CustomText(
-                text: AppString.smallBore,
-                maxline: 2,
-                fontsize: 32.h,
+              Text(
+                AppString.smallBore,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 28.sp, fontFamily: 'Aldrich'),
               ),
+
               SizedBox(height: 16.h),
-              CustomText(
-                text: AppString.exciting,
-                maxline: 8,
-                fontsize: 16.h,
+              Text(
+                AppString.exciting,
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14.sp, fontFamily: 'Aldrich'),
               ),
-              SizedBox(height: 100.h),
+              SizedBox(height: 24.h),
               CustomButton(
                 title: AppString.getStarted,
                 onpress: () {
                   Get.offAllNamed(AppRoutes.signInScreen);
                 },
               ),
-
-              SizedBox(height: 100.h),
+              SizedBox(height: 50.h),
             ],
           ),
         ),

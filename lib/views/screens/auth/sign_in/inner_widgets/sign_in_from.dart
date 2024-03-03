@@ -106,7 +106,9 @@ class SignInForm extends StatelessWidget {
                         color: AppColors.fieldColor,
                         borderRadius:
                             BorderRadius.circular(Dimensions.radiusDefault),
-                        border: Border.all(color: const Color(0xFFFD92A0))),
+                        border: Border.all(color: const Color(0xFFFD92A0)
+                        )
+                    ),
                     child: Center(
                         child: SvgPicture.asset(
                       AppIcons.google,
@@ -172,6 +174,11 @@ class SignInForm extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 21.h,
+              ),
+
+
             ],
           ),
         ),
