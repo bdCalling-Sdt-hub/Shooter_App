@@ -5,6 +5,7 @@ class AppString {
   static String exciting ="“Experience the thrill of precision \nshooting amidst the vibrant competitions \nof South Africa, where every shot is a \ntestament to your skill and dedication.”";
   static String logIn = "Log In";
   static String signUp = "Sign Up";
+  static String getStarted = "Get started";
   static String orLogin = "Or Login with";
   static String signUpContinue = "Sign up to continue!";
   static String signInContinue = "Log in to continue!";

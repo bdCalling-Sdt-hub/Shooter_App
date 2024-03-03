@@ -46,23 +46,15 @@ class OnboardingsScreen extends StatelessWidget {
                 maxline: 8,
                 fontsize: 16.h,
               ),
-              SizedBox(height: 36.h),
+              SizedBox(height: 100.h),
               CustomButton(
-                title: AppString.logIn,
+                title: AppString.getStarted,
                 onpress: () {
-                  Get.toNamed(AppRoutes.signInScreen);
+                  Get.offAllNamed(AppRoutes.signInScreen);
                 },
               ),
-              SizedBox(height: 16.h),
-              CustomButton(
-                color: Colors.white,
-                titlecolor: AppColors.primaryColor,
-                title: AppString.signUp,
-                onpress: () {
-                  Get.toNamed(AppRoutes.signUpScreen);
-                },
-              ),
-              SizedBox(height: 66.h),
+
+              SizedBox(height: 100.h),
             ],
           ),
         ),

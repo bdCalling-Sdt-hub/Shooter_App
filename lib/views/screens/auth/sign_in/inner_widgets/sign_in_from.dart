@@ -58,7 +58,7 @@ class SignInForm extends StatelessWidget {
           child: Column(
             children: [
               ///--------------------------Email and password text field section-------------------------------------------?>
-              _TextFieldSection(),
+              _textFieldSection(),
 
               ///---------------------------------------forgot password--------------------------------->
               GestureDetector(
@@ -80,7 +80,7 @@ class SignInForm extends StatelessWidget {
               CustomButton(
                 onpress: () {
                   if (formKey.currentState!.validate()) {
-                    Get.toNamed(AppRoutes.bottomNavBar);
+                    Get.offAllNamed(AppRoutes.bottomNavBar);
                   }
                 },
                 title: AppString.logIn,
@@ -179,7 +179,7 @@ class SignInForm extends StatelessWidget {
   }
 
   ///-----------------------------text field section---------------------------->
-  _TextFieldSection() {
+  _textFieldSection() {
     return Column(
       children: [
         ///--------------------------Email------------------------------------>
@@ -205,7 +205,7 @@ class SignInForm extends StatelessWidget {
           contenpaddingVertical: 16.h,
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
+          sufixicons: _suffixIcon(AppIcons.obscure_true),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "please enter your password";
@@ -217,7 +217,7 @@ class SignInForm extends StatelessWidget {
     );
   }
 
-  _sufixIcon(String icon) {
+  _suffixIcon(String icon) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SvgPicture.asset(

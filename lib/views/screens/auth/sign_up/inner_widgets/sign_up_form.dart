@@ -118,7 +118,7 @@ class SignUpForm extends StatelessWidget {
               CustomButton(
                 onpress: () {
                   if (_formKey.currentState!.validate()) {
-                    Get.toNamed(AppRoutes.signInScreen);
+                    Get.offAllNamed(AppRoutes.bottomNavBar);
                   }
                 },
                 title: AppString.signUp,
@@ -156,7 +156,7 @@ class SignUpForm extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Get.toNamed(AppRoutes.signInScreen);
+                           Get.back();
                           }),
                   ],
                 ),

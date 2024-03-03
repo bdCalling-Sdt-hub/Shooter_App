@@ -24,8 +24,10 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
-    _animationController.dispose();
+
+    _animationController.dispose(); // you need this
+      super.dispose();
+
   }
 
   void initState() {
@@ -95,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen>
           if (isConnection) {
             print("------------------Internet available");
             Timer(const Duration(seconds: 4), () {
-              Get.toNamed(AppRoutes.onboardingsScreen);
+              Get.offAllNamed(AppRoutes.onboardingsScreen);
             });
           } else {
             print("----------------------No internet");
