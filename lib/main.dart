@@ -2,13 +2,15 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/di.dart' as di;
 import 'package:shooter_app/themes/themes.dart';
 
 import 'routes/app_routes.dart';
 
 import 'views/screens/splashScreen/splash_screen.dart';
 
-void main() {
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   // runApp(
   //   DevicePreview(
@@ -16,6 +18,7 @@ void main() {
   //     builder: (context) => MyApp(), // Wrap your app
   //   ),
   // );
+  await di.init();
   runApp(MyApp());
 }
 

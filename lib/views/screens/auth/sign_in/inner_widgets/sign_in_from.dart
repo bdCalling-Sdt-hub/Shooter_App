@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
@@ -21,8 +22,8 @@ class SignInForm extends StatelessWidget {
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
-  final _emailController = TextEditingController();
-  final _passController = TextEditingController();
+
+  final _authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -184,34 +185,23 @@ class SignInForm extends StatelessWidget {
       children: [
         ///--------------------------Email------------------------------------>
         CustomTextField(
-          controller: _emailController,
+          controller: _authController.emailController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.email,
           filColor: AppColors.fieldColor,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter your email";
-            }
-            return null;
-          },
+          isEmail:true,
         ),
         SizedBox(height: 16.h),
 
         ///--------------------------Password------------------------------------>
         CustomTextField(
-          controller: _passController,
+          controller: _authController.passController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
           isPassword: true,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter your password";
-            }
-            return null;
-          },
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shooter_app/utils/app_colors.dart';
+import 'package:shooter_app/utils/app_constants.dart';
 
 import '../../utils/app_icons.dart';
 
@@ -19,6 +20,7 @@ class CustomTextField extends StatefulWidget {
   final Widget? sufixicons;
   final FormFieldValidator? validator;
   final bool isPassword;
+  final bool? isEmail;
 
   const CustomTextField({
     super.key,
@@ -28,6 +30,7 @@ class CustomTextField extends StatefulWidget {
     this.prifixicon,
     this.sufixicons,
     this.validator,
+    this.isEmail,
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.isObscureText = false,
@@ -50,13 +53,38 @@ class _CustomTextFieldState extends State<CustomTextField> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       obscuringCharacter: widget.obscureCharacrter!,
-      validator: widget.validator,
+      // validator: widget.validator,
+      validator: (value) {
+        if (widget.isEmail == null) {
+          if (value!.isEmpty) {
+            return "Please enter ${widget.hintText}";
+          }else if(widget.isPassword) {
+            bool data = AppConstants.passwordValidator.hasMatch(value);
+            if (value.isEmpty) {
+              return "Please enter ${widget.hintText}";
+            } else if (!data) {
+              return "Insecure password detected.";
+            }
+          }
+        }
+        else {
+          bool data = AppConstants.emailValidator.hasMatch(value!);
+          if (value.isEmpty) {
+            return "Please enter ${widget.hintText}";
+          } else if (!data) {
+            return "Please check your email!";
+          }
+        }
+        return null;
+      },
       cursorColor: AppColors.primaryColor,
       obscureText: widget.isPassword ? obscureText : false,
       style: const TextStyle(color: Colors.white),
