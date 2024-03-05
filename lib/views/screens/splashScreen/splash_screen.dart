@@ -58,9 +58,9 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   _route() {
-    // Timer(const Duration(seconds: 1), () {
-    //   Get.offAllNamed(AppRoutes.onboardingsScreen);
-    // });
+    Timer(const Duration(seconds: 1), () {
+      Get.offAllNamed(AppRoutes.onboardingsScreen);
+    });
   }
 
   @override

@@ -101,15 +101,18 @@ class SignUpForm extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              CustomButton(
-                onpress: () {
-                  if(isCheck.value){
-                    if (_formKey.currentState!.validate()) {
-                      Get.offAllNamed(AppRoutes.bottomNavBar);
+              Obx(
+                  ()=> CustomButton(
+                    loading: _authController.signUpLoading.value,
+                  onpress: () {
+                    if(isCheck.value){
+                      if (_formKey.currentState!.validate()) {
+                        _authController.handleSignUp();
+                      }
                     }
-                  }
-                },
-                title: AppString.signUp,
+                  },
+                  title: AppString.signUp,
+                ),
               ),
 
               SizedBox(
