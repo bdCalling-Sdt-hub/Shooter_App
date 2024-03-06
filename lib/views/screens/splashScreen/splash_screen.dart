@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shooter_app/helper/prefs_helper.dart';
+import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'dart:math' as math;
 import '../../../routes/app_routes.dart';
@@ -54,18 +56,27 @@ class _SplashScreenState extends State<SplashScreen>
     });
 
     debugPrint("========> Out change out");
-    _route();
+     _route();
   }
 
   _route() {
-    Timer(const Duration(seconds: 1), () {
-      Get.offAllNamed(AppRoutes.onboardingsScreen);
+    Timer(const Duration(seconds: 1), () async {
+      var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
+      var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
+      if (onBoard) {
+        if (isLogged) {
+          Get.offNamed(AppRoutes.bottomNavBar);
+        } else {
+          Get.offAllNamed(AppRoutes.signInScreen);
+        }
+      } else {
+        Get.offAllNamed(AppRoutes.onboardingsScreen);
+      }
     });
   }
 
   @override
   void dispose() {
-
     _animationController.dispose();
     _onConnectivityChanged.cancel();
     super.dispose();

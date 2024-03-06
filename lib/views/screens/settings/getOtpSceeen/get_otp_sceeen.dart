@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/views/widgets/pin_code_text_field.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_string.dart';
 import '../../../../utils/dimentions.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_text.dart';
-import '../../auth/verifyEmailScreen/InnerWidget/pin_code_field.dart';
+
 
 class GetOtpSceeen extends StatelessWidget {
   const GetOtpSceeen({super.key});
@@ -37,7 +38,7 @@ class GetOtpSceeen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             //================================> PinCodeField Section <=======================
-            const PinCodeField(),
+            const CustomPinCodeTextField(),
             SizedBox(height: 16.h),
             Row(
               children: [

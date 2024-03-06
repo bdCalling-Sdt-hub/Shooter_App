@@ -22,6 +22,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final bool? isEmail;
 
+
   const CustomTextField({
     super.key,
      this.contenpaddingHorizontal,
@@ -31,6 +32,7 @@ class CustomTextField extends StatefulWidget {
     this.sufixicons,
     this.validator,
     this.isEmail,
+
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.isObscureText = false,
@@ -47,6 +49,7 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   bool obscureText = true;
 
+
   void toggle() {
     setState(() {
       obscureText = !obscureText;
@@ -57,6 +60,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyboardType,

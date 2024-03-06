@@ -2,6 +2,10 @@ class AppConstants{
 
   static String bearerToken="BearerToken";
   static String userId="UserId";
+  static String isLogged="IsLogged";
+  static String isOnboard="IsOnboard";
+  static String subscription="Subscription";
+  static String signInType ="SignInType";
 
 
 

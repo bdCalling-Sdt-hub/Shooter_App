@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
@@ -9,10 +11,15 @@ import '../../../../utils/app_string.dart';
 import '../../../../utils/dimentions.dart';
 
 import '../../../widgets/custom_button.dart';
-import 'InnerWidget/pin_code_field.dart';
+import '../../../widgets/pin_code_text_field.dart';
+
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+   VerifyEmailScreen({super.key});
+
+  final TextEditingController pinCodeCtrl=TextEditingController();
+
+  final _authController = Get.put(AuthController());
 
 
   @override
@@ -74,7 +81,9 @@ class VerifyEmailScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 //================================> PinCodeField Section <=======================
-                const PinCodeField(),
+                 CustomPinCodeTextField(
+                  textEditingController:pinCodeCtrl,
+                ),
                 SizedBox(height: 16.h),
                 Row(
                   children: [
@@ -93,11 +102,14 @@ class VerifyEmailScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 44.h),
                 //================================> VerifyEmail Button <=======================
-                CustomButton(
-                  title: AppString.verifyEmail,
-                  onpress: () {
-                    Get.toNamed(AppRoutes.setPasswordScreen);
-                  },
+                Obx(()=>
+                   CustomButton(
+                     loading: _authController.verifyLoading.value,
+                    title: AppString.verifyEmail,
+                    onpress: () {
+                      _authController.verifyEmail(Get.parameters, pinCodeCtrl.text);
+                    },
+                  ),
                 ),
                 SizedBox(height: 248.h),
               ],

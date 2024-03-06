@@ -23,7 +23,7 @@ class SignInForm extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
 
-  final _authController = Get.find<AuthController>();
+  final _authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +78,17 @@ class SignInForm extends StatelessWidget {
               ),
 
               ///-------------------------------------Log In botton------------------------------->
-              CustomButton(
-                onpress: () {
-                  if (formKey.currentState!.validate()) {
-                    Get.offAllNamed(AppRoutes.bottomNavBar);
-                  }
-                },
-                title: AppString.logIn,
-                titlecolor: Colors.white,
+              Obx(()=>
+                 CustomButton(
+                   loading: _authController.signInLoading.value,
+                  onpress: () {
+                    if (formKey.currentState!.validate()) {
+                          _authController.handleSignIn();
+                    }
+                  },
+                  title: AppString.logIn,
+                  titlecolor: Colors.white,
+                ),
               ),
 
               ///--------------------------------or login with text--------------------------------->

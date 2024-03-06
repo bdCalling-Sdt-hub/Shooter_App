@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../../routes/app_routes.dart';
@@ -13,6 +14,8 @@ class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+
+  final _authController = Get.put(AuthController());
 
 
   @override
@@ -106,14 +109,17 @@ class ForgetPasswordScreen extends StatelessWidget {
          isEmail: true,
         ),
         SizedBox(height: 44.h),
-        CustomButton(
-          title: AppString.sendOTP,
-          titlecolor: Colors.white,
-          onpress: () {
-            if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.verifyEmailScreen);
-            }
-          },
+        Obx(()=>
+           CustomButton(
+            title: AppString.sendOTP,
+            loading: _authController.forgotLoading.value,
+            titlecolor: Colors.white,
+            onpress: () {
+              if (_formKey.currentState!.validate()) {
+                _authController.forgotPassword(_emailController.text.trim());
+              }
+            },
+          ),
         ),
         SizedBox(height: 248.h),
       ],

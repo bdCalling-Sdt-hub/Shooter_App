@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../../routes/app_routes.dart';
+import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
@@ -16,6 +18,7 @@ class SetPasswordScreen extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _setPassController = TextEditingController();
   final _confirmPassController = TextEditingController();
+  final _authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +102,6 @@ class SetPasswordScreen extends StatelessWidget {
           contenpaddingVertical: 16.h,
           hintText: AppString.setPassword,
           isPassword: true,
-
         ),
         SizedBox(height: 16.h),
         CustomTextField(
@@ -107,20 +109,34 @@ class SetPasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.confirmPassword,
-         isPassword: true,
+          isPassword: true,
+          validator: (value){
+            bool data = AppConstants.passwordValidator.hasMatch(value);
+            if (value.isEmpty) {
+              return "Please enter ${AppString.confirmPassword}";
+            } else if (!data) {
+              return "Insecure password detected.";
+            }else if(_setPassController.text !=value){
+                return "Password did not match.";
+            }
+            return null;
+          },
         ),
         SizedBox(height: 44.h),
-        CustomButton(
-          title: AppString.setPassword,
-          onpress: () {
-            if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.signUpScreen);
-            }
-          },
+        Obx(()=>
+           CustomButton(
+             loading: _authController.setPasswordLoading.value,
+            title: AppString.setPassword,
+            onpress: () {
+              if (_formKey.currentState!.validate()) {
+                _authController.setPassword(
+                    Get.arguments, _confirmPassController.text);
+              }
+            },
+          ),
         ),
         SizedBox(height: 248.h),
       ],
     );
   }
-
 }

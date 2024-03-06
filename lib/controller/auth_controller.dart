@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/prefs_helper.dart';
+import 'package:shooter_app/service/api_check.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
+import 'package:shooter_app/utils/app_constants.dart';
 
 import '../routes/app_routes.dart';
 
@@ -11,6 +15,34 @@ class AuthController extends GetxController {
   ///<===== ============== sign in =========== =====>
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  var signInLoading = false.obs;
+
+  handleSignIn() async {
+    signInLoading(true);
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var body = {
+      'email': emailController.text.trim(),
+      'password': passController.text,
+    };
+    var response = await ApiClient.postData(
+        ApiConstant.signIn, json.encode(body),
+        headers: header);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = response.body;
+      if (!data['data']['attributes']['isAdmin']) {
+        await PrefsHelper.setString(
+            AppConstants.userId, data['data']['attributes']['_id']);
+        await PrefsHelper.setString(
+            AppConstants.bearerToken, data['data']['token']);
+        await PrefsHelper.setBool(AppConstants.isLogged, true);
+        await PrefsHelper.setString(AppConstants.subscription,
+            data['data']['attributes']['subscription']);
+        await PrefsHelper.setString(AppConstants.signInType, "General User");
+        Get.offAllNamed(AppRoutes.bottomNavBar);
+      }
+    }
+    signInLoading(false);
+  }
 
   ///<===== ============== sign up =============== =====>
 
@@ -18,9 +50,7 @@ class AuthController extends GetxController {
   final emailSignupCtrl = TextEditingController();
   final passSignupCtrl = TextEditingController();
 
-
-  var signUpLoading=false.obs;
-
+  var signUpLoading = false.obs;
 
   handleSignUp() async {
     signUpLoading(true);
@@ -37,17 +67,75 @@ class AuthController extends GetxController {
     );
     if (response.statusCode == 200) {
       debugPrint("Complete Sign up");
-    //  Get.toNamed(AppRoutes.verifyEmailScreen);
+      Get.toNamed(AppRoutes.verifyEmailScreen, parameters: {
+        "email": emailSignupCtrl.text.trim(),
+        "screenType": "signup"
+      });
     }
-   signUpLoading(false);
+    signUpLoading(false);
   }
 
-  verifyEmail()async{
+  var verifyLoading = false.obs;
 
-
+  verifyEmail(
+    Map<String, String?> data,
+    String code,
+  ) async {
+    verifyLoading(true);
+    var body = {"email": data['email'], "code": code};
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var response = await ApiClient.postData(
+        ApiConstant.verifyCode, json.encode(body),
+        headers: header);
+    if (response.statusCode == 200) {
+      if (data['screenType'] == "forgot") {
+        Get.toNamed(AppRoutes.setPasswordScreen, arguments: data['email']);
+      } else {
+        Get.offAllNamed(AppRoutes.bottomNavBar);
+      }
+    } else {
+      Fluttertoast.showToast(msg: response.statusText ?? "");
+    }
+    verifyLoading(false);
   }
 
+  /// <-------------------------- forgot password --------------->
 
+  var forgotLoading = false.obs;
 
+  forgotPassword(String email) async {
+    forgotLoading(true);
+    var body = {"email": email};
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var response = await ApiClient.postData(
+        ApiConstant.forgot, json.encode(body),
+        headers: header);
+    if (response.statusCode == 200) {
+      Get.toNamed(AppRoutes.verifyEmailScreen,
+          parameters: {"email": email, "screenType": "forgot"});
+    } else {
+      Fluttertoast.showToast(msg: response.statusText ?? "");
+    }
+    forgotLoading(false);
+  }
 
+  /// <-------------------------- set password --------------->
+
+  var setPasswordLoading = false.obs;
+
+  setPassword(String email, String password) async {
+    setPasswordLoading(true);
+    var body = {"email": email, "password": password};
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var response = await ApiClient.postData(
+        ApiConstant.changePassword, json.encode(body),
+        headers: header);
+    if (response.statusCode == 200){
+      Get.offNamed(AppRoutes.signInScreen);
+    } else {
+      debugPrint("error set password ${response.statusText}");
+    Fluttertoast.showToast(msg: "${response.statusText}");
+    }
+    setPasswordLoading(false);
+  }
 }

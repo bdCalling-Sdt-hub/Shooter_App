@@ -192,7 +192,7 @@ class DrawerSection extends StatelessWidget {
                                           title: 'Yes',
                                           fontSize: 16.h,
                                           onpress: () {
-                                            Get.offAllNamed(
+                                            Get.offNamed(
                                                 AppRoutes.signInScreen);
                                           })),
                                 ],
