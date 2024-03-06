@@ -7,6 +7,7 @@ class ApiConstant{
   static String forgot="/user/forgot-password";
   static String verifyCode="/user/verify-code";
   static String changePassword="/user/change-password";
+  static String setPassword="/user/set-password";
   static String updateUser(String userId)=> "user/update/$userId";
 
 

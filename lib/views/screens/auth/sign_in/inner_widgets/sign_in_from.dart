@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -103,21 +104,26 @@ class SignInForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(16.r),
-                    decoration: BoxDecoration(
-                        color: AppColors.fieldColor,
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radiusDefault),
-                        border: Border.all(color: const Color(0xFFFD92A0)
-                        )
+                  GestureDetector(
+                    onTap: (){
+                      _authController.signInWithGoogle();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.r),
+                      decoration: BoxDecoration(
+                          color: AppColors.fieldColor,
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radiusDefault),
+                          border: Border.all(color: const Color(0xFFFD92A0)
+                          )
+                      ),
+                      child: Center(
+                          child: SvgPicture.asset(
+                        AppIcons.google,
+                        width: 24.w,
+                        height: 24.h,
+                      )),
                     ),
-                    child: Center(
-                        child: SvgPicture.asset(
-                      AppIcons.google,
-                      width: 24.w,
-                      height: 24.h,
-                    )),
                   ),
                   SizedBox(
                     width: 12.w,

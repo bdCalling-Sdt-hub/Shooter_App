@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shooter_app/helper/prefs_helper.dart';
 import 'package:shooter_app/service/api_check.dart';
 import 'package:shooter_app/service/api_client.dart';
@@ -43,6 +46,71 @@ class AuthController extends GetxController {
     }
     signInLoading(false);
   }
+
+  /// <======================  Google Sign in ===========>
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+
+  Future signInWithGoogle() async {
+    // Trigger Google sign-in flow
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      // Check if user cancelled the sign-in
+      if (googleUser != null) {
+        // Get a Google authentication object
+        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+        // Create a new credential
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        // Sign in with credential
+        UserCredential userCredential = await _auth.signInWithCredential(credential);
+        debugPrint("Google sign in complete");
+
+      }
+    } on Exception catch (e) {
+      debugPrint("Google sign in error $e");
+    }
+  }
+
+
+
+  /// <=========== facebook auth ================>
+
+
+
+  Future signInWithFacebook() async {
+    // Trigger Facebook login flow (customizable options available)
+    try {
+      final LoginResult loginResult =  await FacebookAuth.instance.login();
+
+      // Check if login was cancelled
+      if (loginResult.status == LoginStatus.cancelled) {
+        return null;
+      }
+      final credential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      // Sign in with credential
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      debugPrint('facebook sign in complete ');
+    } on Exception catch (e) {
+    debugPrint('facebook sign in error : $e');
+    }
+
+
+
+
+  }
+
+
+
+
 
   ///<===== ============== sign up =============== =====>
 
@@ -128,7 +196,7 @@ class AuthController extends GetxController {
     var body = {"email": email, "password": password};
     Map<String, String> header = {'Content-Type': 'application/json'};
     var response = await ApiClient.postData(
-        ApiConstant.changePassword, json.encode(body),
+        ApiConstant.setPassword, json.encode(body),
         headers: header);
     if (response.statusCode == 200){
       Get.offNamed(AppRoutes.signInScreen);
