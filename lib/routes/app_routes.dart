@@ -61,6 +61,7 @@ class AppRoutes {
         GetPage(name: setPasswordScreen, page: () => SetPasswordScreen()),
         GetPage(name: signInScreen, page: () => SignInScreen()),
         GetPage(name: forgetPasswordScreen, page: () => ForgetPasswordScreen()),
+
         GetPage(name: profileScreen, page: () => ProfileScreen()),
         GetPage(name: signUpScreen, page: () => SignUpScreen()),
         GetPage(name: editprofileScreen, page: () => EditprofileScreen()),

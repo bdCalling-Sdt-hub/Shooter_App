@@ -85,20 +85,28 @@ class VerifyEmailScreen extends StatelessWidget {
                   textEditingController:pinCodeCtrl,
                 ),
                 SizedBox(height: 16.h),
-                Row(
-                  children: [
-                    CustomText(
-                      text: AppString.didntGet,
-                      fontsize: 16.h,
-                    ),
-                    const Spacer(),
-                    CustomText(
-                      color: AppColors.primaryColor,
-                      text: AppString.resend,
-                      decoration: TextDecoration.underline,
-                      fontsize: 16.h,
-                    ),
-                  ],
+                Obx(()=>
+                   Row(
+                    children: [
+                      CustomText(
+                        text: AppString.didntGet,
+                        fontsize: 16.h,
+                      ),
+                      const Spacer(),
+                      _authController.resendOtpLoading.value?const SizedBox(height: 15,width: 15,child: CircularProgressIndicator(color: Colors.red,),):
+                      InkWell(
+                        onTap: (){
+                          _authController.resendOtp(Get.parameters['email']!);
+                        },
+                        child: CustomText(
+                          color: AppColors.primaryColor,
+                          text: AppString.resend,
+                          decoration: TextDecoration.underline,
+                          fontsize: 16.h,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 44.h),
                 //================================> VerifyEmail Button <=======================

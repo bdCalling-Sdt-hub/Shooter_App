@@ -17,28 +17,7 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       ///-----------------------------------app bar section-------------------------->
       appBar: AppBar(
-
-
-
-        leading: Padding(
-          padding: EdgeInsets.all(20.r),
-
-
-          child: GestureDetector(
-            onTap: (){
-              Get.back();
-            },
-            child: SvgPicture.asset(
-              "assets/icons/back_arrow.svg",
-              width: 14.w,
-              height: 14.h,
-            ),
-          ),
-        ),
         centerTitle: true,
-
-
-
         title: CustomText(
           textAlign: TextAlign.start,
           text: AppString.notification,

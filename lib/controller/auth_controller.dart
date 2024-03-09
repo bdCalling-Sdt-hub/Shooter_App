@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -143,6 +144,46 @@ class AuthController extends GetxController {
     signUpLoading(false);
   }
 
+
+  /// <-------------------------- forgot password --------------->
+
+  var forgotLoading = false.obs;
+
+  forgotPassword(String email) async {
+    forgotLoading(true);
+    var body = {"email": email};
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var response = await ApiClient.postData(
+        ApiConstant.forgot, json.encode(body),
+        headers: header);
+    if (response.statusCode == 200) {
+      Get.toNamed(AppRoutes.verifyEmailScreen,
+          parameters: {"email": email, "screenType": "forgot"});
+    } else {
+      Fluttertoast.showToast(msg: response.statusText ?? "");
+    }
+    forgotLoading(false);
+  }
+  ///  resend otp
+
+  var resendOtpLoading = false.obs;
+
+  resendOtp(String email) async {
+    resendOtpLoading(true);
+    var body = {"email": email};
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var response = await ApiClient.postData(
+        ApiConstant.forgot, json.encode(body),
+        headers: header);
+    if (response.statusCode == 200) {
+
+
+    } else {
+      Fluttertoast.showToast(msg: response.statusText ?? "",backgroundColor: Colors.red,textColor: Colors.white,gravity: ToastGravity.CENTER);
+    }
+    resendOtpLoading(false);
+  }
+
   var verifyLoading = false.obs;
 
   verifyEmail(
@@ -167,25 +208,7 @@ class AuthController extends GetxController {
     verifyLoading(false);
   }
 
-  /// <-------------------------- forgot password --------------->
 
-  var forgotLoading = false.obs;
-
-  forgotPassword(String email) async {
-    forgotLoading(true);
-    var body = {"email": email};
-    Map<String, String> header = {'Content-Type': 'application/json'};
-    var response = await ApiClient.postData(
-        ApiConstant.forgot, json.encode(body),
-        headers: header);
-    if (response.statusCode == 200) {
-      Get.toNamed(AppRoutes.verifyEmailScreen,
-          parameters: {"email": email, "screenType": "forgot"});
-    } else {
-      Fluttertoast.showToast(msg: response.statusText ?? "");
-    }
-    forgotLoading(false);
-  }
 
   /// <-------------------------- set password --------------->
 
