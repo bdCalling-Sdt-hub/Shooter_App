@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/dimentions.dart';
@@ -30,12 +32,17 @@ class CommingAndCompleteCard extends StatelessWidget {
                   BorderRadius.circular(Dimensions.radiusDefault.r),
                   color: AppColors.white),
               child: CustomMatchesCard(
+                onTab:(){
+                  Get.toNamed(AppRoutes.matchScore);
+
+                },
                 date: "12 \n Dec",
                 image: "assets/images/upcomingmatchImage.png",
                 time: "08.00 AM",
                 genderText: "3x20 Shots \nProne,standing & kneeling ",
                 description: "(First 200 of prone to count for 3P)",
                 buttonText: "See scores",
+
               ),
             ),
             SizedBox(
@@ -68,6 +75,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                 genderText: "3x20 Shots \nProne,standing & kneeling ",
                 description: "(First 200 of prone to count for 3P)",
                 amount: "Completed",
+
                 // buttonText: "See scores",
               ),
             ),

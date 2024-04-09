@@ -30,8 +30,11 @@ class _SplashScreenState extends State<SplashScreen>
 
   void initState() {
     super.initState();
-    streamSubscription;
-    getConnectivity();
+    // streamSubscription;
+    // getConnectivity();
+    Timer(const Duration(seconds: 2), () {
+      Get.toNamed(AppRoutes.onboardingsScreen);
+    });
   }
 
 
@@ -94,9 +97,9 @@ class _SplashScreenState extends State<SplashScreen>
           isConnection = await InternetConnectionChecker().hasConnection;
           if (isConnection) {
             print("------------------Internet available");
-            Timer(const Duration(seconds: 4), () {
-              Get.toNamed(AppRoutes.onboardingsScreen);
-            });
+            // Timer(const Duration(seconds: 4), () {
+            //   Get.toNamed(AppRoutes.onboardingsScreen);
+            // });
           } else {
             print("----------------------No internet");
             return null;

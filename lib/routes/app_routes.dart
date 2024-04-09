@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shooter_app/views/screens/Scores/match_score.dart';
 import 'package:shooter_app/views/screens/splashScreen/splash_screen.dart';
 import '../views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import '../views/screens/auth/setPasswordScreen/set_password_screen.dart';
@@ -8,14 +9,16 @@ import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
 import '../views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import '../views/screens/event_details/event_details_screen.dart';
 import '../views/screens/home/home_screen.dart';
-import '../views/screens/scoresScreen/inner_widgets/line_chart.dart';
+
 import '../views/screens/my_matches/my_matches_screen.dart';
+import '../views/screens/my_scoresScreen/inner_widgets/line_chart.dart';
+import '../views/screens/my_scoresScreen/scores_screen.dart';
 import '../views/screens/notification/notification_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
 import '../views/screens/profile/editprofileScreen/editprofile_screen.dart';
 import '../views/screens/profile/profileScreen/profile_screen.dart';
 import '../views/screens/registrationScreen/registration_screen.dart';
-import '../views/screens/scoresScreen/scores_screen.dart';
+
 import '../views/screens/settings/aboutusScreen/aboutus_screen.dart';
 import '../views/screens/settings/changepasswordScreen/changepassword_screen.dart';
 import '../views/screens/settings/getOtpSceeen/get_otp_sceeen.dart';
@@ -53,6 +56,7 @@ class AppRoutes {
   static const String bottomNavBar = "/BottomNavBar.dart";
   static const String myMatchesScreen = "/MyMatchesScreen.dart";
   static const String lineChartScreen = "/LineChartScreen.dart";
+  static const String matchScore="/match_score_screen";
 
   static List<GetPage> get routes => [
         GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -82,5 +86,6 @@ class AppRoutes {
         GetPage(name: bottomNavBar, page: () => BottomNavBar()),
         GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
         GetPage(name: lineChartScreen, page: () => LineChart()),
+        GetPage(name: matchScore, page: () => const MatchScore()),
       ];
 }

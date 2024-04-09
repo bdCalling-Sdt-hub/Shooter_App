@@ -18,6 +18,7 @@ class CustomMatchesCard extends StatelessWidget {
   final String? description;
   final String? amount;
   final String? buttonText;
+  final Function()? onTab;
 
   CustomMatchesCard({
     this.date,
@@ -26,6 +27,7 @@ class CustomMatchesCard extends StatelessWidget {
     this.genderText,
     this.description,
     this.amount,
+    this.onTab,
     this.buttonText});
 
   @override
@@ -151,7 +153,7 @@ class CustomMatchesCard extends StatelessWidget {
               ///---------------------------botton----------------------------------->
               buttonText == null ? SizedBox() :
 
-                CustomButton(title: "${buttonText}",height:40.h,fontSize: 12.h, onpress:(){
+                CustomButton(title: "${buttonText}",height:40.h,fontSize: 12.h, onpress:onTab??(){
                   Get.toNamed(AppRoutes.registrationScreen);
                 }, titlecolor: AppColors.white),
 

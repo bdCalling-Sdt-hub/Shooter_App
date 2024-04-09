@@ -24,21 +24,21 @@ class EventDetailsScreen extends StatelessWidget {
 
       ///--------------------------------app bar ----------------------------->
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.all(20.r),
-
-
-          child: GestureDetector(
-            onTap: (){
-              Get.back();
-            },
-            child: SvgPicture.asset(
-              "assets/icons/back_arrow.svg",
-              width: 14.w,
-              height: 14.h,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.all(20.r),
+        //
+        //
+        //   child: GestureDetector(
+        //     onTap: (){
+        //       Get.back();
+        //     },
+        //     child: SvgPicture.asset(
+        //       "assets/icons/back_arrow.svg",
+        //       width: 14.w,
+        //       height: 14.h,
+        //     ),
+        //   ),
+        // ),
         centerTitle: true,
         title: CustomText(text: AppString.eventdetails,fontsize: Dimensions.fontSizeLarge,color: AppColors.white,fontWeight: FontWeight.w400,),
       ),

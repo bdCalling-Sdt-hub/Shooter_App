@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
@@ -30,6 +32,7 @@ class UpComingEventsListView extends StatelessWidget {
               date: "12 \n Dec",
               startDate: "20d : 14h : 24m",
               onTap: (){
+                Get.toNamed(AppRoutes.eventDetailsScreen);
 
               },
             ),

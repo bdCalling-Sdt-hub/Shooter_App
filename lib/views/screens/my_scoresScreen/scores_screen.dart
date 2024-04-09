@@ -220,9 +220,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                       topRight: Radius.circular(8.r)),
                 ),
                 children: [
-                  _rowText(AppString.clasS),
-                  _rowText(AppString.playerName),
-                  _rowText(AppString.club),
+                  _rowText("Date"),
+                  _rowText("Event"),
+                  _rowText("Match"),
                   _rowText(AppString.scores),
                 ]),
             TableRow(
@@ -230,9 +230,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   color: Color(0xff5B5455),
                 ),
                 children: [
-                  _rowText('A'),
-                  _rowText('Arnold Bailie'),
-                  _rowText('Linden'),
+                  _rowText('01-03-2024'),
+                  _rowText('Event 1'),
+                  _rowText('Match 1'),
                   _rowText('596'),
                 ]),
             TableRow(
@@ -240,9 +240,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   color: Color(0xff5B5455),
                 ),
                 children: [
-                  _rowText('B'),
-                  _rowText('Chantelle Botha '),
-                  _rowText('Linden'),
+                  _rowText('02-03-2024'),
+                  _rowText('Event 2'),
+                  _rowText('Match 2'),
                   _rowText('596'),
                 ]),
             TableRow(
@@ -250,9 +250,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   color: Color(0xff5B5455),
                 ),
                 children: [
-                  _rowText('C'),
-                  _rowText('Isabella Cilliers'),
-                  _rowText('Linden'),
+                  _rowText('02-03-2024'),
+                  _rowText('Event 2'),
+                  _rowText('Match 2'),
                   _rowText('596'),
                 ]),
             TableRow(
@@ -260,9 +260,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   color: Color(0xff5B5455),
                 ),
                 children: [
-                  _rowText('D'),
-                  _rowText('Bernard Laferla'),
-                  _rowText('Linden'),
+                  _rowText('02-03-2024'),
+                  _rowText('Event 2'),
+                  _rowText('Match 2'),
                   _rowText('596'),
                 ]),
             TableRow(
@@ -270,9 +270,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   color: Color(0xff5B5455),
                 ),
                 children: [
-                  _rowText('E'),
-                  _rowText('Albert Louw'),
-                  _rowText('Linden'),
+                  _rowText('02-03-2024'),
+                  _rowText('Event 2'),
+                  _rowText('Match 2'),
                   _rowText('596'),
                 ]),
             TableRow(
@@ -283,9 +283,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
                       bottomRight: Radius.circular(8.r)),
                 ),
                 children: [
-                  _rowText('F'),
-                  _rowText('Anita Dean'),
-                  _rowText('Linden'),
+                  _rowText('02-03-2024'),
+                  _rowText('Event 2'),
+                  _rowText('Match 2'),
                   _rowText('596'),
                 ]),
           ],
