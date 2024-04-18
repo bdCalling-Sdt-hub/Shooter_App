@@ -16,6 +16,7 @@ class CustomText extends StatelessWidget {
         this.bottom = 0,
         this.fontsize = 14,
         this.textHeight,
+        this.decoration,
         this.fontWeight = FontWeight.w400,
         this.color = AppColors.whiteE8E8E8,
         this.text = ""});
@@ -33,6 +34,7 @@ class CustomText extends StatelessWidget {
   final int? maxline;
   final String? fontName;
   final double? textHeight;
+  final TextDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,9 @@ class CustomText extends StatelessWidget {
         maxLines: maxline,
         overflow: textOverflow??TextOverflow.ellipsis,
         style: TextStyle(
+          decoration: decoration,
           fontSize: fontsize,
+          decorationColor: AppColors.primaryColor,
           fontFamily:fontName??"Aldrich",
           fontWeight: fontWeight,
           color: color,

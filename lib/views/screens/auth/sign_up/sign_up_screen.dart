@@ -17,43 +17,52 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: Colors.black,
 
       ///-----------------------body sction--------------------------->
-      body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: const AssetImage(AppImages.backgroundImg),
-                fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3),
-                  BlendMode.srcOver,
-                ))),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 152.h,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: const AssetImage(AppImages.backgroundImg),
+                    fit: BoxFit.fill,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.3),
+                      BlendMode.srcOver,
+                    ))),
+
+          ),
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 152.h,
+                ),
+
+                ///-----------------------------logo image----------------------------------->
+                Center(
+                    child: Image.asset(
+                      AppImages.appLogo,
+                      width: 144.w,
+                      height: 144.h,
+                    )),
+
+                ///---------------------------sign up to continue text------------------------>
+                CustomText(
+                  text: AppString.signUpContinue,
+                  fontsize: 20.h,
+                  top: 16.h,
+                ),
+                SizedBox(
+                  height: 113.h,
+                ),
+
+
+                ///----------------------all text field section------------------------------>
+                SignUpForm()
+              ],
             ),
-
-            ///-----------------------------logo image----------------------------------->
-            Center(
-                child: Image.asset(
-              AppImages.appLogo,
-              width: 144.w,
-              height: 144.h,
-            )),
-
-            ///---------------------------sign up to continue text------------------------>
-            CustomText(
-              text: AppString.signUpContinue,
-              fontsize: 20.h,
-              top: 16.h,
-            ),
-
-            Spacer(),
-
-            ///----------------------all text field section------------------------------>
-            SignUpForm()
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

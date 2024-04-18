@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shooter_app/helper/prefs_helper.dart';
+import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'dart:math' as math;
 import '../../../routes/app_routes.dart';
@@ -21,21 +23,64 @@ class _SplashScreenState extends State<SplashScreen>
       AnimationController(duration: const Duration(seconds: 10), vsync: this)
         ..repeat();
 
+  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+
   @override
-  void dispose() {
-    // TODO: implement dispose
-
-    _animationController.dispose(); // you need this
-      super.dispose();
-
-  }
-
   void initState() {
     super.initState();
-    streamSubscription;
-    getConnectivity();
+
+    bool firstTime = true;
+    _onConnectivityChanged = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (!firstTime) {
+        bool isNotConnected = result != ConnectivityResult.wifi &&
+            result != ConnectivityResult.mobile;
+        isNotConnected
+            ? const SizedBox()
+            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: isNotConnected ? Colors.red : Colors.green,
+          duration: Duration(seconds: isNotConnected ? 6000 : 3),
+          content: Text(
+            isNotConnected ? 'No connection' : 'Connected',
+            textAlign: TextAlign.center,
+          ),
+        ));
+        if (!isNotConnected) {
+          debugPrint("========> in connect change $isNotConnected");
+          _route();
+        }
+      }
+      firstTime = false;
+    });
+
+    debugPrint("========> Out change out");
+     _route();
   }
 
+  _route() {
+    Timer(const Duration(seconds: 1), () async {
+      var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
+      var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
+      if (onBoard) {
+        if (isLogged) {
+          Get.offNamed(AppRoutes.bottomNavBar);
+        } else {
+          Get.offAllNamed(AppRoutes.signInScreen);
+        }
+      } else {
+        Get.offAllNamed(AppRoutes.onboardingsScreen);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    _onConnectivityChanged.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Image.asset(
                   AppImages.splashBg,
                   fit: BoxFit.cover,
-                   height: 610.h,
+                  height: 610.h,
                   width: 393.w,
                 ),
               ),
@@ -87,23 +132,20 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 
-
-
-  StreamSubscription? streamSubscription;
-  bool isConnection = false;
-
-  void getConnectivity() {streamSubscription = Connectivity().onConnectivityChanged.listen((event) async {
-          isConnection = await InternetConnectionChecker().hasConnection;
-          if (isConnection) {
-            print("------------------Internet available");
-            Timer(const Duration(seconds: 4), () {
-              Get.offAllNamed(AppRoutes.onboardingsScreen);
-            });
-          } else {
-            print("----------------------No internet");
-            return null;
-          }
-        });
-  }
-
+  // StreamSubscription? streamSubscription;
+  // bool isConnection = false;
+  //
+  // void getConnectivity() {streamSubscription = Connectivity().onConnectivityChanged.listen((event) async {
+  //         isConnection = await InternetConnectionChecker().hasConnection;
+  //         if (isConnection) {
+  //           print("------------------Internet available");
+  //           Timer(const Duration(seconds: 4), () {
+  //             Get.offAllNamed(AppRoutes.onboardingsScreen);
+  //           });
+  //         } else {
+  //           print("----------------------No internet");
+  //           return null;
+  //         }
+  //       });
+  // }
 }

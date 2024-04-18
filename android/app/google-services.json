@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "389699724415",
+    "project_id": "shotting-app",
+    "storage_bucket": "shotting-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389699724415:android:cc0c287ae3f79fe0814b4a",
+        "android_client_info": {
+          "package_name": "com.example.shooter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdHPbydJnv-6Xjl72cfAGxyKwnfQ34bZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

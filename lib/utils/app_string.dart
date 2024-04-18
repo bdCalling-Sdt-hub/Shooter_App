@@ -27,7 +27,7 @@ class AppString {
 
 //================> Set password Screen <====================
   static String setPassword = "Set password";
-  static String confirmPassword = "Confirm Password";
+  static String confirmPassword = "Confirm password";
   static String yourEmail = "Your email is verified successfully! \nPlease set a new password to continue.";
 
 

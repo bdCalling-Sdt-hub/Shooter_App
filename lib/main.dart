@@ -1,21 +1,29 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/di.dart' as di;
 import 'package:shooter_app/themes/themes.dart';
 
+import 'firebase_options.dart';
 import 'routes/app_routes.dart';
 
 import 'views/screens/splashScreen/splash_screen.dart';
 
-void main() {
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // runApp(
   //   DevicePreview(
   //     enabled: !kReleaseMode,
   //     builder: (context) => MyApp(), // Wrap your app
   //   ),
   // );
+  await di.init();
   runApp(MyApp());
 }
 
@@ -31,10 +39,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'shooter app',
         theme: Themes().darkTheme,
+
         darkTheme: Themes().darkTheme,
+
         initialRoute: AppRoutes.splashScreen,
         getPages: AppRoutes.routes,
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
       designSize: const Size(393, 852),
     );

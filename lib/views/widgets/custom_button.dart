@@ -9,24 +9,28 @@ class CustomButton extends StatelessWidget {
 
   final Color? titlecolor;
   final double? height;
+  final double? width;
   final double? fontSize;
+  final bool loading;
 
-  const CustomButton({
+   CustomButton({
     super.key,
     required this.title,
     required this.onpress,
     this.color,
     this.height,
+    this.width,
     this.fontSize,
     this.titlecolor,
+    this.loading=false,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onpress,
+      onTap:loading?(){} :onpress,
       child: Container(
-        width: 345.w,
+        width:width?? 345.w,
         height: height ?? 52.h,
         padding: const EdgeInsets.all(10),
         decoration: color == null
@@ -48,6 +52,11 @@ class CustomButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            loading?  SizedBox(
+            height: 20.h,
+            width: 20.h,
+            child: const CircularProgressIndicator(color: Colors.white,),
+          ):
             CustomText(
               text: title,
               fontsize: fontSize ?? 20.h,

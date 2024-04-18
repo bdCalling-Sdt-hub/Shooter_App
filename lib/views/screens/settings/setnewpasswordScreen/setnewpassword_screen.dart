@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/change_password_controller.dart';
 import '../../../../routes/app_routes.dart';
+import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
 import '../../../../utils/dimentions.dart';
@@ -15,6 +17,7 @@ class SetnewpasswordScreen extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _setPassController = TextEditingController();
   final _confirmPassController = TextEditingController();
+  final _changePassCtrl = Get.put(ChangePasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +68,7 @@ class SetnewpasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.setPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please set new password";
-            }
-            return null;
-          },
+          isPassword: true,
         ),
         SizedBox(height: 16.h),
         CustomTextField(
@@ -79,24 +76,32 @@ class SetnewpasswordScreen extends StatelessWidget {
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.confirmPassword,
-          sufixicons: _sufixIcon(AppIcons.obscure_true),
+          isPassword: true,
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please re-enter new password";
+            bool data = AppConstants.passwordValidator.hasMatch(value);
+            if (value.isEmpty) {
+              return "Please enter ${AppString.confirmPassword}";
+            } else if (!data) {
+              return "Insecure password detected.";
+            } else if (_setPassController.text != value) {
+              return "Password did not match.";
             }
             return null;
           },
         ),
         SizedBox(height: 16.h),
         SizedBox(height: 399.h),
-        CustomButton(
-          title: AppString.setPassword,
-          titlecolor: Colors.white,
-          onpress: () {
-            if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.verifyEmailScreen);
-            }
-          },
+        Obx(()=>
+           CustomButton(
+            title: AppString.setPassword,
+            loading: _changePassCtrl.setPasswordLoading.value,
+            titlecolor: Colors.white,
+            onpress: () {
+              if (_formKey.currentState!.validate()) {
+                _changePassCtrl.setPassword(Get.arguments, _confirmPassController.text);
+              }
+            },
+          ),
         ),
       ],
     );

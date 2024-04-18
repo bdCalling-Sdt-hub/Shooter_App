@@ -57,6 +57,7 @@ class Themes {
         ),
       ),
 
+
       ///-----------------app bar theme------------------>
       appBarTheme: const AppBarTheme(
           centerTitle: false,

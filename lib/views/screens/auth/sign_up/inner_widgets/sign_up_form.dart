@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/app_string.dart';
 
@@ -20,9 +21,9 @@ class SignUpForm extends StatelessWidget {
   });
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _userNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passController = TextEditingController();
+  final _authController = Get.put(AuthController());
+
+  var isCheck = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -59,69 +60,59 @@ class SignUpForm extends StatelessWidget {
               ///--------------------------user name------------------------------------>
 
               CustomTextField(
-                controller: _userNameController,
+                controller: _authController.userNameController,
                 contenpaddingHorizontal: 12.w,
                 contenpaddingVertical: 16.h,
                 hintText: AppString.userName,
                 filColor: AppColors.fieldColor,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "please enter your user name";
-                  }
-                  return null;
-                },
               ),
 
               SizedBox(height: 16.h),
 
               ///--------------------------Email------------------------------------>
               CustomTextField(
-                controller: _emailController,
+                controller: _authController.emailSignupCtrl,
                 contenpaddingHorizontal: 12.w,
                 contenpaddingVertical: 16.h,
                 hintText: AppString.email,
                 filColor: AppColors.fieldColor,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "please enter your email";
-                  }
-                  return null;
-                },
+                isEmail: true,
               ),
 
               SizedBox(height: 16.h),
 
               ///--------------------------Password------------------------------------>
               CustomTextField(
-                controller: _passController,
+                controller: _authController.passSignupCtrl,
                 contenpaddingHorizontal: 12.w,
                 contenpaddingVertical: 16.h,
                 hintText: AppString.password,
                 filColor: AppColors.fieldColor,
-                sufixicons: _sufixIcon(AppIcons.obscure_true),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "please enter your password";
-                  }
-                  return null;
-                },
+                isPassword: true,
               ),
 
               ///------------------------------------By creating an account, I accept the Terms & conditions and Privacy Policy text----------------->
-
-              _ByCreating(),
+              SizedBox(
+                height: 15.h,
+              ),
+              _byCreating(),
 
               ///------------------------------------botton------------------------------>
               SizedBox(
                 height: 20.h,
               ),
-              CustomButton(
-                onpress: () {
-                  if (_formKey.currentState!.validate()) {
-                    Get.offAllNamed(AppRoutes.bottomNavBar);
-                  }
-                },
-                title: AppString.signUp,
+              Obx(
+                  ()=> CustomButton(
+                    loading: _authController.signUpLoading.value,
+                  onpress: () {
+                    if(isCheck.value){
+                      if (_formKey.currentState!.validate()) {
+                        _authController.handleSignUp();
+                      }
+                    }
+                  },
+                  title: AppString.signUp,
+                ),
               ),
 
               SizedBox(
@@ -156,7 +147,7 @@ class SignUpForm extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                           Get.back();
+                            Get.back();
                           }),
                   ],
                 ),
@@ -168,83 +159,106 @@ class SignUpForm extends StatelessWidget {
     );
   }
 
-  _sufixIcon(String icon) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SvgPicture.asset(
-        icon,
-        width: 12.h,
-        height: 12.h,
-        fit: BoxFit.contain,
-      ),
-    );
+  _byCreating() {
+    return Obx(() => Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomCheckbox(
+                value: isCheck.value,
+                onChanged: (value) {
+                  isCheck.value = value!;
+                }),
+            Expanded(
+                child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 14.0.h,
+                  color: Colors.black,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: AppString.byCreating,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: Dimensions.fontSizeDefault.h,
+                      overflow: TextOverflow.ellipsis,
+                      color: Colors.white,
+                      fontFamily: "Aldrich",
+                    ),
+                  ),
+                  TextSpan(
+                    text: AppString.termsConditionsS,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: Dimensions.fontSizeDefault.h,
+                      color: AppColors.primaryColor,
+                      fontFamily: "Aldrich",
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' and ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: Dimensions.fontSizeDefault.h,
+                      color: Colors.white,
+                      fontFamily: "Aldrich",
+                    ),
+                  ),
+                  TextSpan(
+                    text: AppString.privacyPolicyS,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: Dimensions.fontSizeDefault.h,
+                      color: AppColors.primaryColor,
+                      fontFamily: "Aldrich",
+                    ),
+                  ),
+                ],
+              ),
+              //    // ),
+            ))
+          ],
+        ));
   }
 }
 
-_ByCreating() {
-  return Row(
-    children: [
-      SvgPicture.asset(
-        AppIcons.check_box,
-        height: 20.h,
-        width: 20.w,
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 16.h),
-        child: FittedBox(
-          fit: BoxFit.cover,
-          child: RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 14.0.h,
-                height: 1.5,
-                color: Colors.black,
-                overflow: TextOverflow.ellipsis,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: AppString.byCreating,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: Dimensions.fontSizeDefault.h,
-                    overflow: TextOverflow.ellipsis,
-                    color: Colors.white,
-                    fontFamily: "Aldrich",
-                  ),
-                ),
-                TextSpan(
-                  text: AppString.termsConditionsS,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    overflow: TextOverflow.ellipsis,
-                    fontSize: Dimensions.fontSizeDefault.h,
-                    color: AppColors.primaryColor,
-                    fontFamily: "Aldrich",
-                  ),
-                ),
-                TextSpan(
-                  text: ' and ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: Dimensions.fontSizeDefault.h,
-                    color: Colors.white,
-                    fontFamily: "Aldrich",
-                  ),
-                ),
-                TextSpan(
-                  text: AppString.privacyPolicyS,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: Dimensions.fontSizeDefault.h,
-                    color: AppColors.primaryColor,
-                    fontFamily: "Aldrich",
-                  ),
-                ),
-              ],
-            ),
-          ),
+class CustomCheckbox extends StatelessWidget {
+  final bool value;
+  final ValueChanged<bool?>? onChanged;
+
+  const CustomCheckbox({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (onChanged != null) {
+          onChanged!(!value);
+        }
+      },
+      child: Container(
+        width: 18.0, // Adjust size as needed
+        height: 18.0,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: value ? AppColors.primaryColor : Colors.transparent,
+          border: Border.all(width: 2.0, color: AppColors.primaryColor),
+          borderRadius: BorderRadius.circular(4.0),
         ),
+        child: value
+            ? const Icon(
+                Icons.check,
+                size: 15.0,
+                color: Colors.black,
+              )
+            : null,
       ),
-    ],
-  );
+    );
+  }
 }

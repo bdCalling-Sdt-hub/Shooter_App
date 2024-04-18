@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
@@ -21,8 +23,8 @@ class SignInForm extends StatelessWidget {
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
-  final _emailController = TextEditingController();
-  final _passController = TextEditingController();
+
+  final _authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -77,14 +79,17 @@ class SignInForm extends StatelessWidget {
               ),
 
               ///-------------------------------------Log In botton------------------------------->
-              CustomButton(
-                onpress: () {
-                  if (formKey.currentState!.validate()) {
-                    Get.offAllNamed(AppRoutes.bottomNavBar);
-                  }
-                },
-                title: AppString.logIn,
-                titlecolor: Colors.white,
+              Obx(()=>
+                 CustomButton(
+                   loading: _authController.signInLoading.value,
+                  onpress: () {
+                    if (formKey.currentState!.validate()) {
+                          _authController.handleSignIn();
+                    }
+                  },
+                  title: AppString.logIn,
+                  titlecolor: Colors.white,
+                ),
               ),
 
               ///--------------------------------or login with text--------------------------------->
@@ -99,19 +104,26 @@ class SignInForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(16.r),
-                    decoration: BoxDecoration(
-                        color: AppColors.fieldColor,
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radiusDefault),
-                        border: Border.all(color: const Color(0xFFFD92A0))),
-                    child: Center(
-                        child: SvgPicture.asset(
-                      AppIcons.google,
-                      width: 24.w,
-                      height: 24.h,
-                    )),
+                  GestureDetector(
+                    onTap: (){
+                      _authController.signInWithGoogle();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.r),
+                      decoration: BoxDecoration(
+                          color: AppColors.fieldColor,
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radiusDefault),
+                          border: Border.all(color: const Color(0xFFFD92A0)
+                          )
+                      ),
+                      child: Center(
+                          child: SvgPicture.asset(
+                        AppIcons.google,
+                        width: 24.w,
+                        height: 24.h,
+                      )),
+                    ),
                   ),
                   SizedBox(
                     width: 12.w,
@@ -171,6 +183,11 @@ class SignInForm extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 21.h,
+              ),
+
+
             ],
           ),
         ),
@@ -184,48 +201,27 @@ class SignInForm extends StatelessWidget {
       children: [
         ///--------------------------Email------------------------------------>
         CustomTextField(
-          controller: _emailController,
+          controller: _authController.emailController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.email,
           filColor: AppColors.fieldColor,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter your email";
-            }
-            return null;
-          },
+          isEmail:true,
         ),
         SizedBox(height: 16.h),
 
         ///--------------------------Password------------------------------------>
         CustomTextField(
-          controller: _passController,
+          controller: _authController.passController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
-          sufixicons: _suffixIcon(AppIcons.obscure_true),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter your password";
-            }
-            return null;
-          },
+          isPassword: true,
         ),
       ],
     );
   }
 
-  _suffixIcon(String icon) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SvgPicture.asset(
-        icon,
-        width: 12.h,
-        height: 12.h,
-        fit: BoxFit.contain,
-      ),
-    );
-  }
+
 }
