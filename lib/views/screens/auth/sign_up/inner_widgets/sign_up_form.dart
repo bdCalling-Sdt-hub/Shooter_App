@@ -152,6 +152,7 @@ class SignUpForm extends StatelessWidget {
                   ],
                 ),
               ),
+
             ],
           ),
         ),

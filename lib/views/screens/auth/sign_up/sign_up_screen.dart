@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
-
 import 'inner_widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -13,10 +11,9 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
 
-      ///-----------------------body sction--------------------------->
+      ///-----------------------body section--------------------------->
       body: Stack(
         children: [
           Container(
@@ -28,7 +25,6 @@ class SignUpScreen extends StatelessWidget {
                       Colors.black.withOpacity(0.3),
                       BlendMode.srcOver,
                     ))),
-
           ),
           SingleChildScrollView(
             child: Column(
@@ -41,10 +37,10 @@ class SignUpScreen extends StatelessWidget {
                 ///-----------------------------logo image----------------------------------->
                 Center(
                     child: Image.asset(
-                      AppImages.appLogo,
-                      width: 144.w,
-                      height: 144.h,
-                    )),
+                  AppImages.appLogo,
+                  width: 144.w,
+                  height: 144.h,
+                )),
 
                 ///---------------------------sign up to continue text------------------------>
                 CustomText(
@@ -56,12 +52,11 @@ class SignUpScreen extends StatelessWidget {
                   height: 113.h,
                 ),
 
-
                 ///----------------------all text field section------------------------------>
-                SignUpForm()
+                SignUpForm(),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

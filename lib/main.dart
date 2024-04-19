@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'shooter app',
         theme: Themes().darkTheme,
-
         darkTheme: Themes().darkTheme,
 
         initialRoute: AppRoutes.splashScreen,
