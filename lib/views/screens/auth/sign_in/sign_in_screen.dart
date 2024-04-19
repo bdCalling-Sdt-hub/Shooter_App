@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
-import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import 'inner_widgets/sign_in_from.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -11,17 +10,13 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    TextEditingController _textEditingController = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
 
       ///-----------------------body sction--------------------------->
       body: Stack(
-       // clipBehavior: Clip.none,
         children: [
-
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -34,7 +29,6 @@ class SignInScreen extends StatelessWidget {
             )),
           ),
           SingleChildScrollView(
-
             child: Column(
               children: [
                 SizedBox(
@@ -44,11 +38,10 @@ class SignInScreen extends StatelessWidget {
                 ///-----------------------------logo image----------------------------------->
                 Center(
                     child: Image.asset(
-                      AppImages.appLogo,
-                      width: 144.w,
-                      height: 144.h,
-                    )),
-
+                  AppImages.appLogo,
+                  width: 144.w,
+                  height: 144.h,
+                )),
 
                 ///---------------------------sign up to continue text------------------------>
                 SizedBox(
@@ -60,9 +53,9 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(
                   height: 66.h,
                 ),
-                ///----------------------all text field section------------------------------>
-                SignInForm(formKey: _formKey),
 
+                ///----------------------all text field section------------------------------>
+                SignInForm(formKey: formKey),
               ],
             ),
           )
@@ -70,14 +63,15 @@ class SignInScreen extends StatelessWidget {
       ),
     );
   }
-  _bgImage(BuildContext context) {
+
+  bgImage(BuildContext context) {
     return SizedBox(
-      height:MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: Image.asset(AppImages.backgroundImg,fit: BoxFit.fill,),
+      child: Image.asset(
+        AppImages.backgroundImg,
+        fit: BoxFit.fill,
+      ),
     );
   }
 }
-
-
-
