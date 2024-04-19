@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:mime_type/mime_type.dart';
 
 import '../helper/prefs_helper.dart';
 import '../model/error_response.dart';
@@ -378,6 +379,74 @@ class ApiClient extends GetxService {
     // log.e("Handle Response error} ");
     return response0;
   }
+
+
+
+  static Future<Response> patchMultipartData(String uri, Map<String, String> body,
+      {List<MultipartBody>? multipartBody,
+        List<MultipartListBody>? multipartListBody,
+        Map<String, String>? headers}) async {
+    try {
+      bearerToken = await PrefsHelper.getString(AppConstants.bearerToken);
+
+      var mainHeaders = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $bearerToken'
+      };
+
+      debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
+      debugPrint('====> API Body: $body with ${multipartBody?.length} picture');
+
+      //http.MultipartRequest _request = http.MultipartRequest('POST', Uri.parse("https://b936-114-130-157-130.ngrok-free.app/api/v1/user/profile/store/degree"));
+      //_request.headers.addAll(headers ?? mainHeaders);
+      // for(MultipartBody multipart in multipartBody!) {
+      //   if(multipart.file != null) {
+      //     Uint8List _list = await multipart.file.readAsBytes();
+      //     _request.files.add(http.MultipartFile(
+      //       multipart.key, multipart.file.readAsBytes().asStream(), _list.length,
+      //       filename: '${DateTime.now().toString()}.png',
+      //     ));
+      //   }
+      // }
+
+      var request =
+      http.MultipartRequest('PATCH', Uri.parse(ApiConstant.baseUrl + uri));
+      request.fields.addAll(body);
+
+      if (multipartBody!.isNotEmpty) {
+        multipartBody.forEach((element) async {
+          debugPrint("path : ${element.file.path}");
+          String? mimeType = mime(element.file.path);
+          request.files.add(http.MultipartFile(
+            element.key,
+            element.file.readAsBytes().asStream(),
+            element.file.lengthSync(),
+            filename:element.file.path.split('/').last,
+            contentType:MediaType.parse(mimeType!),
+          ));
+        });
+      }
+      request.headers.addAll(mainHeaders);
+      http.StreamedResponse response = await request.send();
+      final content = await response.stream.bytesToString();
+      debugPrint(
+          '====> API Response: [${response.statusCode}}] $uri\n$content');
+
+      return Response(
+          statusCode: response.statusCode,
+          statusText: noInternetMessage,
+          body: json.decode(content));
+    } catch (e) {
+      print("====================================e $e") ;
+      return const Response(statusCode: 1, statusText: noInternetMessage);
+    }
+  }
+
+
+
+
+
+
 }
 class MultipartBody {
   String key;

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:shooter_app/model/profile_model.dart';
 import 'package:shooter_app/service/api_client.dart';
@@ -5,6 +7,7 @@ import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 
 import '../helper/prefs_helper.dart';
+import '../service/api_check.dart';
 
 class ProfileController extends GetxController{
 
@@ -35,7 +38,44 @@ class ProfileController extends GetxController{
       }else{
         setRxRequestStatus(Status.error);
       }
-
-    }
+    } ApiChecker.checkApi(response);
   }
+
+
+  ///======================update profile============================>
+  var loading = false.obs;
+
+  editProfile(
+      String name, phoneNumber, address, club, userClass,  dateOfBirth, File?  image,) async {
+    var userId = await PrefsHelper.getString(AppConstants.userId);
+
+    List <MultipartBody> multipartBody =image==null?[]:[MultipartBody("image", image)];
+
+
+    Map<String, String> body = {
+      "name": name,
+      "address": address,
+      "dateOfBirth": "$dateOfBirth",
+      "phone": phoneNumber,
+      "club": club,
+      "userClass": userClass,
+    };
+
+    var response = await ApiClient.patchMultipartData(
+      ApiConstant.updateUser(userId), body,
+      multipartBody:multipartBody,);
+    print(
+        "===========response body : ${response.body} \nand status code : ${response.statusCode}");
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      profileModel.value = ProfileModel.fromJson(response.body['data']['attributes']);
+      getProfileData();
+      profileModel.refresh();
+      Get.back();
+      Get.back();
+    }else{
+      ApiChecker.checkApi(response);
+    }
+
+  }
+
 }

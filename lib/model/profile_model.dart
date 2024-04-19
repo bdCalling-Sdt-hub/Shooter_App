@@ -139,20 +139,32 @@ class Attributes {
 class Image {
   final String? publicFileUrl;
   final String? path;
+  final String? mimetype;
+  final String? destination;
+  final String? filename;
 
   Image({
     this.publicFileUrl,
     this.path,
+    this.mimetype,
+    this.destination,
+    this.filename
   });
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
     publicFileUrl: json["publicFileURL"],
     path: json["path"],
+    mimetype: json["mimetype"],
+    destination: json["destination"],
+    filename: json["filename"],
   );
 
   Map<String, dynamic> toJson() => {
     "publicFileURL": publicFileUrl,
     "path": path,
+    "mimetype": mimetype,
+    "destination": destination,
+    "filename": filename,
   };
 }
 

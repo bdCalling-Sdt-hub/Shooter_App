@@ -10,9 +10,11 @@ import '../../../../widgets/custom_text.dart';
 
 class TopContainerSection extends StatelessWidget {
   final String? name;
+  final String? subScription;
   const TopContainerSection({
     super.key,
-    this.name
+    this.name,
+    this.subScription
   });
 
   @override
@@ -60,7 +62,7 @@ class TopContainerSection extends StatelessWidget {
                 SvgPicture.asset(AppIcons.crown),
                 SizedBox(width: 16.w),
                 CustomText(
-                  text: 'Premium Member',
+                  text: subScription == '' || subScription == null ? "Free member" : '$subScription',
                   fontsize: 18.h,
                 ),
               ],

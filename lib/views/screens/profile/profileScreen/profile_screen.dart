@@ -51,6 +51,7 @@ class ProfileScreen extends StatelessWidget {
                 //==================================> TopContainer Section <=================================
                 TopContainerSection(
                   name: "${profileData?.name}",
+                  subScription: "${profileData?.subscription}",
                 ),
                 SizedBox(height: 24.h),
                 Row(
@@ -69,23 +70,28 @@ class ProfileScreen extends StatelessWidget {
 
                 //==================================> CustomContainer Section <=================================
 
+                ///======================= name=======================>
                 SizedBox(height: 24.h),
                 CustomListTile(
                     title: '${profileData?.name}', prefixIcon: _prefixIcon(AppIcons.user)),
                 SizedBox(height: 16.h),
+                ///=======================date of birth=======================>
                 CustomListTile(
                     title: profileData?.dateOfBirth == null ? "Date of birth" : '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.cake)),
                 SizedBox(height: 16.h),
+                ///======================= email=======================>
                 CustomListTile(
                     title:'${profileData?.email}',
                     prefixIcon: _prefixIcon(AppIcons.mail)),
                 SizedBox(height: 16.h),
+                ///======================= phone number=======================>
                 CustomListTile(
                     title: profileData?.phone == null || profileData?.phone == '' ? "(000) 000-0000" : '${profileData?.phone}',
                     prefixIcon: _prefixIcon(
                       AppIcons.phone,
                     )),
                 SizedBox(height: 16.h),
+                ///======================= address=======================>
                 CustomListTile(
                   title: profileData?.address == null || profileData?.address == '' ? "Address" : '${profileData?.address}',
                   prefixIcon: _prefixIcon(AppIcons.locationMarker),
