@@ -58,11 +58,11 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     _customContainer(
                       AppString.clasS,
-                      '${profileData?.userClass}',
+                      profileData?.userClass == null || profileData?.userClass == "" ? "Name" : '${profileData?.userClass}',
                     ),
                     _customContainer(
                       AppString.club,
-                      "${profileData?.club}",
+                      profileData?.club == null || profileData?.club == "" ? "Name" : "${profileData?.club}",
                     ),
                   ],
                 ),
@@ -74,20 +74,20 @@ class ProfileScreen extends StatelessWidget {
                     title: '${profileData?.name}', prefixIcon: _prefixIcon(AppIcons.user)),
                 SizedBox(height: 16.h),
                 CustomListTile(
-                    title: '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.cake)),
+                    title: profileData?.dateOfBirth == null ? "Date of birth" : '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.cake)),
                 SizedBox(height: 16.h),
                 CustomListTile(
-                    title: 'arnold.07@gmail.com',
+                    title:'${profileData?.email}',
                     prefixIcon: _prefixIcon(AppIcons.mail)),
                 SizedBox(height: 16.h),
                 CustomListTile(
-                    title: '(406) 555-0120',
+                    title: profileData?.phone == null || profileData?.phone == '' ? "(000) 000-0000" : '${profileData?.phone}',
                     prefixIcon: _prefixIcon(
                       AppIcons.phone,
                     )),
                 SizedBox(height: 16.h),
                 CustomListTile(
-                  title: '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
+                  title: profileData?.address == null || profileData?.address == '' ? "Address" : '${profileData?.address}',
                   prefixIcon: _prefixIcon(AppIcons.locationMarker),
                 ),
                 SizedBox(height: 16.h),
