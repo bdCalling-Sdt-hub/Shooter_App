@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(height: 16.h),
                 ///=======================date of birth=======================>
                 CustomListTile(
-                    title: profileData?.dateOfBirth == null ? "Date of birth" : '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.cake)),
+                    title: profileData?.dateOfBirth == null ? "Date of birth" : '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.calander)),
                 SizedBox(height: 16.h),
                 ///======================= email=======================>
                 CustomListTile(

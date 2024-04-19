@@ -132,7 +132,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 contenpaddingHorizontal: 12.w,
                 contenpaddingVertical: 16.h,
                 hintText: 'Enter your date of birth',
-                prifixicon: _prefixIcon(AppIcons.cake),
+                prifixicon: _prefixIcon(AppIcons.calander),
 
               ),
               SizedBox(height: 16.h),
