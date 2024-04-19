@@ -1,17 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/app_string.dart';
-
 import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/dimentions.dart';
-
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_field.dart';
 
@@ -66,7 +62,6 @@ class SignUpForm extends StatelessWidget {
                 hintText: AppString.userName,
                 filColor: AppColors.fieldColor,
               ),
-
               SizedBox(height: 16.h),
 
               ///--------------------------Email------------------------------------>
@@ -78,7 +73,6 @@ class SignUpForm extends StatelessWidget {
                 filColor: AppColors.fieldColor,
                 isEmail: true,
               ),
-
               SizedBox(height: 16.h),
 
               ///--------------------------Password------------------------------------>
@@ -90,7 +84,6 @@ class SignUpForm extends StatelessWidget {
                 filColor: AppColors.fieldColor,
                 isPassword: true,
               ),
-
               ///------------------------------------By creating an account, I accept the Terms & conditions and Privacy Policy text----------------->
               SizedBox(
                 height: 15.h,
@@ -102,10 +95,10 @@ class SignUpForm extends StatelessWidget {
                 height: 20.h,
               ),
               Obx(
-                  ()=> CustomButton(
-                    loading: _authController.signUpLoading.value,
+                () => CustomButton(
+                  loading: _authController.signUpLoading.value,
                   onpress: () {
-                    if(isCheck.value){
+                    if (isCheck.value) {
                       if (_formKey.currentState!.validate()) {
                         _authController.handleSignUp();
                       }
@@ -152,7 +145,6 @@ class SignUpForm extends StatelessWidget {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -197,6 +189,10 @@ class SignUpForm extends StatelessWidget {
                       color: AppColors.primaryColor,
                       fontFamily: "Aldrich",
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Get.toNamed(AppRoutes.termsconditionsScreen);
+                      },
                   ),
                   TextSpan(
                     text: ' and ',
@@ -215,6 +211,10 @@ class SignUpForm extends StatelessWidget {
                       color: AppColors.primaryColor,
                       fontFamily: "Aldrich",
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Get.toNamed(AppRoutes.privacypolicyScreen);
+                      },
                   ),
                 ],
               ),

@@ -14,14 +14,14 @@ class AppString {
   static String alreadyHave = "Already have an account? ";
   static String byCreating = "   By creating an account, I accept the \n";
   static String termsConditionsS = "   Terms & conditions";
-  static String privacyPolicyS = "Privacy Policy";
+  static String privacyPolicyS = "Privacy policy";
   static String userName = "User name";
 
   //================> Verify Email Screen <====================
   static String verifyEmail = "Verify Email";
   static String weHaveSent =
       "We have sent a verification code to your \nemail. Please check your email and \nenter the code.";
-  static String didntGet = "Didn’t get the code?";
+  static String didntGet = "Did’t get the code?";
   static String resend = "Resend";
   static String email = "Email";
 
@@ -42,12 +42,12 @@ class AppString {
   static String upcomingEvents = "Upcoming Events";
 
 
-  ///----------------------Notification screen-------------------------------------->
-  static String notification = "Notification";
+  ///----------------------Notifications screen-------------------------------------->
+  static String notification = "Notifications";
 
   
   //================> Forget password Screen <====================
-  static String forgetPassword = "Forget password";
+  static String forgetPassword = "Forgot password";
   static String sendOTP = "Send OTP";
   static String pleaseEnter = "Please enter your email address to \nreset password.";
 
@@ -69,7 +69,7 @@ class AppString {
   static String setnewPassword = "Set new password";
   static String reenterPassword = "Re-enter new password";
   static String updatePassword = "Update password";
-  static String forgotPass = "Forgot Password?";
+  static String forgotPass = "Forgot password?";
   static String verify = "Verify";
 
   //================> Registration Screen <====================
@@ -114,7 +114,7 @@ class AppString {
   static String myMatches = "My matches";
   static String logOut = "Log out";
   static String myScores = "My scores";
-  static String subscription = "Subscription";
+  static String subscription = "Subscriptions";
   static String doYou = "Do you want to logout your profile?";
 
 //================> Scores Screen <====================
