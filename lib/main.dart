@@ -5,10 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/helper/di.dart' as di;
 import 'package:shooter_app/themes/themes.dart';
-
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
-
 import 'views/screens/splashScreen/splash_screen.dart';
 
 
