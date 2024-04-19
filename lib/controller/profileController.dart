@@ -71,7 +71,6 @@ class ProfileController extends GetxController{
       getProfileData();
       profileModel.refresh();
       Get.back();
-      Get.back();
     }else{
       ApiChecker.checkApi(response);
     }

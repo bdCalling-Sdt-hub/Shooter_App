@@ -36,6 +36,22 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
   final _locationController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    setState(() {
+      var profileData =    _profileController.profileModel.value.data?.attributes;
+      _userClassController.text = "${profileData?.userClass}";
+      _clubController.text = "${profileData?.club}";
+      _nameController.text = "${profileData?.name}";
+      _dateOfBirthController.text = profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
+      _phoneNumberController.text = "${profileData?.phone}";
+      _locationController.text = "${profileData?.address}";
+    });
+  }
+
   Uint8List? _image;
   File? selectedIMage;
 
@@ -54,14 +70,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       ),
       body: Obx(() {
       var profileData =    _profileController.profileModel.value.data?.attributes;
-
-
-        _userClassController.text = "${profileData?.userClass}";
-        _clubController.text = "${profileData?.club}";
-        _nameController.text = "${profileData?.name}";
-        _dateOfBirthController.text = "${profileData?.dateOfBirth}";
-        _phoneNumberController.text = "${profileData?.phone}";
-        _locationController.text = "${profileData?.address}";
 
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
