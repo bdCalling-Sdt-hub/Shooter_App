@@ -9,8 +9,10 @@ import '../../../../../utils/app_images.dart';
 import '../../../../widgets/custom_text.dart';
 
 class TopContainerSection extends StatelessWidget {
+  final String? name;
   const TopContainerSection({
     super.key,
+    this.name
   });
 
   @override
@@ -39,7 +41,7 @@ class TopContainerSection extends StatelessWidget {
                   ),
                 ),
                 CustomText(
-                  text: 'Arnold Bailie',
+                  text: name == null ? "Name" : '$name',
                   fontsize: 24.sp,
                 ),
                 IconButton(

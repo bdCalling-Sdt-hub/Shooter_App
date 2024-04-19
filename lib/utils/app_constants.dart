@@ -9,7 +9,6 @@ class AppConstants{
 
 
 
-
   static RegExp emailValidator = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
@@ -19,3 +18,5 @@ class AppConstants{
   );
 
 }
+
+enum Status { loading, completed, error, internetError }

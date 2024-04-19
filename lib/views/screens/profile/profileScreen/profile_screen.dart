@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/utils/app_string.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
+import 'package:shooter_app/views/widgets/no_internet_screen.dart';
 import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../widgets/custom_list_tile.dart';
 import '../../../widgets/custom_text.dart';
+import '../../../widgets/genaral_error_screen.dart';
 import 'InnerWidget/top_container_section.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+   ProfileScreen({super.key});
+
+  final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,55 +35,67 @@ class ProfileScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 27.w),
-        child: Column(
-          children: [
-            SizedBox(height: 24.h),
-            //==================================> TopContainer Section <=================================
-            const TopContainerSection(),
-            SizedBox(height: 24.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Obx((){
+        var profileData = _profileController.profileModel.value.data?.attributes;
+
+        print('=========================> $profileData');
+        switch(_profileController.rxRequestStatus.value){
+          case Status.loading : return const CustomLoader();
+          case Status.internetError : return NoInternetScreen(onTap: () { _profileController.getProfileData(); },);
+          case Status.error : return GeneralErrorScreen(onTap: () { _profileController.getProfileData(); },);
+          case Status.completed : return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 27.w),
+            child: Column(
               children: [
-                _customContainer(
-                  AppString.clasS,
-                  "A",
+                SizedBox(height: 24.h),
+                //==================================> TopContainer Section <=================================
+                TopContainerSection(
+                  name: "${profileData?.name}",
                 ),
-                _customContainer(
-                  AppString.club,
-                  "LINDEN",
+                SizedBox(height: 24.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _customContainer(
+                      AppString.clasS,
+                      '${profileData?.userClass}',
+                    ),
+                    _customContainer(
+                      AppString.club,
+                      "${profileData?.club}",
+                    ),
+                  ],
                 ),
+
+                //==================================> CustomContainer Section <=================================
+
+                SizedBox(height: 24.h),
+                CustomListTile(
+                    title: '${profileData?.name}', prefixIcon: _prefixIcon(AppIcons.user)),
+                SizedBox(height: 16.h),
+                CustomListTile(
+                    title: '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.cake)),
+                SizedBox(height: 16.h),
+                CustomListTile(
+                    title: 'arnold.07@gmail.com',
+                    prefixIcon: _prefixIcon(AppIcons.mail)),
+                SizedBox(height: 16.h),
+                CustomListTile(
+                    title: '(406) 555-0120',
+                    prefixIcon: _prefixIcon(
+                      AppIcons.phone,
+                    )),
+                SizedBox(height: 16.h),
+                CustomListTile(
+                  title: '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
+                  prefixIcon: _prefixIcon(AppIcons.locationMarker),
+                ),
+                SizedBox(height: 16.h),
               ],
             ),
-
-            //==================================> CustomContainer Section <=================================
-
-            SizedBox(height: 24.h),
-            CustomListTile(
-                title: 'Arnold Bailie', prefixIcon: _prefixIcon(AppIcons.user)),
-            SizedBox(height: 16.h),
-            CustomListTile(
-                title: '20-01-1996', prefixIcon: _prefixIcon(AppIcons.cake)),
-            SizedBox(height: 16.h),
-            CustomListTile(
-                title: 'arnold.07@gmail.com',
-                prefixIcon: _prefixIcon(AppIcons.mail)),
-            SizedBox(height: 16.h),
-            CustomListTile(
-                title: '(406) 555-0120',
-                prefixIcon: _prefixIcon(
-                  AppIcons.phone,
-                )),
-            SizedBox(height: 16.h),
-            CustomListTile(
-              title: '2972 Westheimer Rd. Santa Ana, Illinois 85486 ',
-              prefixIcon: _prefixIcon(AppIcons.locationMarker),
-            ),
-            SizedBox(height: 16.h),
-          ],
-        ),
-      ),
+          );
+        }
+  } ),
     );
   }
 //===========================================> CustomContainer Section <=================================
