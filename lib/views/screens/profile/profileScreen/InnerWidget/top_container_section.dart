@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/routes/app_routes.dart';
+import 'package:shooter_app/service/api_constant.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_images.dart';
@@ -11,10 +12,13 @@ import '../../../../widgets/custom_text.dart';
 class TopContainerSection extends StatelessWidget {
   final String? name;
   final String? subScription;
+  final String? image;
+
   const TopContainerSection({
     super.key,
     this.name,
-    this.subScription
+    this.subScription,
+    this.image
   });
 
   @override
@@ -37,7 +41,7 @@ class TopContainerSection extends StatelessWidget {
                   height: 70.h,
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
-                  child: Image.asset(
+                  child: image != null || image != '' ? Image.network("${ApiConstant.imageBaseUrl}/$image",fit: BoxFit.cover,)  : Image.asset(
                     AppImages.profileImg,
                     fit: BoxFit.cover,
                   ),
