@@ -8,10 +8,7 @@ import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.d
 import '../../../controller/home_controller.dart';
 import '../../../utils/app_icons.dart';
 import '../event/events_screen.dart';
-import '../../../utils/app_colors.dart';
-import '../scoresScreen/inner_widgets/line_chart.dart';
 import '../matches/matches_screen.dart';
-import '../my_matches/my_matches_screen.dart';
 import '../home/inner_widgets/drawer_section.dart';
 
 
@@ -30,7 +27,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
     HomeScreen(),
     const EventsScreen(),
     const MatchesScreen(),
-    const ProfileScreen(),
+     ProfileScreen(),
   ];
 
 
@@ -44,11 +41,12 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _homeController.scaffoldKey,
-      endDrawer: DrawerSection(),
+      endDrawer: const DrawerSection(),
       body: _widgetOptions.elementAt(_selectedIndex),
 
       ///------------------------bottom nav bar----------------------------?>
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           ///---------------home---------------->
           BottomNavigationBarItem(

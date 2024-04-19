@@ -34,13 +34,10 @@ class AuthController extends GetxController {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = response.body;
       if (!data['data']['attributes']['isAdmin']) {
-        await PrefsHelper.setString(
-            AppConstants.userId, data['data']['attributes']['_id']);
-        await PrefsHelper.setString(
-            AppConstants.bearerToken, data['data']['token']);
+        await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
+        await PrefsHelper.setString(AppConstants.bearerToken, data['data']['token']);
         await PrefsHelper.setBool(AppConstants.isLogged, true);
-        await PrefsHelper.setString(AppConstants.subscription,
-            data['data']['attributes']['subscription']);
+        await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
         await PrefsHelper.setString(AppConstants.signInType, "General User");
         Get.offAllNamed(AppRoutes.bottomNavBar);
       }
