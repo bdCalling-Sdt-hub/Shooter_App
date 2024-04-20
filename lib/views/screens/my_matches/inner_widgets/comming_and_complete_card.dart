@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/dimentions.dart';
 import '../../../widgets/custom_matches_card.dart';
@@ -36,6 +38,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                 genderText: "3x20 Shots \nProne,standing & kneeling ",
                 description: "(First 200 of prone to count for 3P)",
                 buttonText: "See scores",
+                onTap: (){Get.toNamed(AppRoutes.scoresScreen);},
               ),
             ),
             SizedBox(
@@ -68,6 +71,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                 genderText: "3x20 Shots \nProne,standing & kneeling ",
                 description: "(First 200 of prone to count for 3P)",
                 amount: "Completed",
+                onTap: (){},
                 // buttonText: "See scores",
               ),
             ),

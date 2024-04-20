@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
@@ -48,7 +50,7 @@ class MatchesScreen extends StatelessWidget {
                     description: "(First 200 of prone to count for 3P)",
                     amount: "R 40-00 Per Entry",
                     buttonText: "Register",
-
+                    onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
                   ),
                 ),
 

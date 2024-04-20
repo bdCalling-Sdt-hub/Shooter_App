@@ -23,7 +23,6 @@ class SignInForm extends StatelessWidget {
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
-
   final _authController = Get.put(AuthController());
 
   @override
@@ -79,12 +78,12 @@ class SignInForm extends StatelessWidget {
               ),
 
               ///-------------------------------------Log In botton------------------------------->
-              Obx(()=>
-                 CustomButton(
-                   loading: _authController.signInLoading.value,
+              Obx(
+                () => CustomButton(
+                  loading: _authController.signInLoading.value,
                   onpress: () {
                     if (formKey.currentState!.validate()) {
-                          _authController.handleSignIn();
+                      _authController.handleSignIn();
                     }
                   },
                   title: AppString.logIn,
@@ -105,7 +104,7 @@ class SignInForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       _authController.signInWithGoogle();
                     },
                     child: Container(
@@ -114,9 +113,7 @@ class SignInForm extends StatelessWidget {
                           color: AppColors.fieldColor,
                           borderRadius:
                               BorderRadius.circular(Dimensions.radiusDefault),
-                          border: Border.all(color: const Color(0xFFFD92A0)
-                          )
-                      ),
+                          border: Border.all(color: const Color(0xFFFD92A0))),
                       child: Center(
                           child: SvgPicture.asset(
                         AppIcons.google,
@@ -186,8 +183,6 @@ class SignInForm extends StatelessWidget {
               SizedBox(
                 height: 21.h,
               ),
-
-
             ],
           ),
         ),
@@ -206,7 +201,13 @@ class SignInForm extends StatelessWidget {
           contenpaddingVertical: 16.h,
           hintText: AppString.email,
           filColor: AppColors.fieldColor,
-          isEmail:true,
+          isEmail: true,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter your mail";
+            }
+            return null;
+          },
         ),
         SizedBox(height: 16.h),
 
@@ -218,10 +219,14 @@ class SignInForm extends StatelessWidget {
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
           isPassword: true,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter your password";
+            }
+            return null;
+          },
         ),
       ],
     );
   }
-
-
 }
