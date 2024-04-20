@@ -25,11 +25,10 @@ class EditprofileScreen extends StatefulWidget {
 }
 
 class _EditprofileScreenState extends State<EditprofileScreen> {
-
   final ProfileController _profileController = Get.put(ProfileController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-   final _userClassController = TextEditingController();
+  final _userClassController = TextEditingController();
   final _clubController = TextEditingController();
   final _nameController = TextEditingController();
   final _dateOfBirthController = TextEditingController();
@@ -41,25 +40,23 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     setState(() {
-      var profileData =    _profileController.profileModel.value.data?.attributes;
+      var profileData = _profileController.profileModel.value.data?.attributes;
       _userClassController.text = "${profileData?.userClass}";
       _clubController.text = "${profileData?.club}";
       _nameController.text = "${profileData?.name}";
-      _dateOfBirthController.text = profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
+      _dateOfBirthController.text =
+          profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
       _phoneNumberController.text = "${profileData?.phone}";
       _locationController.text = "${profileData?.address}";
     });
   }
-
   Uint8List? _image;
   File? selectedIMage;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       extendBody: true,
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -69,164 +66,185 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
         ),
         centerTitle: true,
       ),
-      body: Obx(() {
-      var profileData =    _profileController.profileModel.value.data?.attributes;
-
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 22.h),
-              Center(
-                child: Stack(
-                  children: [
-                    _image != null
-                        ? CircleAvatar(
-                        radius:  60.r, backgroundImage:  MemoryImage(_image!))
-                        : CircleAvatar(
-                      radius: 60.r,
-                      backgroundImage: profileData?.image?.destination != null ?  NetworkImage(
-                          "${ApiConstant.imageBaseUrl}/${profileData?.image?.destination}/${profileData?.image?.filename}"
-                      ) : const NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                      )
-                    ),
-                    Positioned(
-                        bottom: 12.h,
-                        right: 0.w,
-                        child: GestureDetector(
-                            onTap: () {
-                              showImagePickerOption(context);
-                            },
-                            child: SvgPicture.asset(AppIcons.groupEdit)))
-                  ],
-                ),
-              ),
-              //======================================> Text From Field Section <===============================================
-              Form(
-                key: _formKey,
-                  child: Column(
+      body: SingleChildScrollView(
+        child: Obx(() {
+          var profileData =
+              _profileController.profileModel.value.data?.attributes;
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 22.h),
+                Center(
+                  child: Stack(
                     children: [
-                SizedBox(height: 24.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 165.w,
-                      child: CustomTextField(
-                        controller: _userClassController,
-                        contenpaddingHorizontal: 20.w,
-                        contenpaddingVertical: 9.h,
-                        hintText: AppString.clasName,
-                        validator: (value){
-                          if (value == null || value.isEmpty){
-                            return 'Please add class';
-                          }return null;
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      width: 165.w,
-                      child: CustomTextField(
-                        controller: _clubController,
-                        contenpaddingHorizontal: 20.w,
-                        contenpaddingVertical: 9.h,
-                        hintText: AppString.clubNameS,
-                        validator: (value){
-                          if(value == null || value.isEmpty){
-                            return 'Please add club';
-                          } return null;
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                CustomTextField(
-                  controller: _nameController,
-                  contenpaddingHorizontal: 12.w,
-                  contenpaddingVertical: 16.h,
-                  hintText: 'Enter your name',
-                  prifixicon: _prefixIcon(AppIcons.user),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return 'Please enter your name';
-                    } return null;
-                  },
-                ),
-                SizedBox(height: 16.h),
-                CustomTextField(
-                  readOnly: true,
-                  controller: _dateOfBirthController,
-                  keyboardType: TextInputType.datetime,
-                  contenpaddingHorizontal: 12.w,
-                  contenpaddingVertical: 16.h,
-                  hintText: 'Enter your date of birth',
-                  prifixicon: _prefixIcon(AppIcons.calander),
-                  ontapPrefix: (){},
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return 'Please enter your date of birth';
-                    } return null;
-                  },
-
-                ),
-                SizedBox(height: 16.h),
-                CustomTextField(
-                  keyboardType: TextInputType.number,
-                  controller: _phoneNumberController,
-                  contenpaddingHorizontal: 12.w,
-                  contenpaddingVertical: 16.h,
-                  hintText: '(000) 000-0000',
-                  prifixicon: _prefixIcon(AppIcons.phone),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return 'Please enter your phone number';
-                    } return null;
-                  },
-                ),
-                SizedBox(height: 16.h),
-                CustomTextField(
-                  controller: _locationController,
-                  contenpaddingHorizontal: 12.w,
-                  contenpaddingVertical: 16.h,
-                  hintText: "Enter your location",
-                  prifixicon: _prefixIcon(
-                    AppIcons.locationMarker,
+                      _image != null
+                          ? CircleAvatar(
+                              radius: 60.r,
+                              backgroundImage: MemoryImage(_image!))
+                          : CircleAvatar(
+                              radius: 60.r,
+                              backgroundImage: profileData
+                                          ?.image?.destination !=
+                                      null
+                                  ? NetworkImage(
+                                      "${ApiConstant.imageBaseUrl}/${profileData?.image?.destination}/${profileData?.image?.filename}")
+                                  : const NetworkImage(
+                                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")),
+                      Positioned(
+                          bottom: 12.h,
+                          right: 0.w,
+                          child: GestureDetector(
+                              onTap: () {
+                                showImagePickerOption(context);
+                              },
+                              child: SvgPicture.asset(AppIcons.groupEdit)))
+                    ],
                   ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return 'Please enter your location';
-                    } return null;
-                  },
                 ),
-              ],)),
-              const Spacer(),
-              Obx(()=> CustomButton(title: AppString.update,
-                  loading: _profileController.loading.value,
-                  onpress: () {
-                    if (_formKey.currentState!.validate()) {
-                      _profileController.editProfile(
-                          _nameController.text,
-                          _phoneNumberController.text,
-                          _locationController.text,
-                          _clubController.text,
-                          _userClassController.text,
-                          _dateOfBirthController.text,
-                          selectedIMage
-                      );
-                    }
-
-                }),
-              ),
-              SizedBox(height: 69.h),
-            ],
-          ),
-        );
-      }),
+                //======================================> Text From Field Section <===============================================
+                Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 24.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            //======================> Class Field <=========================
+                            SizedBox(
+                              width: 165.w,
+                              child: CustomTextField(
+                                controller: _userClassController,
+                                contenpaddingHorizontal: 20.w,
+                                contenpaddingVertical: 9.h,
+                                hintText: AppString.clasName,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please add class';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            //======================> Club Field <=========================
+                            SizedBox(
+                              width: 165.w,
+                              child: CustomTextField(
+                                controller: _clubController,
+                                contenpaddingHorizontal: 20.w,
+                                contenpaddingVertical: 9.h,
+                                hintText: AppString.clubNameS,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please add club';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        //======================> Name Field <=========================
+                        SizedBox(height: 16.h),
+                        CustomTextField(
+                          controller: _nameController,
+                          contenpaddingHorizontal: 12.w,
+                          contenpaddingVertical: 16.h,
+                          hintText: 'Enter your name',
+                          prifixicon: _prefixIcon(AppIcons.user),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your name';
+                            }
+                            return null;
+                          },
+                        ),
+                        //======================> Date of Birth Field <=========================
+                        SizedBox(height: 16.h),
+                        CustomTextField(
+                          readOnly: true,
+                          controller: _dateOfBirthController,
+                          contenpaddingHorizontal: 12.w,
+                          contenpaddingVertical: 16.h,
+                          hintText: 'Enter your date of birth',
+                          prifixicon: _prefixIcon(AppIcons.calander),
+                          ontapPrefix: () {
+                            _selectDate(context);
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your date of birth';
+                            }
+                            return null;
+                          },
+                        ),
+                        //======================> Phone Number Field <=========================
+                        SizedBox(height: 16.h),
+                        CustomTextField(
+                          keyboardType: TextInputType.number,
+                          controller: _phoneNumberController,
+                          contenpaddingHorizontal: 12.w,
+                          contenpaddingVertical: 16.h,
+                          hintText: '(000) 000-0000',
+                          prifixicon: _prefixIcon(AppIcons.phone),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your phone number';
+                            }
+                            return null;
+                          },
+                        ),
+                        //======================> Location Field <=========================
+                        SizedBox(height: 16.h),
+                        CustomTextField(
+                          controller: _locationController,
+                          contenpaddingHorizontal: 12.w,
+                          contenpaddingVertical: 16.h,
+                          hintText: "Enter your location",
+                          prifixicon: _prefixIcon(
+                            AppIcons.locationMarker,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your location';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    )),
+                // const Spacer(),
+                SizedBox(height: 100.h),
+                //======================> Update Button <=========================
+                Obx(
+                  () => CustomButton(
+                      title: AppString.update,
+                      loading: _profileController.loading.value,
+                      onpress: () {
+                        if (_formKey.currentState!.validate()) {
+                          _profileController.editProfile(
+                              _nameController.text,
+                              _phoneNumberController.text,
+                              _locationController.text,
+                              _clubController.text,
+                              _userClassController.text,
+                              _dateOfBirthController.text,
+                              selectedIMage);
+                        }
+                      }),
+                ),
+                SizedBox(height: 70.h),
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 
+//======================> Prefix Icon Method <=========================
   _prefixIcon(String icon) {
     return Padding(
       padding: EdgeInsets.only(left: 8.w, right: 16.w),
@@ -332,7 +350,8 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
-        _dateOfBirthController.text = DateFormat('MM/dd/yyyy').format(_selectedDate);
+        _dateOfBirthController.text =
+            DateFormat('MM/dd/yyyy').format(_selectedDate);
         /*dateCtrl.text =
             "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
         // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";

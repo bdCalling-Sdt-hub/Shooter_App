@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/home_controller.dart';
 import 'package:shooter_app/utils/app_icons.dart';
 import 'package:shooter_app/utils/app_string.dart';
@@ -13,13 +14,26 @@ import 'inner_widgets/homescreen_app_bar.dart';
 import 'inner_widgets/up_comiing_events_listview.dart';
 import 'inner_widgets/up_coming_matches_listview.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final _pickDateController = TextEditingController();
+  DateTime _selectedDate = DateTime.now();
 
   final HomeController _homeController = Get.put(HomeController());
-
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _pickDateController.text;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   ///-----------------app bar------------------------->
                   HomeScreenAppBar(),
 
-                  ///----------------------------picka date time text---------------------->
+                  ///----------------------------pick a date time text---------------------->
                   CustomText(
                     textAlign: TextAlign.start,
                     text: AppString.pickadate,
@@ -49,10 +63,11 @@ class HomeScreen extends StatelessWidget {
 
                   ///-------------------------date time form------------------------>
                   CustomTextField(
+                    readOnly: true,
                     controller: _pickDateController,
                     contenpaddingHorizontal: 10,
                     contenpaddingVertical: 0,
-                    hintText: "02/20/2024",
+                    hintText: "MM/DD/YYYY",
                     sufixicons: IconButton(
                         onPressed: () {
                           _selectDate(context);
@@ -116,19 +131,25 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-
   ///----------------------------------calender-------------------------------->
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime(1950),
       lastDate: DateTime.now(),
     );
 
-    if (pickedDate != null) {
-      print('Selected date: $pickedDate');
-      // Do something with the selected date
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+        _pickDateController.text =
+            DateFormat('MM/dd/yyyy').format(_selectedDate);
+        /*dateCtrl.text =
+            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
+        // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+      });
+      print('Selected date: ${_pickDateController.text}');
     }
   }
 }
