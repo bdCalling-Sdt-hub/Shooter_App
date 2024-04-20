@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shooter_app/views/widgets/time_count_down.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/app_icons.dart';
@@ -113,12 +114,14 @@ class CustomEventsCard extends StatelessWidget {
                     ),
 
                     SizedBox(height: 5.h,),
-                    CustomText(
-                      text: startDate??"",
-                      color: AppColors.backgroundColor,
-                      fontsize: Dimensions.fontSizeSmall.h,
-                      fontWeight: FontWeight.w400,
-                    ),
+
+                    TimeCountDown(dateLine: DateTime.parse("$startDate"))
+                    // CustomText(
+                    //   text: TimeCountDown(dateLine: startDate,),
+                    //   color: AppColors.backgroundColor,
+                    //   fontsize: Dimensions.fontSizeSmall.h,
+                    //   fontWeight: FontWeight.w400,
+                    // ),
 
 
                   ],
