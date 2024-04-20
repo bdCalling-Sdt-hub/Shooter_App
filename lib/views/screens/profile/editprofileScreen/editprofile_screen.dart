@@ -156,11 +156,14 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 ),
                 SizedBox(height: 16.h),
                 CustomTextField(
+                  readOnly: true,
                   controller: _dateOfBirthController,
+                  keyboardType: TextInputType.datetime,
                   contenpaddingHorizontal: 12.w,
                   contenpaddingVertical: 16.h,
                   hintText: 'Enter your date of birth',
                   prifixicon: _prefixIcon(AppIcons.calander),
+                  ontapPrefix: (){},
                   validator: (value){
                     if(value == null || value.isEmpty){
                       return 'Please enter your date of birth';
