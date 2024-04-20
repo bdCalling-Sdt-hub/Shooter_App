@@ -19,27 +19,29 @@ class CustomTextField extends StatefulWidget {
   final double? contenpaddingVertical;
   final Widget? sufixicons;
   final FormFieldValidator? validator;
+  final VoidCallback? ontapPrefix;
   final bool isPassword;
   final bool? isEmail;
-
+  final bool? readOnly;
 
   const CustomTextField({
     super.key,
-     this.contenpaddingHorizontal,
-     this.contenpaddingVertical,
+    this.contenpaddingHorizontal,
+    this.contenpaddingVertical,
     this.hintText,
     this.prifixicon,
     this.sufixicons,
     this.validator,
     this.isEmail,
-
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.isObscureText = false,
     this.obscureCharacrter = '*',
     this.filColor,
     this.labelText,
-    this.isPassword=false
+    this.isPassword = false,
+    this.readOnly = false,
+    this.ontapPrefix,
   });
 
   @override
@@ -49,60 +51,62 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   bool obscureText = true;
 
-
   void toggle() {
     setState(() {
       obscureText = !obscureText;
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return TextFormField(
+      readOnly: widget.readOnly!,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       obscuringCharacter: widget.obscureCharacrter!,
       // validator: widget.validator,
-      validator:widget.validator?? (value) {
-        if (widget.isEmail == null) {
-          if (value!.isEmpty) {
-            return "Please enter ${widget.hintText!.toLowerCase()}";
-          }else if(widget.isPassword) {
-            bool data = AppConstants.passwordValidator.hasMatch(value);
-            if (value.isEmpty) {
-              return "Please enter ${widget.hintText!.toLowerCase()}";
-            } else if (!data) {
-              return "Insecure password detected.";
+      validator: widget.validator ??
+          (value) {
+            if (widget.isEmail == null) {
+              if (value!.isEmpty) {
+                return "Please enter ${widget.hintText!.toLowerCase()}";
+              } else if (widget.isPassword) {
+                bool data = AppConstants.passwordValidator.hasMatch(value);
+                if (value.isEmpty) {
+                  return "Please enter ${widget.hintText!.toLowerCase()}";
+                } else if (!data) {
+                  return "Insecure password detected.";
+                }
+              }
+            } else {
+              bool data = AppConstants.emailValidator.hasMatch(value!);
+              if (value.isEmpty) {
+                return "Please enter ${widget.hintText!.toLowerCase()}";
+              } else if (!data) {
+                return "Please check your email!";
+              }
             }
-          }
-        }
-        else {
-          bool data = AppConstants.emailValidator.hasMatch(value!);
-          if (value.isEmpty) {
-            return "Please enter ${widget.hintText!.toLowerCase()}";
-          } else if (!data) {
-            return "Please check your email!";
-          }
-        }
-        return null;
-      },
+            return null;
+          },
       cursorColor: AppColors.primaryColor,
       obscureText: widget.isPassword ? obscureText : false,
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
-            horizontal: widget.contenpaddingHorizontal??20.w,
-            vertical: widget.contenpaddingVertical??20.w),
+            horizontal: widget.contenpaddingHorizontal ?? 20.w,
+            vertical: widget.contenpaddingVertical ?? 20.w),
         filled: true,
         fillColor: widget.filColor ?? const Color(0xFF716665),
-        prefixIcon: widget.prifixicon,
-        suffixIcon:widget.isPassword ? GestureDetector(
-          onTap: toggle,
-          child: _suffixIcon(obscureText?AppIcons.obscure_true:AppIcons.eye),
-        ) : widget.sufixicons,
+        prefixIcon: widget.prifixicon == null ? null : GestureDetector(
+            onTap: widget.ontapPrefix,
+            child: widget.prifixicon),
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                onTap: toggle,
+                child: _suffixIcon(
+                    obscureText ? AppIcons.obscure_true : AppIcons.eye),
+              )
+            : widget.sufixicons,
         prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
         errorStyle: TextStyle(color: AppColors.primaryColor),
         suffixIconColor: AppColors.primaryColor,
