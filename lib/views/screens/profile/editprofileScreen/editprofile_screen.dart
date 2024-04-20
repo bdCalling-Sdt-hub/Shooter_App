@@ -85,10 +85,10 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                         radius:  60.r, backgroundImage:  MemoryImage(_image!))
                         : CircleAvatar(
                       radius: 60.r,
-                      backgroundImage:  NetworkImage(
-                          // "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                      backgroundImage: profileData?.image?.destination != null ?  NetworkImage(
                           "${ApiConstant.imageBaseUrl}/${profileData?.image?.destination}/${profileData?.image?.filename}"
-                      ),
+                      ) : const NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                      )
                     ),
                     Positioned(
                         bottom: 12.h,
