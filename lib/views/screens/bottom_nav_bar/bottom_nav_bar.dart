@@ -26,7 +26,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   static final List _widgetOptions = [
     HomeScreen(),
      EventsScreen(),
-    const MatchesScreen(),
+     MatchesScreen(),
      ProfileScreen(),
   ];
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_icons.dart';
@@ -11,22 +12,24 @@ import 'custom_text.dart';
 
 class CustomMatchesCard extends StatelessWidget {
 
-  final String? date;
+  final DateTime? date;
   final String? image;
   final String? time;
-  final String? genderText;
+  final String? positions;
   final String? description;
-  final String? amount;
+  final String? entryFree;
   final String? buttonText;
+  final String? gender;
   final Function() onTap;
 
   CustomMatchesCard({
     this.date,
     this.image,
     this.time,
-    this.genderText,
+    this.positions,
     this.description,
-    this.amount,
+    this.entryFree,
+    this.gender,
     required this.onTap,
     this.buttonText});
 
@@ -57,7 +60,7 @@ class CustomMatchesCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4.r)
                   ),
                   child: CustomText(
-                    text: "$date",
+                    text: TimeFormatHelper.dateMountFormat(date!),
                     color: AppColors.primaryColor,
                     fontsize: 10.h,
                     fontWeight: FontWeight.w400,
@@ -92,7 +95,7 @@ class CustomMatchesCard extends StatelessWidget {
 
                       ///---------------------time text----------------------><
                       CustomText(
-                        text: "$time",
+                        text: TimeFormatHelper.timeFormat(date!),
                         color: AppColors.backgroundColor,
                         fontsize: Dimensions.fontSizeDefault.h,
                         fontWeight: FontWeight.w400,
@@ -106,11 +109,12 @@ class CustomMatchesCard extends StatelessWidget {
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "Male/Female : $genderText",
+                    text: "${gender} : $positions",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                      textHeight: 1.3.h,
                     fontWeight: FontWeight.w400,
+                    textAlign: TextAlign.left,
                     top: 5.h,
                   )),
 
@@ -130,7 +134,7 @@ class CustomMatchesCard extends StatelessWidget {
 
               ///-----------------------amount ---------------------->
 
-              amount ==  null ? SizedBox() : Row(
+              entryFree ==  null ? SizedBox() : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
@@ -140,7 +144,7 @@ class CustomMatchesCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   CustomText(
-                    text: amount ?? "",
+                    text: entryFree ?? "",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeDefault.h,
                     fontWeight: FontWeight.w400,

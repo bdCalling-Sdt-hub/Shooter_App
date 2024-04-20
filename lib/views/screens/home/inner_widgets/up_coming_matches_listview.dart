@@ -29,12 +29,12 @@ class UpComingMatchesListView extends StatelessWidget {
             ),
             child: CustomMatchesCard(
 
-              date : "12 \n Dec",
+              date : DateTime.now(),
               image : "assets/images/upcomingmatchImage.png",
               time : "08.00 AM",
-              genderText: "3x20 Shots \nProne,standing & kneeling ",
+              positions: "3x20 Shots \nProne,standing & kneeling ",
               description: "(First 200 of prone to count for 3P)",
-              amount: "R 40-00 Per Entry",
+              entryFree: "R 40-00 Per Entry",
               buttonText: "Register",
               onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
             ),

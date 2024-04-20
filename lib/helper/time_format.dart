@@ -10,4 +10,9 @@ class TimeFormatHelper{
   static   String dateMountFormat(DateTime date) {
     return DateFormat('dd\n MMM ').format(date);
   }
+
+  static   String timeFormat(DateTime date) {
+    return DateFormat('hh:mm a').format(date);
+  }
 }
+
