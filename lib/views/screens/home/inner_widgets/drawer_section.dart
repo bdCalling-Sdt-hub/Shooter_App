@@ -106,20 +106,20 @@ class DrawerSection extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16.h),
-              //=====================================>  My Scores  Container <=============================
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoutes.scoresScreen);
-                },
-                child: CustomListTile(
-                  title: AppString.myScores,
-                  borderColor: AppColors.fieldColor,
-                  prefixIcon: SvgPicture.asset(
-                    AppIcons.myScores,
-                    height: 32.h,
-                    width: 32.w,
-                  ),
+
+            SizedBox(height: 16.h),
+            //=====================================>  My Scores  Container <=============================
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.myScoresScreen);
+              },
+              child: CustomListTile(
+                title: AppString.myScores,
+                borderColor: AppColors.fieldColor,
+                prefixIcon: SvgPicture.asset(
+                  AppIcons.myScores,
+                  height: 32.h,
+                  width: 32.w,
                 ),
               ),
               SizedBox(height: 16.h),

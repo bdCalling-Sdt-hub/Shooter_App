@@ -41,7 +41,7 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
         ),
         centerTitle: true,
         title: CustomText(
-          text: AppString.matches,
+          text: 'My Matches',
           fontsize: Dimensions.fontSizeLarge.h,
         ),
       ),
@@ -71,7 +71,7 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
                         });
                       },
 
-                      ///---------------------------up comming botton----------------------->
+                      ///---------------------------up coming botton----------------------->
                       child: Container(
                         height: 44.h,
                         decoration: BoxDecoration(
@@ -103,7 +103,7 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
                         });
                       },
 
-                      ///---------------------------up complete botton----------------------->
+                      ///--------------------------- complete botton----------------------->
                       child: Container(
                         height: 44.h,
                         decoration: BoxDecoration(
