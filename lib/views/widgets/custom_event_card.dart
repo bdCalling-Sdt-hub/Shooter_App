@@ -1,7 +1,14 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/controller/events_controller.dart';
+import 'package:shooter_app/helper/time_format.dart';
+import 'package:shooter_app/service/api_constant.dart';
+import 'package:shooter_app/utils/app_images.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 import 'package:shooter_app/views/widgets/time_count_down.dart';
 
 import '../../utils/app_colors.dart';
@@ -11,16 +18,19 @@ import 'custom_button.dart';
 import 'custom_text.dart';
 
 class CustomEventsCard extends StatelessWidget {
-  const CustomEventsCard({
-    super.key,this.date, this.image, this.location, this.title, this.startDate, this.onTap
+   const CustomEventsCard({
+    super.key,this.date, this.image, this.location, this.title, this.startDate, this.onTap, this.fileName
   });
 
-  final String? date;
+  final DateTime? date;
+  final dynamic? fileName;
   final String? image;
   final String? location;
   final String? title;
   final String? startDate;
   final Function()? onTap;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +54,7 @@ class CustomEventsCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
                     ),
-                    child: Image.asset(image??"",height: 115.h,width: 321.w,fit: BoxFit.fill,)),
+                    child: fileName == '' || fileName == null ? const Center(child: CircularProgressIndicator()) : Image.network('${ApiConstant.imageBaseUrl}/$image'??"",height: 115.h,width: 321.w,fit: BoxFit.fill,)),
                 ///--------------------------------- Date card---------------------->
 
                 Positioned(
@@ -57,7 +67,7 @@ class CustomEventsCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4.r)
                     ),
                     child: CustomText(
-                      text: date??"",
+                      text: TimeFormatHelper.dateMountFormat(date!),
                       color: AppColors.primaryColor,
                       fontsize: 10.h,
                       fontWeight: FontWeight.w400,

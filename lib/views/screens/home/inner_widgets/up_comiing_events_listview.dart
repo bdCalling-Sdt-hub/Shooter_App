@@ -27,7 +27,7 @@ class UpComingEventsListView extends StatelessWidget {
               image:"assets/images/upcomingmatchImage.png",
               title: "EEUFEES SHOOTING RANGE",
               location: "Carl Osburn (USA)",
-              date: "12 \n Dec",
+              // date: D,
               // startDate: "20d : 14h : 24m",
               onTap: (){
 

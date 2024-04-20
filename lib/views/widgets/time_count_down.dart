@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TimeCountDown extends StatefulWidget {
+  final Color? textColor;
   final DateTime dateLine;
-  const TimeCountDown({super.key, required this.dateLine});
+  final double? textSize;
+  const TimeCountDown({super.key, required this.dateLine, this.textColor = Colors.black, this.textSize = 12});
 
   @override
   State<TimeCountDown> createState() => _TimeCountDownState();
@@ -33,10 +35,10 @@ class _TimeCountDownState extends State<TimeCountDown> {
 
   @override
   Widget build(BuildContext context) {
-    final days = DefaultTextStyle(style:  TextStyle(color: Colors.black,fontSize: 12.h), child: Text('${duration.inDays.toString().padLeft(2,'0')}d :'));
-    final hours = DefaultTextStyle(style:  TextStyle(color: Colors.black,fontSize: 12.h), child: Text('${duration.inHours.toString().padLeft(2,'0')}h :'));
-    final minutes = DefaultTextStyle(style:  TextStyle(color: Colors.black, fontSize: 12.h), child: Text('${duration.inMinutes.remainder(60).toString().padLeft(2,'0')}m :'));
-    final seconds = DefaultTextStyle(style:  TextStyle(color: Colors.black, fontSize: 12.h), child: Text('${duration.inSeconds.remainder(60).toString().padLeft(2,'0')}s'));
+    final days = DefaultTextStyle(style:  TextStyle(color: widget.textColor,fontSize: widget.textSize?.h), child: Text('${duration.inDays.toString().padLeft(2,'0')}d :'));
+    final hours = DefaultTextStyle(style:  TextStyle(color: widget.textColor,fontSize: widget.textSize?.h), child: Text('${duration.inHours.toString().padLeft(2,'0')}h :'));
+    final minutes = DefaultTextStyle(style:  TextStyle(color: widget.textColor, fontSize: widget.textSize?.h), child: Text('${duration.inMinutes.remainder(60).toString().padLeft(2,'0')}m :'));
+    final seconds = DefaultTextStyle(style:  TextStyle(color: widget.textColor, fontSize: widget.textSize?.h), child: Text('${duration.inSeconds.remainder(60).toString().padLeft(2,'0')}s'));
     return Row(
       children: [
         days,

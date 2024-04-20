@@ -1,5 +1,3 @@
-
-
 class EventsModel {
   final String? message;
   final List<Datum>? data;
@@ -33,6 +31,7 @@ class Datum {
   final String? description;
   final String? createdBy;
   final int? v;
+  final Image? image;
 
   Datum({
     this.id,
@@ -43,6 +42,7 @@ class Datum {
     this.description,
     this.createdBy,
     this.v,
+    this.image,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -54,6 +54,7 @@ class Datum {
     description: json["description"],
     createdBy: json["createdBy"],
     v: json["__v"],
+    image: json["image"] == null ? null : Image.fromJson(json["image"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -65,6 +66,51 @@ class Datum {
     "description": description,
     "createdBy": createdBy,
     "__v": v,
+    "image": image?.toJson(),
+  };
+}
+
+class Image {
+  final String? fieldname;
+  final String? originalname;
+  final String? encoding;
+  final String? mimetype;
+  final String? destination;
+  final String? filename;
+  final String? path;
+  final int? size;
+
+  Image({
+    this.fieldname,
+    this.originalname,
+    this.encoding,
+    this.mimetype,
+    this.destination,
+    this.filename,
+    this.path,
+    this.size,
+  });
+
+  factory Image.fromJson(Map<String, dynamic> json) => Image(
+    fieldname: json["fieldname"],
+    originalname: json["originalname"],
+    encoding: json["encoding"],
+    mimetype: json["mimetype"],
+    destination: json["destination"],
+    filename: json["filename"],
+    path: json["path"],
+    size: json["size"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "fieldname": fieldname,
+    "originalname": originalname,
+    "encoding": encoding,
+    "mimetype": mimetype,
+    "destination": destination,
+    "filename": filename,
+    "path": path,
+    "size": size,
   };
 }
 

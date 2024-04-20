@@ -23,11 +23,19 @@ class EventsController extends GetxController{
   Rx<EventsModel> evensModel = EventsModel().obs;
 
   getEvents()async{
+    setRxRequestStatus(Status.loading);
     var response = await ApiClient.getData(ApiConstant.allEvents);
 
 
     if(response.statusCode == 200){
       evensModel.value = EventsModel.fromJson(response.body);
+      setRxRequestStatus(Status.completed);
+    }else{
+      if(response.statusText == ApiClient.noInternetMessage){
+        setRxRequestStatus(Status.internetError);
+      }else{
+        setRxRequestStatus(Status.error);
+      }
     }
   }
 }
