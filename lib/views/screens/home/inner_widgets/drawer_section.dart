@@ -122,6 +122,7 @@ class DrawerSection extends StatelessWidget {
                   width: 32.w,
                 ),
               ),
+            ),
               SizedBox(height: 16.h),
               //=====================================>  Subscription  Container <=============================
 
