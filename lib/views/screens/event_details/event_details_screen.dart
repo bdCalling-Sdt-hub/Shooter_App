@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_matches_card.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_icons.dart';
 import '../../../utils/app_string.dart';
@@ -257,6 +258,7 @@ class EventDetailsScreen extends StatelessWidget {
             description: "(First 200 of prone to count for 3P)",
             amount: "R 40-00 Per Entry",
             buttonText: "Register",
+            onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
           ),
         ),
 

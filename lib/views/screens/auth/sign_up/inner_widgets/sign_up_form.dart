@@ -61,6 +61,12 @@ class SignUpForm extends StatelessWidget {
                 contenpaddingVertical: 16.h,
                 hintText: AppString.userName,
                 filColor: AppColors.fieldColor,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 16.h),
 
@@ -72,6 +78,12 @@ class SignUpForm extends StatelessWidget {
                 hintText: AppString.email,
                 filColor: AppColors.fieldColor,
                 isEmail: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your mail';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 16.h),
 
@@ -83,7 +95,14 @@ class SignUpForm extends StatelessWidget {
                 hintText: AppString.password,
                 filColor: AppColors.fieldColor,
                 isPassword: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
               ),
+
               ///------------------------------------By creating an account, I accept the Terms & conditions and Privacy Policy text----------------->
               SizedBox(
                 height: 15.h,
@@ -98,8 +117,8 @@ class SignUpForm extends StatelessWidget {
                 () => CustomButton(
                   loading: _authController.signUpLoading.value,
                   onpress: () {
-                    if (isCheck.value) {
-                      if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
+                      if (isCheck.value) {
                         _authController.handleSignUp();
                       }
                     }

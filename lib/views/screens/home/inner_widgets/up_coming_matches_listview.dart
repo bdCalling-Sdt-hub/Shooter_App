@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/custom_matches_card.dart';
@@ -34,7 +36,7 @@ class UpComingMatchesListView extends StatelessWidget {
               description: "(First 200 of prone to count for 3P)",
               amount: "R 40-00 Per Entry",
               buttonText: "Register",
-
+              onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
             ),
           );
         },
