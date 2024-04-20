@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_matches_card.dart';
-
+import 'package:shooter_app/views/widgets/time_count_down.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_icons.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
-import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text.dart';
 import 'inner_widgets/event_match_card.dart';
 
@@ -18,6 +18,7 @@ class EventDetailsScreen extends StatelessWidget {
    EventDetailsScreen({super.key});
 
 
+   var evensData = Get.arguments;
   @override
   Widget build(BuildContext context) {
 
@@ -25,21 +26,6 @@ class EventDetailsScreen extends StatelessWidget {
 
       ///--------------------------------app bar ----------------------------->
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.all(20.r),
-
-
-          child: GestureDetector(
-            onTap: (){
-              Get.back();
-            },
-            child: SvgPicture.asset(
-              "assets/icons/back_arrow.svg",
-              width: 14.w,
-              height: 14.h,
-            ),
-          ),
-        ),
         centerTitle: true,
         title: CustomText(text: AppString.eventdetails,fontsize: Dimensions.fontSizeLarge,color: AppColors.white,fontWeight: FontWeight.w400,),
       ),
@@ -54,7 +40,7 @@ class EventDetailsScreen extends StatelessWidget {
           children: [
 
             ///------------------------------EEUFEES SHOOTING RANGE text----------------------------------->?
-            CustomText(text: "EEUFEES SHOOTING RANGE",fontWeight: FontWeight.w400,fontsize: 20.h,textAlign: TextAlign.start,bottom: 12.h,),
+            CustomText(text: "${evensData.name}",fontWeight: FontWeight.w400,fontsize: 20.h,textAlign: TextAlign.start,bottom: 12.h,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,7 +51,7 @@ class EventDetailsScreen extends StatelessWidget {
                     SvgPicture.asset(AppIcons.locationMarker,height: 16.h,width: 16.w,color: AppColors.whiteB5B5B5,),
                     Flexible(
                       child: CustomText(
-                        text:" Carl Osburn (USA)",
+                        text:" ${evensData.location}",
                         color: AppColors.whiteE8E8E8,
                         fontsize: Dimensions.fontSizeDefault.h,
                         fontWeight: FontWeight.w400,
@@ -85,7 +71,7 @@ class EventDetailsScreen extends StatelessWidget {
 
                     ///----------------------------date text------------------------->
                     CustomText(
-                      text:" 16 Dec 2024",
+                      text:" ${TimeFormatHelper.formatDate(evensData.startedDate)}",
                       color: AppColors.whiteE8E8E8,
                       fontsize: Dimensions.fontSizeDefault.h,
                       fontWeight: FontWeight.w400,
@@ -116,12 +102,13 @@ class EventDetailsScreen extends StatelessWidget {
                 ),
 
                 ///------------------------20d : 14h : 24m text------------------>
-                CustomText(
-                  text:" 20d : 14h : 24m",
-                  color: AppColors.white,
-                  fontsize: Dimensions.fontSizeDefault.h,
-                  fontWeight: FontWeight.w400,
-                ),
+                TimeCountDown(dateLine: evensData.closingDate, textColor: Colors.white,)
+                // CustomText(
+                //   text:" 20d : 14h : 24m",
+                //   color: AppColors.white,
+                //   fontsize: Dimensions.fontSizeDefault.h,
+                //   fontWeight: FontWeight.w400,
+                // ),
 
               ],
             ),
@@ -143,7 +130,7 @@ class EventDetailsScreen extends StatelessWidget {
 
                 ///------------------------16 Aug 2024 text------------------>
                 CustomText(
-                  text:" 16 Aug 2024",
+                  text:" ${TimeFormatHelper.formatDate(evensData.closingDate)}",
                   color: AppColors.white,
                   fontsize: Dimensions.fontSizeDefault.h,
                   fontWeight: FontWeight.w400,
@@ -154,18 +141,18 @@ class EventDetailsScreen extends StatelessWidget {
 
 
 
-
-            ///------------------------Registration open text------------------>
-            CustomText(
-              text:" 16 Aug 2024",
-              color: AppColors.white,
-              fontsize: Dimensions.fontSizeSmall.h,
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.start,
-              top: 8.h,
-              bottom: 12.h,
-            ),
-
+            //
+            // ///------------------------Registration open text------------------>
+            // CustomText(
+            //   text:" 16 Aug 2024",
+            //   color: AppColors.white,
+            //   fontsize: Dimensions.fontSizeSmall.h,
+            //   fontWeight: FontWeight.w400,
+            //   textAlign: TextAlign.start,
+            //   top: 8.h,
+            //   bottom: 12.h,
+            // ),
+            //
 
 
             ///------------------------Description text------------------>
@@ -182,7 +169,7 @@ class EventDetailsScreen extends StatelessWidget {
 
             ///------------------------Description text------------------>
             CustomText(
-              text:"Lorem ipsum dolor sit amet consectetur. Ipsum faucibus non aenean velit sagittis egestas. Nunc amet facilisis scelerisque scelerisque nunc egestas faucibus neque ipsum. Fusce malesuada tempor tempus enim. ",
+              text:"${evensData.description}",
               color: AppColors.whiteE8E8E8,
               fontsize: Dimensions.fontSizeDefault.h,
               fontWeight: FontWeight.w400,
@@ -195,19 +182,19 @@ class EventDetailsScreen extends StatelessWidget {
 
 
 
-            ///------------------------Description all text------------------>
-            CustomText(
-              text:"SATRF and SATRA Rules will apply for all matches.",
-              color: AppColors.whiteE8E8E8,
-              fontsize: Dimensions.fontSizeDefault.h,
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.start,
-              maxline: 3,
-              top: 8.h,
-              bottom: 8.h,
-            ),
-
-
+            // ///------------------------Description all text------------------>
+            // CustomText(
+            //   text:"SATRF and SATRA Rules will apply for all matches.",
+            //   color: AppColors.whiteE8E8E8,
+            //   fontsize: Dimensions.fontSizeDefault.h,
+            //   fontWeight: FontWeight.w400,
+            //   textAlign: TextAlign.start,
+            //   maxline: 3,
+            //   top: 8.h,
+            //   bottom: 8.h,
+            // ),
+            //
+            //
 
             _matchSection(),
 

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/service/api_constant.dart';
+import '../../../../../controller/profileController.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../../utils/app_images.dart';
@@ -14,15 +15,18 @@ class TopContainerSection extends StatelessWidget {
   final String? subScription;
   final String? image;
 
-  const TopContainerSection({
+   TopContainerSection({
     super.key,
     this.name,
     this.subScription,
     this.image
   });
 
+  final ProfileController _profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
+    var profileData = _profileController.profileModel.value.data?.attributes?.image;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -41,10 +45,10 @@ class TopContainerSection extends StatelessWidget {
                   height: 70.h,
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
-                  child: image != null || image != '' ? Image.network("${ApiConstant.imageBaseUrl}/$image",fit: BoxFit.cover,)  : Image.asset(
+                  child: profileData?.destination == null || profileData?.destination == '' ? Image.asset(
                     AppImages.profileImg,
                     fit: BoxFit.cover,
-                  ),
+                  ): Image.network("${ApiConstant.imageBaseUrl}/$image",fit: BoxFit.cover,)
                 ),
                 CustomText(
                   text: name == null ? "Name" : '$name',

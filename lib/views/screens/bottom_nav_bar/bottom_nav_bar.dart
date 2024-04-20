@@ -25,7 +25,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
 
   static final List _widgetOptions = [
     HomeScreen(),
-    const EventsScreen(),
+     EventsScreen(),
     const MatchesScreen(),
      ProfileScreen(),
   ];
@@ -41,7 +41,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _homeController.scaffoldKey,
-      endDrawer: const DrawerSection(),
+      endDrawer:  DrawerSection(),
       body: _widgetOptions.elementAt(_selectedIndex),
 
       ///------------------------bottom nav bar----------------------------?>

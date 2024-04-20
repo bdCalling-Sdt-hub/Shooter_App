@@ -15,7 +15,7 @@ import 'inner_widgets/up_coming_matches_listview.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  var _pickDateController = TextEditingController();
+  final _pickDateController = TextEditingController();
 
   final HomeController _homeController = Get.put(HomeController());
 
