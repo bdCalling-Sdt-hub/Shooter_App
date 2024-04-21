@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:shooter_app/model/match_model.dart';
 import 'package:shooter_app/model/up_coming_match_model.dart';
 
+import '../service/api_check.dart';
 import '../service/api_client.dart';
 import '../service/api_constant.dart';
 import '../utils/app_constants.dart';
@@ -13,7 +14,6 @@ class MatchController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     getMatchs();
-    getUpComingMatchs();
   }
 
   final rxRequestStatus = Status.loading.obs;
@@ -35,26 +35,10 @@ class MatchController extends GetxController{
       }else{
         setRxRequestStatus(Status.error);
       }
-    }
+    }ApiChecker.checkApi(response);
   }
 
 
-  Rx<UpComingMatchModel> upComingMatchModel = UpComingMatchModel().obs;
-  getUpComingMatchs()async{
-    setRxRequestStatus(Status.loading);
-    var responsee = await ApiClient.getData(ApiConstant.upComingMatch);
 
-
-    if(responsee.statusCode == 200){
-      upComingMatchModel.value = UpComingMatchModel.fromJson(responsee.body);
-      setRxRequestStatus(Status.completed);
-    }else{
-      if(responsee.statusText == ApiClient.noInternetMessage){
-        setRxRequestStatus(Status.internetError);
-      }else{
-        setRxRequestStatus(Status.error);
-      }
-    }
-  }
 
 }

@@ -1,46 +1,14 @@
+// To parse this JSON data, do
+//
+//     final upComingMatchModel = upComingMatchModelFromJson(jsonString);
 
+import 'dart:convert';
+
+List<UpComingMatchModel> upComingMatchModelFromJson(String str) => List<UpComingMatchModel>.from(json.decode(str).map((x) => UpComingMatchModel.fromJson(x)));
+
+String upComingMatchModelToJson(List<UpComingMatchModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class UpComingMatchModel {
-  final String? message;
-  final Data? data;
-  final Pagination? pagination;
-
-  UpComingMatchModel({
-    this.message,
-    this.data,
-    this.pagination,
-  });
-
-  factory UpComingMatchModel.fromJson(Map<String, dynamic> json) => UpComingMatchModel(
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-    pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "message": message,
-    "data": data?.toJson(),
-    "pagination": pagination?.toJson(),
-  };
-}
-
-class Data {
-  final List<Attribute>? attributes;
-
-  Data({
-    this.attributes,
-  });
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    attributes: json["attributes"] == null ? [] : List<Attribute>.from(json["attributes"]!.map((x) => Attribute.fromJson(x))),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "attributes": attributes == null ? [] : List<dynamic>.from(attributes!.map((x) => x.toJson())),
-  };
-}
-
-class Attribute {
   final String? id;
   final String? matchName;
   final String? gender;
@@ -54,7 +22,7 @@ class Attribute {
   final String? registrationStatus;
   final int? v;
 
-  Attribute({
+  UpComingMatchModel({
     this.id,
     this.matchName,
     this.gender,
@@ -69,7 +37,7 @@ class Attribute {
     this.v,
   });
 
-  factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
+  factory UpComingMatchModel.fromJson(Map<String, dynamic> json) => UpComingMatchModel(
     id: json["_id"],
     matchName: json["matchName"],
     gender: json["gender"],
@@ -141,15 +109,5 @@ class Image {
     "filename": filename,
     "path": path,
     "size": size,
-  };
-}
-
-class Pagination {
-  Pagination();
-
-  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-  );
-
-  Map<String, dynamic> toJson() => {
   };
 }
