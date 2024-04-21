@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:shooter_app/model/events_model.dart';
+import 'package:shooter_app/model/upcoming_even_model.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 
+import '../service/api_check.dart';
 import '../utils/app_constants.dart';
 
 class EventsController extends GetxController{
@@ -16,6 +18,7 @@ class EventsController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     getEvents();
+
   }
 
   final rxRequestStatus = Status.loading.obs;
@@ -36,6 +39,10 @@ class EventsController extends GetxController{
       }else{
         setRxRequestStatus(Status.error);
       }
-    }
+    }ApiChecker.checkApi(response);
   }
+
+
+
+
 }

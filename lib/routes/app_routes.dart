@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/binding/initial_binding.dart';
 import 'package:shooter_app/views/screens/splashScreen/splash_screen.dart';
 import '../views/screens/auth/forgetPasswordScreen/forget_password_screen.dart';
 import '../views/screens/auth/setPasswordScreen/set_password_screen.dart';
@@ -82,7 +83,7 @@ class AppRoutes {
         GetPage(name: subscriptionScreen, page: () => SubscriptionScreen()),
         GetPage(name: eventDetailsScreen, page: () => EventDetailsScreen()),
         GetPage(name: myScoresScreen, page: () => MyScoresScreen()),
-        GetPage(name: bottomNavBar, page: () => BottomNavBar()),
+        GetPage(name: bottomNavBar, page: () => BottomNavBar(),binding:InitialScreenBindings()),
         GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
         GetPage(name: lineChartScreen, page: () => LineChart()),
         GetPage(name: scoresScreen, page: () => ScoresScreen()),

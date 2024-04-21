@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/my_match_controller.dart';
 
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
@@ -13,6 +14,9 @@ class CommingAndCompleteCard extends StatelessWidget {
 
   CommingAndCompleteCard({super.key, this.iscomplete});
 
+
+ final MyMatchController _matchController = Get.put(MyMatchController());
+
   @override
   Widget build(BuildContext context) {
     return iscomplete == false
@@ -21,8 +25,9 @@ class CommingAndCompleteCard extends StatelessWidget {
     ///------------------------------complete match------------------------------->
     ListView.builder(
       scrollDirection: Axis.vertical,
-      itemCount: 5,
+      itemCount: 3,
       itemBuilder: (context, index) {
+
         return Column(
           children: [
             Container(
@@ -52,35 +57,38 @@ class CommingAndCompleteCard extends StatelessWidget {
 
     ///------------------------------upcoming match------------------------------->
 
-        : ListView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Container(
-              height: 269.h,
-              decoration: BoxDecoration(
-                  borderRadius:
-                  BorderRadius.circular(Dimensions.radiusDefault.r),
-                  color: AppColors.white),
-              child: CustomMatchesCard(
-                date: DateTime.now(),
-                image: "assets/images/upcomingmatchImage.png",
-                time: "08.00 AM",
-                positions: "3x20 Shots \nProne,standing & kneeling ",
-                description: "(First 200 of prone to count for 3P)",
-                entryFree: "Completed",
-                onTap: (){},
-                // buttonText: "See scores",
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            )
-          ],
-        );
-      },
-    );
+        : Obx(() {
+          return ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: _matchController.myMatchModel.length,
+            itemBuilder: (context, index) {
+              var myMatchData = _matchController.myMatchModel[index];
+              return Column(
+                children: [
+                  Container(
+                    height: 269.h,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                        BorderRadius.circular(Dimensions.radiusDefault.r),
+                        color: AppColors.white),
+                    child: CustomMatchesCard(
+                      date: DateTime.now(),
+                      image: "assets/images/upcomingmatchImage.png",
+                      time: "08.00 AM",
+                      positions: "3x20 Shots \nProne,standing & kneeling ",
+                      description: "(First 200 of prone to count for 3P)",
+                      entryFree: "Completed",
+                      onTap: (){},
+                      // buttonText: "See scores",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  )
+                ],
+              );
+            },
+          );
+    });
   }
 }

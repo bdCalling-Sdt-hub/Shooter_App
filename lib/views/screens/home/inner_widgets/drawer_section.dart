@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/profileController.dart';
+import 'package:shooter_app/helper/prefs_helper.dart';
+import 'package:shooter_app/utils/app_constants.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
@@ -198,11 +200,16 @@ class DrawerSection extends StatelessWidget {
                                         child: CustomButton(
                                             title: 'Yes',
                                             fontSize: 16.h,
-                                            onpress: () {
+                                            onpress: () async{
+                                              await PrefsHelper.remove(AppConstants.isLogged);
+                                              await PrefsHelper.remove(AppConstants.userId);
+                                              await PrefsHelper.remove(AppConstants.bearerToken);
+                                              await PrefsHelper.remove(AppConstants.subscription);
                                               Get.offNamed(
                                                   AppRoutes.signInScreen);
                                             })),
                                   ],
+
                                 )
                               ],
                             ),

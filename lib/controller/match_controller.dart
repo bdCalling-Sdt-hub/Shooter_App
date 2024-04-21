@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:shooter_app/model/match_model.dart';
+import 'package:shooter_app/model/up_coming_match_model.dart';
 
+import '../service/api_check.dart';
 import '../service/api_client.dart';
 import '../service/api_constant.dart';
 import '../utils/app_constants.dart';
@@ -18,6 +20,7 @@ class MatchController extends GetxController{
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
   Rx<MatchModel> matchModel = MatchModel().obs;
 
+
   getMatchs()async{
     setRxRequestStatus(Status.loading);
     var response = await ApiClient.getData(ApiConstant.allMatch);
@@ -32,7 +35,10 @@ class MatchController extends GetxController{
       }else{
         setRxRequestStatus(Status.error);
       }
-    }
+    }ApiChecker.checkApi(response);
   }
+
+
+
 
 }

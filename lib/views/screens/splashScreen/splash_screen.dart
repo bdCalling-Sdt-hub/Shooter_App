@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen>
       var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
       if (onBoard) {
         if (isLogged) {
-          Get.offNamed(AppRoutes.bottomNavBar);
+          Get.offNamed(AppRoutes.bottomNavBar,);
         } else {
           Get.offAllNamed(AppRoutes.signInScreen);
         }
