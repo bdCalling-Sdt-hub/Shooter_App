@@ -7,6 +7,7 @@ import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_images.dart';
 
+import '../../../../controller/data_controller.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
@@ -20,23 +21,26 @@ class HomeScreenAppBar extends StatelessWidget {
   });
 
    final HomeController _homeController = Get.put(HomeController());
-   final ProfileController _profileController = Get.put(ProfileController());
+ //  final ProfileController _profileController = Get.put(ProfileController());
+   final dataController = Get.put(DataController());
 
   @override
   Widget build(BuildContext context) {
+    dataController.getData();
+    debugPrint(" user name ${dataController.image.value}");
     return Obx(() {
-      var profileData = _profileController.profileModel.value.data?.attributes;
+   //   var profileData = _profileController.profileModel.value.data?.attributes;
       return Row(
         children: [
           ///---------------------profile image------------------------>
 
-        if(profileData?.image?.destination == "" || profileData?.image?.destination == null )
+        dataController.image.isEmpty?
           CircleAvatar(
             radius: 20.r,
             backgroundImage:  const AssetImage(AppImages.profileImg)
-          ) else  CircleAvatar(
+          ) : CircleAvatar(
             radius: 20.r,
-            backgroundImage:  NetworkImage("${ApiConstant.imageBaseUrl}/${profileData?.image?.destination}/${profileData?.image?.filename}")
+            backgroundImage:  NetworkImage("${ApiConstant.imageBaseUrl}${dataController.image.value}")
         ),
 
 
@@ -66,7 +70,7 @@ class HomeScreenAppBar extends StatelessWidget {
                   ],
                 ),
                 CustomText(
-                  text: "${profileData?.name}" ?? '',
+                  text: dataController.name.value ?? '',
                   fontsize: 20.h,
                   fontWeight: FontWeight.w400,
                   color: AppColors.white,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/my_match_controller.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
@@ -23,42 +24,44 @@ class CommingAndCompleteCard extends StatelessWidget {
         ?
 
     ///------------------------------complete match------------------------------->
-    ListView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: 3,
-      itemBuilder: (context, index) {
+    Obx(() {
+      return     ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: _matchController.myMatchModel.length,
+        itemBuilder: (context, index) {
 
-        return Column(
-          children: [
-            Container(
-              height: 297.h,
-              decoration: BoxDecoration(
-                  borderRadius:
-                  BorderRadius.circular(Dimensions.radiusDefault.r),
-                  color: AppColors.white),
-              child: CustomMatchesCard(
-                date: DateTime.now(),
-                image: "assets/images/upcomingmatchImage.png",
-                time: "08.00 AM",
-                positions: "3x20 Shots \nProne,standing & kneeling ",
-                description: "(First 200 of prone to count for 3P)",
-                buttonText: "See scores",
-                onTap: (){Get.toNamed(AppRoutes.scoresScreen);},
+          return Column(
+            children: [
+              Container(
+                height: 297.h,
+                decoration: BoxDecoration(
+                    borderRadius:
+                    BorderRadius.circular(Dimensions.radiusDefault.r),
+                    color: AppColors.white),
+                child: CustomMatchesCard(
+                  date: DateTime.now(),
+                  image: "assets/images/upcomingmatchImage.png",
+                  time: "08.00 AM",
+                  positions: "3x20 Shots \nProne,standing & kneeling ",
+                  description: "(First 200 of prone to count for 3P)",
+                  buttonText: "See scores",
+                  onTap: (){Get.toNamed(AppRoutes.scoresScreen);},
+                ),
               ),
-            ),
-            SizedBox(
-              height: 16.h,
-            )
-          ],
-        );
-      },
-    )
+              SizedBox(
+                height: 16.h,
+              )
+            ],
+          );
+        },
+      );
 
+    })
 
     ///------------------------------upcoming match------------------------------->
 
         : Obx(() {
-          return ListView.builder(
+          return _matchController.myMatchModel.isEmpty || _matchController.myMatchLoading.value ? const Center(child: CustomLoader()) : ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: _matchController.myMatchModel.length,
             itemBuilder: (context, index) {
@@ -72,12 +75,13 @@ class CommingAndCompleteCard extends StatelessWidget {
                         BorderRadius.circular(Dimensions.radiusDefault.r),
                         color: AppColors.white),
                     child: CustomMatchesCard(
-                      date: DateTime.now(),
+                      date: myMatchData.match?.matchDate,
                       image: "assets/images/upcomingmatchImage.png",
-                      time: "08.00 AM",
+                      time: "${myMatchData.match?.time}",
+                      gender: myMatchData.gender,
                       positions: "3x20 Shots \nProne,standing & kneeling ",
                       description: "(First 200 of prone to count for 3P)",
-                      entryFree: "Completed",
+                      entryFree:myMatchData.match?.registrationStatus,
                       onTap: (){},
                       // buttonText: "See scores",
                     ),
