@@ -22,18 +22,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _pickDateController = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
+
 
   final HomeController _homeController = Get.put(HomeController());
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    setState(() {
-      _pickDateController.text;
-    });
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,13 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ///-------------------------date time form------------------------>
                   CustomTextField(
                     readOnly: true,
-                    controller: _pickDateController,
+                    controller: _homeController.pickDateController,
                     contenpaddingHorizontal: 10,
                     contenpaddingVertical: 0,
                     hintText: "MM/DD/YYYY",
                     sufixicons: IconButton(
                         onPressed: () {
-                          _selectDate(context);
+                          _homeController.selectDate(context);
                         },
                         icon: SvgPicture.asset(AppIcons.calander,width: 24.w,height: 24.h,)),
                   ),
@@ -116,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     ///------------------------up Coming Events text-------------------->
-                    const UpComingEventsListView(),
+                     UpComingEventsListView(),
 
                     SizedBox(
                       height: 20.h,
@@ -132,24 +124,5 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   ///----------------------------------calender-------------------------------->
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1950),
-      lastDate: DateTime.now(),
-    );
 
-    if (pickedDate != null && pickedDate != _selectedDate) {
-      setState(() {
-        _selectedDate = pickedDate;
-        _pickDateController.text =
-            DateFormat('MM/dd/yyyy').format(_selectedDate);
-        /*dateCtrl.text =
-            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-        // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
-      });
-      print('Selected date: ${_pickDateController.text}');
-    }
-  }
 }
