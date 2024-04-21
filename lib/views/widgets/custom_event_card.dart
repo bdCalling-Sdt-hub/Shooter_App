@@ -54,7 +54,7 @@ class CustomEventsCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
                     ),
-                    child: fileName == '' || fileName == null ? const Center(child: CircularProgressIndicator()) : Image.network('${ApiConstant.imageBaseUrl}/$image'??"",height: 115.h,width: 321.w,fit: BoxFit.fill,)),
+                    child: fileName == '' || fileName == null ? Image.asset(AppImages.backgroundImg, height: 115.h, width: 321.w, fit: BoxFit.fill,) : Image.network('${ApiConstant.imageBaseUrl}/$image'??"",height: 115.h,width: 321.w,fit: BoxFit.fill,)),
                 ///--------------------------------- Date card---------------------->
 
                 Positioned(
