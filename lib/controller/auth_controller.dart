@@ -14,12 +14,14 @@ import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 
 import '../routes/app_routes.dart';
+import 'data_controller.dart';
 
 class AuthController extends GetxController {
   ///<===== ============== sign in =========== =====>
   final emailController = TextEditingController();
   final passController = TextEditingController();
   var signInLoading = false.obs;
+  final dataController = Get.put(DataController(), permanent: true);
 
   handleSignIn() async {
     signInLoading(true);
@@ -39,6 +41,14 @@ class AuthController extends GetxController {
         await PrefsHelper.setBool(AppConstants.isLogged, true);
         await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
         await PrefsHelper.setString(AppConstants.signInType, "General User");
+        await dataController.setData(
+            nameD: data['data']['attributes']['name']?? "",
+            emailD:data['data']['attributes']['email'] ?? "",
+            passwordD: "",
+            imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
+            userid:data['data']['attributes']['_id'] ?? "",
+        );
+        debugPrint("ssss ${dataController.image}");
         Get.offAllNamed(AppRoutes.bottomNavBar);
       }
     }

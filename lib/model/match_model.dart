@@ -1,4 +1,12 @@
+// To parse this JSON data, do
+//
+//     final matchModel = matchModelFromJson(jsonString);
 
+import 'dart:convert';
+
+MatchModel matchModelFromJson(String str) => MatchModel.fromJson(json.decode(str));
+
+String matchModelToJson(MatchModel data) => json.encode(data.toJson());
 
 class MatchModel {
   final String? message;
