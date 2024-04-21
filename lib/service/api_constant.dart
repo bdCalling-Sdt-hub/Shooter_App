@@ -13,6 +13,7 @@ class ApiConstant{
   static String setPassword="/user/set-password";
   static String allEvents = "/events/all";
   static String allMatch = "/match/all";
+  static String upComingMatch = "/match/upcomming";
   static String profileEndPoint(String userId)=> "/user/$userId";
   static String updateUser(String userId)=> "/user/update/$userId";
 

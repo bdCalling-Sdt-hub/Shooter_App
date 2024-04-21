@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shooter_app/model/match_model.dart';
+import 'package:shooter_app/model/up_coming_match_model.dart';
 
 import '../service/api_client.dart';
 import '../service/api_constant.dart';
@@ -12,11 +13,13 @@ class MatchController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     getMatchs();
+    getUpComingMatchs();
   }
 
   final rxRequestStatus = Status.loading.obs;
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
   Rx<MatchModel> matchModel = MatchModel().obs;
+
 
   getMatchs()async{
     setRxRequestStatus(Status.loading);
@@ -28,6 +31,25 @@ class MatchController extends GetxController{
       setRxRequestStatus(Status.completed);
     }else{
       if(response.statusText == ApiClient.noInternetMessage){
+        setRxRequestStatus(Status.internetError);
+      }else{
+        setRxRequestStatus(Status.error);
+      }
+    }
+  }
+
+
+  Rx<UpComingMatchModel> upComingMatchModel = UpComingMatchModel().obs;
+  getUpComingMatchs()async{
+    setRxRequestStatus(Status.loading);
+    var responsee = await ApiClient.getData(ApiConstant.upComingMatch);
+
+
+    if(responsee.statusCode == 200){
+      upComingMatchModel.value = UpComingMatchModel.fromJson(responsee.body);
+      setRxRequestStatus(Status.completed);
+    }else{
+      if(responsee.statusText == ApiClient.noInternetMessage){
         setRxRequestStatus(Status.internetError);
       }else{
         setRxRequestStatus(Status.error);
