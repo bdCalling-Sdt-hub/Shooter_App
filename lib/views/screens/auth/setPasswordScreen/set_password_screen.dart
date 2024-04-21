@@ -135,7 +135,7 @@ class SetPasswordScreen extends StatelessWidget {
             },
           ),
         ),
-        SizedBox(height: 248.h),
+        SizedBox(height: 200.h),
       ],
     );
   }

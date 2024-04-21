@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../controller/registration_controller.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
@@ -17,19 +18,15 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final RegistrationController registrationController = Get.put(RegistrationController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
-  final _ageController = TextEditingController();
-  final _clubNameController = TextEditingController();
-  String groupValue = '';
   /*void _handleRadioValueChange(String value) {
     setState(() {
       groupValue = value;
     });
   }*/
 
+  var parameter = Get.parameters;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomTextField(
-          controller: _nameController,
+          controller: registrationController.nameController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.fullName,
@@ -82,7 +79,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
-          controller: _emailController,
+          controller: registrationController.emailController,
           keyboardType: TextInputType.emailAddress,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
@@ -96,7 +93,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
-          controller: _phoneNumberController,
+          keyboardType: TextInputType.phone,
+          controller: registrationController.phoneNumberController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.phoneNumber,
@@ -115,10 +113,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Radio(
                 value: AppString.male,
                 activeColor: AppColors.primaryColor,
-                groupValue: groupValue,
+                groupValue: registrationController.groupValue,
                 onChanged: (value) {
                   setState(() {
-                    groupValue = value!;
+                    registrationController.groupValue = value!;
                   });
                 }),
             CustomText(
@@ -129,10 +127,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Radio(
                 value: AppString.female,
                 activeColor: AppColors.primaryColor,
-                groupValue: groupValue,
+                groupValue: registrationController.groupValue,
                 onChanged: (value) {
                   setState(() {
-                    groupValue = value!;
+                    registrationController.groupValue = value!;
                   });
                 }),
             CustomText(
@@ -143,7 +141,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
-          controller: _ageController,
+          controller: registrationController.ageController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.age,
@@ -156,7 +154,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
-          controller: _clubNameController,
+          controller: registrationController.clubNameController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.clubName,
@@ -172,10 +170,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           title: AppString.makePayment,
           titlecolor: Colors.white,
           onpress: () {
-            //Get.toNamed(AppRoutes.getOtpSceeen);
-            /*if (_formKey.currentState!.validate()) {
-              Get.toNamed(AppRoutes.getOtpSceee n);
-            }*/
+           // Get.toNamed(AppRoutes.getOtpSceeen);
+            if (_formKey.currentState!.validate()) {
+              registrationController.matchRegister('${parameter['matchId']}');
+
+            }
           },
         ),
       ],

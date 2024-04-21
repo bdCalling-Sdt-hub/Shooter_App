@@ -124,5 +124,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   ///----------------------------------calender-------------------------------->
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2050),
+    );
 
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+        _pickDateController.text =
+            DateFormat('MM/dd/yyyy').format(_selectedDate);
+      });
+      print('Selected date: ${_pickDateController.text}');
+    }
+  }
 }
