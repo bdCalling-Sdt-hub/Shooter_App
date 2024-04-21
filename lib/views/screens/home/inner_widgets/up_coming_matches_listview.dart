@@ -48,7 +48,7 @@ class UpComingMatchesListView extends StatelessWidget {
                   entryFree: "R ${matchData.fee} Per Entry",
                   buttonText: "Register",
                   onTap: () {
-                    Get.toNamed(AppRoutes.registrationScreen);
+                    Get.toNamed(AppRoutes.registrationScreen, parameters: {'matchId': '${matchData.id}'});
                   },
                 ),
               );
