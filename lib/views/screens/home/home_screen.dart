@@ -136,8 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1950),
-      lastDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2050),
     );
 
     if (pickedDate != null && pickedDate != _selectedDate) {
@@ -145,9 +145,6 @@ class _HomeScreenState extends State<HomeScreen> {
         _selectedDate = pickedDate;
         _pickDateController.text =
             DateFormat('MM/dd/yyyy').format(_selectedDate);
-        /*dateCtrl.text =
-            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-        // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
       });
       print('Selected date: ${_pickDateController.text}');
     }

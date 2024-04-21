@@ -64,7 +64,7 @@ class MatchesScreen extends StatelessWidget {
                           description: "(First 200 of prone to count for 3P)",
                           entryFree: "R ${match.fee} Per Entry",
                           buttonText: "Register",
-                          onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
+                          onTap: (){Get.toNamed(AppRoutes.registrationScreen, parameters: {'matchId' : "${match.id}"});},
                         ),
                       ),
 

@@ -15,6 +15,7 @@ class ApiConstant{
   static String allMatch = "/match/all";
   static String profileEndPoint(String userId)=> "/user/$userId";
   static String updateUser(String userId)=> "/user/update/$userId";
+  static String matchRegister(String matchId)=> "/match/register/$matchId";
 
 
 }
