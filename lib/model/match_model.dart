@@ -2,7 +2,7 @@
 
 class MatchModel {
   final String? message;
-  final List<Datum>? data;
+  final Data? data;
   final Pagination? pagination;
 
   MatchModel({
@@ -13,18 +13,34 @@ class MatchModel {
 
   factory MatchModel.fromJson(Map<String, dynamic> json) => MatchModel(
     message: json["message"],
-    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    data: json["data"] == null ? null : Data.fromJson(json["data"]),
     pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": data?.toJson(),
     "pagination": pagination?.toJson(),
   };
 }
 
-class Datum {
+class Data {
+  final List<Attribute>? attributes;
+
+  Data({
+    this.attributes,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    attributes: json["attributes"] == null ? [] : List<Attribute>.from(json["attributes"]!.map((x) => Attribute.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "attributes": attributes == null ? [] : List<dynamic>.from(attributes!.map((x) => x.toJson())),
+  };
+}
+
+class Attribute {
   final String? id;
   final String? matchName;
   final String? gender;
@@ -38,7 +54,7 @@ class Datum {
   final String? registrationStatus;
   final int? v;
 
-  Datum({
+  Attribute({
     this.id,
     this.matchName,
     this.gender,
@@ -53,7 +69,7 @@ class Datum {
     this.v,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
     id: json["_id"],
     matchName: json["matchName"],
     gender: json["gender"],

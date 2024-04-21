@@ -1,16 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:shooter_app/controller/events_controller.dart';
 import 'package:shooter_app/utils/dimentions.dart';
-import 'package:shooter_app/views/widgets/custom_button.dart';
-import 'package:shooter_app/views/widgets/custom_text.dart';
-
 import '../../../../controller/home_controller.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
+import '../../../../routes/app_routes.dart';
 import '../../../widgets/custom_event_card.dart';
 
 class UpComingEventsListView extends StatelessWidget {
@@ -38,7 +32,7 @@ class UpComingEventsListView extends StatelessWidget {
                 date: evensData.closingDate,
                 startDate: "${evensData.closingDate}",
                 onTap: (){
-
+                  Get.toNamed(AppRoutes.eventDetailsScreen, arguments : evensData);
                 },
               ),
             );

@@ -35,7 +35,7 @@ class MatchesScreen extends StatelessWidget {
 
 
       body: Obx(() {
-        var matchData = _matchController.matchModel.value.data;
+        var matchData = _matchController.matchModel.value.data?.attributes;
         switch(_matchController.rxRequestStatus.value){
           case Status.loading : return const CustomLoader();
           case Status.internetError : return NoInternetScreen(onTap: () { _matchController.getMatchs(); },);
