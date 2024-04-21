@@ -30,7 +30,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       extendBody: true,
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -141,6 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          keyboardType: TextInputType.number,
           controller: registrationController.ageController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
@@ -169,6 +169,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         CustomButton(
           title: AppString.makePayment,
           titlecolor: Colors.white,
+          loading: registrationController.registerLoading.value,
           onpress: () {
            // Get.toNamed(AppRoutes.getOtpSceeen);
             if (_formKey.currentState!.validate()) {
