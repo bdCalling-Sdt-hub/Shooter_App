@@ -4,51 +4,11 @@
 
 import 'dart:convert';
 
-MatchModel matchModelFromJson(String str) => MatchModel.fromJson(json.decode(str));
+List<MatchModel> matchModelFromJson(String str) => List<MatchModel>.from(json.decode(str).map((x) => MatchModel.fromJson(x)));
 
-String matchModelToJson(MatchModel data) => json.encode(data.toJson());
+String matchModelToJson(List<MatchModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MatchModel {
-  final String? message;
-  final Data? data;
-  final Pagination? pagination;
-
-  MatchModel({
-    this.message,
-    this.data,
-    this.pagination,
-  });
-
-  factory MatchModel.fromJson(Map<String, dynamic> json) => MatchModel(
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-    pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "message": message,
-    "data": data?.toJson(),
-    "pagination": pagination?.toJson(),
-  };
-}
-
-class Data {
-  final List<Attribute>? attributes;
-
-  Data({
-    this.attributes,
-  });
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    attributes: json["attributes"] == null ? [] : List<Attribute>.from(json["attributes"]!.map((x) => Attribute.fromJson(x))),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "attributes": attributes == null ? [] : List<dynamic>.from(attributes!.map((x) => x.toJson())),
-  };
-}
-
-class Attribute {
   final String? id;
   final String? matchName;
   final String? gender;
@@ -62,7 +22,7 @@ class Attribute {
   final String? registrationStatus;
   final int? v;
 
-  Attribute({
+  MatchModel({
     this.id,
     this.matchName,
     this.gender,
@@ -77,7 +37,7 @@ class Attribute {
     this.v,
   });
 
-  factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
+  factory MatchModel.fromJson(Map<String, dynamic> json) => MatchModel(
     id: json["_id"],
     matchName: json["matchName"],
     gender: json["gender"],
@@ -149,37 +109,5 @@ class Image {
     "filename": filename,
     "path": path,
     "size": size,
-  };
-}
-
-class Pagination {
-  final int? totalPages;
-  final int? currentPage;
-  final dynamic prevPage;
-  final dynamic nextPage;
-  final int? totalMatches;
-
-  Pagination({
-    this.totalPages,
-    this.currentPage,
-    this.prevPage,
-    this.nextPage,
-    this.totalMatches,
-  });
-
-  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-    totalPages: json["totalPages"],
-    currentPage: json["currentPage"],
-    prevPage: json["prevPage"],
-    nextPage: json["nextPage"],
-    totalMatches: json["totalMatches"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "totalPages": totalPages,
-    "currentPage": currentPage,
-    "prevPage": prevPage,
-    "nextPage": nextPage,
-    "totalMatches": totalMatches,
   };
 }
