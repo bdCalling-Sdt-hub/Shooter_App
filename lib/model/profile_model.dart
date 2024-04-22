@@ -63,8 +63,8 @@ class Attributes {
   final bool? isBlocked;
   final Image? image;
   final String? subscription;
-  final String? oneTimeCode;
-  final dynamic dateOfBirth;
+  final dynamic oneTimeCode;
+  final DateTime? dateOfBirth;
   final String? address;
   final String? phone;
   final String? club;
@@ -105,7 +105,7 @@ class Attributes {
     image: json["image"] == null ? null : Image.fromJson(json["image"]),
     subscription: json["subscription"],
     oneTimeCode: json["oneTimeCode"],
-    dateOfBirth: json["dateOfBirth"],
+    dateOfBirth: json["dateOfBirth"] == null ? null : DateTime.parse(json["dateOfBirth"]),
     address: json["address"],
     phone: json["phone"],
     club: json["club"],
@@ -126,7 +126,7 @@ class Attributes {
     "image": image?.toJson(),
     "subscription": subscription,
     "oneTimeCode": oneTimeCode,
-    "dateOfBirth": dateOfBirth,
+    "dateOfBirth": dateOfBirth?.toIso8601String(),
     "address": address,
     "phone": phone,
     "club": club,
@@ -139,32 +139,20 @@ class Attributes {
 class Image {
   final String? publicFileUrl;
   final String? path;
-  final String? mimetype;
-  final String? destination;
-  final String? filename;
 
   Image({
     this.publicFileUrl,
     this.path,
-    this.mimetype,
-    this.destination,
-    this.filename
   });
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
     publicFileUrl: json["publicFileURL"],
     path: json["path"],
-    mimetype: json["mimetype"],
-    destination: json["destination"],
-    filename: json["filename"],
   );
 
   Map<String, dynamic> toJson() => {
     "publicFileURL": publicFileUrl,
     "path": path,
-    "mimetype": mimetype,
-    "destination": destination,
-    "filename": filename,
   };
 }
 

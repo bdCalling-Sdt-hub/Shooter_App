@@ -17,19 +17,23 @@ class HomeController {
   final rxRequestStatus = Status.loading.obs;
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
 
-  RxList<UpComingEventModel> upComingEvensList = <UpComingEventModel>[].obs;
+
 
   getAllData() async {
     await getUpComingEvents();
     await getUpComingMatchs();
   }
 
-  getUpComingEvents() async {
+
+
+  ///==============================up Coming Events Get===============================>
+  RxList<UpComingEventModel> upComingEvensList = <UpComingEventModel>[].obs;
+    getUpComingEvents() async {
     setRxRequestStatus(Status.loading);
 
     var response = await ApiClient.getData(ApiConstant.upComingEven);
     if (response.statusCode == 200) {
-      upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e)=>UpComingMatchModel.fromJson(e)));
+      upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e)=>UpComingEventModel.fromJson(e)));
     } else {
       if (response.statusText == ApiClient.noInternetMessage) {
         setRxRequestStatus(Status.internetError);
@@ -40,6 +44,9 @@ class HomeController {
     ApiChecker.checkApi(response);
   }
 
+
+
+  ///===========================Up Coming Match Get ==================================>
   RxList<UpComingMatchModel> upComingMatchList=<UpComingMatchModel>[].obs;
   getUpComingMatchs() async {
     setRxRequestStatus(Status.loading);
@@ -78,4 +85,5 @@ class HomeController {
       print('Selected date: ${pickDateController.text}');
     }
   }
+
 }

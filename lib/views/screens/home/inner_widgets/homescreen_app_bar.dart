@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_images.dart';
 
 import '../../../../controller/data_controller.dart';
 import '../../../../controller/home_controller.dart';
+import '../../../../controller/profileController.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
@@ -21,7 +21,7 @@ class HomeScreenAppBar extends StatelessWidget {
   });
 
    final HomeController _homeController = Get.put(HomeController());
- //  final ProfileController _profileController = Get.put(ProfileController());
+   final ProfileController _profileController = Get.put(ProfileController());
    final dataController = Get.put(DataController());
 
   @override
@@ -40,7 +40,7 @@ class HomeScreenAppBar extends StatelessWidget {
             backgroundImage:  const AssetImage(AppImages.profileImg)
           ) : CircleAvatar(
             radius: 20.r,
-            backgroundImage:  NetworkImage("${ApiConstant.imageBaseUrl}${dataController.image.value}")
+            backgroundImage:  NetworkImage("${ApiConstant.imageBaseUrl}/${_profileController.profileModel.value.data?.attributes?.image?.publicFileUrl}")
         ),
 
 

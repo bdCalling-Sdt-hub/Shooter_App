@@ -27,7 +27,7 @@ class MatchController extends GetxController{
     loadMore();
   }
 
-  loadMore(){
+ loadMore()async{
     if(totalPage > page.value){
       page.value+=1;
       isLoadMore = true;

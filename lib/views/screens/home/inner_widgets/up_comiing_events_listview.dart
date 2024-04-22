@@ -18,7 +18,8 @@ class UpComingEventsListView extends StatelessWidget {
     return SizedBox(
       height: 260.h,
       child: Obx(() {
-        return _homeController.upComingEvensList.isEmpty?const Center(child: Text("No data found!"),) :ListView.builder(
+        _homeController.getAllData();
+        return _homeController.upComingEvensList.isEmpty? const Center(child: Text("No data found!"),) :ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: _homeController.upComingEvensList.length,
           itemBuilder: (context, index) {
@@ -26,7 +27,7 @@ class UpComingEventsListView extends StatelessWidget {
             return  Padding(
               padding:  EdgeInsets.only(left:index==0?Dimensions.paddingSizeDefault.w:5.w ,right:index ==5-1?Dimensions.paddingSizeDefault.w:5.w ),
               child: CustomEventsCard(
-                image: '${evensData.image.destination}/${evensData.image.filename}',
+                image: '${evensData.image?.publicFileUrl}',
                 title: evensData.name,
                 location: evensData.location,
                 date: evensData.closingDate,

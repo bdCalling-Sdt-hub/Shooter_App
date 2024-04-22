@@ -1,4 +1,4 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,19 +18,22 @@ import 'custom_button.dart';
 import 'custom_text.dart';
 
 class CustomEventsCard extends StatelessWidget {
-   const CustomEventsCard({
-    super.key,this.date, this.image, this.location, this.title, this.startDate, this.onTap, this.fileName
-  });
+  const CustomEventsCard(
+      {super.key,
+      this.date,
+      this.image,
+      this.location,
+      this.title,
+      this.startDate,
+      this.onTap,
+     });
 
   final DateTime? date;
-  final dynamic? fileName;
   final String? image;
   final String? location;
   final String? title;
   final String? startDate;
   final Function()? onTap;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +41,7 @@ class CustomEventsCard extends StatelessWidget {
       width: 350.w,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-          color: AppColors.white
-      ),
+          color: AppColors.white),
       child: Column(
         children: [
           ///---------------------------------image and date card---------------------->
@@ -47,14 +49,28 @@ class CustomEventsCard extends StatelessWidget {
             padding: EdgeInsets.all(12.r),
             child: Stack(
               children: [
-
                 ///---------------------------------image ---------------------->
                 Container(
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+                      borderRadius:
+                          BorderRadius.circular(Dimensions.radiusDefault.r),
                     ),
-                    child: fileName == '' || fileName == null ? Image.asset(AppImages.backgroundImg, height: 115.h, width: 321.w, fit: BoxFit.fill,) : Image.network('${ApiConstant.imageBaseUrl}/$image'??"",height: 115.h,width: 321.w,fit: BoxFit.fill,)),
+                    child: image == '' || image == null
+                        ? Image.asset(
+                            AppImages.backgroundImg,
+                            height: 115.h,
+                            width: 321.w,
+                            fit: BoxFit.fill,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: '${ApiConstant.imageBaseUrl}/$image' ?? "",
+                            key: UniqueKey(),
+                            height: 115.h,
+                            width: 321.w,
+                            fit: BoxFit.fill,
+                          )),
+
                 ///--------------------------------- Date card---------------------->
 
                 Positioned(
@@ -64,8 +80,7 @@ class CustomEventsCard extends StatelessWidget {
                     padding: EdgeInsets.all(8.r),
                     decoration: BoxDecoration(
                         color: AppColors.white,
-                        borderRadius: BorderRadius.circular(4.r)
-                    ),
+                        borderRadius: BorderRadius.circular(4.r)),
                     child: CustomText(
                       text: TimeFormatHelper.dateMountFormat(date!),
                       color: AppColors.primaryColor,
@@ -84,22 +99,28 @@ class CustomEventsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                    child:Column(
+                    child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text:title??"",
+                      text: title ?? "",
                       color: AppColors.backgroundColor,
                       fontsize: Dimensions.fontSizeDefault.h,
                       fontWeight: FontWeight.w400,
                     ),
-                    SizedBox(height: 5.h,),
+                    SizedBox(
+                      height: 5.h,
+                    ),
                     Row(
                       children: [
-                        SvgPicture.asset(AppIcons.locationMarker,height: 12.h,width: 12.w,),
+                        SvgPicture.asset(
+                          AppIcons.locationMarker,
+                          height: 12.h,
+                          width: 12.w,
+                        ),
                         Flexible(
                           child: CustomText(
-                            text:location??"",
+                            text: location ?? "",
                             color: AppColors.backgroundColor,
                             fontsize: Dimensions.fontSizeExtraSmall.h,
                             fontWeight: FontWeight.w400,
@@ -107,14 +128,14 @@ class CustomEventsCard extends StatelessWidget {
                         ),
                       ],
                     ),
-
                   ],
                 )),
-                SizedBox(width: 10.w,),
+                SizedBox(
+                  width: 10.w,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     ///-----------------------EEUFEES SHOOTING RANGE text---------------------->
                     CustomText(
                       text: "Started In:",
@@ -123,7 +144,9 @@ class CustomEventsCard extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
 
-                    SizedBox(height: 5.h,),
+                    SizedBox(
+                      height: 5.h,
+                    ),
 
                     TimeCountDown(dateLine: DateTime.parse("$startDate"))
                     // CustomText(
@@ -132,21 +155,23 @@ class CustomEventsCard extends StatelessWidget {
                     //   fontsize: Dimensions.fontSizeSmall.h,
                     //   fontWeight: FontWeight.w400,
                     // ),
-
-
                   ],
                 ),
               ],
             ),
           ),
-          SizedBox(height: 24.h,),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal:12.w
-            ),
-            child: CustomButton(title: "See Details",height:40.h,fontSize: 12.h, onpress:onTap??(){}, titlecolor: AppColors.white),
+          SizedBox(
+            height: 24.h,
           ),
-
-
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: CustomButton(
+                title: "See Details",
+                height: 40.h,
+                fontSize: 12.h,
+                onpress: onTap ?? () {},
+                titlecolor: AppColors.white),
+          ),
         ],
       ),
     );

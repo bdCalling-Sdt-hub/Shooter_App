@@ -37,16 +37,16 @@ class EventsScreen extends StatelessWidget {
         ),
       ),
       body: Obx(() {
-       var eventsData =  _eventsController.evensModel.value.data;
+       var eventsData =  _eventsController.evensModel.value;
        switch(_eventsController.rxRequestStatus.value){
          case Status.loading : return const CustomLoader();
          case Status.internetError : return NoInternetScreen(onTap: () { _eventsController.getEvents(); },);
          case Status.error : return GeneralErrorScreen(onTap: () { _eventsController.getEvents(); },);
          case Status.completed : return
            ListView.builder(
-             itemCount: eventsData?.length,
+             itemCount: eventsData.length,
              itemBuilder: (context, index) {
-               var events = eventsData![index];
+               var events = eventsData[index];
                return Column(
                  children: [
                    index == 0 ? SizedBox(height: 12.h,) : const SizedBox(),
@@ -55,12 +55,11 @@ class EventsScreen extends StatelessWidget {
                      padding: EdgeInsets.symmetric(
                          horizontal: Dimensions.paddingSizeDefault.w),
                      child: CustomEventsCard(
-                       image: "${events.image?.destination}/${events.image?.filename}",
+                       image: "${events.image?.publicFileUrl}",
                        title: "${events.name}",
                        location: "${events.location}",
                        date: events.closingDate,
                        startDate: '${events.closingDate}',
-                       fileName: events.image?.filename,
                        onTap: () {
                          Get.toNamed(AppRoutes.eventDetailsScreen, arguments : events);
                        },

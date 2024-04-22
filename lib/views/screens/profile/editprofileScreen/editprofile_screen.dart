@@ -51,6 +51,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       _locationController.text = "${profileData?.address}";
     });
   }
+
   Uint8List? _image;
   File? selectedIMage;
 
@@ -86,10 +87,11 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           : CircleAvatar(
                               radius: 60.r,
                               backgroundImage: profileData
-                                          ?.image?.destination !=
-                                      null
+                                              ?.image?.publicFileUrl !=
+                                          null ||
+                                      profileData?.image?.publicFileUrl != ''
                                   ? NetworkImage(
-                                      "${ApiConstant.imageBaseUrl}/${profileData?.image?.destination}/${profileData?.image?.filename}")
+                                      "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}")
                                   : const NetworkImage(
                                       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")),
                       Positioned(

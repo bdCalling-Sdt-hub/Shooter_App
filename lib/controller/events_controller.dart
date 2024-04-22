@@ -23,7 +23,7 @@ class EventsController extends GetxController{
 
   final rxRequestStatus = Status.loading.obs;
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
-  Rx<EventsModel> evensModel = EventsModel().obs;
+  RxList<EventsModel> evensModel = <EventsModel>[].obs;
 
   getEvents()async{
     setRxRequestStatus(Status.loading);
@@ -31,7 +31,7 @@ class EventsController extends GetxController{
 
 
     if(response.statusCode == 200){
-      evensModel.value = EventsModel.fromJson(response.body);
+      evensModel.value = List<EventsModel>.from(response.body['data']['attributes'].map((e)=> EventsModel.fromJson(e)));
       setRxRequestStatus(Status.completed);
     }else{
       if(response.statusText == ApiClient.noInternetMessage){

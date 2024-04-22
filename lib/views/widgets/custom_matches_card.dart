@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/routes/app_routes.dart';
+import 'package:shooter_app/service/api_constant.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_icons.dart';
 import '../../utils/dimentions.dart';
@@ -11,7 +13,6 @@ import 'custom_button.dart';
 import 'custom_text.dart';
 
 class CustomMatchesCard extends StatelessWidget {
-
   final DateTime? date;
   final String? image;
   final String? time;
@@ -22,16 +23,16 @@ class CustomMatchesCard extends StatelessWidget {
   final String? gender;
   final Function() onTap;
 
-  CustomMatchesCard({
-    this.date,
-    this.image,
-    this.time,
-    this.positions,
-    this.description,
-    this.entryFree,
-    this.gender,
-    required this.onTap,
-    this.buttonText});
+  CustomMatchesCard(
+      {this.date,
+      this.image,
+      this.time,
+      this.positions,
+      this.description,
+      this.entryFree,
+      this.gender,
+      required this.onTap,
+      this.buttonText});
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +40,28 @@ class CustomMatchesCard extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.all(12.r),
-
           child: Stack(
             children: [
-
               ///---------------------------------image and date comtainer---------------------->
               Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+                    borderRadius:
+                        BorderRadius.circular(Dimensions.radiusDefault.r),
                   ),
-                  child: Image.asset("$image",height: 115.h, width:  321.w,fit: BoxFit.fill,)),
+                  child: image == null || image == ''
+                      ? Image.asset(
+                          "$image",
+                          height: 115.h,
+                          width: 321.w,
+                          fit: BoxFit.fill,
+                        )
+                      : CachedNetworkImage(
+                          imageUrl: '${ApiConstant.imageBaseUrl}/$image',
+                    height: 115.h,
+                    width: 321.w,
+                    fit: BoxFit.fill,
+                  )),
               Positioned(
                 top: 8.h,
                 left: 8.w,
@@ -57,8 +69,7 @@ class CustomMatchesCard extends StatelessWidget {
                   padding: EdgeInsets.all(8.r),
                   decoration: BoxDecoration(
                       color: AppColors.white,
-                      borderRadius: BorderRadius.circular(4.r)
-                  ),
+                      borderRadius: BorderRadius.circular(4.r)),
                   child: CustomText(
                     text: TimeFormatHelper.dateMountFormat(date!),
                     color: AppColors.primaryColor,
@@ -70,9 +81,11 @@ class CustomMatchesCard extends StatelessWidget {
             ],
           ),
         ),
-
         Container(
-          margin: EdgeInsets.only(left: 12.w, right: 12.w,),
+          margin: EdgeInsets.only(
+            left: 12.w,
+            right: 12.w,
+          ),
           child: Column(
             children: [
               ///-----------------------3 position and text---------------------->
@@ -87,11 +100,13 @@ class CustomMatchesCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-
                       Container(
-                          margin: EdgeInsets.only(bottom: 5.h,right: 5.w),
-                          child: SvgPicture.asset(AppIcons.clock,width: 12.w,height: 15.h,)),
-
+                          margin: EdgeInsets.only(bottom: 5.h, right: 5.w),
+                          child: SvgPicture.asset(
+                            AppIcons.clock,
+                            width: 12.w,
+                            height: 15.h,
+                          )),
 
                       ///---------------------time text----------------------><
                       CustomText(
@@ -112,7 +127,7 @@ class CustomMatchesCard extends StatelessWidget {
                     text: "${gender} : $positions",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
-                     textHeight: 1.3.h,
+                    textHeight: 1.3.h,
                     fontWeight: FontWeight.w400,
                     textAlign: TextAlign.left,
                     top: 5.h,
@@ -129,41 +144,48 @@ class CustomMatchesCard extends StatelessWidget {
                     top: 5.h,
                   )),
 
-
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
 
               ///-----------------------amount ---------------------->
 
-              entryFree ==  null ? SizedBox() : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomText(
-                    text: "Registration fee :",
-                    color: AppColors.backgroundColor,
-                    fontsize: Dimensions.fontSizeDefault.h,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  CustomText(
-                    text: entryFree ?? "",
-                    color: AppColors.backgroundColor,
-                    fontsize: Dimensions.fontSizeDefault.h,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ],
+              entryFree == null
+                  ? SizedBox()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Registration fee :",
+                          color: AppColors.backgroundColor,
+                          fontsize: Dimensions.fontSizeDefault.h,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        CustomText(
+                          text: entryFree ?? "",
+                          color: AppColors.backgroundColor,
+                          fontsize: Dimensions.fontSizeDefault.h,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ],
+                    ),
+
+              SizedBox(
+                height: 16.h,
               ),
 
-              SizedBox(height: 16.h,),
-
               ///---------------------------botton----------------------------------->
-              buttonText == null ? SizedBox() :
-
-                CustomButton(title: "$buttonText",height:40.h,fontSize: 12.h,
-                    onpress: onTap,
-                //     onpress:(){
-                //   Get.toNamed(AppRoutes.registrationScreen);
-                // },
-                    titlecolor: AppColors.white),
-
+              buttonText == null
+                  ? SizedBox()
+                  : CustomButton(
+                      title: "$buttonText",
+                      height: 40.h,
+                      fontSize: 12.h,
+                      onpress: onTap,
+                      //     onpress:(){
+                      //   Get.toNamed(AppRoutes.registrationScreen);
+                      // },
+                      titlecolor: AppColors.white),
             ],
           ),
         )

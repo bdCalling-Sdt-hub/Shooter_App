@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/helper/prefs_helper.dart';
+import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/app_colors.dart';
@@ -53,10 +55,10 @@ class DrawerSection extends StatelessWidget {
                             height: 64.h,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.white),
-                            child: Image.asset(
+                            child: profileData?.image?.publicFileUrl == null || profileData?.image?.publicFileUrl == '' ? Image.asset(
                               AppImages.profileImg,
                               fit: BoxFit.cover,
-                            ),
+                            ) : CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}",fit: BoxFit.cover,),
                           ),
                           SizedBox(width: 8.w),
                           Expanded(
