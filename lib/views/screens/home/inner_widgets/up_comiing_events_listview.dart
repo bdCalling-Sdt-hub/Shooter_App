@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/utils/dimentions.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../widgets/custom_event_card.dart';
@@ -15,11 +15,11 @@ class UpComingEventsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _homeController.getAllData();
     return SizedBox(
       height: 260.h,
       child: Obx(() {
-        _homeController.getAllData();
-        return _homeController.upComingEvensList.isEmpty? const Center(child: Text("No data found!"),) :ListView.builder(
+        return _homeController.upComingEvensList.isEmpty? const Center(child: CustomLoader(),) :ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: _homeController.upComingEvensList.length,
           itemBuilder: (context, index) {
