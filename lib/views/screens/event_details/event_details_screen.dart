@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/match_controller.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_matches_card.dart';
@@ -12,11 +14,14 @@ import '../../../utils/app_icons.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
 import '../../widgets/custom_text.dart';
-import 'inner_widgets/event_match_card.dart';
+
+
+
+
 
 class EventDetailsScreen extends StatelessWidget {
-   EventDetailsScreen({super.key});
-
+  EventDetailsScreen({super.key});
+   final MatchController _matchController = Get.put(MatchController());
 
    var evensData = Get.arguments;
   @override
@@ -81,7 +86,7 @@ class EventDetailsScreen extends StatelessWidget {
               )
             ],
           ),
-            
+
 
 
 
@@ -229,72 +234,94 @@ class EventDetailsScreen extends StatelessWidget {
 
 
         ///-----------------------------up coming match card----------------------->
-        Container(
-          height: 316.h,
-          width: 350.w,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-              color: AppColors.white
-          ),
-          child: CustomMatchesCard(
 
-            date : DateTime.now(),
-            image : "assets/images/upcomingmatchImage.png",
-            time : "08.00 AM",
-            positions: "3x20 Shots \nProne,standing & kneeling ",
-            description: "(First 200 of prone to count for 3P)",
-            entryFree: "R 40-00 Per Entry",
-            buttonText: "Register",
-            onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
-          ),
+
+        SizedBox(
+          height: 3 * 314,
+          child: Obx(() {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: _matchController.matchModel.length,
+              itemBuilder: (context, index) {
+                var match =  _matchController.matchModel[index];
+                if(match.matchName == evensData.name) {
+                 return Padding(
+                    padding:  EdgeInsets.only(bottom: 16.h),
+                    child: Container(
+                      height: 316.h,
+                      width: 350.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+                          color: AppColors.white
+                      ),
+                      child: CustomMatchesCard(
+
+                        date : DateTime.now(),
+                        image : "${match.image?.publicFileUrl}",
+                        time : "${match.time}",
+                        positions: "3x20 Shots \nProne,standing & kneeling ",
+                        description: "(First 200 of prone to count for 3P)",
+                        entryFree: "R ${match.fee} Per Entry",
+                        buttonText: "Register",
+                        onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
+                      ),
+                    ),
+                  );
+                }else{
+                 return const SizedBox();
+                }
+              },
+            );
+          }),
         ),
-
-
-        SizedBox(height: 16.h,),
-
-
-        ///-----------------------------up coming match card 1st----------------------->
-        Container(
-          width: 350.w,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-              color: AppColors.white
-          ),
-          child: EventMatchCard(
-            date: "20\nDec",
-            image : "assets/images/upcomingmatchImage.png",
-            time: "11.00 AM",
-            meter: "50m Prone",
-            firstDetail: "First detail",
-            score: "1x600",
-            entryFree: "R 40-00 Per Entry",
-            buttonText: "Register",
-          ),
-        ),
-
-
-
-        SizedBox(height: 16.h,),
-
-        ///-----------------------------up coming match card 2nd----------------------->
-        Container(
-          width: 350.w,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-              color: AppColors.white
-          ),
-          child: EventMatchCard(
-            date: "20\nDec",
-            image : "assets/images/upcomingmatchImage.png",
-            time: "11.00 AM",
-            peepAndTelescope: "(Peep and telescope)",
-            meter: "50m Prone",
-            firstDetail: "Male : 2 Classes",
-            score: "1x600",
-            entryFree: "R 40-00 Per Entry",
-            buttonText: "Register",
-          ),
-        ),
+        //
+        //
+        // SizedBox(height: 16.h,),
+        //
+        //
+        // ///-----------------------------up coming match card 1st----------------------->
+        // Container(
+        //   width: 350.w,
+        //   decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+        //       color: AppColors.white
+        //   ),
+        //   child: EventMatchCard(
+        //     date: "20\nDec",
+        //     image : "assets/images/upcomingmatchImage.png",
+        //     time: "11.00 AM",
+        //     meter: "50m Prone",
+        //     firstDetail: "First detail",
+        //     score: "1x600",
+        //     entryFree: "R 40-00 Per Entry",
+        //     buttonText: "Register",
+        //   ),
+        // ),
+        //
+        //
+        //
+        // SizedBox(height: 16.h,),
+        //
+        // ///-----------------------------up coming match card 2nd----------------------->
+        // Container(
+        //   width: 350.w,
+        //   decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+        //       color: AppColors.white
+        //   ),
+        //   child: EventMatchCard(
+        //     date: "20\nDec",
+        //     image : "assets/images/upcomingmatchImage.png",
+        //     time: "11.00 AM",
+        //     peepAndTelescope: "(Peep and telescope)",
+        //     meter: "50m Prone",
+        //     firstDetail: "Male : 2 Classes",
+        //     score: "1x600",
+        //     entryFree: "R 40-00 Per Entry",
+        //     buttonText: "Register",
+        //   ),
+        // ),
 
       ],
     );
