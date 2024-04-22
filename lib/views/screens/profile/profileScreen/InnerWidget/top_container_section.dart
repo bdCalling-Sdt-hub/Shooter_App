@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,10 +46,10 @@ class TopContainerSection extends StatelessWidget {
                   height: 70.h,
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
-                  child: profileData?.destination == null || profileData?.destination == '' ? Image.asset(
+                  child: profileData?.publicFileUrl == null || profileData?.publicFileUrl == '' ? Image.asset(
                     AppImages.profileImg,
                     fit: BoxFit.cover,
-                  ): Image.network("${ApiConstant.imageBaseUrl}/$image",fit: BoxFit.cover,)
+                  ): CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${profileData?.publicFileUrl}",fit: BoxFit.cover,)
                 ),
                 CustomText(
                   text: name == null ? "Name" : '$name',

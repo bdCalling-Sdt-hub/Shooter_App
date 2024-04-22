@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                 TopContainerSection(
                   name: "${profileData?.name}",
                   subScription: "${profileData?.subscription}",
-                  image: "${profileData?.image?.destination}/${profileData?.image?.filename}",
+                  image: "${profileData?.image?.publicFileUrl}",
                 ),
                 SizedBox(height: 24.h),
                 Row(

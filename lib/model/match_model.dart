@@ -1,12 +1,4 @@
-// To parse this JSON data, do
-//
-//     final matchModel = matchModelFromJson(jsonString);
 
-import 'dart:convert';
-
-List<MatchModel> matchModelFromJson(String str) => List<MatchModel>.from(json.decode(str).map((x) => MatchModel.fromJson(x)));
-
-String matchModelToJson(List<MatchModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MatchModel {
   final String? id;
@@ -69,45 +61,21 @@ class MatchModel {
 }
 
 class Image {
-  final String? fieldname;
-  final String? originalname;
-  final String? encoding;
-  final String? mimetype;
-  final String? destination;
-  final String? filename;
-  final String? path;
-  final int? size;
+  final dynamic path;
+  final String? publicFileUrl;
 
   Image({
-    this.fieldname,
-    this.originalname,
-    this.encoding,
-    this.mimetype,
-    this.destination,
-    this.filename,
     this.path,
-    this.size,
+    this.publicFileUrl,
   });
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-    fieldname: json["fieldname"],
-    originalname: json["originalname"],
-    encoding: json["encoding"],
-    mimetype: json["mimetype"],
-    destination: json["destination"],
-    filename: json["filename"],
     path: json["path"],
-    size: json["size"],
+    publicFileUrl: json["publicFileURL"],
   );
 
   Map<String, dynamic> toJson() => {
-    "fieldname": fieldname,
-    "originalname": originalname,
-    "encoding": encoding,
-    "mimetype": mimetype,
-    "destination": destination,
-    "filename": filename,
     "path": path,
-    "size": size,
+    "publicFileURL": publicFileUrl,
   };
 }

@@ -41,7 +41,7 @@ class UpComingMatchesListView extends StatelessWidget {
                 child: CustomMatchesCard(
                   gender: matchData.gender,
                   date: matchData.matchDate,
-                  image: "assets/images/upcomingmatchImage.png",
+                  image: "${matchData.image?.publicFileUrl}",
                   time: "${matchData.time}" ?? "",
                   positions: "3x20 Shots \nProne,standing & kneeling ",
                   description: "(First 200 of prone to count for 3P)",
