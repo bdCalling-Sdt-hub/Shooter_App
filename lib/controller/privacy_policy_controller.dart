@@ -5,29 +5,17 @@ import '../service/api_constant.dart';
 class PrivacyPolicyController extends GetxController {
   RxBool isLoading = false.obs;
   RxString content = ''.obs;
-  @override
-  void onInit() {
-    getPrivacy();
-    super.onInit();
-  }
 
 //==============================> Get Privacy Policy Method <==========================
   getPrivacy() async {
-    try {
-      isLoading.value = true;
-      var response = await ApiClient.getData(ApiConstant.privacyPolicyEndPoint);
-      if (response.statusCode == 200) {
-        var data = response.body;
-        var attributes = data['data']['attributes'][0]['content'];
-        content.value = attributes;
-      } else {
-        Get.snackbar(
-            response.statusCode.toString(), response.statusText ?? "error");
-      }
-    } catch (e) {
-      print('Exception occurred: $e');
-      Get.snackbar('Error', 'An error occurred while fetching data');
-    } finally {
+    isLoading.value = true;
+    Map<String, String> header = {'Content-Type': 'application/json'};
+    var response = await ApiClient.getData(ApiConstant.privacyPolicyEndPoint,
+        headers: header);
+    if (response.statusCode == 200) {
+      var data = response.body;
+      var attributes = data['data']['content'];
+      content.value = attributes;
       isLoading.value = false;
     }
   }
