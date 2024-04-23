@@ -29,7 +29,6 @@ class AboutUsController extends GetxController {
         );
       }
     } catch (e) {
-      // Handle exceptions here
       print('Exception occurred: $e');
       Get.snackbar('Error', 'An error occurred while fetching data');
     } finally {

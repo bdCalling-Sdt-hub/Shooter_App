@@ -55,10 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   ///-------------------------date time form------------------------>
                   CustomTextField(
+                    onTab: (){
+                      _homeController.selectDate(context);
+                    },
                     readOnly: true,
                     controller: _homeController.pickDateController,
-                    contenpaddingHorizontal: 10,
-                    contenpaddingVertical: 0,
+                    contenpaddingHorizontal: 12.w,
+                    contenpaddingVertical: 12.h,
                     hintText: "MM/DD/YYYY",
                     sufixicons: IconButton(
                         onPressed: () {
@@ -66,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         icon: SvgPicture.asset(AppIcons.calander,width: 24.w,height: 24.h,)),
                   ),
-
                   SizedBox(
                     height: 10.h,
                   )
