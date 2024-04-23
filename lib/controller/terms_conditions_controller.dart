@@ -2,24 +2,26 @@ import 'package:get/get.dart';
 import '../service/api_client.dart';
 import '../service/api_constant.dart';
 
-class PrivacyPolicyController extends GetxController {
+class TermsConditionsController extends GetxController {
   RxBool isLoading = false.obs;
   RxString content = ''.obs;
+
   @override
   void onInit() {
-    getPrivacy();
+    getTermsCondition();
     super.onInit();
   }
 
-//==============================> Get Privacy Policy Method <==========================
-  getPrivacy() async {
+//==============================> Get Terms and Condition Method <==========================
+  getTermsCondition() async {
     try {
       isLoading.value = true;
-      var response = await ApiClient.getData(ApiConstant.privacyPolicyEndPoint);
+      var response =
+          await ApiClient.getData(ApiConstant.termsConditionsEndPoint);
       if (response.statusCode == 200) {
         var data = response.body;
-        var attributes = data['data']['attributes'][0]['content'];
-        content.value = attributes;
+        var contents = data['data']['attributes'][0]['content'];
+        content.value = contents;
       } else {
         Get.snackbar(
             response.statusCode.toString(), response.statusText ?? "error");

@@ -19,7 +19,7 @@ class CustomTextField extends StatefulWidget {
   final double? contenpaddingVertical;
   final Widget? sufixicons;
   final FormFieldValidator? validator;
-  final VoidCallback? ontapPrefix;
+  final VoidCallback? onTab;
   final bool isPassword;
   final bool? isEmail;
   final bool? readOnly;
@@ -41,7 +41,7 @@ class CustomTextField extends StatefulWidget {
     this.labelText,
     this.isPassword = false,
     this.readOnly = false,
-    this.ontapPrefix,
+    this.onTab,
   });
 
   @override
@@ -60,6 +60,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: widget.onTab,
       readOnly: widget.readOnly!,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
@@ -97,9 +98,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             vertical: widget.contenpaddingVertical ?? 20.w),
         filled: true,
         fillColor: widget.filColor ?? const Color(0xFF716665),
-        prefixIcon: widget.prifixicon == null ? null : GestureDetector(
-            onTap: widget.ontapPrefix,
-            child: widget.prifixicon),
+        prefixIcon: widget.prifixicon,
         suffixIcon: widget.isPassword
             ? GestureDetector(
                 onTap: toggle,
