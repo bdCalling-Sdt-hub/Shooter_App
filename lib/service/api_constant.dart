@@ -17,6 +17,7 @@ class ApiConstant{
   static String upComingEven = "/events/upcomming";
   static String myUpComingMatchs = "/match/my-upcomming-matches";
   static String aboutUsEndPoint = "/setting/about-us";
+  static String privacyPolicyEndPoint = "/setting/privacy-policy";
   static String profileEndPoint(String userId)=> "/user/$userId";
   static String updateUser(String userId)=> "/user/update/$userId";
   static String matchRegister(String matchId)=> "/match/register/$matchId";
