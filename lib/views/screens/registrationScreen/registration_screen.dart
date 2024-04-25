@@ -173,10 +173,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           titlecolor: Colors.white,
           loading: registrationController.registerLoading.value,
           onpress: () {
-           // Get.toNamed(AppRoutes.getOtpSceeen);
             if (_formKey.currentState!.validate()) {
               registrationController.matchRegister('${parameter['matchId']}');
-
             }
           },
         ),
