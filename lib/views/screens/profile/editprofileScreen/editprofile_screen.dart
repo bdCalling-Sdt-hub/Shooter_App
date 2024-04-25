@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/profileController.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/service/api_constant.dart';
-import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,7 +25,7 @@ class EditprofileScreen extends StatefulWidget {
 
 class _EditprofileScreenState extends State<EditprofileScreen> {
   final ProfileController _profileController = Get.put(ProfileController());
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userClassController = TextEditingController();
   final _clubController = TextEditingController();
@@ -107,7 +106,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 ),
                 //======================================> Text From Field Section <===============================================
                 Form(
-                    key: _formKey,
+                  //  key: _formKey,
                     child: Column(
                       children: [
                         SizedBox(height: 24.h),
@@ -122,12 +121,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                                 contenpaddingHorizontal: 20.w,
                                 contenpaddingVertical: 9.h,
                                 hintText: AppString.clasName,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please add class';
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
                             //======================> Club Field <=========================
@@ -138,12 +131,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                                 contenpaddingHorizontal: 20.w,
                                 contenpaddingVertical: 9.h,
                                 hintText: AppString.clubNameS,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please add club';
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
                           ],
@@ -156,31 +143,19 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           contenpaddingVertical: 16.h,
                           hintText: 'Enter your name',
                           prifixicon: _prefixIcon(AppIcons.user),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your name';
-                            }
-                            return null;
-                          },
                         ),
                         //======================> Date of Birth Field <=========================
                         SizedBox(height: 16.h),
                         CustomTextField(
+                          onTab: () {
+                            _selectDate(context);
+                          },
                           readOnly: true,
                           controller: _dateOfBirthController,
                           contenpaddingHorizontal: 12.w,
                           contenpaddingVertical: 16.h,
                           hintText: 'Enter your date of birth',
                           prifixicon: _prefixIcon(AppIcons.calander),
-                          ontapPrefix: () {
-                            _selectDate(context);
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your date of birth';
-                            }
-                            return null;
-                          },
                         ),
                         //======================> Phone Number Field <=========================
                         SizedBox(height: 16.h),
@@ -191,12 +166,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           contenpaddingVertical: 16.h,
                           hintText: '(000) 000-0000',
                           prifixicon: _prefixIcon(AppIcons.phone),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your phone number';
-                            }
-                            return null;
-                          },
                         ),
                         //======================> Location Field <=========================
                         SizedBox(height: 16.h),
@@ -208,12 +177,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           prifixicon: _prefixIcon(
                             AppIcons.locationMarker,
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your location';
-                            }
-                            return null;
-                          },
                         ),
                       ],
                     )),
@@ -225,7 +188,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                       title: AppString.update,
                       loading: _profileController.loading.value,
                       onpress: () {
-                        if (_formKey.currentState!.validate()) {
                           _profileController.editProfile(
                               _nameController.text,
                               _phoneNumberController.text,
@@ -234,7 +196,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                               _userClassController.text,
                               _dateOfBirthController.text,
                               selectedIMage);
-                        }
+
                       }),
                 ),
                 SizedBox(height: 70.h),
@@ -352,13 +314,8 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
-        _dateOfBirthController.text =
-            DateFormat('MM/dd/yyyy').format(_selectedDate);
-        /*dateCtrl.text =
-            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-        // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+        _dateOfBirthController.text =  TimeFormatHelper.birthDayFormat(_selectedDate);
       });
-      print('Selected date: ${_dateOfBirthController.text}');
     }
   }
 }

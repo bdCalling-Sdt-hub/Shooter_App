@@ -36,17 +36,20 @@ class AuthController extends GetxController {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = response.body;
       if (!data['data']['attributes']['isAdmin']) {
-        await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
-        await PrefsHelper.setString(AppConstants.bearerToken, data['data']['token']);
+        await PrefsHelper.setString(
+            AppConstants.userId, data['data']['attributes']['_id']);
+        await PrefsHelper.setString(
+            AppConstants.bearerToken, data['data']['token']);
         await PrefsHelper.setBool(AppConstants.isLogged, true);
-        await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
+        await PrefsHelper.setString(AppConstants.subscription,
+            data['data']['attributes']['subscription']);
         await PrefsHelper.setString(AppConstants.signInType, "General User");
         await dataController.setData(
-            nameD: data['data']['attributes']['name']?? "",
-            emailD:data['data']['attributes']['email'] ?? "",
-            passwordD: "",
-            imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
-            userid:data['data']['attributes']['_id'] ?? "",
+          nameD: data['data']['attributes']['name'] ?? "",
+          emailD: data['data']['attributes']['email'] ?? "",
+          passwordD: "",
+          imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
+          userid: data['data']['attributes']['_id'] ?? "",
         );
         debugPrint("ssss ${dataController.image}");
         Get.offAllNamed(AppRoutes.bottomNavBar);
@@ -60,7 +63,6 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-
   Future signInWithGoogle() async {
     // Trigger Google sign-in flow
     try {
@@ -69,7 +71,8 @@ class AuthController extends GetxController {
       // Check if user cancelled the sign-in
       if (googleUser != null) {
         // Get a Google authentication object
-        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
 
         // Create a new credential
         final credential = GoogleAuthProvider.credential(
@@ -78,47 +81,37 @@ class AuthController extends GetxController {
         );
 
         // Sign in with credential
-        UserCredential userCredential = await _auth.signInWithCredential(credential);
+        UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
         debugPrint("Google sign in complete");
-
       }
     } on Exception catch (e) {
       debugPrint("Google sign in error $e");
     }
   }
 
-
-
   /// <=========== facebook auth ================>
-
-
 
   Future signInWithFacebook() async {
     // Trigger Facebook login flow (customizable options available)
     try {
-      final LoginResult loginResult =  await FacebookAuth.instance.login();
+      final LoginResult loginResult = await FacebookAuth.instance.login();
 
       // Check if login was cancelled
       if (loginResult.status == LoginStatus.cancelled) {
         return null;
       }
-      final credential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      final credential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
       // Sign in with credential
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
       debugPrint('facebook sign in complete ');
     } on Exception catch (e) {
-    debugPrint('facebook sign in error : $e');
+      debugPrint('facebook sign in error : $e');
     }
-
-
-
-
   }
-
-
-
-
 
   ///<===== ============== sign up =============== =====>
 
@@ -151,7 +144,6 @@ class AuthController extends GetxController {
     signUpLoading(false);
   }
 
-
   /// <-------------------------- forgot password --------------->
 
   var forgotLoading = false.obs;
@@ -171,6 +163,7 @@ class AuthController extends GetxController {
     }
     forgotLoading(false);
   }
+
   ///  resend otp
 
   var resendOtpLoading = false.obs;
@@ -183,10 +176,12 @@ class AuthController extends GetxController {
         ApiConstant.forgot, json.encode(body),
         headers: header);
     if (response.statusCode == 200) {
-
-
     } else {
-      Fluttertoast.showToast(msg: response.statusText ?? "",backgroundColor: Colors.red,textColor: Colors.white,gravity: ToastGravity.CENTER);
+      Fluttertoast.showToast(
+          msg: response.statusText ?? "",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          gravity: ToastGravity.CENTER);
     }
     resendOtpLoading(false);
   }
@@ -215,8 +210,6 @@ class AuthController extends GetxController {
     verifyLoading(false);
   }
 
-
-
   /// <-------------------------- set password --------------->
 
   var setPasswordLoading = false.obs;
@@ -228,11 +221,11 @@ class AuthController extends GetxController {
     var response = await ApiClient.postData(
         ApiConstant.setPassword, json.encode(body),
         headers: header);
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       Get.offNamed(AppRoutes.signInScreen);
     } else {
       debugPrint("error set password ${response.statusText}");
-    Fluttertoast.showToast(msg: "${response.statusText}");
+      Fluttertoast.showToast(msg: "${response.statusText}");
     }
     setPasswordLoading(false);
   }
