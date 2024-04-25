@@ -14,7 +14,7 @@ class RegistrationController extends GetxController {
   final clubNameController = TextEditingController();
   String groupValue = '';
 
-//=========================> Match Register Method <============================
+//=========================> Match Register <============================
   var registerLoading = false.obs;
   var bearerToken = ApiClient.bearerToken;
   matchRegister(String matchId) async {
