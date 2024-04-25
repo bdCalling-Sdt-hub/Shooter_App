@@ -44,7 +44,7 @@ class EventDetailsScreen extends StatelessWidget {
 
           children: [
 
-            ///------------------------------EEUFEES SHOOTING RANGE text----------------------------------->?
+            ///------------------------------even name----------------------------------->?
             CustomText(text: "${evensData.name}",fontWeight: FontWeight.w400,fontsize: 20.h,textAlign: TextAlign.start,bottom: 12.h,),
 
           Row(
@@ -106,7 +106,7 @@ class EventDetailsScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
 
-                ///------------------------20d : 14h : 24m text------------------>
+                ///------------------------time count down------------------>
                 TimeCountDown(dateLine: evensData.closingDate, textColor: Colors.white,)
                 // CustomText(
                 //   text:" 20d : 14h : 24m",
@@ -201,7 +201,7 @@ class EventDetailsScreen extends StatelessWidget {
             //
             //
 
-            _matchSection(),
+            Expanded(child: _matchSection()),
 
             SizedBox(height: 12.h)
 
@@ -237,7 +237,6 @@ class EventDetailsScreen extends StatelessWidget {
 
 
         SizedBox(
-          height: 3 * 314,
           child: Obx(() {
             return ListView.builder(
               shrinkWrap: true,
@@ -275,54 +274,6 @@ class EventDetailsScreen extends StatelessWidget {
             );
           }),
         ),
-        //
-        //
-        // SizedBox(height: 16.h,),
-        //
-        //
-        // ///-----------------------------up coming match card 1st----------------------->
-        // Container(
-        //   width: 350.w,
-        //   decoration: BoxDecoration(
-        //       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-        //       color: AppColors.white
-        //   ),
-        //   child: EventMatchCard(
-        //     date: "20\nDec",
-        //     image : "assets/images/upcomingmatchImage.png",
-        //     time: "11.00 AM",
-        //     meter: "50m Prone",
-        //     firstDetail: "First detail",
-        //     score: "1x600",
-        //     entryFree: "R 40-00 Per Entry",
-        //     buttonText: "Register",
-        //   ),
-        // ),
-        //
-        //
-        //
-        // SizedBox(height: 16.h,),
-        //
-        // ///-----------------------------up coming match card 2nd----------------------->
-        // Container(
-        //   width: 350.w,
-        //   decoration: BoxDecoration(
-        //       borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-        //       color: AppColors.white
-        //   ),
-        //   child: EventMatchCard(
-        //     date: "20\nDec",
-        //     image : "assets/images/upcomingmatchImage.png",
-        //     time: "11.00 AM",
-        //     peepAndTelescope: "(Peep and telescope)",
-        //     meter: "50m Prone",
-        //     firstDetail: "Male : 2 Classes",
-        //     score: "1x600",
-        //     entryFree: "R 40-00 Per Entry",
-        //     buttonText: "Register",
-        //   ),
-        // ),
-
       ],
     );
   }

@@ -32,92 +32,97 @@ class _HomeScreenState extends State<HomeScreen> {
       ///-------------------------------app bar section-------------------------->
 
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ///-----------------app bar------------------------->
-                  HomeScreenAppBar(),
-
-                  ///----------------------------pick a date time text---------------------->
-                  CustomText(
-                    textAlign: TextAlign.start,
-                    text: AppString.pickadate,
-                    fontsize: Dimensions.fontSizeExtraLarge.h,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.white,
-                    top: 20.h,
-                    bottom: 12.h,
-                  ),
-
-                  ///-------------------------date time form------------------------>
-                  CustomTextField(
-                    readOnly: true,
-                    controller: _homeController.pickDateController,
-                    contenpaddingHorizontal: 10,
-                    contenpaddingVertical: 0,
-                    hintText: "MM/DD/YYYY",
-                    sufixicons: IconButton(
-                        onPressed: () {
-                          _homeController.selectDate(context);
-                        },
-                        icon: SvgPicture.asset(AppIcons.calander,width: 24.w,height: 24.h,)),
-                  ),
-
-                  SizedBox(
-                    height: 10.h,
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
+        child: RefreshIndicator(
+          onRefresh: ()async{
+            _homeController.getAllData();
+          },
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ///------------------------up Coming Matches text-------------------->
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.w),
-                      child: CustomText(
-                        textAlign: TextAlign.start,
-                        text: AppString.upcomingMatches,
-                        fontsize: Dimensions.fontSizeExtraLarge.h,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.white,
-                        bottom: 16.h,
-                        top: 10.h,
-                      ),
-                    ),
-                     UpComingMatchesListView(),
+                    ///-----------------app bar------------------------->
+                    HomeScreenAppBar(),
 
-                    ///------------------------up Coming Matches text-------------------->
-                    Container(
-                      margin: EdgeInsets.only(left: 20.w),
-                      child: CustomText(
-                        textAlign: TextAlign.start,
-                        text: AppString.upcomingEvents,
-                        fontsize: Dimensions.fontSizeExtraLarge.h,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.white,
-                        top: 20.h,
-                        bottom: 12.h,
-                      ),
+                    ///----------------------------pick a date time text---------------------->
+                    CustomText(
+                      textAlign: TextAlign.start,
+                      text: AppString.pickadate,
+                      fontsize: Dimensions.fontSizeExtraLarge.h,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.white,
+                      top: 20.h,
+                      bottom: 12.h,
                     ),
 
-                    ///------------------------up Coming Events text-------------------->
-                     UpComingEventsListView(),
+                    ///-------------------------date time form------------------------>
+                    CustomTextField(
+                      readOnly: true,
+                      controller: _homeController.pickDateController,
+                      contenpaddingHorizontal: 10,
+                      contenpaddingVertical: 0,
+                      hintText: "MM/DD/YYYY",
+                      sufixicons: IconButton(
+                          onPressed: () {
+                            _homeController.selectDate(context);
+                          },
+                          icon: SvgPicture.asset(AppIcons.calander,width: 24.w,height: 24.h,)),
+                    ),
 
                     SizedBox(
-                      height: 20.h,
-                    ),
+                      height: 10.h,
+                    )
                   ],
                 ),
               ),
-            )
-          ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ///------------------------up Coming Matches text-------------------->
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.w),
+                        child: CustomText(
+                          textAlign: TextAlign.start,
+                          text: AppString.upcomingMatches,
+                          fontsize: Dimensions.fontSizeExtraLarge.h,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.white,
+                          bottom: 16.h,
+                          top: 10.h,
+                        ),
+                      ),
+                       UpComingMatchesListView(),
+
+                      ///------------------------up Coming Matches text-------------------->
+                      Container(
+                        margin: EdgeInsets.only(left: 20.w),
+                        child: CustomText(
+                          textAlign: TextAlign.start,
+                          text: AppString.upcomingEvents,
+                          fontsize: Dimensions.fontSizeExtraLarge.h,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.white,
+                          top: 20.h,
+                          bottom: 12.h,
+                        ),
+                      ),
+
+                      ///------------------------up Coming Events text-------------------->
+                       UpComingEventsListView(),
+
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

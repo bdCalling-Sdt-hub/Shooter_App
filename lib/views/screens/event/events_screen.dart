@@ -43,34 +43,39 @@ class EventsScreen extends StatelessWidget {
          case Status.internetError : return NoInternetScreen(onTap: () { _eventsController.getEvents(); },);
          case Status.error : return GeneralErrorScreen(onTap: () { _eventsController.getEvents(); },);
          case Status.completed : return
-           ListView.builder(
-             itemCount: eventsData.length,
-             itemBuilder: (context, index) {
-               var events = eventsData[index];
-               return Column(
-                 children: [
-                   index == 0 ? SizedBox(height: 12.h,) : const SizedBox(),
-                   Container(
-                     height: 262.h,
-                     padding: EdgeInsets.symmetric(
-                         horizontal: Dimensions.paddingSizeDefault.w),
-                     child: CustomEventsCard(
-                       image: "${events.image?.publicFileUrl}",
-                       title: "${events.name}",
-                       location: "${events.location}",
-                       date: events.closingDate,
-                       startDate: '${events.closingDate}',
-                       onTap: () {
-                         Get.toNamed(AppRoutes.eventDetailsScreen, arguments : events);
-                       },
-                     ),
-                   ),
-                   SizedBox(
-                     height: 16.h,
-                   )
-                 ],
-               );
+           RefreshIndicator(
+             onRefresh: ()async{
+               await _eventsController.getEvents();
              },
+             child: ListView.builder(
+               itemCount: eventsData.length,
+               itemBuilder: (context, index) {
+                 var events = eventsData[index];
+                 return Column(
+                   children: [
+                     index == 0 ? SizedBox(height: 12.h,) : const SizedBox(),
+                     Container(
+                       height: 262.h,
+                       padding: EdgeInsets.symmetric(
+                           horizontal: Dimensions.paddingSizeDefault.w),
+                       child: CustomEventsCard(
+                         image: "${events.image?.publicFileUrl}",
+                         title: "${events.name}",
+                         location: "${events.location}",
+                         date: events.closingDate,
+                         startDate: '${events.closingDate}',
+                         onTap: () {
+                           Get.toNamed(AppRoutes.eventDetailsScreen, arguments : events);
+                         },
+                       ),
+                     ),
+                     SizedBox(
+                       height: 16.h,
+                     )
+                   ],
+                 );
+               },
+             ),
            );
 
        }
