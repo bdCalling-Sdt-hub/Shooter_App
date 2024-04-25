@@ -15,7 +15,7 @@ import '../../../widgets/genaral_error_screen.dart';
 import 'InnerWidget/top_container_section.dart';
 
 class ProfileScreen extends StatelessWidget {
-   ProfileScreen({super.key});
+  ProfileScreen({super.key});
 
   final ProfileController _profileController = Get.put(ProfileController());
 
@@ -35,74 +35,106 @@ class ProfileScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Obx((){
-        var profileData = _profileController.profileModel.value.data?.attributes;
+      body: Obx(() {
+        var profileData =
+            _profileController.profileModel.value.data?.attributes;
 
         print('=========================> $profileData');
-        switch(_profileController.rxRequestStatus.value){
-          case Status.loading : return const CustomLoader();
-          case Status.internetError : return NoInternetScreen(onTap: () { _profileController.getProfileData(); },);
-          case Status.error : return GeneralErrorScreen(onTap: () { _profileController.getProfileData(); },);
-          case Status.completed : return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 27.w),
-            child: Column(
-              children: [
-                SizedBox(height: 24.h),
-                //==================================> TopContainer Section <=================================
-                TopContainerSection(
-                  name: "${profileData?.name}",
-                  subScription: "${profileData?.subscription}",
-                  image: "${profileData?.image?.publicFileUrl}",
-                ),
-                SizedBox(height: 24.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _customContainer(
-                      AppString.clasS,
-                      profileData?.userClass == null || profileData?.userClass == "" ? "Name" : '${profileData?.userClass}',
-                    ),
-                    _customContainer(
-                      AppString.club,
-                      profileData?.club == null || profileData?.club == "" ? "Name" : "${profileData?.club}",
-                    ),
-                  ],
-                ),
+        switch (_profileController.rxRequestStatus.value) {
+          case Status.loading:
+            return const CustomLoader();
+          case Status.internetError:
+            return NoInternetScreen(
+              onTap: () {
+                _profileController.getProfileData();
+              },
+            );
+          case Status.error:
+            return GeneralErrorScreen(
+              onTap: () {
+                _profileController.getProfileData();
+              },
+            );
+          case Status.completed:
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 27.w),
+              child: Column(
+                children: [
+                  SizedBox(height: 24.h),
+                  //==================================> TopContainer Section <=================================
+                  TopContainerSection(
+                    name: "${profileData?.name}",
+                    subScription: "${profileData?.subscription}",
+                    image: "${profileData?.image?.publicFileUrl}",
+                  ),
+                  SizedBox(height: 24.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _customContainer(
+                        AppString.clasS,
+                        profileData?.userClass == null ||
+                                profileData?.userClass == ""
+                            ? "Name"
+                            : '${profileData?.userClass}',
+                      ),
+                      _customContainer(
+                        AppString.club,
+                        profileData?.club == null || profileData?.club == ""
+                            ? "Name"
+                            : "${profileData?.club}",
+                      ),
+                    ],
+                  ),
 
-                //==================================> CustomContainer Section <=================================
+                  //==================================> CustomContainer Section <=================================
 
-                ///======================= name=======================>
-                SizedBox(height: 24.h),
-                CustomListTile(
-                    title: '${profileData?.name}', prefixIcon: _prefixIcon(AppIcons.user)),
-                SizedBox(height: 16.h),
-                ///=======================date of birth=======================>
-                CustomListTile(
-                    title: profileData?.dateOfBirth == null ? "Date of birth" : '${profileData?.dateOfBirth}', prefixIcon: _prefixIcon(AppIcons.calander)),
-                SizedBox(height: 16.h),
-                ///======================= email=======================>
-                CustomListTile(
-                    title:'${profileData?.email}',
-                    prefixIcon: _prefixIcon(AppIcons.mail)),
-                SizedBox(height: 16.h),
-                ///======================= phone number=======================>
-                CustomListTile(
-                    title: profileData?.phone == null || profileData?.phone == '' ? "(000) 000-0000" : '${profileData?.phone}',
-                    prefixIcon: _prefixIcon(
-                      AppIcons.phone,
-                    )),
-                SizedBox(height: 16.h),
-                ///======================= address=======================>
-                CustomListTile(
-                  title: profileData?.address == null || profileData?.address == '' ? "Address" : '${profileData?.address}',
-                  prefixIcon: _prefixIcon(AppIcons.locationMarker),
-                ),
-                SizedBox(height: 16.h),
-              ],
-            ),
-          );
+                  ///======================= name=======================>
+                  SizedBox(height: 24.h),
+                  CustomListTile(
+                      title: '${profileData?.name}',
+                      prefixIcon: _prefixIcon(AppIcons.user)),
+                  SizedBox(height: 16.h),
+
+                  ///=======================date of birth=======================>
+                  CustomListTile(
+                      title: profileData?.dateOfBirth == null
+                          ? "Date of birth"
+                          : '${profileData?.dateOfBirth}',
+                      prefixIcon: _prefixIcon(AppIcons.calander)),
+                  SizedBox(height: 16.h),
+
+                  ///======================= email=======================>
+                  CustomListTile(
+                      title: '${profileData?.email}',
+                      prefixIcon: _prefixIcon(AppIcons.mail)),
+                  SizedBox(height: 16.h),
+
+                  ///======================= phone number=======================>
+                  CustomListTile(
+                      title:
+                          profileData?.phone == null || profileData?.phone == ''
+                              ? "(000) 000-0000"
+                              : '${profileData?.phone}',
+                      prefixIcon: _prefixIcon(
+                        AppIcons.phone,
+                      )),
+                  SizedBox(height: 16.h),
+
+                  ///======================= address=======================>
+                  CustomListTile(
+                    title: profileData?.address == null ||
+                            profileData?.address == ''
+                        ? "Address"
+                        : '${profileData?.address}',
+                    prefixIcon: _prefixIcon(AppIcons.locationMarker),
+                  ),
+                  SizedBox(height: 16.h),
+                ],
+              ),
+            );
         }
-  } ),
+      }),
     );
   }
 //===========================================> CustomContainer Section <=================================

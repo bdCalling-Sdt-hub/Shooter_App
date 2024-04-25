@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/profileController.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/service/api_constant.dart';
-import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
@@ -315,13 +314,8 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
-        _dateOfBirthController.text =
-            DateFormat('MM/dd/yyyy').format(_selectedDate);
-        /*dateCtrl.text =
-            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-        // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+        _dateOfBirthController.text =  TimeFormatHelper.birthDayFormat(_selectedDate);
       });
-      print('Selected date: ${_dateOfBirthController.text}');
     }
   }
 }
