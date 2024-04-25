@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/my_match_controller.dart';
+import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 
 import '../../../../routes/app_routes.dart';
@@ -76,7 +77,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                         color: AppColors.white),
                     child: CustomMatchesCard(
                       date: myMatchData.match?.matchDate,
-                      image: "assets/images/upcomingmatchImage.png",
+                      image: 'kkd',
                       time: "${myMatchData.match?.time}",
                       gender: myMatchData.gender,
                       positions: "3x20 Shots \nProne,standing & kneeling ",

@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         top: 10.h,
                       ),
                     ),
-                     UpComingMatchesListView(),
+                    UpComingMatchesListView(),
 
                     ///------------------------up Coming Matches text-------------------->
                     Container(
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     ///------------------------up Coming Events text-------------------->
-                     UpComingEventsListView(),
+                    UpComingEventsListView(),
 
                     SizedBox(
                       height: 20.h,

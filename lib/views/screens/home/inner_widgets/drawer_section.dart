@@ -55,7 +55,7 @@ class DrawerSection extends StatelessWidget {
                             height: 64.h,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.white),
-                            child: profileData?.image?.publicFileUrl == null || profileData?.image?.publicFileUrl == '' ? Image.asset(
+                            child: profileData?.image?.publicFileUrl == null  ? Image.asset(
                               AppImages.profileImg,
                               fit: BoxFit.cover,
                             ) : CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}",fit: BoxFit.cover,),
