@@ -26,7 +26,7 @@ class EditprofileScreen extends StatefulWidget {
 
 class _EditprofileScreenState extends State<EditprofileScreen> {
   final ProfileController _profileController = Get.put(ProfileController());
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userClassController = TextEditingController();
   final _clubController = TextEditingController();
@@ -107,7 +107,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 ),
                 //======================================> Text From Field Section <===============================================
                 Form(
-                    key: _formKey,
+                  //  key: _formKey,
                     child: Column(
                       children: [
                         SizedBox(height: 24.h),
@@ -122,12 +122,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                                 contenpaddingHorizontal: 20.w,
                                 contenpaddingVertical: 9.h,
                                 hintText: AppString.clasName,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please add class';
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
                             //======================> Club Field <=========================
@@ -138,12 +132,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                                 contenpaddingHorizontal: 20.w,
                                 contenpaddingVertical: 9.h,
                                 hintText: AppString.clubNameS,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please add club';
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
                           ],
@@ -156,12 +144,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           contenpaddingVertical: 16.h,
                           hintText: 'Enter your name',
                           prifixicon: _prefixIcon(AppIcons.user),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your name';
-                            }
-                            return null;
-                          },
                         ),
                         //======================> Date of Birth Field <=========================
                         SizedBox(height: 16.h),
@@ -175,12 +157,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           contenpaddingVertical: 16.h,
                           hintText: 'Enter your date of birth',
                           prifixicon: _prefixIcon(AppIcons.calander),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your date of birth';
-                            }
-                            return null;
-                          },
                         ),
                         //======================> Phone Number Field <=========================
                         SizedBox(height: 16.h),
@@ -191,12 +167,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           contenpaddingVertical: 16.h,
                           hintText: '(000) 000-0000',
                           prifixicon: _prefixIcon(AppIcons.phone),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your phone number';
-                            }
-                            return null;
-                          },
                         ),
                         //======================> Location Field <=========================
                         SizedBox(height: 16.h),
@@ -208,12 +178,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           prifixicon: _prefixIcon(
                             AppIcons.locationMarker,
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your location';
-                            }
-                            return null;
-                          },
                         ),
                       ],
                     )),
@@ -225,7 +189,6 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                       title: AppString.update,
                       loading: _profileController.loading.value,
                       onpress: () {
-                        if (_formKey.currentState!.validate()) {
                           _profileController.editProfile(
                               _nameController.text,
                               _phoneNumberController.text,
@@ -234,7 +197,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                               _userClassController.text,
                               _dateOfBirthController.text,
                               selectedIMage);
-                        }
+
                       }),
                 ),
                 SizedBox(height: 70.h),

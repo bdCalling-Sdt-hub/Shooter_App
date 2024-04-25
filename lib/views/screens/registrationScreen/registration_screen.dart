@@ -39,21 +39,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.paddingSizeDefault),
-        child: Column(
-          children: [
-            SizedBox(height: 24.h),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  _formFieldSection(),
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.paddingSizeDefault),
+          child: Column(
+            children: [
+              SizedBox(height: 24.h),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    _formFieldSection(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -178,6 +180,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             }
           },
         ),
+        SizedBox(height: 74.h),
       ],
     );
   }
