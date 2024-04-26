@@ -121,8 +121,8 @@ class AppString {
   static String scores = "Scores";
   static String clasS = "Class";
   static String date = "Date";
-  static String event = "Event";
-  static String match = "Match";
+  static String event = "Events";
+  static String match = "Matches";
   static String clasName = "Class Name";
   static String playerName = "Player name";
   static String club = "Club";

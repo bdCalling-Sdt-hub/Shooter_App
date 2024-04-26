@@ -85,7 +85,7 @@ class AppRoutes {
         GetPage(name: myScoresScreen, page: () => MyScoresScreen()),
         GetPage(name: bottomNavBar, page: () => BottomNavBar(),binding:InitialScreenBindings()),
         GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
-        GetPage(name: lineChartScreen, page: () => LineChart()),
+        //GetPage(name: lineChartScreen, page: () => LineChart()),
         GetPage(name: scoresScreen, page: () => ScoresScreen()),
       ];
 }
