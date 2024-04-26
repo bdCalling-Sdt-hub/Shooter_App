@@ -19,7 +19,7 @@ class UpComingMatchesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     _homeController.getUpComingMatchs();
     return SizedBox(
-      height: 315.h,
+      height: 325.h,
       child: Obx(() {
 
         _homeController.upComingMatchList;
@@ -40,12 +40,13 @@ class UpComingMatchesListView extends StatelessWidget {
                     color: AppColors.white
                 ),
                 child: CustomMatchesCard(
+                  eventName: matchData.event,
+                  matchName: matchData.matchName,
                   gender: matchData.gender,
                   date: matchData.matchDate,
                   image: "${matchData.image?.publicFileUrl}",
                   time: "${matchData.time}" ?? "",
-                  positions: "3x20 Shots \nProne,standing & kneeling ",
-                  description: "(First 200 of prone to count for 3P)",
+                  prone: matchData.prone,
                   entryFree: "R ${matchData.fee} Per Entry",
                   buttonText: "Register",
                   onTap: () {

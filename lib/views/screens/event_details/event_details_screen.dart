@@ -244,7 +244,7 @@ class EventDetailsScreen extends StatelessWidget {
               itemCount: _matchController.matchModel.length,
               itemBuilder: (context, index) {
                 var match =  _matchController.matchModel[index];
-                if(match.matchName == evensData.name) {
+                if(match.event == evensData.name) {
                  return Padding(
                     padding:  EdgeInsets.only(bottom: 16.h),
                     child: Container(
@@ -259,8 +259,10 @@ class EventDetailsScreen extends StatelessWidget {
                         date : DateTime.now(),
                         image : "${match.image?.publicFileUrl}",
                         time : "${match.time}",
-                        positions: "3x20 Shots \nProne,standing & kneeling ",
-                        description: "(First 200 of prone to count for 3P)",
+                        gender: match.gender,
+                        matchName: match.matchName,
+                        eventName: match.event,
+                        prone: match.prone,
                         entryFree: "R ${match.fee} Per Entry",
                         buttonText: "Register",
                         onTap: (){Get.toNamed(AppRoutes.registrationScreen);},
