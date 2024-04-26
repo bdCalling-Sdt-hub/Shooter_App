@@ -26,7 +26,7 @@ class CustomMatchesCard extends StatelessWidget {
   final String? eventName;
   final Function() onTap;
 
-  CustomMatchesCard(
+   CustomMatchesCard(
       {this.date,
       this.image,
       this.time,

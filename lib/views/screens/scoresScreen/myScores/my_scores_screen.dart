@@ -33,153 +33,157 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 24.h,
-          ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 24.h),
+            _TableSection(),
+        /*
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                children: [
 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              children: [
-                ///---------------------------------two bottom------------------------------>
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radiusDefault.r),
-                      border: Border.all(color: AppColors.primaryColor)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isComplete = true;
-                            });
-                          },
 
-                          ///---------------------------Scores botton----------------------->
-                          child: Container(
-                            height: 44.h,
-                            decoration: BoxDecoration(
-                                color: isComplete
-                                    ? AppColors.primaryColor
-                                    : AppColors.white,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8.r),
-                                    topLeft: Radius.circular(8.r))),
-                            child: Center(
-                              child: CustomText(
-                                text: AppString.scores,
-                                fontsize: Dimensions.fontSizeLarge.h,
-                                color: isComplete
-                                    ? AppColors.white
-                                    : AppColors.primaryColor,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isComplete = false;
-                            });
-                          },
-
-                          ///---------------------------Overview botton----------------------->
-                          child: Container(
-                            height: 44.h,
-                            decoration: BoxDecoration(
-                                color: isComplete
-                                    ? AppColors.white
-                                    : AppColors.primaryColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(8.r),
-                                    topRight: Radius.circular(8.r))),
-                            child: Center(
-                              child: CustomText(
-                                text: AppString.overview,
-                                fontsize: Dimensions.fontSizeLarge.h,
-                                color: isComplete
-                                    ? AppColors.primaryColor
-                                    : AppColors.white,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(
-                  height: 24.h,
-                ),
-
-                ///------------------------------date time pick from------------------->
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    width: 140.w,
+                  ///---------------------------------two bottom------------------------------>
+                  Container(
+                    width: double.infinity,
                     decoration: BoxDecoration(
+                        color: Colors.red,
                         borderRadius:
-                            BorderRadius.circular(Dimensions.radiusDefault.r)),
-                    child: TextField(
-                      controller: _pickDateController,
-                      decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 10.h,vertical: 1.h),
-                          hintText: "Feb 02-2024",
-                          hintStyle: TextStyle(
-                              fontSize: 12.h,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.whiteE8E8E8),
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              _selectDate(context);
+                            BorderRadius.circular(Dimensions.radiusDefault.r),
+                        border: Border.all(color: AppColors.primaryColor)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isComplete = true;
+                              });
                             },
-                            icon: SvgPicture.asset(
-                              AppIcons.calander,
-                              width: 12.w,
-                              height: 12.h,
-                              color: AppColors.white,
-                              fit: BoxFit.contain,
+
+                            ///---------------------------Scores botton----------------------->
+                            child: Container(
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                  color: isComplete
+                                      ? AppColors.primaryColor
+                                      : AppColors.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      topLeft: Radius.circular(8.r))),
+                              child: Center(
+                                child: CustomText(
+                                  text: AppString.scores,
+                                  fontsize: Dimensions.fontSizeLarge.h,
+                                  color: isComplete
+                                      ? AppColors.white
+                                      : AppColors.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                             ),
-                          )),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isComplete = false;
+                              });
+                            },
+
+                            ///---------------------------Overview botton----------------------->
+                            child: Container(
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                  color: isComplete
+                                      ? AppColors.white
+                                      : AppColors.primaryColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(8.r),
+                                      topRight: Radius.circular(8.r))),
+                              child: Center(
+                                child: CustomText(
+                                  text: AppString.overview,
+                                  fontsize: Dimensions.fontSizeLarge.h,
+                                  color: isComplete
+                                      ? AppColors.primaryColor
+                                      : AppColors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
+
+                  SizedBox(
+                    height: 24.h,
+                  ),
+
+                  ///------------------------------date time pick from------------------->
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      width: 140.w,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radiusDefault.r)),
+                      child: TextField(
+                        controller: _pickDateController,
+                        decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10.h,vertical: 1.h),
+                            hintText: "Feb 02-2024",
+                            hintStyle: TextStyle(
+                                fontSize: 12.h,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.whiteE8E8E8),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                _selectDate(context);
+                              },
+                              icon: SvgPicture.asset(
+                                AppIcons.calander,
+                                width: 12.w,
+                                height: 12.h,
+                                color: AppColors.white,
+                                fit: BoxFit.contain,
+                              ),
+                            )),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          SizedBox(
-            height: 16.h,
-          ),
+            SizedBox(
+              height: 16.h,
+            ),
 
-          ///---------------------table section----------------------------->
-          isComplete
-              ? Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: _TableSection(),
-                )
-              : LineChart(),
-        ],
+            ///---------------------table section----------------------------->
+            isComplete
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: _TableSection(),
+                  )
+                : LineChart(),*/
+          ],
+        ),
       ),
     );
   }
 
-  ///--------------------------------calender------------------------------:>
+  /*///--------------------------------calender------------------------------:>
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -192,7 +196,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
       print('Selected date: $pickedDate');
       // Do something with the selected date
     }
-  }
+  }*/
 
   ///--------------------------row text-------------------------->
   _rowText(String title) {

@@ -13,6 +13,7 @@ class ApiConstant {
   static String upComingMatch = "/match/upcomming";
   static String upComingEven = "/events/upcomming";
   static String myUpComingMatchs = "/match/my-upcomming-matches";
+  static String myCompletedMatches = "/match/my-complete-matches";
   static String aboutUsEndPoint = "/setting/about-us";
   static String privacyPolicyEndPoint = "/setting/privacy-policy";
   static String termsConditionsEndPoint = "/setting/terms-condition";
