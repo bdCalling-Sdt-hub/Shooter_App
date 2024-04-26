@@ -37,7 +37,7 @@ class MatchController extends GetxController {
       setRxRequestStatus(Status.loading);
     }
 
-    var response = await ApiClient.getData('${ApiConstant.allMatch}?limit=3&page=$page');
+    var response = await ApiClient.getData('${ApiConstant.allMatch}?page=$page');
 
     if (response.statusCode == 200) {
       if (response.body['data']['attributes'] != null) {
