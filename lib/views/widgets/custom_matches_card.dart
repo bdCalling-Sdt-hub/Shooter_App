@@ -95,7 +95,7 @@ class CustomMatchesCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              ///-----------------------3 position and text---------------------->
+              ///-----------------------name---------------------->
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -138,7 +138,7 @@ class CustomMatchesCard extends StatelessWidget {
               ),
 
 
-              ///---------------------------------Male/Female : genderText------------------------------>
+              ///--------------------------------- gender Text------------------------------>
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
@@ -194,7 +194,7 @@ class CustomMatchesCard extends StatelessWidget {
 
               ///---------------------------botton----------------------------------->
               buttonText == null
-                  ? SizedBox()
+                  ? const SizedBox()
                   : CustomButton(
                       title: "$buttonText",
                       height: 40.h,
@@ -204,6 +204,9 @@ class CustomMatchesCard extends StatelessWidget {
                       //   Get.toNamed(AppRoutes.registrationScreen);
                       // },
                       titlecolor: AppColors.white),
+
+
+
             ],
           ),
         )

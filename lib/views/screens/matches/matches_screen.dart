@@ -15,7 +15,7 @@ import '../../widgets/genaral_error_screen.dart';
 import '../../widgets/no_internet_screen.dart';
 
 class MatchesScreen extends StatefulWidget {
-   MatchesScreen({super.key});
+  MatchesScreen({super.key});
 
 
   @override
@@ -90,7 +90,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                         children: [
                           index == 0? SizedBox(height: 24.h,) : const SizedBox(),
                           Container(
-                            height: 316.h,
+                            height: 330.h,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
                                 color: AppColors.white
@@ -114,8 +114,8 @@ class _MatchesScreenState extends State<MatchesScreen> {
                         ],
                       );
                     }else if(index >= _matchController.totalResult){
-                    return  null;
-                  } else{
+                      return  null;
+                    } else{
                       return const CustomLoader();
                     }
 
@@ -130,6 +130,3 @@ class _MatchesScreenState extends State<MatchesScreen> {
     );
   }
 }
-
-
-

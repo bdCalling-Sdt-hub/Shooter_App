@@ -248,7 +248,7 @@ class EventDetailsScreen extends StatelessWidget {
                  return Padding(
                     padding:  EdgeInsets.only(bottom: 16.h),
                     child: Container(
-                      height: 316.h,
+                      height: 330.h,
                       width: 350.w,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
