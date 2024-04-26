@@ -12,7 +12,6 @@ class MatchController extends GetxController {
   var totalResult = (-1);
 
   final rxRequestStatus = Status.loading.obs;
-
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
   RxList matchModel = [].obs;
 
@@ -23,7 +22,7 @@ class MatchController extends GetxController {
   }
 
   void loadMore() {
-    if (totalPage >= page.value) {
+    if (totalPage > page.value) {
       page.value += 1;
       update();
       getMatchs();
@@ -37,7 +36,6 @@ class MatchController extends GetxController {
     if (page.value == 1) {
       setRxRequestStatus(Status.loading);
     }
-    print("ldkddddddddddddddddddddddddddddddddddddddd");
 
     var response = await ApiClient.getData('${ApiConstant.allMatch}?limit=3&page=$page');
 
