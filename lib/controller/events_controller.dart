@@ -9,8 +9,16 @@ import 'package:shooter_app/service/api_constant.dart';
 import '../service/api_check.dart';
 import '../utils/app_constants.dart';
 
-class EventsController extends GetxController{
+class EventsController extends GetxController {
+  RxInt page = 1.obs;
+  var totalPage = (-1);
+  var currectPage = (-1);
+  var totalResult = (-1);
 
+
+  final rxRequestStatus = Status.loading.obs;
+  void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
+  RxList evensLists = [].obs;
 
 
   @override
@@ -18,31 +26,43 @@ class EventsController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     getEvents();
-
   }
 
-  final rxRequestStatus = Status.loading.obs;
-  void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
-  RxList<EventsModel> evensModel = <EventsModel>[].obs;
+  void loadMore() {
+    if (totalPage > page.value) {
+      page.value += 1;
+      update();
+      getEvents();
+    } else {
+      update();
+    }
+  }
 
-  getEvents()async{
-    setRxRequestStatus(Status.loading);
-    var response = await ApiClient.getData(ApiConstant.allEvents);
+  Future<void> getEvents() async {
+    if (page.value == 1) {
+      setRxRequestStatus(Status.loading);
+    }
+
+    var response = await ApiClient.getData('${ApiConstant.allEvents}?page=${page.value}');
+    if (response.statusCode == 200) {
+      if (response.body['data']['attributes'] != null) {
+        totalPage = jsonDecode(response.body['pagination']['totalPages'].toString());
+        currectPage = jsonDecode(response.body['pagination']['currentPage'].toString());
+        totalResult = jsonDecode(response.body['pagination']['totalEvents'].toString());
+        var eventData = List<EventsModel>.from(response.body['data']['attributes'].map((e) => EventsModel.fromJson(e)));
 
 
-    if(response.statusCode == 200){
-      evensModel.value = List<EventsModel>.from(response.body['data']['attributes'].map((e)=> EventsModel.fromJson(e)));
-      setRxRequestStatus(Status.completed);
-    }else{
-      if(response.statusText == ApiClient.noInternetMessage){
+        evensLists.addAll(eventData);
+        setRxRequestStatus(Status.completed);
+        update();
+      }
+    } else {
+      if (response.statusText == ApiClient.noInternetMessage) {
         setRxRequestStatus(Status.internetError);
-      }else{
+      } else {
         setRxRequestStatus(Status.error);
       }
-    }ApiChecker.checkApi(response);
+    }
+    ApiChecker.checkApi(response);
   }
-
-
-
-
 }

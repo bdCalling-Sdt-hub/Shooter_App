@@ -8,11 +8,30 @@ import '../../../../utils/dimentions.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_text.dart';
 
-class SubscriptionScreen extends StatelessWidget {
-  const SubscriptionScreen({super.key});
+class SubscriptionScreen extends StatefulWidget {
+  SubscriptionScreen({super.key});
+
+  @override
+  State<SubscriptionScreen> createState() => _SubscriptionScreenState();
+}
+
+class _SubscriptionScreenState extends State<SubscriptionScreen> {
+  List  subsCriptionData = [
+    {
+      'duration': '6',
+      'price': '1200',
+    },
+    {
+      'duration': '12',
+      'price': '1200',
+    },
+  ];
+
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
+    print("===========================================================>selected index $selectedIndex");
     return Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
@@ -60,7 +79,7 @@ class SubscriptionScreen extends StatelessWidget {
               children: [
                 //================================> Body Strings Section <=======================
 
-                const Spacer(),
+                 const Spacer(),
                 CustomText(
                   text: AppString.youHave,
                   fontsize: 16.sp,
@@ -72,58 +91,33 @@ class SubscriptionScreen extends StatelessWidget {
                   fontsize: 24.sp,
                 ),
                 SizedBox(height: 35.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          color: AppColors.fieldColor,
-                          border: Border.all(
-                              width: 1.w, color: AppColors.primaryColor)),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 8.w, vertical: 12.h),
-                        child: Column(
-                          children: [
-                            CustomText(
-                                text: AppString.months12, fontsize: 16.sp),
-                            SizedBox(height: 12.h),
-                            CustomText(
-                                text: AppString.rand120, fontsize: 18.sp),
-                            SizedBox(height: 12.h),
-                            CustomText(
-                              text: AppString.days10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          color: AppColors.fieldColor,
-                          border:
-                              Border.all(width: 1.w, color: AppColors.white)),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 8.w, vertical: 12.h),
-                        child: Column(
-                          children: [
-                            CustomText(
-                                text: AppString.months6, fontsize: 16.sp),
-                            SizedBox(height: 12.h),
-                            CustomText(text: AppString.rand80, fontsize: 18.sp),
-                            SizedBox(height: 12.h),
-                            CustomText(
-                              text: AppString.days10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+
+               SizedBox(
+                    height: 140.h,
+                    child: ListView.builder(
+                           physics: const NeverScrollableScrollPhysics(),
+                           scrollDirection: Axis.horizontal,
+                            itemCount: subsCriptionData.length,
+                            itemBuilder: (context, index) {
+                             var data = subsCriptionData[index];
+                              return GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    selectedIndex = index;
+                                  });
+                                },
+                                child: Padding(
+                                  padding:  EdgeInsets.only(right: subsCriptionData[index] == 1 ? 0 : 10.w),
+                                  child: SubscriptionCard(
+                                    duration: data['duration'],
+                                    price: data['price'],
+                                    isSelected:index == selectedIndex,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                  ),
 
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
@@ -138,5 +132,47 @@ class SubscriptionScreen extends StatelessWidget {
             ),
           ),
         ]));
+  }
+}
+
+class SubscriptionCard extends StatelessWidget {
+  final String? duration;
+  final String? price;
+  final bool isSelected;
+  final VoidCallback? onTap;
+
+  const SubscriptionCard({
+    super.key,
+    this.duration,
+    this.price,
+    required  this.isSelected,
+    this.onTap
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.r),
+            color: AppColors.fieldColor,
+            border: Border.all(width: 1.w, color: isSelected ?  AppColors.primaryColor : Colors.black )),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+          child: Column(
+            children: [
+              CustomText(text: '$duration Months', fontsize: 14.h),
+              SizedBox(height: 12.h),
+              CustomText(text: "Rand $price/Month", fontsize: 16.h),
+              SizedBox(height: 12.h),
+              CustomText(
+                text: AppString.days10,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
