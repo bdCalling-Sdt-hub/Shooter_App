@@ -103,7 +103,7 @@ class CustomEventsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: title ?? "",
+                      text: 'Event Name: $title' ?? "",
                       color: AppColors.backgroundColor,
                       fontsize: Dimensions.fontSizeDefault.h,
                       fontWeight: FontWeight.w400,
@@ -136,7 +136,7 @@ class CustomEventsCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ///-----------------------EEUFEES SHOOTING RANGE text---------------------->
+                    ///-----------------------started in---------------------->
                     CustomText(
                       text: "Started In:",
                       color: AppColors.backgroundColor,

@@ -61,7 +61,7 @@ class EventsScreen extends StatelessWidget {
                        child: CustomEventsCard(
                          image: "${events.image?.publicFileUrl}",
                          title: "${events.name}",
-                         location: "${events.location}",
+                         location: " ${events.location}",
                          date: events.closingDate,
                          startDate: '${events.closingDate}',
                          onTap: () {

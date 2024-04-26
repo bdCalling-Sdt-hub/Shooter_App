@@ -17,12 +17,14 @@ import '../../widgets/no_internet_screen.dart';
 class MatchesScreen extends StatefulWidget {
   MatchesScreen({super.key});
 
+
   @override
   State<MatchesScreen> createState() => _MatchesScreenState();
 }
 
 class _MatchesScreenState extends State<MatchesScreen> {
   final MatchController _matchController = Get.put(MatchController());
+
 
   ScrollController _scrollController = ScrollController();
 
@@ -48,95 +50,83 @@ class _MatchesScreenState extends State<MatchesScreen> {
     });
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: const SizedBox(),
         centerTitle: true,
-        title: CustomText(
-          text: AppString.matches,
-          fontsize: Dimensions.fontSizeLarge,
-          color: AppColors.white,
-          fontWeight: FontWeight.w400,
-        ),
+        title: CustomText(text: AppString.matches,fontsize: Dimensions.fontSizeLarge,color: AppColors.white,fontWeight: FontWeight.w400,),
       ),
+
+
+
+
       body: Obx(() {
-     _matchController.matchModel.value;
-        switch (_matchController.rxRequestStatus.value) {
-          case Status.loading:
-            return const CustomLoader();
-          case Status.internetError:
-            return NoInternetScreen(
-              onTap: () {
-                _matchController.getMatchs();
-              },
-            );
-          case Status.error:
-            return GeneralErrorScreen(
-              onTap: () {
-                _matchController.getMatchs();
-              },
-            );
-          case Status.completed:
-            return Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: Dimensions.paddingSizeDefault.w),
-                child: RefreshIndicator(
-                  onRefresh: () async {
-                    await _matchController.getMatchs();
-                  },
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    itemCount: _matchController.matchModel.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index < _matchController.matchModel.length) {
-                        var match = _matchController.matchModel[index];
-                        return Column(
-                          children: [
-                            index == 0
-                                ? SizedBox(
-                                    height: 24.h,
-                                  )
-                                : const SizedBox(),
-                            Container(
-                              height: 316.h,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radiusDefault.r),
-                                  color: AppColors.white),
-                              child: CustomMatchesCard(
-                                gender: match.gender,
-                                date: match.matchDate,
-                                image: "${match.image?.publicFileUrl}",
-                                time: "${match.time}",
-                                positions:
-                                    "3x20 Shots \nProne,standing & kneeling ",
-                                description:
-                                    "(First 200 of prone to count for 3P)",
-                                entryFree: "R ${match.fee} Per Entry",
-                                buttonText: "Register",
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.registrationScreen,
-                                      parameters: {'matchId': "${match.id}"});
-                                },
-                              ),
+        var matchData = _matchController.matchModel.value;
+        switch(_matchController.rxRequestStatus.value){
+          case Status.loading : return const CustomLoader();
+          case Status.internetError : return NoInternetScreen(onTap: () { _matchController.getMatchs(); },);
+          case Status.error : return GeneralErrorScreen(onTap: () { _matchController.getMatchs(); },);
+          case Status.completed : return Padding(
+              padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault.w),
+              child:  RefreshIndicator(
+                onRefresh: ()async{
+                  await _matchController.getMatchs();
+                },
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: _matchController.matchModel.length+1,
+                  itemBuilder: (context, index) {
+
+
+                    if(index < _matchController.matchModel.length){
+                      var match = _matchController.matchModel[index];
+                      return Column(
+                        children: [
+                          index == 0? SizedBox(height: 24.h,) : const SizedBox(),
+                          Container(
+                            height: 330.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
+                                color: AppColors.white
                             ),
-                            SizedBox(
-                              height: 16.h,
-                            )
-                          ],
-                        );
-                      } else if (index >= _matchController.totalResult) {
-                        return null;
-                      } else {
-                        return const CustomLoader();
-                      }
-                    },
-                  ),
-                ));
+                            child: CustomMatchesCard(
+                              gender: match.gender,
+                              date : match.matchDate,
+                              image : "${match.image?.publicFileUrl}",
+                              time : "${match.time}",
+                              eventName: match.event,
+                              matchName: match.matchName,
+                              prone: match.prone,
+                              entryFree: "R ${match.fee} Per Entry",
+                              buttonText: "Register",
+                              onTap: (){Get.toNamed(AppRoutes.registrationScreen, parameters: {'matchId' : "${match.id}"});},
+                            ),
+                          ),
+
+
+                          SizedBox(height: 16.h,)
+                        ],
+                      );
+                    }else if(index >= _matchController.totalResult){
+                      return  null;
+                    } else{
+                      return const CustomLoader();
+                    }
+
+
+                  },
+                ),
+              )
+          );
         }
       }),
+
     );
   }
 }
