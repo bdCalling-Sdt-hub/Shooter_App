@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/service/api_constant.dart';
+import 'package:shooter_app/utils/app_images.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_icons.dart';
 import '../../utils/dimentions.dart';
@@ -17,10 +18,12 @@ class CustomMatchesCard extends StatelessWidget {
   final String? image;
   final String? time;
   final String? positions;
-  final String? description;
+  final String? prone;
   final String? entryFree;
   final String? buttonText;
   final String? gender;
+  final String? matchName;
+  final String? eventName;
   final Function() onTap;
 
   CustomMatchesCard(
@@ -28,9 +31,11 @@ class CustomMatchesCard extends StatelessWidget {
       this.image,
       this.time,
       this.positions,
-      this.description,
+      this.prone,
       this.entryFree,
       this.gender,
+        this.matchName,
+        this.eventName,
       required this.onTap,
       this.buttonText});
 
@@ -42,7 +47,7 @@ class CustomMatchesCard extends StatelessWidget {
           margin: EdgeInsets.all(12.r),
           child: Stack(
             children: [
-              ///---------------------------------image and date comtainer---------------------->
+              ///---------------------------------image and date container---------------------->
               Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
@@ -51,7 +56,7 @@ class CustomMatchesCard extends StatelessWidget {
                   ),
                   child: image == null || image == ''
                       ? Image.asset(
-                          "$image",
+                          "${AppImages.backgroundImg}",
                           height: 115.h,
                           width: 321.w,
                           fit: BoxFit.fill,
@@ -87,16 +92,19 @@ class CustomMatchesCard extends StatelessWidget {
             right: 12.w,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               ///-----------------------3 position and text---------------------->
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: "3 Position",
+                    text: 'Event Name: $eventName' ?? '',
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeDefault.h,
                     fontWeight: FontWeight.w400,
+
                   ),
                   Row(
                     children: [
@@ -120,11 +128,21 @@ class CustomMatchesCard extends StatelessWidget {
                 ],
               ),
 
+
+              CustomText(
+                top: 5.h,
+                text: 'Match Name: $matchName' ?? '',
+                color: AppColors.backgroundColor,
+                fontsize: Dimensions.fontSizeDefault.h,
+                fontWeight: FontWeight.w400,
+              ),
+
+
               ///---------------------------------Male/Female : genderText------------------------------>
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "${gender} : $positions",
+                    text: "Gender: $gender",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                     textHeight: 1.3.h,
@@ -133,11 +151,11 @@ class CustomMatchesCard extends StatelessWidget {
                     top: 5.h,
                   )),
 
-              ///---------------------------------desciption  text------------------------------>
+              ///---------------------------------prone text------------------------------>
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "$description",
+                    text: "Prone: $prone",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,
@@ -151,7 +169,7 @@ class CustomMatchesCard extends StatelessWidget {
               ///-----------------------amount ---------------------->
 
               entryFree == null
-                  ? SizedBox()
+                  ? const SizedBox()
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

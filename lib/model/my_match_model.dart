@@ -1,12 +1,4 @@
-// To parse this JSON data, do
-//
-//     final myMatchModel = myMatchModelFromJson(jsonString);
 
-import 'dart:convert';
-
-List<MyMatchModel> myMatchModelFromJson(String str) => List<MyMatchModel>.from(json.decode(str).map((x) => MyMatchModel.fromJson(x)));
-
-String myMatchModelToJson(List<MyMatchModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MyMatchModel {
   final String? id;
@@ -68,7 +60,7 @@ class Match {
   final String? time;
   final String? prone;
   final String? fee;
-  final MatchImage? image;
+  final Image? image;
   final String? createdBy;
   final String? event;
   final String? registrationStatus;
@@ -97,7 +89,7 @@ class Match {
     time: json["time"],
     prone: json["prone"],
     fee: json["fee"],
-    image: json["image"] == null ? null : MatchImage.fromJson(json["image"]),
+    image: json["image"] == null ? null : Image.fromJson(json["image"]),
     createdBy: json["createdBy"],
     event: json["event"],
     registrationStatus: json["registrationStatus"],
@@ -120,51 +112,28 @@ class Match {
   };
 }
 
-class MatchImage {
-  final String? fieldname;
-  final String? originalname;
-  final String? encoding;
-  final String? mimetype;
-  final String? destination;
-  final String? filename;
+class Image {
   final String? path;
-  final int? size;
+  final String? publicFileUrl;
 
-  MatchImage({
-    this.fieldname,
-    this.originalname,
-    this.encoding,
-    this.mimetype,
-    this.destination,
-    this.filename,
+  Image({
     this.path,
-    this.size,
+    this.publicFileUrl,
   });
 
-  factory MatchImage.fromJson(Map<String, dynamic> json) => MatchImage(
-    fieldname: json["fieldname"],
-    originalname: json["originalname"],
-    encoding: json["encoding"],
-    mimetype: json["mimetype"],
-    destination: json["destination"],
-    filename: json["filename"],
+  factory Image.fromJson(Map<String, dynamic> json) => Image(
     path: json["path"],
-    size: json["size"],
+    publicFileUrl: json["publicFileURL"],
   );
 
   Map<String, dynamic> toJson() => {
-    "fieldname": fieldname,
-    "originalname": originalname,
-    "encoding": encoding,
-    "mimetype": mimetype,
-    "destination": destination,
-    "filename": filename,
     "path": path,
-    "size": size,
+    "publicFileURL": publicFileUrl,
   };
 }
 
 class User {
+  final String? paymentStatus;
   final String? id;
   final String? name;
   final String? email;
@@ -173,10 +142,10 @@ class User {
   final bool? isVerified;
   final bool? isDeleted;
   final bool? isBlocked;
-  final UserImage? image;
+  final Image? image;
   final String? subscription;
   final dynamic oneTimeCode;
-  final dynamic dateOfBirth;
+  final DateTime? dateOfBirth;
   final String? address;
   final String? phone;
   final String? club;
@@ -185,6 +154,7 @@ class User {
   final int? v;
 
   User({
+    this.paymentStatus,
     this.id,
     this.name,
     this.email,
@@ -206,6 +176,7 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
+    paymentStatus: json["paymentStatus"],
     id: json["_id"],
     name: json["name"],
     email: json["email"],
@@ -214,10 +185,10 @@ class User {
     isVerified: json["isVerified"],
     isDeleted: json["isDeleted"],
     isBlocked: json["isBlocked"],
-    image: json["image"] == null ? null : UserImage.fromJson(json["image"]),
+    image: json["image"] == null ? null : Image.fromJson(json["image"]),
     subscription: json["subscription"],
     oneTimeCode: json["oneTimeCode"],
-    dateOfBirth: json["dateOfBirth"],
+    dateOfBirth: json["dateOfBirth"] == null ? null : DateTime.parse(json["dateOfBirth"]),
     address: json["address"],
     phone: json["phone"],
     club: json["club"],
@@ -227,6 +198,7 @@ class User {
   );
 
   Map<String, dynamic> toJson() => {
+    "paymentStatus": paymentStatus,
     "_id": id,
     "name": name,
     "email": email,
@@ -238,32 +210,12 @@ class User {
     "image": image?.toJson(),
     "subscription": subscription,
     "oneTimeCode": oneTimeCode,
-    "dateOfBirth": dateOfBirth,
+    "dateOfBirth": dateOfBirth?.toIso8601String(),
     "address": address,
     "phone": phone,
     "club": club,
     "userClass": userClass,
     "score": score,
     "__v": v,
-  };
-}
-
-class UserImage {
-  final String? publicFileUrl;
-  final String? path;
-
-  UserImage({
-    this.publicFileUrl,
-    this.path,
-  });
-
-  factory UserImage.fromJson(Map<String, dynamic> json) => UserImage(
-    publicFileUrl: json["publicFileURL"],
-    path: json["path"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "publicFileURL": publicFileUrl,
-    "path": path,
   };
 }
