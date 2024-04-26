@@ -14,7 +14,7 @@ class MatchController extends GetxController {
   final rxRequestStatus = Status.loading.obs;
 
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
-  RxList<MatchModel> matchModel = <MatchModel>[].obs;
+  RxList matchModel = [].obs;
 
   @override
   void onInit() {
@@ -33,20 +33,25 @@ class MatchController extends GetxController {
   }
 
   Future<void> getMatchs() async {
-    setRxRequestStatus(Status.loading);
+
+    if (page.value == 1) {
+      setRxRequestStatus(Status.loading);
+    }
+    print("ldkddddddddddddddddddddddddddddddddddddddd");
+
     var response = await ApiClient.getData('${ApiConstant.allMatch}?limit=3&page=$page');
 
-
     if (response.statusCode == 200) {
-      totalPage = jsonDecode(response.body['pagination']['totalPages'].toString());
-      currectPage = jsonDecode(response.body['pagination']['currentPage'].toString());
-      totalResult = jsonDecode(response.body['pagination']['totalMatches'].toString());
-      var matchData = List<MatchModel>.from(response.body['data']['attributes'].map((e) => MatchModel.fromJson(e)));
+      if (response.body['data']['attributes'] != null) {
+        totalPage = jsonDecode(response.body['pagination']['totalPages'].toString());
+        currectPage = jsonDecode(response.body['pagination']['currentPage'].toString());
+        totalResult = jsonDecode(response.body['pagination']['totalMatches'].toString());
+        var matchData = List<MatchModel>.from(response.body['data']['attributes'].map((e) => MatchModel.fromJson(e)));
+        matchModel.addAll(matchData);
+        setRxRequestStatus(Status.completed);
+        update();
+      }
 
-      matchModel.addAll(matchData);
-
-      setRxRequestStatus(Status.completed);
-      update();
     } else {
       if (response.statusText == ApiClient.noInternetMessage) {
         setRxRequestStatus(Status.internetError);
