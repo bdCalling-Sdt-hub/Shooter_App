@@ -69,8 +69,9 @@ class CommingAndCompleteCard extends StatelessWidget {
         ///------------------------------upcoming match------------------------------->
 
         : Obx(() {
-            return _matchController.myMatchModel.isEmpty ||
-                    _matchController.myMatchLoading.value
+            return _matchController.myCompletedMatchModel.isEmpty
+                ? const Center(child: CustomText(text: 'No data found!'))
+                : _matchController.myMatchLoading.value
                 ? const Center(child: CustomLoader())
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
