@@ -34,7 +34,7 @@ class HomeScreenAppBar extends StatelessWidget {
         children: [
           ///---------------------profile image------------------------>
 
-        _profileController.profileModel.value.data?.attributes!.image!.publicFileUrl == null?
+        _profileController.profileModel.value.data?.attributes?.image?.publicFileUrl == null?
           CircleAvatar(
             radius: 20.r,
             backgroundImage:  const AssetImage(AppImages.profileImg)
