@@ -18,19 +18,31 @@ class SubscriptionScreen extends StatefulWidget {
 }
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
-  SubscriptionController _subscriptionController =
-      Get.put(SubscriptionController());
+  final SubscriptionController _subscriptionController = Get.put(SubscriptionController());
+  DateTime now = DateTime.now();
+  String startDate = '${DateTime.now()}';
 
+
+  String? entDate;
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
     if (_subscriptionController.selectedIndex.value == 0) {
       _subscriptionController.subscriptionName.value = 'standard';
+      entDate ="${now.add(const Duration(days: 180))}";
     } else {
       _subscriptionController.subscriptionName.value = 'premium';
+      entDate ="${now.add(const Duration(days: 360))}";
     }
 
     print(
-        "===========================================================>selected index ${_subscriptionController.selectedIndex.value} and ${_subscriptionController.subscriptionName.value}");
+        "===>selected index ${_subscriptionController.selectedIndex.value} and ${_subscriptionController.subscriptionName.value}");
+
+    print("now $now and endDate ${now.add(Duration(days: 10))}");
     return Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
@@ -120,7 +132,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 CustomButton(
                   title: AppString.purchaseSubscription,
                   onpress: () {
-                    _subscriptionController.buySubscription();
+                    _subscriptionController.buySubscription(startDate, entDate);
                     //Get.toNamed(AppRoutes.signUpScreen);
                   },
                 ),

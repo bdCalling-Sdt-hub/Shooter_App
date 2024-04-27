@@ -22,13 +22,16 @@ class SubscriptionController extends GetxController{
   var subscriptionName = ''.obs;
 
 
-  buySubscription()async{
+
+
+
+  buySubscription(String startDate, endDate )async{
 
     var body = {
       "subscription":"${subscriptionName.value}",
-      "subscriptionStartDate":"",
-      "subscriptionEndDate":"",
-      "price":""
+      "subscriptionStartDate":"$startDate",
+      "subscriptionEndDate":"$endDate",
+      "price":"10"
     };
     var response = await ApiClient.postData(ApiConstant.subscriptionEndpoint, body);
 
