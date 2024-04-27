@@ -21,6 +21,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _profileController.getProfileData();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
@@ -38,7 +39,6 @@ class ProfileScreen extends StatelessWidget {
       body: Obx(() {
         var profileData =
             _profileController.profileModel.value.data?.attributes;
-
         print('=========================> $profileData');
         switch (_profileController.rxRequestStatus.value) {
           case Status.loading:
