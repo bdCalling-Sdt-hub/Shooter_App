@@ -25,10 +25,10 @@ class CommingAndCompleteCard extends StatelessWidget {
 
         ///------------------------------complete match------------------------------->
         Obx(() {
-            return _matchController.myCompletedMatchModel.isEmpty
-                ? const Center(child: CustomText(text: 'No data found!'))
-                : _matchController.myCompletedMatchLoading.value
-                    ? const Center(child: CustomLoader())
+            return _matchController.myCompletedMatchLoading.value
+                ? const Center(child: CustomLoader())
+                : _matchController.myCompletedMatchModel.isEmpty
+                    ? const Center(child: CustomText(text: 'No data found!'))
                     : ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemCount:
@@ -69,44 +69,46 @@ class CommingAndCompleteCard extends StatelessWidget {
         ///------------------------------upcoming match------------------------------->
 
         : Obx(() {
-            return _matchController.myCompletedMatchModel.isEmpty
-                ? const Center(child: CustomText(text: 'No data found!'))
-                : _matchController.myMatchLoading.value
+            return _matchController.myMatchLoading.value
                 ? const Center(child: CustomLoader())
-                : ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: _matchController.myMatchModel.length,
-                    itemBuilder: (context, index) {
-                      var myMatchData = _matchController.myMatchModel[index];
-                      return Column(
-                        children: [
-                          Container(
-                            height: 269.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                    Dimensions.radiusDefault.r),
-                                color: AppColors.white),
-                            child: CustomMatchesCard(
-                              date: myMatchData.match?.matchDate,
-                              image:
-                                  '${myMatchData.match?.image?.publicFileUrl}',
-                              matchName: '${myMatchData.match?.matchName}',
-                              eventName: '${myMatchData.match?.event}',
-                              time: "${myMatchData.match?.time}",
-                              gender: myMatchData.gender,
-                              prone: '${myMatchData.match?.prone}',
-                              entryFree: myMatchData.match?.registrationStatus,
-                              onTap: () {},
-                              // buttonText: "See scores",
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          )
-                        ],
+                : _matchController.myCompletedMatchModel.isEmpty
+                    ? const Center(child: CustomText(text: 'No data found!'))
+                    : ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: _matchController.myMatchModel.length,
+                        itemBuilder: (context, index) {
+                          var myMatchData =
+                              _matchController.myMatchModel[index];
+                          return Column(
+                            children: [
+                              Container(
+                                height: 269.h,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radiusDefault.r),
+                                    color: AppColors.white),
+                                child: CustomMatchesCard(
+                                  date: myMatchData.match?.matchDate,
+                                  image:
+                                      '${myMatchData.match?.image?.publicFileUrl}',
+                                  matchName: '${myMatchData.match?.matchName}',
+                                  eventName: '${myMatchData.match?.event}',
+                                  time: "${myMatchData.match?.time}",
+                                  gender: myMatchData.gender,
+                                  prone: '${myMatchData.match?.prone}',
+                                  entryFree:
+                                      myMatchData.match?.registrationStatus,
+                                  onTap: () {},
+                                  // buttonText: "See scores",
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              )
+                            ],
+                          );
+                        },
                       );
-                    },
-                  );
           });
   }
 }
