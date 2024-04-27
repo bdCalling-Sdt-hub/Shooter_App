@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shooter_app/routes/app_routes.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
+import 'package:shooter_app/views/widgets/custom_text.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../controller/match_controller.dart';
 import '../../../../utils/app_colors.dart';
@@ -23,7 +24,7 @@ class UpComingMatchesListView extends StatelessWidget {
       child: Obx(() {
 
         _homeController.upComingMatchList;
-          return _homeController.upComingMatchList.isEmpty ? const Center(child: CustomLoader(),) : ListView.builder(
+          return _homeController.matchLoading.value ? const CustomLoader() : _homeController.upComingMatchList.isEmpty ? const Center(child: CustomText(text: "No data found!",),) : ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: _homeController.upComingMatchList.length,
             itemBuilder: (context, index) {
