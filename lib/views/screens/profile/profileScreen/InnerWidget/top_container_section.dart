@@ -46,7 +46,7 @@ class TopContainerSection extends StatelessWidget {
                   height: 70.h,
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
-                  child: profileData?.publicFileUrl == null || profileData?.publicFileUrl == '' ? Image.asset(
+                  child: profileData?.publicFileUrl == null  ? Image.asset(
                     AppImages.profileImg,
                     fit: BoxFit.cover,
                   ): CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${profileData?.publicFileUrl}",fit: BoxFit.cover,)

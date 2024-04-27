@@ -92,32 +92,34 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
                 SizedBox(height: 35.h),
 
-               SizedBox(
-                    height: 140.h,
-                    child: ListView.builder(
-                           physics: const NeverScrollableScrollPhysics(),
-                           scrollDirection: Axis.horizontal,
-                            itemCount: subsCriptionData.length,
-                            itemBuilder: (context, index) {
-                             var data = subsCriptionData[index];
-                              return GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    selectedIndex = index;
-                                  });
-                                },
-                                child: Padding(
+               Center(
+                 child: SizedBox(
+                      height: 140.h,
+                      child: ListView.builder(
+                             physics: const NeverScrollableScrollPhysics(),
+                             scrollDirection: Axis.horizontal,
+                              itemCount: subsCriptionData.length,
+                              itemBuilder: (context, index) {
+                               var data = subsCriptionData[index];
+                                return Padding(
                                   padding:  EdgeInsets.only(right: subsCriptionData[index] == 1 ? 0 : 10.w),
-                                  child: SubscriptionCard(
-                                    duration: data['duration'],
-                                    price: data['price'],
-                                    isSelected:index == selectedIndex,
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        selectedIndex = index;
+                                      });
+                                    },
+                                    child: SubscriptionCard(
+                                      duration: data['duration'],
+                                      price: data['price'],
+                                      isSelected:index == selectedIndex,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                  ),
+                                );
+                              },
+                            ),
+                    ),
+               ),
 
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
