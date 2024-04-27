@@ -58,6 +58,12 @@ dependencies:
   intl:
 
 
+  webview_flutter:
+  flutter_widget_from_html: ^0.14.11
+  http:
+  encrypt:
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

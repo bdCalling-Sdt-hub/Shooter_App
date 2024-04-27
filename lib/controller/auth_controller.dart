@@ -36,8 +36,8 @@ class AuthController extends GetxController {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = response.body;
       if (!data['data']['attributes']['isAdmin']) {
-        await PrefsHelper.setString(
-            AppConstants.userId, data['data']['attributes']['_id']);
+        await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
+        await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
         await PrefsHelper.setString(
             AppConstants.bearerToken, data['data']['token']);
         await PrefsHelper.setBool(AppConstants.isLogged, true);
@@ -53,6 +53,9 @@ class AuthController extends GetxController {
         );
         debugPrint("ssss ${dataController.image}");
         Get.offAllNamed(AppRoutes.bottomNavBar);
+
+        emailController.clear();
+        passController.clear();
       }
     }
     signInLoading(false);

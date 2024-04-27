@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/helper/prefs_helper.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/utils/app_images.dart';
@@ -24,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
         ..repeat();
 
   late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+  ProfileController _profileController = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -63,9 +65,14 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 1), () async {
       var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
       var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
+      var subscription = await PrefsHelper.getString(AppConstants.subscription);
       if (onBoard) {
-        if (isLogged) {
-          Get.offNamed(AppRoutes.bottomNavBar,);
+        if (isLogged ) {
+          if(subscription != 'expire'){
+            Get.offNamed(AppRoutes.bottomNavBar,);
+          }else{
+            Get.offAllNamed(AppRoutes.subscriptionScreen);
+          }
         } else {
           Get.offAllNamed(AppRoutes.signInScreen);
         }

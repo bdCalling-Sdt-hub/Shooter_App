@@ -17,7 +17,7 @@ class ApiConstant {
   static String aboutUsEndPoint = "/setting/about-us";
   static String privacyPolicyEndPoint = "/setting/privacy-policy";
   static String termsConditionsEndPoint = "/setting/terms-condition";
-  static String subscriptionEndpoint = "/subscription/get-subscription";
+  static String subscriptionEndpoint = "/subscription/purchase-subscription";
   static String scoresEndpoint = "";
   static String profileEndPoint(String userId) => "/user/$userId";
   static String updateUser(String userId) => "/user/update/$userId";

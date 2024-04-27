@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/subscription_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
@@ -16,22 +18,31 @@ class SubscriptionScreen extends StatefulWidget {
 }
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
-  List  subsCriptionData = [
-    {
-      'duration': '6',
-      'price': '1200',
-    },
-    {
-      'duration': '12',
-      'price': '1200',
-    },
-  ];
+  final SubscriptionController _subscriptionController = Get.put(SubscriptionController());
+  DateTime now = DateTime.now();
+  String startDate = '${DateTime.now()}';
 
-  int selectedIndex = -1;
 
+  String? entDate;
   @override
   Widget build(BuildContext context) {
-    print("===========================================================>selected index $selectedIndex");
+
+
+
+
+
+    if (_subscriptionController.selectedIndex.value == 0) {
+      _subscriptionController.subscriptionName.value = 'standard';
+      entDate ="${now.add(const Duration(days: 180))}";
+    } else {
+      _subscriptionController.subscriptionName.value = 'premium';
+      entDate ="${now.add(const Duration(days: 360))}";
+    }
+
+    print(
+        "===>selected index ${_subscriptionController.selectedIndex.value} and ${_subscriptionController.subscriptionName.value}");
+
+    print("now $now and endDate ${now.add(Duration(days: 10))}");
     return Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
@@ -79,7 +90,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               children: [
                 //================================> Body Strings Section <=======================
 
-                 const Spacer(),
+                const Spacer(),
                 CustomText(
                   text: AppString.youHave,
                   fontsize: 16.sp,
@@ -96,22 +107,20 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   child: SizedBox(
                     height: 140.h,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: List.generate(subsCriptionData.length, (index) {
-                        var data = subsCriptionData[index];
-                        return Padding(
-                          padding: EdgeInsets.only(right: index == 0 ? 13 : 0.w),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = index;
-                              });
-                            },
-                            child: SubscriptionCard(
-                              duration: data['duration'],
-                              price: data['price'],
-                              isSelected: index == selectedIndex,
-                            ),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(_subscriptionController.subsCriptionData.value.length, (index) {
+                        var data = _subscriptionController.subsCriptionData.value[index];
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _subscriptionController.selectedIndex.value = index;
+                            });
+                          },
+                          child: SubscriptionCard(
+                            duration: data['duration'],
+                            price: data['price'],
+                            isSelected: index == _subscriptionController.selectedIndex.value,
+
                           ),
                         );
                       }),
@@ -119,12 +128,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   ),
                 ),
 
-
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
                 CustomButton(
                   title: AppString.purchaseSubscription,
                   onpress: () {
+                    _subscriptionController.buySubscription(startDate, entDate);
                     //Get.toNamed(AppRoutes.signUpScreen);
                   },
                 ),
@@ -142,13 +151,12 @@ class SubscriptionCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback? onTap;
 
-  const SubscriptionCard({
-    super.key,
-    this.duration,
-    this.price,
-    required  this.isSelected,
-    this.onTap
-  });
+  const SubscriptionCard(
+      {super.key,
+      this.duration,
+      this.price,
+      required this.isSelected,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -158,14 +166,16 @@ class SubscriptionCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.r),
             color: AppColors.fieldColor,
-            border: Border.all(width: 1.w, color: isSelected ?  AppColors.primaryColor : Colors.white38 )),
+            border: Border.all(
+                width: 1.w,
+                color: isSelected ? AppColors.primaryColor : Colors.white38)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
           child: Column(
             children: [
               CustomText(text: '$duration Months', fontsize: 14.h),
               SizedBox(height: 12.h),
-              CustomText(text: "Rand $price/Month", fontsize: 16.h),
+              Expanded(child: CustomText(text: "Rand $price/Month", fontsize: 16.h)),
               SizedBox(height: 12.h),
               CustomText(
                 text: AppString.days10,

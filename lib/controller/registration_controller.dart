@@ -43,4 +43,11 @@ class RegistrationController extends GetxController {
     }
     registerLoading(false);
   }
+
+
+
+
+  makePayment(String matchId)async{
+
+  }
 }
