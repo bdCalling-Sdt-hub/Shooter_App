@@ -45,7 +45,7 @@ class HomeController {
         setRxRequestStatus(Status.error);
       }
     }
-    ApiChecker.checkApi(response);
+    ///ApiChecker.checkApi(response);
   }
 
 
@@ -69,7 +69,7 @@ class HomeController {
         setRxRequestStatus(Status.error);
       }
     }
-    ApiChecker.checkApi(response);
+    //ApiChecker.checkApi(response);
   }
 
 

@@ -11,10 +11,9 @@ import '../../../../controller/match_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../widgets/custom_matches_card.dart';
 
-
 class UpComingMatchesListView extends StatelessWidget {
-   UpComingMatchesListView({super.key});
-   final HomeController _homeController = Get.put(HomeController());
+  UpComingMatchesListView({super.key});
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,43 +21,52 @@ class UpComingMatchesListView extends StatelessWidget {
     return SizedBox(
       height: 325.h,
       child: Obx(() {
-
         _homeController.upComingMatchList;
-          return _homeController.matchLoading.value ? const CustomLoader() : _homeController.upComingMatchList.isEmpty ? const Center(child: CustomText(text: "No data found!",),) : ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: _homeController.upComingMatchList.length,
-            itemBuilder: (context, index) {
-              var matchData = _homeController.upComingMatchList[index];
-              return Container(
-                margin: EdgeInsets.only(
-                    left: index == 0 ? Dimensions.paddingSizeDefault.w : 5.w,
-                    right: index == 5 - 1 ? Dimensions.paddingSizeDefault.w : 5
-                        .w),
-                width: 350.w,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                        Dimensions.radiusDefault.r),
-                    color: AppColors.white
-                ),
-                child: CustomMatchesCard(
-                  eventName: matchData.event,
-                  matchName: matchData.matchName,
-                  gender: matchData.gender,
-                  date: matchData.matchDate,
-                  image: "${matchData.image?.publicFileUrl}",
-                  time: "${matchData.time}" ?? "",
-                  prone: matchData.prone,
-                  entryFree: "R ${matchData.fee} Per Entry",
-                  buttonText: "Register",
-                  onTap: () {
-                    Get.toNamed(AppRoutes.registrationScreen, parameters: {'matchId': '${matchData.id}'});
-                  },
-                ),
-              );
-            },
-          );
+        return _homeController.matchLoading.value
+            ? const CustomLoader()
+            : _homeController.upComingMatchList.isEmpty
+                ? const Center(
+                    child: CustomText(
+                      text: "No data found!",
+                    ),
+                  )
+                : ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _homeController.upComingMatchList.length,
+                    itemBuilder: (context, index) {
+                      var matchData = _homeController.upComingMatchList[index];
+                      return Container(
+                        margin: EdgeInsets.only(
+                            left: index == 0
+                                ? Dimensions.paddingSizeDefault.w
+                                : 5.w,
+                            right: index == 5 - 1
+                                ? Dimensions.paddingSizeDefault.w
+                                : 5.w),
+                        width: 350.w,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                                Dimensions.radiusDefault.r),
+                            color: AppColors.white),
+                        child: CustomMatchesCard(
+                          eventName: matchData.event,
+                          matchName: matchData.matchName,
+                          gender: matchData.gender,
+                          date: matchData.matchDate,
+                          image: "${matchData.image?.publicFileUrl}",
+                          time: "${matchData.time}" ?? "",
+                          prone: matchData.prone,
+                          entryFree: "R ${matchData.fee} Per Entry",
+                          buttonText: "Register",
+                          onTap: () {
+                            Get.toNamed(AppRoutes.registrationScreen,
+                                parameters: {'matchId': '${matchData.id}'});
+                          },
+                        ),
+                      );
+                    },
+                  );
       }),
     );
   }
 }
-

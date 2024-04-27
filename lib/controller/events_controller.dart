@@ -63,6 +63,6 @@ class EventsController extends GetxController {
         setRxRequestStatus(Status.error);
       }
     }
-    ApiChecker.checkApi(response);
+    //ApiChecker.checkApi(response);
   }
 }
