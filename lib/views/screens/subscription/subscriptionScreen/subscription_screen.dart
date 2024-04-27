@@ -120,6 +120,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                             duration: data['duration'],
                             price: data['price'],
                             isSelected: index == _subscriptionController.selectedIndex.value,
+
                           ),
                         );
                       }),

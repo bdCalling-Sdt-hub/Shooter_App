@@ -68,6 +68,8 @@ class ScoresScreen extends StatelessWidget {
                   _rowText(AppString.club),
                   _rowText(AppString.scores),
                 ]),
+
+
             TableRow(
                 decoration: const BoxDecoration(
                   color: Color(0xff5B5455),
