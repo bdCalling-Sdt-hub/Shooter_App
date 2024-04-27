@@ -269,9 +269,7 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                }else{
-                 return const SizedBox();
-                }
+                }SizedBox();
               },
             );
           }),

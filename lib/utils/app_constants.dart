@@ -17,6 +17,26 @@ class AppConstants{
       r'^(?=.*[0-9])(?=.*[a-zA-Z]).{6,}$'
   );
 
+
+
+
+  ///===================payment=======================>
+  String _merchant_key="sshi091ovn1fa";
+  String _merchant_id="24319614";
+  static String return_url="https://www.example.com/success";
+  static String cancel_url="https://www.example.com/cancel";
+  static String notify_url="https://www.example.com/notify";
+
+
+  get getMerchantKey{
+    return _merchant_key;
+  }
+
+  get getMerchantId{
+    return _merchant_id;
+  }
+
 }
 
 enum Status { loading, completed, error, internetError }
+enum SubscriptionStatus { free, standard, premium, expire }
