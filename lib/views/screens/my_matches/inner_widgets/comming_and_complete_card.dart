@@ -46,8 +46,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                                     color: AppColors.white),
                                 child: CustomMatchesCard(
                                   date: myCompletedData.match?.matchDate,
-                                  image:
-                                      "${myCompletedData.match?.image?.path}",
+                                  image:"${myCompletedData.match?.image?.publicFileUrl}",
                                   matchName: myCompletedData.match?.matchName,
                                   eventName: myCompletedData.match?.event,
                                   time: "${myCompletedData.match?.time}",
@@ -89,8 +88,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                                     color: AppColors.white),
                                 child: CustomMatchesCard(
                                   date: myMatchData.match?.matchDate,
-                                  image:
-                                      '${myMatchData.match?.image?.publicFileUrl}',
+                                  image: '${myMatchData.match?.image?.publicFileUrl}',
                                   matchName: '${myMatchData.match?.matchName}',
                                   eventName: '${myMatchData.match?.event}',
                                   time: "${myMatchData.match?.time}",
