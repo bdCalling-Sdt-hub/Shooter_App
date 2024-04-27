@@ -96,7 +96,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   child: SizedBox(
                     height: 140.h,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: List.generate(subsCriptionData.length, (index) {
                         var data = subsCriptionData[index];
                         return Padding(
