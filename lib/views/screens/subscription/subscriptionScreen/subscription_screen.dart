@@ -92,34 +92,33 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
                 SizedBox(height: 35.h),
 
-               Center(
-                 child: SizedBox(
-                      height: 140.h,
-                      child: ListView.builder(
-                             physics: const NeverScrollableScrollPhysics(),
-                             scrollDirection: Axis.horizontal,
-                              itemCount: subsCriptionData.length,
-                              itemBuilder: (context, index) {
-                               var data = subsCriptionData[index];
-                                return Padding(
-                                  padding:  EdgeInsets.only(right: subsCriptionData[index] == 1 ? 0 : 10.w),
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      setState(() {
-                                        selectedIndex = index;
-                                      });
-                                    },
-                                    child: SubscriptionCard(
-                                      duration: data['duration'],
-                                      price: data['price'],
-                                      isSelected:index == selectedIndex,
-                                    ),
-                                  ),
-                                );
-                              },
+                Center(
+                  child: SizedBox(
+                    height: 140.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(subsCriptionData.length, (index) {
+                        var data = subsCriptionData[index];
+                        return Padding(
+                          padding: EdgeInsets.only(right: index == 0 ? 13 : 0.w),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                            child: SubscriptionCard(
+                              duration: data['duration'],
+                              price: data['price'],
+                              isSelected: index == selectedIndex,
                             ),
+                          ),
+                        );
+                      }),
                     ),
-               ),
+                  ),
+                ),
+
 
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
@@ -159,7 +158,7 @@ class SubscriptionCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.r),
             color: AppColors.fieldColor,
-            border: Border.all(width: 1.w, color: isSelected ?  AppColors.primaryColor : Colors.black )),
+            border: Border.all(width: 1.w, color: isSelected ?  AppColors.primaryColor : Colors.white38 )),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
           child: Column(
