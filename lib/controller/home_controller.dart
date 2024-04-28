@@ -33,7 +33,7 @@ class HomeController {
     setRxRequestStatus(Status.loading);
     eventLoading(true);
 
-    var response = await ApiClient.getData(ApiConstant.upComingEven);
+    var response = await ApiClient.getData('${ApiConstant.upComingEven}?matchDate=${pickDateController.text}');
     if (response.statusCode == 200) {
       upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e)=>UpComingEventModel.fromJson(e)));
       setRxRequestStatus(Status.completed);
@@ -56,7 +56,7 @@ class HomeController {
   getUpComingMatchs() async {
     matchLoading(true);
     setRxRequestStatus(Status.loading);
-    var response = await ApiClient.getData(ApiConstant.upComingMatch);
+    var response = await ApiClient.getData('${ApiConstant.upComingMatch}?matchDate=${pickDateController.text}');
 
     if (response.statusCode == 200) {
       upComingMatchList.value =  List<UpComingMatchModel>.from(response.body['data']['attributes'].map((x) => UpComingMatchModel.fromJson(x)));
@@ -74,6 +74,7 @@ class HomeController {
 
 
   Future<void> selectDate(BuildContext context) async {
+    getAllData();
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: selectedDate ,
@@ -84,8 +85,8 @@ class HomeController {
     if (pickedDate != null && pickedDate != selectedDate) {
 
         selectedDate = pickedDate;
-        pickDateController.text =
-            DateFormat('MM/dd/yyyy').format(selectedDate);
+        pickDateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        getAllData();
         /*dateCtrl.text =
             "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
         // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
