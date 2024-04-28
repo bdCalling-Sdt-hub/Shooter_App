@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: _homeController.pickDateController,
                     contenpaddingHorizontal: 12.w,
                     contenpaddingVertical: 12.h,
-                    hintText: "MM/DD/YYYY",
+                    hintText: "YYYY-MM-DD",
                     sufixicons: IconButton(
                         onPressed: () {
                           _homeController.selectDate(context);
