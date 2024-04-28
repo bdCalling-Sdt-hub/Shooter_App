@@ -68,6 +68,7 @@ class ScoresScreen extends StatelessWidget {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         _rowText(AppString.clasS),
                         _rowText(AppString.playerName),
@@ -75,25 +76,21 @@ class ScoresScreen extends StatelessWidget {
                         _rowText(AppString.scores),
                       ],
                     )),
-
-
                 Table(
                     border: TableBorder.all(color: Colors.black26),
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                     children: List.generate(
                         _scoresController.scoresModel.length, (index) {
-                          print("======S=> $index");
-                      var matchData =
-                          _scoresController.scoresModel[index].matchMember?[index];
+                      var matchData = _scoresController.scoresModel[index];
                       return TableRow(
                           decoration: const BoxDecoration(
                             color: Color(0xff5B5455),
                           ),
                           children: [
-                            _rowText("${matchData?.matchMemberClass}"),
-                            _rowText("${matchData?.name}"),
-                            _rowText("${matchData?.club}"),
-                            _rowText("${matchData?.score}"),
+                            _rowText("${matchData["class"]}"),
+                            _rowText("${matchData["name"]}"),
+                            _rowText("${matchData["club"]}"),
+                            _rowText("${matchData["score"]}"),
                           ]);
                     })),
               ],
