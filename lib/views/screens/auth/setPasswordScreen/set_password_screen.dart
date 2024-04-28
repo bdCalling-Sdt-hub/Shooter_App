@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,36 +57,37 @@ class SetPasswordScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: Dimensions.paddingSizeDefault),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //================================> Body Strings Section <=======================
-
-                const Spacer(),
-                CustomText(
-                  text: AppString.setPassword,
-                  fontsize: 18.h,
-                ),
-                SizedBox(height: 12.h),
-                CustomText(
-                  text: AppString.yourEmail,
-                  fontsize: 16.h,
-                ),
-                SizedBox(height: 16.h),
-                //================================>TextFormField Method <=======================
-
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      _formFieldSection(),
-                    ],
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.paddingSizeDefault),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //================================> Body Strings Section <=======================
+                  SizedBox(height: 284.h),
+                  CustomText(
+                    text: AppString.setPassword,
+                    fontsize: 18.h,
                   ),
-                ),
-              ],
+                  SizedBox(height: 12.h),
+                  CustomText(
+                    text: AppString.yourEmail,
+                    fontsize: 16.h,
+                  ),
+                  SizedBox(height: 16.h),
+                  //================================>TextFormField Method <=======================
+
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        _formFieldSection(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ]));

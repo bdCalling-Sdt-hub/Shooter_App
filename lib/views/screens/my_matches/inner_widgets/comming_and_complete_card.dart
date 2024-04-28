@@ -54,7 +54,9 @@ class CommingAndCompleteCard extends StatelessWidget {
                                   prone: "${myCompletedData.match?.prone}",
                                   buttonText: "See scores",
                                   onTap: () {
-                                    Get.toNamed(AppRoutes.scoresScreen);
+                                    Get.toNamed(AppRoutes.scoresScreen, parameters: {
+                                      'matchId' : '${myCompletedData.id}'
+                                    });
                                   },
                                 ),
                               ),
