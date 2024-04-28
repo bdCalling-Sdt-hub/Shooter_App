@@ -11,6 +11,7 @@ import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../controller/home_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
@@ -25,6 +26,7 @@ class EditprofileScreen extends StatefulWidget {
 
 class _EditprofileScreenState extends State<EditprofileScreen> {
   final ProfileController _profileController = Get.put(ProfileController());
+  final HomeController _homeController = Get.put(HomeController());
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userClassController = TextEditingController();
@@ -33,7 +35,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
   final _dateOfBirthController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _locationController = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   @override
   void initState() {
@@ -106,80 +108,80 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 ),
                 //======================================> Text From Field Section <===============================================
                 Form(
-                  //  key: _formKey,
+                    //  key: _formKey,
                     child: Column(
+                  children: [
+                    SizedBox(height: 24.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(height: 24.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //======================> Class Field <=========================
-                            SizedBox(
-                              width: 165.w,
-                              child: CustomTextField(
-                                controller: _userClassController,
-                                contenpaddingHorizontal: 20.w,
-                                contenpaddingVertical: 9.h,
-                                hintText: AppString.clasName,
-                              ),
-                            ),
-                            //======================> Club Field <=========================
-                            SizedBox(
-                              width: 165.w,
-                              child: CustomTextField(
-                                controller: _clubController,
-                                contenpaddingHorizontal: 20.w,
-                                contenpaddingVertical: 9.h,
-                                hintText: AppString.clubNameS,
-                              ),
-                            ),
-                          ],
+                        //======================> Class Field <=========================
+                        SizedBox(
+                          width: 165.w,
+                          child: CustomTextField(
+                            controller: _userClassController,
+                            contenpaddingHorizontal: 20.w,
+                            contenpaddingVertical: 9.h,
+                            hintText: AppString.clasName,
+                          ),
                         ),
-                        //======================> Name Field <=========================
-                        SizedBox(height: 16.h),
-                        CustomTextField(
-                          controller: _nameController,
-                          contenpaddingHorizontal: 12.w,
-                          contenpaddingVertical: 16.h,
-                          hintText: 'Enter your name',
-                          prifixicon: _prefixIcon(AppIcons.user),
-                        ),
-                        //======================> Date of Birth Field <=========================
-                        SizedBox(height: 16.h),
-                        CustomTextField(
-                          onTab: () {
-                            _selectDate(context);
-                          },
-                          readOnly: true,
-                          controller: _dateOfBirthController,
-                          contenpaddingHorizontal: 12.w,
-                          contenpaddingVertical: 16.h,
-                          hintText: 'Enter your date of birth',
-                          prifixicon: _prefixIcon(AppIcons.calander),
-                        ),
-                        //======================> Phone Number Field <=========================
-                        SizedBox(height: 16.h),
-                        CustomTextField(
-                          keyboardType: TextInputType.number,
-                          controller: _phoneNumberController,
-                          contenpaddingHorizontal: 12.w,
-                          contenpaddingVertical: 16.h,
-                          hintText: '(000) 000-0000',
-                          prifixicon: _prefixIcon(AppIcons.phone),
-                        ),
-                        //======================> Location Field <=========================
-                        SizedBox(height: 16.h),
-                        CustomTextField(
-                          controller: _locationController,
-                          contenpaddingHorizontal: 12.w,
-                          contenpaddingVertical: 16.h,
-                          hintText: "Enter your location",
-                          prifixicon: _prefixIcon(
-                            AppIcons.locationMarker,
+                        //======================> Club Field <=========================
+                        SizedBox(
+                          width: 165.w,
+                          child: CustomTextField(
+                            controller: _clubController,
+                            contenpaddingHorizontal: 20.w,
+                            contenpaddingVertical: 9.h,
+                            hintText: AppString.clubNameS,
                           ),
                         ),
                       ],
-                    )),
+                    ),
+                    //======================> Name Field <=========================
+                    SizedBox(height: 16.h),
+                    CustomTextField(
+                      controller: _nameController,
+                      contenpaddingHorizontal: 12.w,
+                      contenpaddingVertical: 16.h,
+                      hintText: 'Enter your name',
+                      prifixicon: _prefixIcon(AppIcons.user),
+                    ),
+                    //======================> Date of Birth Field <=========================
+                    SizedBox(height: 16.h),
+                    CustomTextField(
+                      onTab: () {
+                        selectDate(context);
+                      },
+                      readOnly: true,
+                      controller: _dateOfBirthController,
+                      contenpaddingHorizontal: 12.w,
+                      contenpaddingVertical: 16.h,
+                      hintText: 'Enter your date of birth',
+                      prifixicon: _prefixIcon(AppIcons.calander),
+                    ),
+                    //======================> Phone Number Field <=========================
+                    SizedBox(height: 16.h),
+                    CustomTextField(
+                      keyboardType: TextInputType.number,
+                      controller: _phoneNumberController,
+                      contenpaddingHorizontal: 12.w,
+                      contenpaddingVertical: 16.h,
+                      hintText: '(000) 000-0000',
+                      prifixicon: _prefixIcon(AppIcons.phone),
+                    ),
+                    //======================> Location Field <=========================
+                    SizedBox(height: 16.h),
+                    CustomTextField(
+                      controller: _locationController,
+                      contenpaddingHorizontal: 12.w,
+                      contenpaddingVertical: 16.h,
+                      hintText: "Enter your location",
+                      prifixicon: _prefixIcon(
+                        AppIcons.locationMarker,
+                      ),
+                    ),
+                  ],
+                )),
                 // const Spacer(),
                 SizedBox(height: 100.h),
                 //======================> Update Button <=========================
@@ -188,15 +190,14 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                       title: AppString.update,
                       loading: _profileController.loading.value,
                       onpress: () {
-                          _profileController.editProfile(
-                              _nameController.text,
-                              _phoneNumberController.text,
-                              _locationController.text,
-                              _clubController.text,
-                              _userClassController.text,
-                              _dateOfBirthController.text,
-                              selectedIMage);
-
+                        _profileController.editProfile(
+                            _nameController.text,
+                            _phoneNumberController.text,
+                            _locationController.text,
+                            _clubController.text,
+                            _userClassController.text,
+                            _dateOfBirthController.text,
+                            selectedIMage);
                       }),
                 ),
                 SizedBox(height: 70.h),
@@ -287,7 +288,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       selectedIMage = File(returnImage.path);
       _image = File(returnImage.path).readAsBytesSync();
     });
-    Navigator.of(context).pop(); //close the model sheet
+    Get.back();
   }
 
 //==================================> Camera <===============================
@@ -299,23 +300,26 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       selectedIMage = File(returnImage.path);
       _image = File(returnImage.path).readAsBytesSync();
     });
-    // Navigator.of(context).pop();
+    // Get.back();
   }
 
-  ///----------------------------------calender-------------------------------->
-  Future<void> _selectDate(BuildContext context) async {
+  //==================================> Calender <==================================
+  Future<void> selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1950),
+      initialDate: selectedDate,
       lastDate: DateTime.now(),
+      firstDate: DateTime(1900),
     );
 
-    if (pickedDate != null && pickedDate != _selectedDate) {
-      setState(() {
-        _selectedDate = pickedDate;
-        _dateOfBirthController.text =  TimeFormatHelper.birthDayFormat(_selectedDate);
-      });
+    if (pickedDate != null && pickedDate != selectedDate) {
+      selectedDate = pickedDate;
+      _dateOfBirthController.text =
+          DateFormat('MM-dd-yyyy').format(selectedDate);
+      /*dateCtrl.text =
+            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
+      // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+      print('Selected date: ${_dateOfBirthController.text}');
     }
   }
 }

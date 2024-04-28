@@ -10,32 +10,30 @@ import '../service/api_constant.dart';
 import '../utils/app_constants.dart';
 
 class HomeController {
-
   final pickDateController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final rxRequestStatus = Status.loading.obs;
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;
 
-
-
   getAllData() async {
     await getUpComingEvents();
     await getUpComingMatchs();
   }
 
-
-
   ///==============================up Coming Events Get===============================>
   RxList<UpComingEventModel> upComingEvensList = <UpComingEventModel>[].obs;
   RxBool eventLoading = false.obs;
-    getUpComingEvents() async {
+  getUpComingEvents() async {
     setRxRequestStatus(Status.loading);
     eventLoading(true);
 
-    var response = await ApiClient.getData('${ApiConstant.upComingEven}?matchDate=${pickDateController.text}');
+    var response = await ApiClient.getData(
+        '${ApiConstant.upComingEven}?matchDate=${pickDateController.text}');
     if (response.statusCode == 200) {
-      upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e)=>UpComingEventModel.fromJson(e)));
+      upComingEvensList.value = List<UpComingEventModel>.from(response
+          .body['data']['attributes']
+          .map((e) => UpComingEventModel.fromJson(e)));
       setRxRequestStatus(Status.completed);
       eventLoading(false);
     } else {
@@ -45,21 +43,23 @@ class HomeController {
         setRxRequestStatus(Status.error);
       }
     }
+
     ///ApiChecker.checkApi(response);
   }
 
-
-
   ///===========================Up Coming Match Get ==================================>
   RxBool matchLoading = false.obs;
-  RxList<UpComingMatchModel> upComingMatchList=<UpComingMatchModel>[].obs;
+  RxList<UpComingMatchModel> upComingMatchList = <UpComingMatchModel>[].obs;
   getUpComingMatchs() async {
     matchLoading(true);
     setRxRequestStatus(Status.loading);
-    var response = await ApiClient.getData('${ApiConstant.upComingMatch}?matchDate=${pickDateController.text}');
+    var response = await ApiClient.getData(
+        '${ApiConstant.upComingMatch}?matchDate=${pickDateController.text}');
 
     if (response.statusCode == 200) {
-      upComingMatchList.value =  List<UpComingMatchModel>.from(response.body['data']['attributes'].map((x) => UpComingMatchModel.fromJson(x)));
+      upComingMatchList.value = List<UpComingMatchModel>.from(response
+          .body['data']['attributes']
+          .map((x) => UpComingMatchModel.fromJson(x)));
       setRxRequestStatus(Status.completed);
       matchLoading(false);
     } else {
@@ -72,28 +72,23 @@ class HomeController {
     //ApiChecker.checkApi(response);
   }
 
-
   Future<void> selectDate(BuildContext context) async {
     getAllData();
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: selectedDate ,
+      initialDate: selectedDate,
       lastDate: DateTime(2100),
-        firstDate: DateTime.now(),
+      firstDate: DateTime.now(),
     );
 
     if (pickedDate != null && pickedDate != selectedDate) {
-
-        selectedDate = pickedDate;
-        pickDateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-        getAllData();
-        /*dateCtrl.text =
+      selectedDate = pickedDate;
+      pickDateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      getAllData();
+      /*dateCtrl.text =
             "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-        // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+      // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
       print('Selected date: ${pickDateController.text}');
     }
   }
-
-
-
 }
