@@ -1,13 +1,18 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/controller/registration_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../utils/app_constants.dart';
 
 class FlutterLocalWebView extends StatefulWidget {
-  FlutterLocalWebView({super.key,required this.code});
+  FlutterLocalWebView({super.key,required this.code, required this.body, required this.matchId});
+  RegistrationController _registrationController = Get.put(RegistrationController());
+  Map body;
   String code;
+  String matchId;
 
   @override
   FlutterLocalWebViewState createState() => FlutterLocalWebViewState();
@@ -42,9 +47,12 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
 
             if (request.url==AppConstants.return_url) {
 
-
+              widget._registrationController.matchRegister(widget.matchId, widget.body);
               return NavigationDecision.prevent;
+
+
             } else if (request.url==AppConstants.cancel_url) {
+
               return NavigationDecision.prevent;
             } else if (request.url==AppConstants.notify_url) {
               return NavigationDecision.prevent;

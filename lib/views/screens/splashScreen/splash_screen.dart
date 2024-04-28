@@ -65,11 +65,12 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 1), () async {
       var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
       var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
-      var subscription = await PrefsHelper.getString(AppConstants.subscription);
+      var subscription = _profileController.profileModel.value.data?.attributes?.subscription;
       if (onBoard) {
         if (isLogged ) {
           if(subscription != 'expire'){
             Get.offNamed(AppRoutes.bottomNavBar,);
+            print("=================================================================>  $subscription");
           }else{
             Get.offAllNamed(AppRoutes.subscriptionScreen);
           }

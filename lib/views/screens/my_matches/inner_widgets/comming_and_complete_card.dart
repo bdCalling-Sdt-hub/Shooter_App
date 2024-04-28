@@ -39,7 +39,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                           return Column(
                             children: [
                               Container(
-                                height: 297.h,
+                                height: 310.h,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radiusDefault.r),
@@ -82,7 +82,7 @@ class CommingAndCompleteCard extends StatelessWidget {
                           return Column(
                             children: [
                               Container(
-                                height: 269.h,
+                                height: 290.h,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radiusDefault.r),
