@@ -22,8 +22,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   final HomeController _homeController = Get.put(HomeController());
 
   @override
@@ -55,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   ///-------------------------date time form------------------------>
                   CustomTextField(
-                    onTab: (){
+                    onTab: () {
                       _homeController.selectDate(context);
                     },
                     readOnly: true,
@@ -67,7 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {
                           _homeController.selectDate(context);
                         },
-                        icon: SvgPicture.asset(AppIcons.calander,width: 24.w,height: 24.h,)),
+                        icon: SvgPicture.asset(
+                          AppIcons.calander,
+                          width: 24.w,
+                          height: 24.h,
+                        )),
                   ),
                   SizedBox(
                     height: 10.h,
