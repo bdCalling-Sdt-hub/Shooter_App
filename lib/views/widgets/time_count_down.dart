@@ -36,7 +36,7 @@ class _TimeCountDownState extends State<TimeCountDown> {
   @override
   Widget build(BuildContext context) {
     final days = DefaultTextStyle(style:  TextStyle(color: widget.textColor,fontSize: widget.textSize?.h), child: Text('${duration.inDays.toString().padLeft(2,'0')}d :'));
-    final hours = DefaultTextStyle(style:  TextStyle(color: widget.textColor,fontSize: widget.textSize?.h), child: Text('${duration.inHours.toString().padLeft(2,'0')}h :'));
+    final hours = DefaultTextStyle(style:  TextStyle(color: widget.textColor,fontSize: widget.textSize?.h), child: Text('${(duration.inHours % 24).toString().padLeft(2,'0')}h :'));
     final minutes = DefaultTextStyle(style:  TextStyle(color: widget.textColor, fontSize: widget.textSize?.h), child: Text('${duration.inMinutes.remainder(60).toString().padLeft(2,'0')}m :'));
     final seconds = DefaultTextStyle(style:  TextStyle(color: widget.textColor, fontSize: widget.textSize?.h), child: Text('${duration.inSeconds.remainder(60).toString().padLeft(2,'0')}s'));
     return Row(
