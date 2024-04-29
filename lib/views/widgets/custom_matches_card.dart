@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -99,12 +100,15 @@ class CustomMatchesCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(
-                    text: 'Event Name: $eventName' ?? '',
-                    color: AppColors.backgroundColor,
-                    fontsize: Dimensions.fontSizeDefault.h,
-                    fontWeight: FontWeight.w400,
-
+                  Expanded(
+                    child: CustomText(
+                      text: 'Event Name: $eventName' ?? '',
+                      color: AppColors.backgroundColor,
+                      fontsize: Dimensions.fontSizeDefault.h,
+                      fontWeight: FontWeight.w400,
+                      textAlign: TextAlign.start,
+                    
+                    ),
                   ),
                   Row(
                     children: [
@@ -142,7 +146,7 @@ class CustomMatchesCard extends StatelessWidget {
               Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
-                    text: "Gender: $gender",
+                    text: "Gender: ${gender!.toLowerCase() == 'both' ? 'Male/Female' : gender}",
                     color: AppColors.backgroundColor,
                     fontsize: Dimensions.fontSizeSmall.h,
                     textHeight: 1.3.h,

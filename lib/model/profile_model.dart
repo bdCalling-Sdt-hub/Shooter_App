@@ -69,6 +69,8 @@ class Attributes {
   final String? phone;
   final String? club;
   final String? userClass;
+  final String? subscriptionStartDate;
+  final String? subscriptionEndDate;
   final int? score;
   final int? v;
 
@@ -89,6 +91,8 @@ class Attributes {
     this.phone,
     this.club,
     this.userClass,
+    this.subscriptionStartDate,
+    this.subscriptionEndDate,
     this.score,
     this.v,
   });
@@ -110,6 +114,8 @@ class Attributes {
     phone: json["phone"],
     club: json["club"],
     userClass: json["userClass"],
+    subscriptionStartDate: json['subscriptionStartDate'],
+    subscriptionEndDate: json['subscriptionEndDate'],
     score: json["score"],
     v: json["__v"],
   );
@@ -131,6 +137,8 @@ class Attributes {
     "phone": phone,
     "club": club,
     "userClass": userClass,
+    "subscriptionStartDate" : subscriptionStartDate,
+    "subscriptionEndDate" : subscriptionEndDate,
     "score": score,
     "__v": v,
   };

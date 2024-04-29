@@ -31,28 +31,28 @@ class FreetrialScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 34.h),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    alignment: Alignment.centerLeft,
-                    icon: Icon(
-                      Icons.close,
-                      color: AppColors.primaryColor,
-                    ),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 5.w),
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     children: [
+          //       SizedBox(height: 34.h),
+          //       Align(
+          //         alignment: Alignment.topRight,
+          //         child: IconButton(
+          //           alignment: Alignment.centerLeft,
+          //           icon: Icon(
+          //             Icons.close,
+          //             color: AppColors.primaryColor,
+          //           ),
+          //           onPressed: () {
+          //             Get.back();
+          //           },
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: Dimensions.paddingSizeDefault),
@@ -78,7 +78,8 @@ class FreetrialScreen extends StatelessWidget {
                 CustomButton(
                   title: AppString.continueS,
                   onpress: () {
-                    Get.toNamed(AppRoutes.subscriptionScreen);
+                    // Get.toNamed(AppRoutes.subscriptionScreen);
+                    Get.offAllNamed(AppRoutes.bottomNavBar);
                   },
                 ),
                 SizedBox(height: 94.h),
