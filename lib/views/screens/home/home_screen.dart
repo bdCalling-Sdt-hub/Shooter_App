@@ -78,46 +78,51 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ///------------------------up Coming Matches text-------------------->
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.w),
-                      child: CustomText(
-                        textAlign: TextAlign.start,
-                        text: AppString.upcomingMatches,
-                        fontsize: Dimensions.fontSizeExtraLarge.h,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.white,
-                        bottom: 16.h,
-                        top: 10.h,
+              child: RefreshIndicator(
+                onRefresh: ()async{
+                  await _homeController.getAllData();
+                },
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ///------------------------up Coming Matches text-------------------->
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.w),
+                        child: CustomText(
+                          textAlign: TextAlign.start,
+                          text: AppString.upcomingMatches,
+                          fontsize: Dimensions.fontSizeExtraLarge.h,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.white,
+                          bottom: 16.h,
+                          top: 10.h,
+                        ),
                       ),
-                    ),
-                    UpComingMatchesListView(),
+                      UpComingMatchesListView(),
 
-                    ///------------------------up Coming Matches text-------------------->
-                    Container(
-                      margin: EdgeInsets.only(left: 20.w),
-                      child: CustomText(
-                        textAlign: TextAlign.start,
-                        text: AppString.upcomingEvents,
-                        fontsize: Dimensions.fontSizeExtraLarge.h,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.white,
-                        top: 20.h,
-                        bottom: 12.h,
+                      ///------------------------up Coming Matches text-------------------->
+                      Container(
+                        margin: EdgeInsets.only(left: 20.w),
+                        child: CustomText(
+                          textAlign: TextAlign.start,
+                          text: AppString.upcomingEvents,
+                          fontsize: Dimensions.fontSizeExtraLarge.h,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.white,
+                          top: 20.h,
+                          bottom: 12.h,
+                        ),
                       ),
-                    ),
 
-                    ///------------------------up Coming Events text-------------------->
-                    UpComingEventsListView(),
+                      ///------------------------up Coming Events text-------------------->
+                      UpComingEventsListView(),
 
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

@@ -31,11 +31,10 @@ class HomeController {
     var response = await ApiClient.getData(
         '${ApiConstant.upComingEven}?matchDate=${pickDateController.text}');
     if (response.statusCode == 200) {
-      upComingEvensList.value = List<UpComingEventModel>.from(response
-          .body['data']['attributes']
-          .map((e) => UpComingEventModel.fromJson(e)));
-      setRxRequestStatus(Status.completed);
+      upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e) => UpComingEventModel.fromJson(e)));
       eventLoading(false);
+      setRxRequestStatus(Status.completed);
+
     } else {
       if (response.statusText == ApiClient.noInternetMessage) {
         setRxRequestStatus(Status.internetError);
@@ -47,6 +46,8 @@ class HomeController {
     ///ApiChecker.checkApi(response);
   }
 
+
+
   ///===========================Up Coming Match Get ==================================>
   RxBool matchLoading = false.obs;
   RxList<UpComingMatchModel> upComingMatchList = <UpComingMatchModel>[].obs;
@@ -57,9 +58,7 @@ class HomeController {
         '${ApiConstant.upComingMatch}?matchDate=${pickDateController.text}');
 
     if (response.statusCode == 200) {
-      upComingMatchList.value = List<UpComingMatchModel>.from(response
-          .body['data']['attributes']
-          .map((x) => UpComingMatchModel.fromJson(x)));
+      upComingMatchList.value = List<UpComingMatchModel>.from(response.body['data']['attributes'].map((x) => UpComingMatchModel.fromJson(x)));
       setRxRequestStatus(Status.completed);
       matchLoading(false);
     } else {

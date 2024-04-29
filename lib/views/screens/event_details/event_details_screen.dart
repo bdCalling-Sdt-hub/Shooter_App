@@ -269,7 +269,7 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                }SizedBox();
+                } const CustomText(text: "No data found",);
               },
             );
           }),

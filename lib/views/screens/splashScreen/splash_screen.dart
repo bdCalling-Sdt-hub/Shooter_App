@@ -25,12 +25,12 @@ class _SplashScreenState extends State<SplashScreen>
         ..repeat();
 
   late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
-  ProfileController _profileController = Get.put(ProfileController());
+  final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   void initState() {
     super.initState();
-
+    _profileController.getProfileData();
     bool firstTime = true;
     _onConnectivityChanged = Connectivity()
         .onConnectivityChanged

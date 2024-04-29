@@ -13,7 +13,4 @@ class TimeFormatHelper {
     return DateFormat('hh:mm a').format(date);
   }
 
-  static String birthDayFormat(DateTime date) {
-    return DateFormat('dd MMM, yyyy').format(date);
-  }
 }

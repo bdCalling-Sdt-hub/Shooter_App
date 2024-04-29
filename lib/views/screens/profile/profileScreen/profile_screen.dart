@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/profileController.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 import 'package:shooter_app/views/widgets/no_internet_screen.dart';
@@ -100,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                   CustomListTile(
                       title: profileData?.dateOfBirth == null
                           ? "Date of birth"
-                          : '${profileData?.dateOfBirth}',
+                          : TimeFormatHelper.formatDate(profileData!.dateOfBirth!),
                       prefixIcon: _prefixIcon(AppIcons.calander)),
                   SizedBox(height: 16.h),
 
