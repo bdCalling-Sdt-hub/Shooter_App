@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/model/profile_model.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
@@ -31,6 +32,17 @@ class ProfileController extends GetxController{
 
     if(response.statusCode == 200){
       profileModel.value = ProfileModel.fromJson(response.body);
+      await PrefsHelper.setString(AppConstants.subscription, profileModel.value.data?.attributes?.subscription);
+
+
+      if(TimeFormatHelper.isFutureDate('${profileModel.value.data?.attributes?.subscriptionEndDate}')){
+        await PrefsHelper.setBool(AppConstants.isFutureDate, true);
+      }else{
+        await PrefsHelper.setBool(AppConstants.isFutureDate, false);
+      }
+
+
+
       setRxRequestStatus(Status.completed);
     }else{
       if(response.statusText == ApiClient.noInternetMessage){

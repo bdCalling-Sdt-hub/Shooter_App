@@ -6,6 +6,7 @@ class AppConstants{
   static String isOnboard="IsOnboard";
   static String subscription="Subscription";
   static String signInType ="SignInType";
+  static String isFutureDate ="isFutureDate";
 
 
 

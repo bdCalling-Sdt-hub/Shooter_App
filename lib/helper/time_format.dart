@@ -13,4 +13,16 @@ class TimeFormatHelper {
     return DateFormat('hh:mm a').format(date);
   }
 
+ static bool isFutureDate(String input) {
+    try {
+      DateTime date = DateTime.parse(input);
+      DateTime now = DateTime.now();
+      print('-------------------------------${date.isAfter(now)}');
+      return date.isAfter(now);
+    } catch (e) {
+      return false;
+    }
+  }
+
+
 }

@@ -113,8 +113,8 @@ class VerifyEmailScreen extends StatelessWidget {
                 Obx(()=>
                    CustomButton(
                      loading: _authController.verifyLoading.value,
-                    title: AppString.verifyEmail,
-                    onpress: () {
+                     title: AppString.verifyEmail,
+                     onpress: () {
                       _authController.verifyEmail(Get.parameters, pinCodeCtrl.text);
                     },
                   ),

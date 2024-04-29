@@ -205,7 +205,8 @@ class AuthController extends GetxController {
       if (data['screenType'] == "forgot") {
         Get.toNamed(AppRoutes.setPasswordScreen, arguments: data['email']);
       } else {
-        Get.offAllNamed(AppRoutes.signInScreen);
+        // Get.offAllNamed(AppRoutes.signInScreen);
+        Get.offAllNamed(AppRoutes.freetrialScreen);
       }
     } else {
       Fluttertoast.showToast(msg: response.statusText ?? "");

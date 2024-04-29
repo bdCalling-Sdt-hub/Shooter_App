@@ -15,6 +15,7 @@ class UpComingEventsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     _homeController.getUpComingEvents();
     return SizedBox(
       height: 260.h,
