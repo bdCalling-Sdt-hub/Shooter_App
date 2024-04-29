@@ -115,7 +115,7 @@ class DrawerSection extends StatelessWidget {
             //=====================================>  My Scores  Container <=============================
             GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoutes.registrationScreen);
+                Get.toNamed(AppRoutes.myScoresScreen);
               },
               child: CustomListTile(
                 title: AppString.myScores,
@@ -132,7 +132,7 @@ class DrawerSection extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoutes.freetrialScreen);
+                  Get.toNamed(AppRoutes.subscriptionScreen);
                 },
                 child: CustomListTile(
                   title: AppString.subscription,
