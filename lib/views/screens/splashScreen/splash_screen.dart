@@ -73,10 +73,10 @@ class _SplashScreenState extends State<SplashScreen>
             Get.offNamed(AppRoutes.bottomNavBar,);
             print("=================================================================>  $subscription and $subscriptionDateAviale");
           }else{
-            Get.offAllNamed(AppRoutes.signInScreen);
+            Get.offAllNamed(AppRoutes.subscriptionScreen);
           }
         } else {
-          Get.offAllNamed(AppRoutes.subscriptionScreen);
+          Get.offAllNamed(AppRoutes.signInScreen);
         }
       } else {
         Get.offAllNamed(AppRoutes.onboardingsScreen);

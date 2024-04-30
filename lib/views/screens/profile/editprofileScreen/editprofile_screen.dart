@@ -29,6 +29,7 @@ class EditprofileScreen extends StatefulWidget {
 class _EditprofileScreenState extends State<EditprofileScreen> {
   final ProfileController _profileController = Get.put(ProfileController());
   final HomeController _homeController = Get.put(HomeController());
+
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userClassController = TextEditingController();
@@ -49,7 +50,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       _clubController.text = "${profileData?.club}";
       _nameController.text = "${profileData?.name}";
       _dateOfBirthController.text =
-          profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
+      profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
       _phoneNumberController.text = "${profileData?.phone}";
       _locationController.text = "${profileData?.address}";
     });
@@ -85,18 +86,20 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                     children: [
                       _image != null
                           ? CircleAvatar(
-                              radius: 60.r,
-                              backgroundImage: MemoryImage(_image!))
+                          radius: 60.r,
+                          backgroundImage: MemoryImage(_image!))
                           : CircleAvatar(
-                              radius: 60.r,
-                              backgroundImage: profileData
-                                              ?.image?.publicFileUrl !=
-                                          null ||
-                                      profileData?.image?.publicFileUrl != ''
-                                  ? NetworkImage(
-                                      "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}")
-                                  : NetworkImage(
-                                      "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}")),
+                          radius: 60.r,
+                          backgroundImage: profileData
+                              ?.image?.publicFileUrl !=
+                              null ||
+                              profileData?.image?.publicFileUrl != ''
+                              ? NetworkImage(
+                              "${ApiConstant.imageBaseUrl}/${profileData?.image
+                                  ?.publicFileUrl}")
+                              : NetworkImage(
+                              "${ApiConstant.imageBaseUrl}/${profileData?.image
+                                  ?.publicFileUrl}")),
                       Positioned(
                           bottom: 12.h,
                           right: 0.w,
@@ -186,19 +189,20 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                 SizedBox(height: 100.h),
                 //======================> Update Button <=========================
                 Obx(
-                  () => CustomButton(
-                      title: AppString.update,
-                      loading: _profileController.loading.value,
-                      onpress: () {
-                        _profileController.editProfile(
-                            _nameController.text,
-                            _phoneNumberController.text,
-                            _locationController.text,
-                            _clubController.text,
-                            _userClassController.text,
-                            _dateOfBirthController.text,
-                            selectedIMage);
-                      }),
+                      () =>
+                      CustomButton(
+                          title: AppString.update,
+                          loading: _profileController.loading.value,
+                          onpress: () {
+                            _profileController.editProfile(
+                                _nameController.text,
+                                _phoneNumberController.text,
+                                _locationController.text,
+                                _clubController.text,
+                                _userClassController.text,
+                                _dateOfBirthController.text,
+                                selectedIMage);
+                          }),
                 ),
                 SizedBox(height: 70.h),
               ],
@@ -231,8 +235,14 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
           return Padding(
             padding: const EdgeInsets.all(18.0),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4.2,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 4.2,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -282,7 +292,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
   //==================================> Gallery <===============================
   Future _pickImageFromGallery() async {
     final returnImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnImage == null) return;
     setState(() {
       selectedIMage = File(returnImage.path);
@@ -294,7 +304,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
 //==================================> Camera <===============================
   Future _pickImageFromCamera() async {
     final returnImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+    await ImagePicker().pickImage(source: ImageSource.camera);
     if (returnImage == null) return;
     setState(() {
       selectedIMage = File(returnImage.path);
@@ -308,13 +318,14 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: selectedDate ?? DateTime.now(),
-      lastDate: DateTime.now(),
       firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
     );
 
     if (pickedDate != null && pickedDate != selectedDate) {
       selectedDate = pickedDate;
-      _dateOfBirthController.text = BirthdayTimeFormatHelper.dataTimeYearFromat(selectedDate);
+      _dateOfBirthController.text =
+          DateFormat('yyyy-MM-dd').format(selectedDate!);
       print('Selected date: ${_dateOfBirthController.text}');
     }
   }
