@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/profileController.dart';
+import 'package:shooter_app/helper/birthday_time.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
@@ -14,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widgets/custom_text.dart';
 
@@ -93,8 +95,8 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                                       profileData?.image?.publicFileUrl != ''
                                   ? NetworkImage(
                                       "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}")
-                                  : const NetworkImage(
-                                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")),
+                                  : NetworkImage(
+                                      "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}")),
                       Positioned(
                           bottom: 12.h,
                           right: 0.w,
@@ -107,9 +109,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                   ),
                 ),
                 //======================================> Text From Field Section <===============================================
-                Form(
-                    //  key: _formKey,
-                    child: Column(
+                Column(
                   children: [
                     SizedBox(height: 24.h),
                     Row(
@@ -181,7 +181,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                       ),
                     ),
                   ],
-                )),
+                ),
                 // const Spacer(),
                 SizedBox(height: 100.h),
                 //======================> Update Button <=========================
@@ -307,18 +307,14 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
   Future<void> selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: selectedDate ?? DateTime.now(),
       lastDate: DateTime.now(),
       firstDate: DateTime(1900),
     );
 
     if (pickedDate != null && pickedDate != selectedDate) {
       selectedDate = pickedDate;
-      _dateOfBirthController.text =
-          DateFormat('MM-dd-yyyy').format(selectedDate);
-      /*dateCtrl.text =
-            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-      // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+      _dateOfBirthController.text = BirthdayTimeFormatHelper.dataTimeYearFromat(selectedDate);
       print('Selected date: ${_dateOfBirthController.text}');
     }
   }

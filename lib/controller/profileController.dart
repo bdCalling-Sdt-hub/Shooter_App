@@ -50,7 +50,7 @@ class ProfileController extends GetxController{
       }else{
         setRxRequestStatus(Status.error);
       }
-    } ApiChecker.checkApi(response);
+    }
   }
 
 
@@ -60,6 +60,7 @@ class ProfileController extends GetxController{
   editProfile(
       String name, phoneNumber, address, club, userClass,  dateOfBirth, File?  image,) async {
     var userId = await PrefsHelper.getString(AppConstants.userId);
+    print("=========================>>>> $dateOfBirth");
 
     List <MultipartBody> multipartBody =image==null?[]:[MultipartBody("image", image)];
 
@@ -67,7 +68,7 @@ class ProfileController extends GetxController{
     Map<String, String> body = {
       "name": name,
       "address": address,
-      "dateOfBirth": "$dateOfBirth",
+      "dateOfBirth": dateOfBirth,
       "phone": phoneNumber,
       "club": club,
       "userClass": userClass,
@@ -76,8 +77,7 @@ class ProfileController extends GetxController{
     var response = await ApiClient.patchMultipartData(
       ApiConstant.updateUser(userId), body,
       multipartBody:multipartBody,);
-    print(
-        "===========response body : ${response.body} \nand status code : ${response.statusCode}");
+    print("===========response body : ${response.body} \nand status code : ${response.statusCode}");
     if (response.statusCode == 200 || response.statusCode == 201) {
       profileModel.value = ProfileModel.fromJson(response.body['data']['attributes']);
       getProfileData();

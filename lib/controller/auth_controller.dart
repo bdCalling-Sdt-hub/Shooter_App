@@ -189,8 +189,9 @@ class AuthController extends GetxController {
     resendOtpLoading(false);
   }
 
-  var verifyLoading = false.obs;
 
+//=================================> Verify Mail <==============================
+  var verifyLoading = false.obs;
   verifyEmail(
     Map<String, String?> data,
     String code,
@@ -204,8 +205,10 @@ class AuthController extends GetxController {
     if (response.statusCode == 200) {
       if (data['screenType'] == "forgot") {
         Get.toNamed(AppRoutes.setPasswordScreen, arguments: data['email']);
-      } else {
-        // Get.offAllNamed(AppRoutes.signInScreen);
+      } else if (data['screenType'] == "signup") {
+        Get.offAllNamed(AppRoutes.signInScreen);
+      }
+      else {
         Get.offAllNamed(AppRoutes.freetrialScreen);
       }
     } else {

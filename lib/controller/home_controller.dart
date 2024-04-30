@@ -84,9 +84,6 @@ class HomeController {
       selectedDate = pickedDate;
       pickDateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       getAllData();
-      /*dateCtrl.text =
-            "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";*/
-      // date = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
       print('Selected date: ${pickDateController.text}');
     }
   }
