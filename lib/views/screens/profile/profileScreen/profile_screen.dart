@@ -7,6 +7,7 @@ import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 import 'package:shooter_app/views/widgets/no_internet_screen.dart';
+import '../../../../helper/birthday_time.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_icons.dart';
@@ -38,8 +39,7 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Obx(() {
-        var profileData =
-            _profileController.profileModel.value.data?.attributes;
+        var profileData =_profileController.profileModel.value.data?.attributes;
         print('=========================> $profileData');
         switch (_profileController.rxRequestStatus.value) {
           case Status.loading:
@@ -101,7 +101,8 @@ class ProfileScreen extends StatelessWidget {
                   CustomListTile(
                       title: profileData?.dateOfBirth == null
                           ? "Date of birth"
-                          : TimeFormatHelper.formatDate(profileData!.dateOfBirth!),
+                          //: "${profileData?.dateOfBirth.toString()}",
+                          : BirthdayTimeFormatHelper.formatDate(profileData!.dateOfBirth!),
                       prefixIcon: _prefixIcon(AppIcons.calander)),
                   SizedBox(height: 16.h),
 

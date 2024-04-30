@@ -107,7 +107,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   child: SizedBox(
                     height: 140.h,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(_subscriptionController.subsCriptionData.value.length, (index) {
                         var data = _subscriptionController.subsCriptionData.value[index];
                         return GestureDetector(
