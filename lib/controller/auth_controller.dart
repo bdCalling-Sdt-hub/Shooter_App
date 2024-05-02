@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shooter_app/helper/prefs_helper.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/service/api_check.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
@@ -43,6 +44,12 @@ class AuthController extends GetxController {
         await PrefsHelper.setBool(AppConstants.isLogged, true);
         await PrefsHelper.setString(AppConstants.subscription,
             data['data']['attributes']['subscription']);
+
+        ///=========================Check Subscription============================>
+         await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
+
+
+
         await PrefsHelper.setString(AppConstants.signInType, "General User");
         await dataController.setData(
           nameD: data['data']['attributes']['name'] ?? "",

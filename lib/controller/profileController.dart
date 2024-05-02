@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:shooter_app/helper/subscription_route.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/model/profile_model.dart';
 import 'package:shooter_app/service/api_client.dart';
@@ -35,12 +36,10 @@ class ProfileController extends GetxController{
       await PrefsHelper.setString(AppConstants.subscription, profileModel.value.data?.attributes?.subscription);
 
 
-      if(TimeFormatHelper.isFutureDate('${profileModel.value.data?.attributes?.subscriptionEndDate}')){
-        await PrefsHelper.setBool(AppConstants.isFutureDate, true);
-      }else{
-        await PrefsHelper.setBool(AppConstants.isFutureDate, false);
-      }
+     await TimeFormatHelper.isFutureDate('${profileModel.value.data?.attributes?.subscriptionEndDate}');
 
+     ///=====================if subscription date is expire route to subscription screen user stay on this app doesn't meter==================>
+     SubscriptionRouteHelper.subscriptionRoute(await PrefsHelper.getBool(AppConstants.isFutureDate));
 
 
       setRxRequestStatus(Status.completed);

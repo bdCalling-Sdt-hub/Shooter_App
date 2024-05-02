@@ -175,7 +175,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           loading: registrationController.registerLoading.value,
           onpress: () {
             if (_formKey.currentState!.validate()) {
-              registrationController.submitForm(context, '${parameter['matchId']}');
+              registrationController.submitForm(context, '${parameter['matchId']}' , '${parameter['price']}' , '${parameter['matchName']}');
             }
           },
         ),
