@@ -105,7 +105,7 @@ class SignInForm extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      _authController.signInWithGoogle();
+                      _authController.signInWithGoogle(context);
                     },
                     child: Container(
                       padding: EdgeInsets.all(16.r),

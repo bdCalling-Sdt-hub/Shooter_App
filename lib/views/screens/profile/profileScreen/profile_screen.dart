@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_string.dart';
@@ -18,7 +19,7 @@ import 'InnerWidget/top_container_section.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-
+final AuthController _authController = Get.put(AuthController());
   final ProfileController _profileController = Get.put(ProfileController());
 
   @override

@@ -69,38 +69,35 @@ class AuthController extends GetxController {
   }
 
   /// <======================  Google Sign in ===========>
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  Future<User?> signInWithGoogle() async {
+  Future<User?> signInWithGoogle(BuildContext context) async {
     try {
-      // Trigger Google sign-in flow
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
 
-      // Check if user cancelled the sign-in
-      if (googleUser != null) {
-        // Get a Google authentication object
-        final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-
-        // Create a new credential
-        final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
         );
 
-        // Sign in with credential
-        UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
+        final UserCredential authResult = await _auth.signInWithCredential(credential);
+        final User? user = authResult.user;
+        if (user != null) {
+          Get.offAllNamed(AppRoutes.bottomNavBar);
+        }
 
-        // Return the user from the userCredential
-        return userCredential.user;
+        return user;
+      } else {
+        print("Sign in with Google canceled by user.");
+        return null;
       }
-    } catch (e) {
-      // Handle sign-in errors
-      print("Google sign-in error: $e");
-      rethrow; // Rethrow the exception for handling in UI if needed
+    } catch (error) {
+      print("Error signing in with Google: $error");
+      return null;
     }
   }
   /// <=========== facebook auth ================>
