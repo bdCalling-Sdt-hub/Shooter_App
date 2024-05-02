@@ -16,18 +16,13 @@ class TopContainerSection extends StatelessWidget {
   final String? subScription;
   final String? image;
 
-   TopContainerSection({
-    super.key,
-    this.name,
-    this.subScription,
-    this.image
-  });
+  TopContainerSection({super.key, this.name, this.subScription, this.image});
 
-  final ProfileController _profileController = Get.put(ProfileController());
+  // final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
-    var profileData = _profileController.profileModel.value.data?.attributes?.image;
+    // var profileData = _profileController.profileModel.value.data?.attributes?.image;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -41,19 +36,23 @@ class TopContainerSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  clipBehavior: Clip.antiAlias,
-                  width: 70.w,
-                  height: 70.h,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
-                  child: profileData?.publicFileUrl == null  ? Image.asset(
-                    AppImages.profileImg,
-                    fit: BoxFit.cover,
-                  ): CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${profileData?.publicFileUrl}",fit: BoxFit.cover,)
-                ),
+                    clipBehavior: Clip.antiAlias,
+                    width: 70.w,
+                    height: 70.h,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.white),
+                    child: image == '' || image == null
+                        ? Image.asset(
+                            AppImages.profileImg,
+                            fit: BoxFit.cover,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: "${ApiConstant.imageBaseUrl}/$image",
+                            fit: BoxFit.cover,
+                          )),
                 CustomText(
                   text: name == null ? "Name" : '$name',
-                  fontsize: 24.sp,
+                  fontsize: 24.sp
                 ),
                 IconButton(
                     onPressed: () {
@@ -71,7 +70,9 @@ class TopContainerSection extends StatelessWidget {
                 SvgPicture.asset(AppIcons.crown),
                 SizedBox(width: 16.w),
                 CustomText(
-                  text: subScription == '' || subScription == null ? "Free member" : '$subScription',
+                  text: subScription == '' || subScription == null
+                      ? "Free member"
+                      : '$subScription',
                   fontsize: 18.h,
                 ),
               ],

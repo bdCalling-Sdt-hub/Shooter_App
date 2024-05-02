@@ -23,8 +23,9 @@ class RegistrationController extends GetxController {
 
 
   ///=================================================>
-  void submitForm(BuildContext context, String matchId) async {
+  void submitForm(BuildContext context, String? matchId, price, matchName) async {
     // Replace the URL with your actual endpoint
+    print("========================================dd==========$matchName");
 
     const url = 'https://www.payfast.co.za/eng/process';
     var age = int.parse(ageController.text);
@@ -42,8 +43,8 @@ class RegistrationController extends GetxController {
       body: {
         'merchant_id': appConstants.getMerchantId,
         'merchant_key': appConstants.getMerchantKey,
-        'amount': '100.00',
-        'item_name': 'Test Product',
+        'amount': '$price',
+        'item_name': '$matchName',
         'return_url': AppConstants.return_url,
         'cancel_url': AppConstants.cancel_url,
         'notify_url': AppConstants.notify_url,
@@ -51,7 +52,7 @@ class RegistrationController extends GetxController {
     );
 
     if (response.statusCode == 200||response.statusCode==302) {
-      Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, body: bodyCo, matchId: matchId)));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, body: bodyCo, matchId: '$matchId')));
       // Handle successful response
       print('Form submitted successfully');
     } else {

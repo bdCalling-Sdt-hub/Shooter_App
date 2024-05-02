@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/registration_controller.dart';
 import 'package:shooter_app/controller/subscription_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
@@ -11,32 +11,30 @@ import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_text.dart';
 
 class SubscriptionScreen extends StatefulWidget {
-  SubscriptionScreen({super.key});
+  const SubscriptionScreen({super.key});
 
   @override
   State<SubscriptionScreen> createState() => _SubscriptionScreenState();
 }
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
-  final SubscriptionController _subscriptionController = Get.put(SubscriptionController());
+  final SubscriptionController _subscriptionController =
+      Get.put(SubscriptionController());
+  final RegistrationController _registrationController =
+      Get.put(RegistrationController());
   DateTime now = DateTime.now();
   String startDate = '${DateTime.now()}';
 
-
   String? entDate;
+
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
     if (_subscriptionController.selectedIndex.value == 0) {
       _subscriptionController.subscriptionName.value = 'standard';
-      entDate ="${now.add(const Duration(days: 180))}";
+      entDate = "${now.add(const Duration(days: 180))}";
     } else {
       _subscriptionController.subscriptionName.value = 'premium';
-      entDate ="${now.add(const Duration(days: 360))}";
+      entDate = "${now.add(const Duration(days: 360))}";
     }
 
     print(
@@ -60,28 +58,28 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 34.h),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    alignment: Alignment.centerLeft,
-                    icon: Icon(
-                      Icons.close,
-                      color: AppColors.primaryColor,
-                    ),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 5.w),
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     children: [
+          //       SizedBox(height: 34.h),
+          //       Align(
+          //         alignment: Alignment.topRight,
+          //         child: IconButton(
+          //           alignment: Alignment.centerLeft,
+          //           icon: Icon(
+          //             Icons.close,
+          //             color: AppColors.primaryColor,
+          //           ),
+          //           onPressed: () {
+          //             Get.back();
+          //           },
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: Dimensions.paddingSizeDefault),
@@ -108,19 +106,23 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     height: 140.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(_subscriptionController.subsCriptionData.value.length, (index) {
-                        var data = _subscriptionController.subsCriptionData.value[index];
+                      children: List.generate(
+                          _subscriptionController.subsCriptionData.value.length,
+                          (index) {
+                        var data = _subscriptionController
+                            .subsCriptionData.value[index];
                         return GestureDetector(
                           onTap: () {
                             setState(() {
-                              _subscriptionController.selectedIndex.value = index;
+                              _subscriptionController.selectedIndex.value =
+                                  index;
                             });
                           },
                           child: SubscriptionCard(
                             duration: data['duration'],
                             price: data['price'],
-                            isSelected: index == _subscriptionController.selectedIndex.value,
-
+                            isSelected: index ==
+                                _subscriptionController.selectedIndex.value,
                           ),
                         );
                       }),
@@ -133,7 +135,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 CustomButton(
                   title: AppString.purchaseSubscription,
                   onpress: () {
-                    _subscriptionController.buySubscription(startDate, entDate);
+                    _subscriptionController.submitForm(
+                      context,
+                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value]['price']}',
+                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value]['subscription']}',
+                    );
+                    // _subscriptionController.buySubscription(startDate, entDate);
                     //Get.toNamed(AppRoutes.signUpScreen);
                   },
                 ),
@@ -175,7 +182,8 @@ class SubscriptionCard extends StatelessWidget {
             children: [
               CustomText(text: '$duration Months', fontsize: 14.h),
               SizedBox(height: 12.h),
-              Expanded(child: CustomText(text: "Rand $price/Month", fontsize: 16.h)),
+              Expanded(
+                  child: CustomText(text: "Rand $price/Month", fontsize: 16.h)),
               SizedBox(height: 12.h),
               CustomText(
                 text: AppString.days10,

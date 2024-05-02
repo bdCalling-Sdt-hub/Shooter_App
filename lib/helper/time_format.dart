@@ -1,4 +1,7 @@
 import 'package:intl/intl.dart';
+import 'package:shooter_app/helper/prefs_helper.dart';
+
+import '../utils/app_constants.dart';
 
 class TimeFormatHelper {
   static String formatDate(DateTime date) {
@@ -13,15 +16,16 @@ class TimeFormatHelper {
     return DateFormat('hh:mm a').format(date);
   }
 
- static bool isFutureDate(String input) {
+  static Future<void> isFutureDate(String input) async {
     try {
       DateTime date = DateTime.parse(input);
       DateTime now = DateTime.now();
-      return date.isAfter(now);
+      await PrefsHelper.setBool(AppConstants.isFutureDate, date.isAfter(now));
     } catch (e) {
-      return false;
+      PrefsHelper.setBool(AppConstants.isFutureDate, false);
     }
   }
+
 
 
 }

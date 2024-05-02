@@ -28,6 +28,7 @@ class HomeScreenAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _profileController.getProfileData();
     dataController.getData();
     debugPrint(" user name ${dataController.image.value}");
     return Obx(() {

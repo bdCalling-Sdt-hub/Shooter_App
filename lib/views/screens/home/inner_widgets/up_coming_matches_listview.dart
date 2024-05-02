@@ -61,7 +61,7 @@ class UpComingMatchesListView extends StatelessWidget {
                           buttonText: "Register",
                           onTap: () {
                             Get.toNamed(AppRoutes.registrationScreen,
-                                parameters: {'matchId': '${matchData.id}'});
+                                parameters: {'matchId': '${matchData.id}' , 'price' : '${matchData.fee}', 'matchName' : '${matchData.matchName}'});
                           },
                         ),
                       );
