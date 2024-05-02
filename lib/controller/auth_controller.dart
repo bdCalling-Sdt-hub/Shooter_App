@@ -66,16 +66,16 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  Future signInWithGoogle() async {
-    // Trigger Google sign-in flow
+  Future<User?> signInWithGoogle() async {
     try {
+      // Trigger Google sign-in flow
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       // Check if user cancelled the sign-in
       if (googleUser != null) {
         // Get a Google authentication object
         final GoogleSignInAuthentication googleAuth =
-            await googleUser.authentication;
+        await googleUser.authentication;
 
         // Create a new credential
         final credential = GoogleAuthProvider.credential(
@@ -85,14 +85,17 @@ class AuthController extends GetxController {
 
         // Sign in with credential
         UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-        debugPrint("Google sign in complete");
+        await _auth.signInWithCredential(credential);
+
+        // Return the user from the userCredential
+        return userCredential.user;
       }
-    } on Exception catch (e) {
-      debugPrint("Google sign in error $e");
+    } catch (e) {
+      // Handle sign-in errors
+      print("Google sign-in error: $e");
+      rethrow; // Rethrow the exception for handling in UI if needed
     }
   }
-
   /// <=========== facebook auth ================>
 
   Future signInWithFacebook() async {
