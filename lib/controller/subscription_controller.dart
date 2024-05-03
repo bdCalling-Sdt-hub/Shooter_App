@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:http/http.dart' as http;
@@ -27,13 +25,19 @@ class SubscriptionController extends GetxController {
   var subscriptionName = ''.obs;
 
   ///=================================================>
-  void submitForm(BuildContext context, String price, subscription) async {
+  void submitForm(BuildContext context, String price, subscription,startDate, endDate) async {
     const url = 'https://www.payfast.co.za/eng/process';
 
+    var bodyCo = {
+      "subscription": "$subscription",
+      "subscriptionStartDate": "$startDate",
+      "subscriptionEndDate": "$endDate",
+      "price": "$price"
+    };
 
-    print('=================================================$price');
     final response = await http.post(
       Uri.parse(url),
+
       body: {
         'merchant_id': appConstants.getMerchantId,
         'merchant_key': appConstants.getMerchantKey,
@@ -52,7 +56,7 @@ class SubscriptionController extends GetxController {
               builder: (_) => FlutterLocalWebView(
                     code: response.body,
                     matchId: '',
-                    body: const {},
+                    body: bodyCo,
                   )));
       // Handle successful response
       print('Form submitted successfully');
@@ -65,17 +69,9 @@ class SubscriptionController extends GetxController {
   }
 
 
-
-
-
   ///=====================Buy Subscription=========================>
-  buySubscription(String startDate, endDate) async {
-    var body = {
-      "subscription": "${subscriptionName.value}",
-      "subscriptionStartDate": "$startDate",
-      "subscriptionEndDate": "$endDate",
-      "price": "10"
-    };
+  buySubscription(Map body) async {
+
     var response =
         await ApiClient.postData(ApiConstant.subscriptionEndpoint, body);
 

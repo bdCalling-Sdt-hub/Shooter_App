@@ -3,16 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/registration_controller.dart';
+import 'package:shooter_app/controller/subscription_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../utils/app_constants.dart';
 
 class FlutterLocalWebView extends StatefulWidget {
-  FlutterLocalWebView({super.key,required this.code, required this.body, required this.matchId});
-  RegistrationController _registrationController = Get.put(RegistrationController());
-  Map body;
+  FlutterLocalWebView({super.key,required this.code,  this.body, required this.matchId, this.price});
+  final RegistrationController _registrationController = Get.put(RegistrationController());
+  final SubscriptionController _subscriptionController =Get.put(SubscriptionController());
+  Map? body;
   String code;
   String matchId;
+  String? price;
 
   @override
   FlutterLocalWebViewState createState() => FlutterLocalWebViewState();
@@ -20,6 +23,17 @@ class FlutterLocalWebView extends StatefulWidget {
 
 class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
   late WebViewController _webViewController;
+
+
+  getUrlQueryPrams(String url)async{
+    Uri uri = Uri.parse(url);
+    Map<String, String> queryParams = uri.queryParameters;
+    // Print the query parameters
+    print("=============================Query Parameters: $queryParams");
+    return queryParams;
+
+  }
+
 
   @override
   void initState() {
@@ -41,17 +55,31 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
           onPageFinished: (String url) {
             debugPrint('Page finished loading: $url');
           },
-          onNavigationRequest: (NavigationRequest request) {
+          onNavigationRequest: (NavigationRequest request)async {
 
             debugPrint("Navigation request ${request.url}");
 
             if (request.url==AppConstants.return_url) {
+              Map<String,String> data =await  getUrlQueryPrams(request.url);
+              print("==============data = $data");
+              if(widget.matchId == ""){
+                widget._subscriptionController.buySubscription(widget.body!);
+              }else{
+                widget._registrationController.matchRegister(widget.matchId, widget.body!, '');
+              }
 
-              widget._registrationController.matchRegister(widget.matchId, widget.body);
               return NavigationDecision.prevent;
 
-
             } else if (request.url==AppConstants.cancel_url) {
+              if(widget.matchId == ""){
+                widget._subscriptionController.buySubscription(widget.body!);
+              }else{
+                widget._registrationController.matchRegister(widget.matchId, widget.price, '');
+              }
+              Get.back();
+
+
+
 
               return NavigationDecision.prevent;
             } else if (request.url==AppConstants.notify_url) {
