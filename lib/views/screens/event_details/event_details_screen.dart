@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/match_controller.dart';
 import 'package:shooter_app/helper/time_format.dart';
+import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_images.dart';
 import 'package:shooter_app/views/widgets/custom_matches_card.dart';
 import 'package:shooter_app/views/widgets/time_count_down.dart';
@@ -106,7 +108,7 @@ class EventDetailsScreen extends StatelessWidget {
 
             ///---------------------------------image----------------------------->
             CachedNetworkImage(
-             imageUrl:  evensData.image?.publicFileUrl,
+             imageUrl: "${ApiConstant.imageBaseUrl}/${ evensData.image?.publicFileUrl}",
               width: 345.w,
               height: 180.h,
             ),
@@ -182,34 +184,17 @@ class EventDetailsScreen extends StatelessWidget {
               fontsize: Dimensions.fontSizeLarge.h,
               fontWeight: FontWeight.w400,
               textAlign: TextAlign.start,
-              top: 8.h,
+              top: 3.h,
             ),
 
             ///------------------------Description text------------------>
-            CustomText(
-              text: "${evensData.description}",
-              color: AppColors.whiteE8E8E8,
-              fontsize: Dimensions.fontSizeDefault.h,
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.start,
-              maxline: 10,
-              top: 8.h,
-              bottom: 8.h,
+            Container(
+              color: AppColors.backgroundColor,
+              child: Html(
+                shrinkWrap: true,
+                data: evensData.description
+              ),
             ),
-
-            // ///------------------------Description all text------------------>
-            // CustomText(
-            //   text:"SATRF and SATRA Rules will apply for all matches.",
-            //   color: AppColors.whiteE8E8E8,
-            //   fontsize: Dimensions.fontSizeDefault.h,
-            //   fontWeight: FontWeight.w400,
-            //   textAlign: TextAlign.start,
-            //   maxline: 3,
-            //   top: 8.h,
-            //   bottom: 8.h,
-            // ),
-            //
-            //
 
             Expanded(child: _matchSection()),
 

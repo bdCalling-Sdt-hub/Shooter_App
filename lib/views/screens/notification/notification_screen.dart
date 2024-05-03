@@ -51,7 +51,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _notificationController.getNotifications();
     return Scaffold(
       ///-----------------------------------app bar section-------------------------->
       appBar: AppBar(
@@ -79,7 +78,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   _notificationController.notificationsList.isEmpty ? const CustomText(text: "No notifications yet",) :
                 RefreshIndicator(
                   onRefresh: ()async{
-                    _notificationController.getNotifications();
+                    _notificationController.notificationsList.refresh();
                   },
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
@@ -104,11 +103,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),
             ),
 
-            // _Notification(),
-            // SizedBox(height: 12.h,),
-            // _Notification(),
-            // SizedBox(height: 12.h,),
-            // _Notification(),
           ],
         ),
       ),
@@ -147,7 +141,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "$title",
+                  title,
                   style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: Dimensions.fontSizeLarge.h,
@@ -156,15 +150,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       height: 1.5),
                 ),
 
-                // CustomText(
-                //   maxline: 10,
-                //   text: "You have a new match in 2 Aug 2024",
-                //   fontsize: Dimensions.fontSizeLarge.h,
-                //   fontWeight: FontWeight.w400,
-                //   color: AppColors.white,
-                //   textAlign: TextAlign.start,
-                //
-                // ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(

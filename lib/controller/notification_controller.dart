@@ -39,7 +39,7 @@ class NotificationController extends GetxController{
     if(page == 1){
       notificationLoading(true);
     }
-    var response = await ApiClient.getData('${ApiConstant.notificationsEndPoint}?limit=2&page=$page');
+    var response = await ApiClient.getData('${ApiConstant.notificationsEndPoint}?limit=10&page=$page');
 
     if(response.statusCode == 200){
       if(response.body['data']['attributes'] != null){
@@ -48,6 +48,7 @@ class NotificationController extends GetxController{
         totalResult = jsonDecode(response.body['pagination']['totalNotification'].toString());
         var notificationsData = List<NotificationModel>.from(response.body['data']['attributes'].map((e)=> NotificationModel.fromJson(e)));
         notificationsList.addAll(notificationsData);
+        update();
         notificationLoading(false);
       }
     }

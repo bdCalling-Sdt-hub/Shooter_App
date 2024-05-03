@@ -23,7 +23,9 @@ class RegistrationController extends GetxController {
 
 
   ///=================================================>
+  RxBool submitFromLoading = false.obs;
   void submitForm(BuildContext context, String? matchId, price, matchName) async {
+    submitFromLoading(true);
     // Replace the URL with your actual endpoint
     print("========================================dd==========$matchName");
 
@@ -57,6 +59,7 @@ class RegistrationController extends GetxController {
       Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, matchId: '$matchId', price: price,)));
       // Handle successful response
       print('Form submitted successfully');
+      submitFromLoading(false);
     } else {
       // Handle errors
       print('Error submitting form: ${response.statusCode}');
