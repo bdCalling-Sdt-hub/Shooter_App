@@ -71,6 +71,10 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
               return NavigationDecision.prevent;
 
             } else if (request.url==AppConstants.cancel_url) {
+
+              Map<String,String> data =await  getUrlQueryPrams(request.url);
+              print("==============data = $data");
+
               if(widget.matchId == ""){
                 widget._subscriptionController.buySubscription(widget.body!);
               }else{

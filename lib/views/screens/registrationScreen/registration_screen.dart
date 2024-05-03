@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/profileController.dart';
 import '../../../controller/registration_controller.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
@@ -19,6 +20,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final RegistrationController registrationController = Get.put(RegistrationController());
+  final ProfileController _profileController = Get.put(ProfileController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   /*void _handleRadioValueChange(String value) {
     setState(() {
@@ -26,6 +28,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     });
   }*/
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _profileController.getProfileData();
+    var profileData = _profileController.profileModel.value.data?.attributes;
+    registrationController.nameController.text = profileData!.name ?? '';
+    registrationController.emailController.text = "${profileData.email}";
+    registrationController.clubNameController.text = "${profileData.club}";
+
+  }
 
   var parameter = Get.parameters;
   @override
@@ -68,19 +82,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomTextField(
+          readOnly: true,
           controller: registrationController.nameController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.fullName,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please enter your full name";
+              return "please update your profile";
             }
             return null;
           },
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          readOnly: true,
           controller: registrationController.emailController,
           keyboardType: TextInputType.emailAddress,
           contenpaddingHorizontal: 12.w,
@@ -88,7 +104,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           hintText: AppString.email,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please enter your email";
+              return "please update your profile";
             }
             return null;
           },
@@ -157,17 +173,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          readOnly: true,
           controller: registrationController.clubNameController,
           contenpaddingHorizontal: 12.w,
           contenpaddingVertical: 16.h,
           hintText: AppString.clubName,
            validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please enter your club name";
+              return "please update your profile";
             }
             return null;
           },
         ),
+
+
+
+
+
         SizedBox(height: 174.h),
         CustomButton(
           title: AppString.makePayment,
