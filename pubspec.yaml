@@ -56,6 +56,7 @@ dependencies:
   mime_type: ^1.0.0
   cached_network_image: ^3.3.1
   intl:
+  timeago: ^3.6.1
 
 
   webview_flutter:

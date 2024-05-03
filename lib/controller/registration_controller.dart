@@ -28,15 +28,17 @@ class RegistrationController extends GetxController {
     print("========================================dd==========$matchName");
 
     const url = 'https://www.payfast.co.za/eng/process';
-    var age = int.parse(ageController.text);
-    var bodyCo = {
-      "fullName": nameController.text,
-      "email": emailController.text.trim(),
-      "phone": phoneNumberController.text,
-      "gender": groupValue.toString(),
-      "age": age.toInt(),
-      "clubName": clubNameController.text
-    };
+    // var age = int.parse(ageController.text);
+    // var bodyCo = {
+    //   "fullName": nameController.text,
+    //   "email": emailController.text.trim(),
+    //   "phone": phoneNumberController.text,
+    //   "gender": groupValue.toString(),
+    //   "age": age.toInt(),
+    //   "clubName": clubNameController.text,
+    //   "transactionId":"sdfsdghfsd",
+    //   "price":"$price"
+    // };
 
     final response = await http.post(
       Uri.parse(url),
@@ -52,13 +54,11 @@ class RegistrationController extends GetxController {
     );
 
     if (response.statusCode == 200||response.statusCode==302) {
-      Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, body: bodyCo, matchId: '$matchId')));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, matchId: '$matchId', price: price,)));
       // Handle successful response
       print('Form submitted successfully');
     } else {
       // Handle errors
-
-
       print('Error submitting form: ${response.statusCode}');
       print('Error submitting form: ${response.body}');
     }
@@ -71,20 +71,22 @@ class RegistrationController extends GetxController {
 //=========================> Match Register <============================
   var registerLoading = false.obs;
   var bearerToken = ApiClient.bearerToken;
-  matchRegister(String matchId, Map body) async {
+  matchRegister(String matchId, price, transactionId) async {
     Map<String, String> header = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $bearerToken'
     };
-    // var age = int.parse(ageController.text);
-    // var body = {
-    //   "fullName": nameController.text,
-    //   "email": emailController.text.trim(),
-    //   "phone": phoneNumberController.text,
-    //   "gender": groupValue.toString(),
-    //   "age": age.toInt(),
-    //   "clubName": clubNameController.text
-    // };
+    var age = int.parse(ageController.text);
+    var body = {
+      "fullName": nameController.text,
+      "email": emailController.text.trim(),
+      "phone": phoneNumberController.text,
+      "gender": groupValue.toString(),
+      "age": age.toInt(),
+      "clubName": clubNameController.text,
+      "transactionId":"$transactionId",
+      "price":"1.00"
+    };
     var response = await ApiClient.postData(
         ApiConstant.matchRegister(matchId), json.encode(body),
         headers: header);

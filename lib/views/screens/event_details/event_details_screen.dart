@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -104,8 +105,8 @@ class EventDetailsScreen extends StatelessWidget {
             ),
 
             ///---------------------------------image----------------------------->
-            Image.asset(
-              AppImages.details_screen_image,
+            CachedNetworkImage(
+             imageUrl:  evensData.image?.publicFileUrl,
               width: 345.w,
               height: 180.h,
             ),

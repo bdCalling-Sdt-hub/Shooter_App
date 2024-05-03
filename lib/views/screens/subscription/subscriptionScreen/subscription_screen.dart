@@ -139,6 +139,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       context,
                       '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value]['price']}',
                       '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value]['subscription']}',
+                      startDate,
+                      entDate
                     );
                     // _subscriptionController.buySubscription(startDate, entDate);
                     //Get.toNamed(AppRoutes.signUpScreen);

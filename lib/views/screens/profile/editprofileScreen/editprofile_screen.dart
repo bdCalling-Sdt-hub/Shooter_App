@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -88,17 +89,19 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           ? CircleAvatar(
                           radius: 60.r,
                           backgroundImage: MemoryImage(_image!))
-                          : CircleAvatar(
-                          radius: 60.r,
-                          backgroundImage: profileData
-                              ?.image?.publicFileUrl !=
-                              null ||
-                              profileData?.image?.publicFileUrl != ''
-                              ? NetworkImage(
-                              "${ApiConstant.imageBaseUrl}/${profileData?.image
+                          : Container(
+                        clipBehavior: Clip.antiAlias,
+                        height: 100.h,
+                          width: 100.w,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle
+                          ),
+                          child :  profileData?.image?.publicFileUrl == null || profileData?.image?.publicFileUrl == '' ?
+                          CachedNetworkImage(
+                             imageUrl:  "${ApiConstant.imageBaseUrl}/${profileData?.image
                                   ?.publicFileUrl}")
-                              : NetworkImage(
-                              "${ApiConstant.imageBaseUrl}/${profileData?.image
+                              : CachedNetworkImage(
+                             imageUrl:  "${ApiConstant.imageBaseUrl}/${profileData?.image
                                   ?.publicFileUrl}")),
                       Positioned(
                           bottom: 12.h,

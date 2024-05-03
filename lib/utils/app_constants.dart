@@ -22,8 +22,10 @@ class AppConstants{
 
 
   ///===================payment=======================>
-  String _merchant_key="sshi091ovn1fa";
-  String _merchant_id="24319614";
+   String _merchant_key="sshi091ovn1fa";
+  // String _merchant_key="q1cd2rdny4a53";
+   String _merchant_id="24319614";
+  // String _merchant_id="10004002";
   static String return_url="https://www.example.com/success";
   static String cancel_url="https://www.example.com/cancel";
   static String notify_url="https://www.example.com/notify";
