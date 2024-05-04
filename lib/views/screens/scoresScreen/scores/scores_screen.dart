@@ -56,7 +56,7 @@ class ScoresScreen extends StatelessWidget {
   _TableSection() {
     return Obx(
       () => _scoresController.scoresLoading.value
-          ? const Center(child: CustomLoader())
+          ? const Center(child: CustomText(text: "Match score coming soon"))
           : Column(
               children: [
                 Container(
@@ -82,15 +82,17 @@ class ScoresScreen extends StatelessWidget {
                     children: List.generate(
                         _scoresController.scoresModel.length, (index) {
                       var matchData = _scoresController.scoresModel[index];
+
+                      print("=====================>.. $matchData");
                       return TableRow(
                           decoration: const BoxDecoration(
                             color: Color(0xff5B5455),
                           ),
                           children: [
-                            _rowText("${matchData["class"]}"),
-                            _rowText("${matchData["name"]}"),
-                            _rowText("${matchData["club"]}"),
-                            _rowText("${matchData["score"]}"),
+                            _rowText("${matchData["Class"]}"),
+                            _rowText("${matchData["Name"]}"),
+                            _rowText("${matchData["Club"]}"),
+                            _rowText("${matchData["Score"]}"),
                           ]);
                     })),
               ],

@@ -39,7 +39,7 @@ class ProfileController extends GetxController{
      await TimeFormatHelper.isFutureDate('${profileModel.value.data?.attributes?.subscriptionEndDate}');
 
      ///=====================if subscription date is expire route to subscription screen user stay on this app doesn't meter==================>
-     SubscriptionRouteHelper.subscriptionRoute(await PrefsHelper.getBool(AppConstants.isFutureDate));
+     // SubscriptionRouteHelper.subscriptionRoute(await PrefsHelper.getBool(AppConstants.isFutureDate));
 
 
       setRxRequestStatus(Status.completed);

@@ -205,7 +205,7 @@ class DrawerSection extends StatelessWidget {
                                             onpress: () async{
                                               await PrefsHelper.remove(AppConstants.isLogged);
                                               await PrefsHelper.remove(AppConstants.userId);
-                                              await PrefsHelper.remove(AppConstants.bearerToken);
+                                              // await PrefsHelper.remove(AppConstants.bearerToken);
                                               await PrefsHelper.remove(AppConstants.subscription);
                                               Get.offNamed(
                                                   AppRoutes.signInScreen);

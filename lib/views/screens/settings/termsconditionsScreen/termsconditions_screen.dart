@@ -38,7 +38,6 @@ class TermsconditionsScreen extends StatelessWidget {
                     SizedBox(height: 24.h),
                     Obx(
                       () => Html(
-                        shrinkWrap: true,
                         data: _termsConditionsController.content.value,
                       ),
                     ),

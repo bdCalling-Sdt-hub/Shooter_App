@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/utils/app_icons.dart';
+import '../../../../controller/scores_controller.dart';
 import '../../../../utils/app_string.dart';
 import '../../../../utils/dimentions.dart';
+import '../../../widgets/custom_loader.dart';
 import '../../../widgets/custom_text.dart';
 import 'inner_widgets/line_chart.dart';
 
@@ -18,6 +22,7 @@ class MyScoresScreen extends StatefulWidget {
 
 class _MyScoresScreenState extends State<MyScoresScreen> {
   var _pickDateController = TextEditingController();
+  final ScoresController _scoresController = Get.put(ScoresController());
   bool isComplete = true;
 
   @override
@@ -203,6 +208,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.w),
       child: CustomText(
+        fontsize: 12.h,
         text: title,
         maxline: 2,
       ),
@@ -210,92 +216,50 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
   }
 
   ///---------------------------------table section------------------------------->
+
   _TableSection() {
-    return Column(
-      children: [
-        Table(
-          border: TableBorder.all(color: Colors.black26),
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: [
-            TableRow(
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8.r),
-                      topRight: Radius.circular(8.r)),
-                ),
+    return Obx(
+          () => _scoresController.myScoresLoading.value
+          ? const Center(child: CustomLoader())
+          : Column(
+        children: [
+          Container(
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8.r),
+                    topRight: Radius.circular(8.r)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   _rowText(AppString.date),
                   _rowText(AppString.event),
                   _rowText(AppString.match),
                   _rowText(AppString.scores),
-                ]),
-            TableRow(
-                decoration: const BoxDecoration(
-                  color: Color(0xff5B5455),
-                ),
-                children: [
-                  _rowText('01-03-2024'),
-                  _rowText('Event 1'),
-                  _rowText('Match 1'),
-                  _rowText('596'),
-                ]),
-            TableRow(
-                decoration: const BoxDecoration(
-                  color: Color(0xff5B5455),
-                ),
-                children: [
-                  _rowText('01-03-2024'),
-                  _rowText('Event 1'),
-                  _rowText('Match 1'),
-                  _rowText('596'),
-                ]),
-            TableRow(
-                decoration: const BoxDecoration(
-                  color: Color(0xff5B5455),
-                ),
-                children: [
-                  _rowText('01-03-2024'),
-                  _rowText('Event 1'),
-                  _rowText('Match 1'),
-                  _rowText('596'),
-                ]),
-            TableRow(
-                decoration: const BoxDecoration(
-                  color: Color(0xff5B5455),
-                ),
-                children: [
-                  _rowText('01-03-2024'),
-                  _rowText('Event 1'),
-                  _rowText('Match 1'),
-                  _rowText('596'),
-                ]),
-            TableRow(
-                decoration: const BoxDecoration(
-                  color: Color(0xff5B5455),
-                ),
-                children: [
-                  _rowText('01-03-2024'),
-                  _rowText('Event 1'),
-                  _rowText('Match 1'),
-                  _rowText('596'),
-                ]),
-            TableRow(
-                decoration: BoxDecoration(
-                  color: const Color(0xff5B5455),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8.r),
-                      bottomRight: Radius.circular(8.r)),
-                ),
-                children: [
-                  _rowText('01-03-2024'),
-                  _rowText('Event 1'),
-                  _rowText('Match 1'),
-                  _rowText('596'),
-                ]),
-          ],
-        )
-      ],
+                ],
+              )),
+          Table(
+              border: TableBorder.all(color: Colors.black26),
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: List.generate(
+                  _scoresController.myScroesList.length, (index) {
+                var matchData = _scoresController.myScroesList[index];
+                print("===============>... $matchData");
+                return TableRow(
+                    decoration: const BoxDecoration(
+                      color: Color(0xff5B5455),
+                    ),
+                    children: [
+                      _rowText(TimeFormatHelper.formatDate(DateTime.parse('${matchData["matchDate"]}'))),
+                      _rowText("${matchData["event"]}"),
+                      _rowText("${matchData["matchName"]}"),
+                      _rowText("${matchData["score"]}"),
+                    ]);
+              })),
+        ],
+      ),
     );
   }
 }

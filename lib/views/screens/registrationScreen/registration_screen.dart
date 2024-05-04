@@ -38,6 +38,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     registrationController.nameController.text = profileData!.name ?? '';
     registrationController.emailController.text = "${profileData.email}";
     registrationController.clubNameController.text = "${profileData.club}";
+    registrationController.phoneNumberController.text = "${profileData.phone}";
 
   }
 
@@ -111,6 +112,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         SizedBox(height: 16.h),
         CustomTextField(
+          readOnly:  true,
           keyboardType: TextInputType.phone,
           controller: registrationController.phoneNumberController,
           contenpaddingHorizontal: 12.w,
@@ -118,7 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           hintText: AppString.phoneNumber,
            validator: (value) {
             if (value == null || value.isEmpty) {
-              return "please enter your phone number";
+              return "please update your profile";
             }
             return null;
           },
@@ -194,7 +196,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         CustomButton(
           title: AppString.makePayment,
           titlecolor: Colors.white,
-          loading: registrationController.registerLoading.value,
+          loading: registrationController.submitFromLoading.value,
           onpress: () {
             if (_formKey.currentState!.validate()) {
               registrationController.submitForm(context, '${parameter['matchId']}' , '${parameter['price']}' , '${parameter['matchName']}');
