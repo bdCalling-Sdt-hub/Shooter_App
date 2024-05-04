@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -122,22 +123,25 @@ class SignInForm extends StatelessWidget {
                       )),
                     ),
                   ),
-                  SizedBox(
-                    width: 12.w,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(16.r),
-                    decoration: BoxDecoration(
-                        color: AppColors.fieldColor,
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radiusDefault),
-                        border: Border.all(color: const Color(0xFFFD92A0))),
-                    child: Center(
-                        child: SvgPicture.asset(
-                      AppIcons.facebook,
-                      width: 24.w,
-                      height: 24.h,
-                    )),
+                  SizedBox(width: 12.w),
+                  GestureDetector(
+                    onTap: (){
+                      _authController.loginWithFacebook();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.r),
+                      decoration: BoxDecoration(
+                          color: AppColors.fieldColor,
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radiusDefault),
+                          border: Border.all(color: const Color(0xFFFD92A0))),
+                      child: Center(
+                          child: SvgPicture.asset(
+                        AppIcons.facebook,
+                        width: 24.w,
+                        height: 24.h,
+                      )),
+                    ),
                   )
                 ],
               ),
