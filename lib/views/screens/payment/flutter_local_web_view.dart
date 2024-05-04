@@ -9,13 +9,17 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../../utils/app_constants.dart';
 
 class FlutterLocalWebView extends StatefulWidget {
-  FlutterLocalWebView({super.key,required this.code,  this.body, required this.matchId, this.price});
+  FlutterLocalWebView({super.key,required this.code,  this.body, required this.matchId, this.price, this.subscription, this.startDate, this.endDate, this.subscriptionPrice});
   final RegistrationController _registrationController = Get.put(RegistrationController());
   final SubscriptionController _subscriptionController =Get.put(SubscriptionController());
   Map? body;
   String code;
   String matchId;
   String? price;
+  String? subscription;
+  String? startDate;
+  String? endDate;
+  String? subscriptionPrice;
 
   @override
   FlutterLocalWebViewState createState() => FlutterLocalWebViewState();
@@ -63,7 +67,7 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
               Map<String,String> data =await  getUrlQueryPrams(request.url);
               print("==============data = $data");
               if(widget.matchId == ""){
-                widget._subscriptionController.buySubscription(widget.body!);
+                widget._subscriptionController.buySubscription("${widget.subscriptionPrice}", widget.subscription, widget.startDate, widget.endDate);
               }else{
                 widget._registrationController.matchRegister(widget.matchId, widget.body!, '');
               }
@@ -76,16 +80,16 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
               print("==============data = $data");
 
               if(widget.matchId == ""){
-                widget._subscriptionController.buySubscription(widget.body!);
+                widget._subscriptionController.buySubscription("${widget.subscriptionPrice}", widget.subscription, widget.startDate, widget.endDate);
               }else{
-                widget._registrationController.matchRegister(widget.matchId, widget.price, '');
+                widget._registrationController.matchRegister(widget.matchId, widget.price, 'oidjof');
               }
-              Get.back();
 
 
 
 
-              return NavigationDecision.prevent;
+
+              // return NavigationDecision.prevent;
             } else if (request.url==AppConstants.notify_url) {
               return NavigationDecision.prevent;
             }

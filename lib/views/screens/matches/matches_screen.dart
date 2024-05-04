@@ -84,9 +84,10 @@ class _MatchesScreenState extends State<MatchesScreen> {
                     horizontal: Dimensions.paddingSizeDefault.w),
                 child: RefreshIndicator(
                   onRefresh: () async {
-                    await _matchController.getMatchs();
+                    await _matchController.refresh;
                   },
                   child: ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
                     controller: _scrollController,
                     itemCount: _matchController.matchModel.length + 1,
                     itemBuilder: (context, index) {
@@ -109,7 +110,7 @@ class _MatchesScreenState extends State<MatchesScreen> {
                                 gender: match.gender,
                                 date: match.matchDate,
                                 image: "${match.image?.publicFileUrl}",
-                                time: "${match.time}",
+                                time: match.time,
                                 eventName: match.event,
                                 matchName: match.matchName,
                                 prone: match.prone,

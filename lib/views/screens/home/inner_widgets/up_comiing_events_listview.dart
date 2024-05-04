@@ -46,7 +46,7 @@ class UpComingEventsListView extends StatelessWidget {
                           title: evensData.name,
                           location: evensData.location,
                           date: evensData.closingDate,
-                          startDate: "${evensData.closingDate}",
+                          startDate: "${evensData.startedDate}",
                           onTap: () {
                             Get.toNamed(AppRoutes.eventDetailsScreen,
                                 arguments: evensData);

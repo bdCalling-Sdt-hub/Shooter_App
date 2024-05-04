@@ -76,9 +76,10 @@ class _EventsScreenState extends State<EventsScreen> {
          case Status.completed : return
            RefreshIndicator(
              onRefresh: ()async{
-               await _eventsController.getEvents();
+               await _eventsController.evensLists;
              },
              child: ListView.builder(
+               physics: const AlwaysScrollableScrollPhysics(),
                controller: _scrollController,
                itemCount: eventsData.length+1,
                itemBuilder: (context, index) {
@@ -97,7 +98,7 @@ class _EventsScreenState extends State<EventsScreen> {
                            title: "${events.name}",
                            location: " ${events.location}",
                            date: events.closingDate,
-                           startDate: '${events.closingDate}',
+                           startDate: '${events.startedDate}',
                            onTap: () {
                              Get.toNamed(AppRoutes.eventDetailsScreen, arguments : events);
                            },

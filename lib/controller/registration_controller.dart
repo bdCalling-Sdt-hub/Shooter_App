@@ -58,7 +58,7 @@ class RegistrationController extends GetxController {
     if (response.statusCode == 200||response.statusCode==302) {
       Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, matchId: '$matchId', price: price,)));
       // Handle successful response
-      print('Form submitted successfully');
+      print('Form submitted successfully , ${response.body} ');
       submitFromLoading(false);
     } else {
       // Handle errors
@@ -88,7 +88,7 @@ class RegistrationController extends GetxController {
       "age": age.toInt(),
       "clubName": clubNameController.text,
       "transactionId":"$transactionId",
-      "price":"1.00"
+      "price":"$price"
     };
     var response = await ApiClient.postData(
         ApiConstant.matchRegister(matchId), json.encode(body),

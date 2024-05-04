@@ -122,7 +122,7 @@ class CustomMatchesCard extends StatelessWidget {
 
                       ///---------------------time text----------------------><
                       CustomText(
-                        text: TimeFormatHelper.timeFormat(date!),
+                        text: TimeFormatHelper.timeWithAMPM(time!),
                         color: AppColors.backgroundColor,
                         fontsize: Dimensions.fontSizeDefault.h,
                         fontWeight: FontWeight.w400,
@@ -208,8 +208,6 @@ class CustomMatchesCard extends StatelessWidget {
                       //   Get.toNamed(AppRoutes.registrationScreen);
                       // },
                       titlecolor: AppColors.white),
-
-
 
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,7 @@ import 'package:shooter_app/controller/match_controller.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_images.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 import 'package:shooter_app/views/widgets/custom_matches_card.dart';
 import 'package:shooter_app/views/widgets/time_count_down.dart';
 import '../../../routes/app_routes.dart';
@@ -57,6 +59,7 @@ class EventDetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
+                  flex: 1,
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -108,7 +111,8 @@ class EventDetailsScreen extends StatelessWidget {
 
             ///---------------------------------image----------------------------->
             CachedNetworkImage(
-             imageUrl: "${ApiConstant.imageBaseUrl}/${ evensData.image?.publicFileUrl}",
+              imageUrl:
+                  "${ApiConstant.imageBaseUrl}/${evensData.image?.publicFileUrl}",
               width: 345.w,
               height: 180.h,
             ),
@@ -128,7 +132,7 @@ class EventDetailsScreen extends StatelessWidget {
 
                 ///------------------------time count down------------------>
                 TimeCountDown(
-                  dateLine: evensData.closingDate,
+                  dateLine: evensData.startedDate,
                   textColor: Colors.white,
                 )
                 // CustomText(
@@ -188,15 +192,15 @@ class EventDetailsScreen extends StatelessWidget {
             ),
 
             ///------------------------Description text------------------>
-            Container(
-              color: AppColors.backgroundColor,
+            SizedBox(
+              // color: AppColors.backgroundColor,
               child: Html(
                 shrinkWrap: true,
-                data: evensData.description
+                data: evensData.description,
               ),
             ),
 
-            Expanded(child: _matchSection()),
+            Flexible(child: _matchSection()),
 
             SizedBox(height: 12.h)
           ],
@@ -225,49 +229,51 @@ class EventDetailsScreen extends StatelessWidget {
 
         SizedBox(
           child: Obx(() {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: _matchController.matchModel.length,
-              itemBuilder: (context, index) {
-                var match = _matchController.matchModel[index];
-                if (match.event == evensData.name) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: 16.h),
-                    child: Container(
-                      height: 330.h,
-                      width: 350.w,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radiusDefault.r),
-                          color: AppColors.white),
-                      child: CustomMatchesCard(
-                        date: DateTime.now(),
-                        image: "${match.image?.publicFileUrl}",
-                        time: "${match.time}",
-                        gender: match.gender,
-                        matchName: match.matchName,
-                        eventName: match.event,
-                        prone: match.prone,
-                        entryFree: "R ${match.fee} Per Entry",
-                        buttonText: "Register",
-                        onTap: () {
-                          Get.toNamed(AppRoutes.registrationScreen,
-                              parameters: {
-                                'matchId': '${match.id}',
-                                'price': '${match.fee}',
-                                'matchName' : '${match.matchName}'
-                              });
-                        },
-                      ),
-                    ),
+            return _matchController.matchModel.isEmpty
+                ? const CustomText(text: "No data found")
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _matchController.matchModel.length,
+                    itemBuilder: (context, index) {
+                      var match = _matchController.matchModel[index];
+                      if (match.event == evensData.name) {
+                        print("=============call here");
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 16.h),
+                          child: Container(
+                            height: 330.h,
+                            width: 350.w,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.radiusDefault.r),
+                                color: AppColors.white),
+                            child: CustomMatchesCard(
+                              date: DateTime.now(),
+                              image: "${match.image?.publicFileUrl}",
+                              time: match.time,
+                              gender: match.gender,
+                              matchName: match.matchName,
+                              eventName: match.event,
+                              prone: match.prone,
+                              entryFree: "R ${match.fee} Per Entry",
+                              buttonText: "Register",
+                              onTap: () {
+                                Get.toNamed(AppRoutes.registrationScreen,
+                                    parameters: {
+                                      'matchId': '${match.id}',
+                                      'price': '${match.fee}',
+                                      'matchName': '${match.matchName}'
+                                    });
+                              },
+                            ),
+                          ),
+                        );
+                      } else {
+                        return const SizedBox(); // Return an empty SizedBox if no match found
+                      }
+                    },
                   );
-                }
-                const CustomText(
-                  text: "No data found",
-                );
-              },
-            );
           }),
         ),
       ],

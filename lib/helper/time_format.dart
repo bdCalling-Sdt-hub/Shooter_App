@@ -16,6 +16,13 @@ class TimeFormatHelper {
     return DateFormat('hh:mm a').format(date);
   }
 
+
+  static timeWithAMPM(String time){
+    DateTime parsedTime = DateFormat('HH:mm:ss').parse(time);
+    String formattedTime = DateFormat('h:mm a').format(parsedTime);
+    return formattedTime;
+  }
+
   static Future<void> isFutureDate(String input) async {
     try {
       DateTime date = DateTime.parse(input);

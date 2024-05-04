@@ -28,12 +28,7 @@ class SubscriptionController extends GetxController {
   void submitForm(BuildContext context, String price, subscription,startDate, endDate) async {
     const url = 'https://www.payfast.co.za/eng/process';
 
-    var bodyCo = {
-      "subscription": "$subscription",
-      "subscriptionStartDate": "$startDate",
-      "subscriptionEndDate": "$endDate",
-      "price": "$price"
-    };
+
 
     final response = await http.post(
       Uri.parse(url),
@@ -56,7 +51,10 @@ class SubscriptionController extends GetxController {
               builder: (_) => FlutterLocalWebView(
                     code: response.body,
                     matchId: '',
-                    body: bodyCo,
+                    startDate: startDate,
+                endDate: endDate,
+                subscription: subscription,
+                subscriptionPrice: price,
                   )));
       // Handle successful response
       print('Form submitted successfully');
@@ -70,8 +68,14 @@ class SubscriptionController extends GetxController {
 
 
   ///=====================Buy Subscription=========================>
-  buySubscription(Map body) async {
-
+  buySubscription( String price, subscription,startDate, endDate) async {
+    var body = {
+      "subscription": "$subscription",
+      "subscriptionStartDate": "$startDate",
+      "subscriptionEndDate": "$endDate",
+      "price": "$price",
+      "transactionId":"0012"
+    };
     var response =
         await ApiClient.postData(ApiConstant.subscriptionEndpoint, body);
 

@@ -24,12 +24,13 @@ class AuthController extends GetxController {
   var signInLoading = false.obs;
   final dataController = Get.put(DataController(), permanent: true);
 
-  handleSignIn() async {
+  handleSignIn(int loginType) async {
     signInLoading(true);
     Map<String, String> header = {'Content-Type': 'application/json'};
     var body = {
       'email': emailController.text.trim(),
       'password': passController.text,
+      "loginType" : loginType
     };
     var response = await ApiClient.postData(
         ApiConstant.signIn, json.encode(body),
@@ -87,7 +88,7 @@ class AuthController extends GetxController {
         final UserCredential authResult = await _auth.signInWithCredential(credential);
         final User? user = authResult.user;
         if (user != null) {
-          Get.offAllNamed(AppRoutes.bottomNavBar);
+          // Get.offAllNamed(AppRoutes.bottomNavBar);
         }
 
         return user;
