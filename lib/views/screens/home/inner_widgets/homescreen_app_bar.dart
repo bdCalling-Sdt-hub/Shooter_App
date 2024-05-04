@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -41,9 +42,14 @@ class HomeScreenAppBar extends StatelessWidget {
           CircleAvatar(
             radius: 20.r,
             backgroundImage:  const AssetImage(AppImages.profileImg)
-          ) : CircleAvatar(
-            radius: 20.r,
-            backgroundImage:  NetworkImage("${ApiConstant.imageBaseUrl}/${_profileController.profileModel.value.data?.attributes?.image?.publicFileUrl}")
+          ) : Container(
+            clipBehavior: Clip.antiAlias,
+          height: 40.h,
+            width: 40.w,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle
+            ),
+            child: CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${_profileController.profileModel.value.data?.attributes?.image?.publicFileUrl}")
         ),
 
 
