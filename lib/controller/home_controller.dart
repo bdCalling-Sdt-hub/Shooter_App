@@ -29,7 +29,7 @@ class HomeController {
     eventLoading(true);
 
     var response = await ApiClient.getData(
-        '${ApiConstant.upComingEven}?matchDate=${pickDateController.text}');
+        '${ApiConstant.upComingEven}?eventDate=${pickDateController.text}');
     if (response.statusCode == 200) {
       upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e) => UpComingEventModel.fromJson(e)));
       eventLoading(false);

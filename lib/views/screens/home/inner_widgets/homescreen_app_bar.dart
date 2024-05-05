@@ -49,7 +49,7 @@ class HomeScreenAppBar extends StatelessWidget {
             decoration: const BoxDecoration(
               shape: BoxShape.circle
             ),
-            child: CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${_profileController.profileModel.value.data?.attributes?.image?.publicFileUrl}")
+            child: CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${_profileController.profileModel.value.data?.attributes?.image?.publicFileUrl}",fit: BoxFit.cover,)
         ),
 
 

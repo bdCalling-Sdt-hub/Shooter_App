@@ -25,86 +25,88 @@ class SettingsScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.paddingSizeDefault),
-        child: Column(
-          children: [
-            SizedBox(height: 24.h),
-            //=================================> Change Password Section <=======================
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.changepasswordScreen);
-              },
-              child: CustomListTile(
-                title: AppString.changePassword,
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.lock,
-                  color: Colors.white,
-                ),
-                sufixIcon: SvgPicture.asset(
-                  AppIcons.rightArrow,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            //=================================> Privacy Policy Section <=======================
-
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.privacypolicyScreen);
-              },
-              child: CustomListTile(
-                title: AppString.privacyPolicy,
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.privacy,
-                  color: Colors.white,
-                ),
-                sufixIcon: SvgPicture.asset(
-                  AppIcons.rightArrow,
-                  color: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.paddingSizeDefault),
+          child: Column(
+            children: [
+              SizedBox(height: 24.h),
+              //=================================> Change Password Section <=======================
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.changepasswordScreen);
+                },
+                child: CustomListTile(
+                  title: AppString.changePassword,
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.lock,
+                    color: Colors.white,
+                  ),
+                  sufixIcon: SvgPicture.asset(
+                    AppIcons.rightArrow,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.h),
-            //=================================> Terms & Conditions Section <=======================
-
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.termsconditionsScreen);
-              },
-              child: CustomListTile(
-                title: AppString.termsConditions,
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.terms,
-                  color: Colors.white,
-                ),
-                sufixIcon: SvgPicture.asset(
-                  AppIcons.rightArrow,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            //=================================> About Us Section <=======================
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.aboutusScreen);
-              },
-              child: CustomListTile(
-                title: AppString.aboutUs,
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.about,
-                  color: Colors.white,
-                ),
-                sufixIcon: SvgPicture.asset(
-                  AppIcons.rightArrow,
-                  color: Colors.white,
+              SizedBox(height: 16.h),
+              //=================================> Privacy Policy Section <=======================
+        
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.privacypolicyScreen);
+                },
+                child: CustomListTile(
+                  title: AppString.privacyPolicy,
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.privacy,
+                    color: Colors.white,
+                  ),
+                  sufixIcon: SvgPicture.asset(
+                    AppIcons.rightArrow,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 16.h),
+              //=================================> Terms & Conditions Section <=======================
+        
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.termsconditionsScreen);
+                },
+                child: CustomListTile(
+                  title: AppString.termsConditions,
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.terms,
+                    color: Colors.white,
+                  ),
+                  sufixIcon: SvgPicture.asset(
+                    AppIcons.rightArrow,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 16.h),
+              //=================================> About Us Section <=======================
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.aboutusScreen);
+                },
+                child: CustomListTile(
+                  title: AppString.aboutUs,
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.about,
+                    color: Colors.white,
+                  ),
+                  sufixIcon: SvgPicture.asset(
+                    AppIcons.rightArrow,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

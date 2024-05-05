@@ -69,7 +69,7 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
               if(widget.matchId == ""){
                 widget._subscriptionController.buySubscription("${widget.subscriptionPrice}", widget.subscription, widget.startDate, widget.endDate);
               }else{
-                widget._registrationController.matchRegister(widget.matchId, widget.body!, '');
+                widget._registrationController.matchRegister(widget.matchId, widget.price, 'ddd');
               }
 
               return NavigationDecision.prevent;
