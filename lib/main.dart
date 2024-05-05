@@ -3,8 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:shooter_app/controller/auth_controller.dart';
-import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/helper/di.dart' as di;
 import 'package:shooter_app/themes/themes.dart';
 import 'firebase_options.dart';
@@ -17,12 +15,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // runApp(
-  //   DevicePreview(
-  //     enabled: !kReleaseMode,
-  //     builder: (context) => MyApp(), // Wrap your app
-  //   ),
-  // );
+
   await di.init();
   runApp(MyApp());
 }
