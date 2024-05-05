@@ -99,10 +99,10 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           child :  profileData?.image?.publicFileUrl == null || profileData?.image?.publicFileUrl == '' ?
                           CachedNetworkImage(
                              imageUrl:  "${ApiConstant.imageBaseUrl}/${profileData?.image
-                                  ?.publicFileUrl}")
+                                  ?.publicFileUrl}",fit: BoxFit.cover,)
                               : CachedNetworkImage(
                              imageUrl:  "${ApiConstant.imageBaseUrl}/${profileData?.image
-                                  ?.publicFileUrl}")),
+                                  ?.publicFileUrl}",fit: BoxFit.cover,)),
                       Positioned(
                           bottom: 12.h,
                           right: 0.w,
