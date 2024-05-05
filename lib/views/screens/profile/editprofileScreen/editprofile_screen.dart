@@ -51,7 +51,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       _clubController.text = "${profileData?.club}";
       _nameController.text = "${profileData?.name}";
       _dateOfBirthController.text =
-      profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
+      profileData?.dateOfBirth == null ? "" : TimeFormatHelper.formatDate(profileData!.dateOfBirth!);
       _phoneNumberController.text = "${profileData?.phone}";
       _locationController.text = "${profileData?.address}";
     });

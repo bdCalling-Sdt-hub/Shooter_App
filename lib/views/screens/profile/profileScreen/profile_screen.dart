@@ -103,7 +103,7 @@ final AuthController _authController = Get.put(AuthController());
                       title: profileData?.dateOfBirth == null
                           ? "Date of birth"
                           //: "${profileData?.dateOfBirth.toString()}",
-                          : BirthdayTimeFormatHelper.formatDate(profileData!.dateOfBirth!),
+                          : TimeFormatHelper.formatDate(profileData!.dateOfBirth!),
                       prefixIcon: _prefixIcon(AppIcons.calander)),
                   SizedBox(height: 16.h),
 

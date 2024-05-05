@@ -23,6 +23,7 @@ class NotificationController extends GetxController{
   void loadMore() {
     if (totalPage > page.value) {
       page.value += 1;
+      print("=======> page $page");
       update();
       getNotifications();
     } else {
@@ -33,6 +34,8 @@ class NotificationController extends GetxController{
 
 
   RxBool notificationLoading = false.obs;
+
+
   RxList <NotificationModel> notificationsList = <NotificationModel> [].obs;
 
   getNotifications()async{
@@ -46,6 +49,7 @@ class NotificationController extends GetxController{
         totalPage = jsonDecode(response.body['pagination']['totalPages'].toString());
         currectPage = jsonDecode(response.body['pagination']['currentPage'].toString());
         totalResult = jsonDecode(response.body['pagination']['totalNotification'].toString());
+        print('========total Result $totalResult');
         var notificationsData = List<NotificationModel>.from(response.body['data']['attributes'].map((e)=> NotificationModel.fromJson(e)));
         notificationsList.addAll(notificationsData);
         update();

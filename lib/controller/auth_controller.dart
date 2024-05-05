@@ -30,7 +30,7 @@ class AuthController extends GetxController {
     Map<String, String> header = {'Content-Type': 'application/json'};
     var body = {
       'email': emailController.text.trim(),
-      'password': passController.text,
+      'password': passController.text.trim(),
       "loginType" : loginType
     };
     var response = await ApiClient.postData(
