@@ -74,20 +74,73 @@ class AuthController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   Future<User?> signInWithGoogle(BuildContext context) async {
+
     try {
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      print('===============================> google sign in');
       if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+
+        final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
 
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
         );
-
+        print('===============================> google sign in============');
         final UserCredential authResult = await _auth.signInWithCredential(credential);
+
         final User? user = authResult.user;
         if (user != null) {
+          Map<String, String> header = {'Content-Type': 'application/json'};
+          var body = {
+            'email': '${user.email}',
+            // 'password': passController.text,
+            "loginType" : 1
+          };
+          var response = await ApiClient.postData(
+              ApiConstant.signIn, json.encode(body),
+              headers: header);
+
+          print('================> response ${response.body}');
+
+          if (response.statusCode == 200) {
+            Map<String, dynamic> data = response.body;
+            if (!data['data']['attributes']['isAdmin']) {
+              await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
+              await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
+              await PrefsHelper.setString(
+                  AppConstants.bearerToken, data['data']['token']);
+              await PrefsHelper.setBool(AppConstants.isLogged, true);
+              await PrefsHelper.setString(AppConstants.subscription,
+                  data['data']['attributes']['subscription']);
+
+              ///=========================Check Subscription============================>
+              await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
+
+
+
+              await PrefsHelper.setString(AppConstants.signInType, "General User");
+              await dataController.setData(
+                nameD: data['data']['attributes']['name'] ?? "",
+                emailD: data['data']['attributes']['email'] ?? "",
+                passwordD: "",
+                imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
+                userid: data['data']['attributes']['_id'] ?? "",
+              );
+              debugPrint("ssss ${dataController.image}");
+              Get.offAllNamed(AppRoutes.bottomNavBar);
+
+              emailController.clear();
+              passController.clear();
+            }
+          }
+
+
+          print("====================${user.email}");
+          print("====================${user.displayName}");
+
+
+
           // Get.offAllNamed(AppRoutes.bottomNavBar);
         }
 
@@ -96,8 +149,9 @@ class AuthController extends GetxController {
         print("Sign in with Google canceled by user.");
         return null;
       }
-    } catch (error) {
-      print("Error signing in with Google: $error");
+    } catch (error,s) {
+      print("================<>Error signing in with Google: $error");
+      print("================<>Error signing in with Google: $s");
       return null;
     }
   }
@@ -119,8 +173,9 @@ class AuthController extends GetxController {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
       debugPrint('facebook sign in complete ');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('facebook sign in error : $e');
+      debugPrint('facebook sign in error : $s');
     }
   }
 

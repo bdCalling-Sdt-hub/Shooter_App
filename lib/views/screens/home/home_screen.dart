@@ -4,7 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/home_controller.dart';
+import 'package:shooter_app/helper/prefs_helper.dart';
 import 'package:shooter_app/helper/subscription_route.dart';
+import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/utils/app_icons.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
@@ -25,9 +27,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final HomeController _homeController = Get.put(HomeController());
 
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       ///-------------------------------app bar section-------------------------->
 
