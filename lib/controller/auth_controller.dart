@@ -47,7 +47,7 @@ class AuthController extends GetxController {
             data['data']['attributes']['subscription']);
 
         ///=========================Check Subscription============================>
-         await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
+        await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
 
 
 
@@ -167,11 +167,11 @@ class AuthController extends GetxController {
         return null;
       }
       final credential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
       // Sign in with credential
       UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
       debugPrint('facebook sign in complete ');
     } on Exception catch (e, s) {
       debugPrint('facebook sign in error : $e');
@@ -256,9 +256,9 @@ class AuthController extends GetxController {
 //=================================> Verify Mail <==============================
   var verifyLoading = false.obs;
   verifyEmail(
-    Map<String, String?> data,
-    String code,
-  ) async {
+      Map<String, String?> data,
+      String code,
+      ) async {
     verifyLoading(true);
     var body = {"email": data['email'], "code": code};
     Map<String, String> header = {'Content-Type': 'application/json'};

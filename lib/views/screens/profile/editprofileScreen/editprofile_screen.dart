@@ -51,7 +51,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
       _clubController.text = "${profileData?.club}";
       _nameController.text = "${profileData?.name}";
       _dateOfBirthController.text =
-      profileData?.dateOfBirth == null ? "" : "${profileData?.dateOfBirth}";
+      profileData?.dateOfBirth == null ? "" : TimeFormatHelper.formatDate(profileData!.dateOfBirth!);
       _phoneNumberController.text = "${profileData?.phone}";
       _locationController.text = "${profileData?.address}";
     });
@@ -99,10 +99,10 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                           child :  profileData?.image?.publicFileUrl == null || profileData?.image?.publicFileUrl == '' ?
                           CachedNetworkImage(
                              imageUrl:  "${ApiConstant.imageBaseUrl}/${profileData?.image
-                                  ?.publicFileUrl}")
+                                  ?.publicFileUrl}",fit: BoxFit.cover,)
                               : CachedNetworkImage(
                              imageUrl:  "${ApiConstant.imageBaseUrl}/${profileData?.image
-                                  ?.publicFileUrl}")),
+                                  ?.publicFileUrl}",fit: BoxFit.cover,)),
                       Positioned(
                           bottom: 12.h,
                           right: 0.w,

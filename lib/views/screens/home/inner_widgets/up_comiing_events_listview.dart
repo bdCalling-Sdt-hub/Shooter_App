@@ -45,7 +45,7 @@ class UpComingEventsListView extends StatelessWidget {
                           image: '${evensData.image?.publicFileUrl}',
                           title: evensData.name,
                           location: evensData.location,
-                          date: evensData.closingDate,
+                          date: evensData.startedDate,
                           startDate: "${evensData.startedDate}",
                           onTap: () {
                             Get.toNamed(AppRoutes.eventDetailsScreen,

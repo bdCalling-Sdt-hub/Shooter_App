@@ -1,5 +1,6 @@
 <resources>
-    <string name="fb_login_protocol_scheme">your_fb_login_protocol_scheme_value</string>
-    <string name="facebook_app_id">your_facebook_app_id_value</string>
-    <string name="app_name">Your App Name</string>
+    <string name="fb_login_protocol_scheme">fb407590412168051</string>
+    <string name="facebook_app_id">407590412168051</string>
+    <string name="facebook_client_token">a211b00f08f5314f2d87cc3de6ca3074</string>
+    <string name="app_name">shooter_app</string>
 </resources>

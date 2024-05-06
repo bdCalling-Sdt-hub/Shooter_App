@@ -81,6 +81,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     _notificationController.notificationsList.refresh();
                   },
                   child: ListView.builder(
+                    controller: _scrollController,
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemCount: _notificationController.notificationsList.length+1,
                     itemBuilder: (context, index) {
