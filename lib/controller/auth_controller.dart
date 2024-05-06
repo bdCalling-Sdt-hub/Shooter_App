@@ -1,9 +1,9 @@
 import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:flutter_facebook_auth_platform_interface/flutter_facebook_auth_platform_interface.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -15,7 +15,6 @@ import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 
 import '../routes/app_routes.dart';
-import '../views/screens/home/home_screen.dart';
 import 'data_controller.dart';
 
 class AuthController extends GetxController {
@@ -30,7 +29,7 @@ class AuthController extends GetxController {
     Map<String, String> header = {'Content-Type': 'application/json'};
     var body = {
       'email': emailController.text.trim(),
-      'password': passController.text.trim(),
+      'password': passController.text,
       "loginType" : loginType
     };
     var response = await ApiClient.postData(
@@ -39,10 +38,8 @@ class AuthController extends GetxController {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = response.body;
       if (!data['data']['attributes']['isAdmin']) {
-        await PrefsHelper.setString(
-            AppConstants.userId, data['data']['attributes']['_id']);
-        await PrefsHelper.setString(AppConstants.subscription,
-            data['data']['attributes']['subscription']);
+        await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
+        await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
         await PrefsHelper.setString(
             AppConstants.bearerToken, data['data']['token']);
         await PrefsHelper.setBool(AppConstants.isLogged, true);
@@ -50,8 +47,9 @@ class AuthController extends GetxController {
             data['data']['attributes']['subscription']);
 
         ///=========================Check Subscription============================>
-        await TimeFormatHelper.isFutureDate(
-            data['data']['attributes']['subscriptionEndDate']);
+        await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
+
+
 
         await PrefsHelper.setString(AppConstants.signInType, "General User");
         await dataController.setData(
@@ -76,62 +74,92 @@ class AuthController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   Future<User?> signInWithGoogle(BuildContext context) async {
+
     try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      print('===============================> google sign in');
       if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
+
+        final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
 
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
         );
+        print('===============================> google sign in============');
+        final UserCredential authResult = await _auth.signInWithCredential(credential);
 
-        final UserCredential authResult =
-            await _auth.signInWithCredential(credential);
         final User? user = authResult.user;
-        print('===================>>>> $user');
         if (user != null) {
+          Map<String, String> header = {'Content-Type': 'application/json'};
+          var body = {
+            'email': '${user.email}',
+            // 'password': passController.text,
+            "loginType" : 1
+          };
+          var response = await ApiClient.postData(
+              ApiConstant.signIn, json.encode(body),
+              headers: header);
+
+          print('================> response ${response.body}');
+
+          if (response.statusCode == 200) {
+            Map<String, dynamic> data = response.body;
+            if (!data['data']['attributes']['isAdmin']) {
+              await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
+              await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
+              await PrefsHelper.setString(
+                  AppConstants.bearerToken, data['data']['token']);
+              await PrefsHelper.setBool(AppConstants.isLogged, true);
+              await PrefsHelper.setString(AppConstants.subscription,
+                  data['data']['attributes']['subscription']);
+
+              ///=========================Check Subscription============================>
+              await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
+
+
+
+              await PrefsHelper.setString(AppConstants.signInType, "General User");
+              await dataController.setData(
+                nameD: data['data']['attributes']['name'] ?? "",
+                emailD: data['data']['attributes']['email'] ?? "",
+                passwordD: "",
+                imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
+                userid: data['data']['attributes']['_id'] ?? "",
+              );
+              debugPrint("ssss ${dataController.image}");
+              Get.offAllNamed(AppRoutes.bottomNavBar);
+
+              emailController.clear();
+              passController.clear();
+            }
+          }
+
+
+          print("====================${user.email}");
+          print("====================${user.displayName}");
+
+
+
           // Get.offAllNamed(AppRoutes.bottomNavBar);
         }
+
         return user;
       } else {
-        print("==================Sign in with Google canceled by user.");
+        print("Sign in with Google canceled by user.");
         return null;
       }
-    } catch (error) {
-      print("====================Error signing in with Google: $error");
+    } catch (error,s) {
+      print("================<>Error signing in with Google: $error");
+      print("================<>Error signing in with Google: $s");
       return null;
     }
   }
-
   /// <=========== facebook auth ================>
 
-  Future<void> loginWithFacebook() async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login();
-      if (result.status == LoginStatus.success) {
-        print('Facebook login successful');
-        final AccessToken accessToken = result.accessToken!;
-      } else {
-        print('Facebook login failed');
-      }
-    } catch (e, s) {
-      print('Error during Facebook login: $e');
-      print('StackTrace: $s');
-    }
-  }
-
-  /*Future signInWithFacebook() async {
+  Future signInWithFacebook() async {
     // Trigger Facebook login flow (customizable options available)
     try {
-      FacebookAuth.instance.login(permissions: ["public_profile", "email"]).then((value) {
-        FacebookAuth.instance.getUserData().then((userData) async {
-          isLoggedIn = true;
-          userObj=userData;
-        });
-      });
       final LoginResult loginResult = await FacebookAuth.instance.login();
 
       // Check if login was cancelled
@@ -139,16 +167,17 @@ class AuthController extends GetxController {
         return null;
       }
       final credential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
       // Sign in with credential
       UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
       debugPrint('facebook sign in complete ');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('facebook sign in error : $e');
+      debugPrint('facebook sign in error : $s');
     }
-  }*/
+  }
 
   ///<===== ============== sign up =============== =====>
 
@@ -223,13 +252,13 @@ class AuthController extends GetxController {
     resendOtpLoading(false);
   }
 
+
 //=================================> Verify Mail <==============================
   var verifyLoading = false.obs;
-
   verifyEmail(
-    Map<String, String?> data,
-    String code,
-  ) async {
+      Map<String, String?> data,
+      String code,
+      ) async {
     verifyLoading(true);
     var body = {"email": data['email'], "code": code};
     Map<String, String> header = {'Content-Type': 'application/json'};
@@ -241,7 +270,8 @@ class AuthController extends GetxController {
         Get.toNamed(AppRoutes.setPasswordScreen, arguments: data['email']);
       } else if (data['screenType'] == "signup") {
         Get.offAllNamed(AppRoutes.signInScreen);
-      } else {
+      }
+      else {
         Get.offAllNamed(AppRoutes.freetrialScreen);
       }
     } else {

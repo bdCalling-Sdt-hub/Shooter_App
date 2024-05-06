@@ -80,7 +80,7 @@ class SignInForm extends StatelessWidget {
 
               ///-------------------------------------Log In botton------------------------------->
               Obx(
-                () => CustomButton(
+                    () => CustomButton(
                   loading: _authController.signInLoading.value,
                   onpress: () {
                     if (formKey.currentState!.validate()) {
@@ -113,34 +113,36 @@ class SignInForm extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: AppColors.fieldColor,
                           borderRadius:
-                              BorderRadius.circular(Dimensions.radiusDefault),
+                          BorderRadius.circular(Dimensions.radiusDefault),
                           border: Border.all(color: const Color(0xFFFD92A0))),
                       child: Center(
                           child: SvgPicture.asset(
-                        AppIcons.google,
-                        width: 24.w,
-                        height: 24.h,
-                      )),
+                            AppIcons.google,
+                            width: 24.w,
+                            height: 24.h,
+                          )),
                     ),
                   ),
-                  SizedBox(width: 12.w),
+                  SizedBox(
+                    width: 12.w,
+                  ),
                   GestureDetector(
                     onTap: (){
-                      _authController.loginWithFacebook();
+                      _authController.signInWithFacebook();
                     },
                     child: Container(
                       padding: EdgeInsets.all(16.r),
                       decoration: BoxDecoration(
                           color: AppColors.fieldColor,
                           borderRadius:
-                              BorderRadius.circular(Dimensions.radiusDefault),
+                          BorderRadius.circular(Dimensions.radiusDefault),
                           border: Border.all(color: const Color(0xFFFD92A0))),
                       child: Center(
                           child: SvgPicture.asset(
-                        AppIcons.facebook,
-                        width: 24.w,
-                        height: 24.h,
-                      )),
+                            AppIcons.facebook,
+                            width: 24.w,
+                            height: 24.h,
+                          )),
                     ),
                   )
                 ],

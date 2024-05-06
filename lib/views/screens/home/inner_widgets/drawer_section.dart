@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/controller/auth_controller.dart';
 import 'package:shooter_app/controller/profileController.dart';
 import 'package:shooter_app/helper/prefs_helper.dart';
 import 'package:shooter_app/service/api_constant.dart';
@@ -23,6 +24,7 @@ class DrawerSection extends StatelessWidget {
 
 
   final ProfileController _profileController = Get.put(ProfileController());
+  final AuthController _authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -207,6 +209,7 @@ class DrawerSection extends StatelessWidget {
                                               await PrefsHelper.remove(AppConstants.userId);
                                               // await PrefsHelper.remove(AppConstants.bearerToken);
                                               await PrefsHelper.remove(AppConstants.subscription);
+                                              _authController.googleSignIn.signOut();
                                               Get.offNamed(
                                                   AppRoutes.signInScreen);
                                             })),
