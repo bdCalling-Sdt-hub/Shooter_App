@@ -95,8 +95,10 @@ class RegistrationController extends GetxController {
         headers: header);
     if (response.statusCode == 200) {
       print('==================> Register Success');
-      Get.offAndToNamed(AppRoutes.myMatchesScreen,
-          parameters: {"matchId": matchId, "screenType": "register"});
+      Get.back();
+      Get.back();
+      // Get.offAndToNamed(AppRoutes.myMatchesScreen,
+      //     parameters: {"matchId": matchId, "screenType": "register"});
     } else {
       Fluttertoast.showToast(msg: response.statusText ?? "");
     }

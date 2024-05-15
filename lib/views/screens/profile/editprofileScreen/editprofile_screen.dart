@@ -7,16 +7,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/profileController.dart';
-import 'package:shooter_app/helper/birthday_time.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/views/widgets/custom_button.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../controller/home_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
-import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widgets/custom_text.dart';
 
@@ -29,9 +26,7 @@ class EditprofileScreen extends StatefulWidget {
 
 class _EditprofileScreenState extends State<EditprofileScreen> {
   final ProfileController _profileController = Get.put(ProfileController());
-  final HomeController _homeController = Get.put(HomeController());
 
-  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userClassController = TextEditingController();
   final _clubController = TextEditingController();

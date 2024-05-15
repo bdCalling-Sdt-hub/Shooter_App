@@ -18,7 +18,7 @@ class UpComingEventsListView extends StatelessWidget {
 
     _homeController.getUpComingEvents();
     return SizedBox(
-      height: 260.h,
+      height: 310.h,
       child: Obx(() {
         _homeController.upComingEvensList;
         return _homeController.eventLoading.value
@@ -29,24 +29,20 @@ class UpComingEventsListView extends StatelessWidget {
                     text: "No data found!",
                   ))
                 : ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _homeController.upComingEvensList.length,
+                    // scrollDirection: Axis.horizontal,
+                    itemCount:  _homeController.upComingEvensList.length,
                     itemBuilder: (context, index) {
                       var evensData = _homeController.upComingEvensList[index];
                       return Padding(
                         padding: EdgeInsets.only(
-                            left: index == 0
-                                ? Dimensions.paddingSizeDefault.w
-                                : 5.w,
-                            right: index == 5 - 1
-                                ? Dimensions.paddingSizeDefault.w
-                                : 5.w),
+                            left:  Dimensions.paddingSizeDefault.w,
+                            right: Dimensions.paddingSizeDefault.w),
                         child: CustomEventsCard(
                           image: '${evensData.image?.publicFileUrl}',
-                          title: evensData.name,
+                          title: evensData.eventName,
                           location: evensData.location,
-                          date: evensData.startedDate,
-                          startDate: "${evensData.startedDate}",
+                          eventDate: evensData.eventDate,
+                          registerClosingDate: evensData.closeDate,
                           onTap: () {
                             Get.toNamed(AppRoutes.eventDetailsScreen,
                                 arguments: evensData);

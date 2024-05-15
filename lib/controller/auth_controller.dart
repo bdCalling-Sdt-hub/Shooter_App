@@ -32,6 +32,7 @@ class AuthController extends GetxController {
       'password': passController.text,
       "loginType" : loginType
     };
+
     var response = await ApiClient.postData(
         ApiConstant.signIn, json.encode(body),
         headers: header);
@@ -76,6 +77,7 @@ class AuthController extends GetxController {
   Future<User?> signInWithGoogle(BuildContext context) async {
 
     try {
+      // googleSignIn.signOut();
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
       print('===============================> google sign in');
       if (googleSignInAccount != null) {

@@ -5,7 +5,7 @@ import '../utils/app_constants.dart';
 
 class TimeFormatHelper {
   static String formatDate(DateTime date) {
-    return DateFormat(' dd MMM, yyyy').format(date);
+    return DateFormat('dd MMM, yyyy').format(date);
   }
 
   static String dateMountFormat(DateTime date) {

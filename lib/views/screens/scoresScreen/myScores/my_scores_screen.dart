@@ -175,6 +175,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
           ],
         ),
       ),
+
     );
   }
 
@@ -209,8 +210,9 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
 
   _TableSection() {
     return Obx(
+
           () => _scoresController.myScoresLoading.value
-          ? const Center(child: CustomText(text: "No data found!",))
+          ? _scoresController.myScroesList.value.isEmpty ? const Center(child: CustomLoader()) :  const Center(child:  CustomText(text: "No date found",),)
           : Column(
         children: [
           Container(

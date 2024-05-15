@@ -84,7 +84,7 @@ class AppString {
   static String makePayment = "Make payment";
 
 //================> Freetrial Screen <====================
-  static String welcomeBore = "Welcome to bore shooting \nApp";
+  static String welcomeBore = "Welcome to Small-Bore Shooting \nApp";
   static String currentlyYou = "Currently you are using our app on a free \ntrial for 30 days!";
   static String continueS = "Continue";
 
