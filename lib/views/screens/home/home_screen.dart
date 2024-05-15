@@ -131,36 +131,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-//
-//
-// class HomeScreens extends StatelessWidget {
-//   const HomeScreens({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             Text("data"),
-//
-//
-//             Expanded(
-//               child: ListView.builder(
-//                itemCount: 100,
-//                 itemBuilder: (context, index) {
-//                   return Container(
-//                     height: 100,
-//                     width: double.infinity,
-//                     color: Colors.grey,
-//                   );
-//                 },
-//               ),
-//             )
-//           ],
-//         ),
-//       )
-//     );
-//   }
-// }
-//
