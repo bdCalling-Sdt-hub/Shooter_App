@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -81,47 +83,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 onRefresh: ()async{
                   await _homeController.getAllData();
                 },
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ///------------------------up Coming Matches text-------------------->
-                      // Padding(
-                      //   padding: EdgeInsets.only(left: 20.w),
-                      //   child: CustomText(
-                      //     textAlign: TextAlign.start,
-                      //     text: AppString.upcomingMatches,
-                      //     fontsize: Dimensions.fontSizeExtraLarge.h,
-                      //     fontWeight: FontWeight.w400,
-                      //     color: AppColors.white,
-                      //     bottom: 16.h,
-                      //     top: 10.h,
-                      //   ),
-                      // ),
-                      //  UpComingMatchesListView(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ///------------------------up Coming Matches text-------------------->
+                    // Padding(
+                    //   padding: EdgeInsets.only(left: 20.w),
+                    //   child: CustomText(
+                    //     textAlign: TextAlign.start,
+                    //     text: AppString.upcomingMatches,
+                    //     fontsize: Dimensions.fontSizeExtraLarge.h,
+                    //     fontWeight: FontWeight.w400,
+                    //     color: AppColors.white,
+                    //     bottom: 16.h,
+                    //     top: 10.h,
+                    //   ),
+                    // ),
+                    //  UpComingMatchesListView(),
 
-                      ///------------------------up Coming event text-------------------->
-                      Container(
-                        margin: EdgeInsets.only(left: 20.w),
-                        child: CustomText(
-                          textAlign: TextAlign.start,
-                          text: AppString.upcomingEvents,
-                          fontsize: Dimensions.fontSizeExtraLarge.h,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.white,
-                          top: 20.h,
-                          bottom: 12.h,
-                        ),
+                    ///------------------------up Coming event text-------------------->
+                    Container(
+                      margin: EdgeInsets.only(left: 20.w),
+                      child: CustomText(
+                        textAlign: TextAlign.start,
+                        text: AppString.upcomingEvents,
+                        fontsize: Dimensions.fontSizeExtraLarge.h,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.white,
+                        top: 20.h,
+                        bottom: 12.h,
                       ),
+                    ),
 
-                      ///------------------------up Coming Events text-------------------->
-                      UpComingEventsListView(),
+                    ///------------------------up Coming Events text-------------------->
+                    Expanded(child: UpComingEventsListView()),
 
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                    ],
-                  ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                  ],
                 ),
               ),
             )
