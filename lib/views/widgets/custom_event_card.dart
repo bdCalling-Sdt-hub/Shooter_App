@@ -12,15 +12,15 @@ import 'custom_button.dart';
 import 'custom_text.dart';
 
 class CustomEventsCard extends StatelessWidget {
-  const CustomEventsCard(
-      {super.key,
-      this.eventDate,
-      this.image,
-      this.location,
-      this.title,
-      this.registerClosingDate,
-      this.onTap,
-     });
+  const CustomEventsCard({
+    super.key,
+    this.eventDate,
+    this.image,
+    this.location,
+    this.title,
+    this.registerClosingDate,
+    this.onTap,
+  });
 
   final DateTime? eventDate;
   final String? image;
@@ -35,16 +35,17 @@ class CustomEventsCard extends StatelessWidget {
       // width: 350.w,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-          color:Colors.black,
-        border: Border.all(color: Colors.grey.withOpacity(.6),width: .5)
-      ),
+          color: Colors.black,
+          border: Border.all(color: Colors.grey.withOpacity(.6), width: .5)),
       child: Column(
         children: [
           ///---------------------------------image and date card---------------------->
           Container(
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft:  Radius.circular(Dimensions.radiusDefault.r), topRight:Radius.circular(Dimensions.radiusDefault.r) ),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(Dimensions.radiusDefault.r),
+                    topRight: Radius.circular(Dimensions.radiusDefault.r)),
               ),
               child: image == '' || image == null
                   ? Image.asset(
@@ -76,7 +77,6 @@ class CustomEventsCard extends StatelessWidget {
                       fontsize: Dimensions.fontSizeDefault.h,
                       fontWeight: FontWeight.w400,
                     ),
-
                     Row(
                       children: [
                         SvgPicture.asset(
@@ -105,11 +105,10 @@ class CustomEventsCard extends StatelessWidget {
             ),
           ),
 
-
-           SizedBox(height: 10.h),
+          SizedBox(height: 10.h),
 
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 12.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -124,9 +123,7 @@ class CustomEventsCard extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
 
-                    SizedBox(
-                      height: 5.h,
-                    ),
+                    SizedBox(height: 5.h),
 
                     // TimeCountDown(dateLine: DateTime.parse("$startDate"))
                     CustomText(
@@ -137,9 +134,6 @@ class CustomEventsCard extends StatelessWidget {
                     ),
                   ],
                 ),
-
-
-
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -167,9 +161,7 @@ class CustomEventsCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 24.h,
-          ),
+          SizedBox(height: 24.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: CustomButton(

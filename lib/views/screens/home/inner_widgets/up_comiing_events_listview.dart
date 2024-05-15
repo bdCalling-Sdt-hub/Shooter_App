@@ -17,41 +17,38 @@ class UpComingEventsListView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     _homeController.getUpComingEvents();
-    return SizedBox(
-      height: 310.h,
-      child: Obx(() {
-        _homeController.upComingEvensList;
-        return _homeController.eventLoading.value
-            ? const CustomLoader()
-            : _homeController.upComingEvensList.isEmpty
-                ? const Center(
-                    child: CustomText(
-                    text: "No data found!",
-                  ))
-                : ListView.builder(
-                    // scrollDirection: Axis.horizontal,
-                    itemCount:  _homeController.upComingEvensList.length,
-                    itemBuilder: (context, index) {
-                      var evensData = _homeController.upComingEvensList[index];
-                      return Padding(
-                        padding: EdgeInsets.only(
-                            left:  Dimensions.paddingSizeDefault.w,
-                            right: Dimensions.paddingSizeDefault.w),
-                        child: CustomEventsCard(
-                          image: '${evensData.image?.publicFileUrl}',
-                          title: evensData.eventName,
-                          location: evensData.location,
-                          eventDate: evensData.eventDate,
-                          registerClosingDate: evensData.closeDate,
-                          onTap: () {
-                            Get.toNamed(AppRoutes.eventDetailsScreen,
-                                arguments: evensData);
-                          },
-                        ),
-                      );
-                    },
-                  );
-      }),
-    );
+    return Obx(() {
+      _homeController.upComingEvensList;
+      return _homeController.eventLoading.value
+          ? const CustomLoader()
+          : _homeController.upComingEvensList.isEmpty
+              ? const Center(
+                  child: CustomText(
+                  text: "No data found!",
+                ))
+              : ListView.builder(
+                  // scrollDirection: Axis.horizontal,
+                  itemCount:  _homeController.upComingEvensList.length,
+                  itemBuilder: (context, index) {
+                    var evensData = _homeController.upComingEvensList[index];
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          left:  Dimensions.paddingSizeDefault.w,
+                          right: Dimensions.paddingSizeDefault.w),
+                      child: CustomEventsCard(
+                        image: '${evensData.image?.publicFileUrl}',
+                        title: evensData.eventName,
+                        location: evensData.location,
+                        eventDate: evensData.eventDate,
+                        registerClosingDate: evensData.closeDate,
+                        onTap: () {
+                          Get.toNamed(AppRoutes.eventDetailsScreen,
+                              arguments: evensData);
+                        },
+                      ),
+                    );
+                  },
+                );
+    });
   }
 }
