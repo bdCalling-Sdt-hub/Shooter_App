@@ -26,7 +26,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   static final List _widgetOptions = [
     HomeScreen(),
      EventsScreen(),
-     MatchesScreen(),
+     // MatchesScreen(),
      ProfileScreen(),
   ];
 
@@ -71,15 +71,15 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
           ),
 
           ///---------------matches---------------->
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              AppIcons.matches,
-              color: _selectedIndex == 2
-                  ? AppColors.primaryColor
-                  : AppColors.whiteB5B5B5,
-            ),
-            label: 'Matches',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: SvgPicture.asset(
+          //     AppIcons.matches,
+          //     color: _selectedIndex == 2
+          //         ? AppColors.primaryColor
+          //         : AppColors.whiteB5B5B5,
+          //   ),
+          //   label: 'Matches',
+          // ),
 
           ///---------------profile---------------->
           BottomNavigationBarItem(

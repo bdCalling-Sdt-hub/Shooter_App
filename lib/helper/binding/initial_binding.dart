@@ -13,7 +13,7 @@ class InitialScreenBindings implements Bindings {
   @override
   void dependencies() {
     Get.put(() => HomeController());
-    Get.put(() => MatchController());
+    // Get.put(() => MatchController());
     Get.put(() => EventsController());
     Get.put(() => ProfileController());
   }

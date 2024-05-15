@@ -97,8 +97,8 @@ class _EventsScreenState extends State<EventsScreen> {
                            image: "${events.image?.publicFileUrl}",
                            title: "${events.name}",
                            location: " ${events.location}",
-                           date: events.startedDate,
-                           startDate: '${events.startedDate}',
+                           eventDate: events.startedDate,
+                           registerClosingDate: events.startedDate,
                            onTap: () {
                              Get.toNamed(AppRoutes.eventDetailsScreen, arguments : events);
                            },

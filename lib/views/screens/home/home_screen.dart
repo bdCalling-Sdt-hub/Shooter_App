@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:shooter_app/controller/home_controller.dart';
-import 'package:shooter_app/helper/prefs_helper.dart';
-import 'package:shooter_app/helper/subscription_route.dart';
-import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/utils/app_icons.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
@@ -15,10 +11,9 @@ import 'package:shooter_app/views/widgets/custom_text_field.dart';
 import '../../../utils/app_colors.dart';
 import 'inner_widgets/homescreen_app_bar.dart';
 import 'inner_widgets/up_comiing_events_listview.dart';
-import 'inner_widgets/up_coming_matches_listview.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -91,21 +86,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ///------------------------up Coming Matches text-------------------->
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.w),
-                        child: CustomText(
-                          textAlign: TextAlign.start,
-                          text: AppString.upcomingMatches,
-                          fontsize: Dimensions.fontSizeExtraLarge.h,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.white,
-                          bottom: 16.h,
-                          top: 10.h,
-                        ),
-                      ),
-                      UpComingMatchesListView(),
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 20.w),
+                      //   child: CustomText(
+                      //     textAlign: TextAlign.start,
+                      //     text: AppString.upcomingMatches,
+                      //     fontsize: Dimensions.fontSizeExtraLarge.h,
+                      //     fontWeight: FontWeight.w400,
+                      //     color: AppColors.white,
+                      //     bottom: 16.h,
+                      //     top: 10.h,
+                      //   ),
+                      // ),
+                      //  UpComingMatchesListView(),
 
-                      ///------------------------up Coming Matches text-------------------->
+                      ///------------------------up Coming event text-------------------->
                       Container(
                         margin: EdgeInsets.only(left: 20.w),
                         child: CustomText(
