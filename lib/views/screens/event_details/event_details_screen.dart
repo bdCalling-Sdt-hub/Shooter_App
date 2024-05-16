@@ -265,7 +265,8 @@ class EventDetailsScreen extends StatelessWidget {
 
 
               CustomButton(title: "Register", onpress: (){
-                Get.toNamed(AppRoutes.registrationScreen);
+
+                Get.toNamed(AppRoutes.registrationScreen, arguments: evensData.matches);
               })
             ],
           ),

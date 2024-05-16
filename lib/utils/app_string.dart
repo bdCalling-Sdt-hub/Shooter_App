@@ -77,8 +77,11 @@ class AppString {
   static String fullName = "Full name";
   static String phoneNumber = "Phone number";
   static String gender = "Gender";
+  static String shooterShoulderPreference = "Shooter shoulder preference";
   static String male = "Male";
+  static String left = "Left";
   static String female = "Female";
+  static String right = "Right";
   static String age = "Age";
   static String clubName = "Club name";
   static String makePayment = "Make payment";
@@ -124,6 +127,8 @@ class AppString {
   static String event = "Events";
   static String match = "Matches";
   static String clasName = "Class Name";
+  static String classChoose  = "Class Choose ";
+  static String matchChoose  = "Choose Matches ";
   static String playerName = "Player name";
   static String club = "Club";
   static String clubNameS = "Club Name";

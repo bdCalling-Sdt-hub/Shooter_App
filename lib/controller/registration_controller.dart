@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import '../routes/app_routes.dart';
@@ -15,7 +16,10 @@ class RegistrationController extends GetxController {
   final phoneNumberController = TextEditingController();
   final ageController = TextEditingController();
   final clubNameController = TextEditingController();
+  final classNameController = TextEditingController();
+
   String groupValue = '';
+  String shootterShoulder = '';
 
 
   AppConstants appConstants = AppConstants();
