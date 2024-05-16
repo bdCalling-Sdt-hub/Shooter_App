@@ -33,6 +33,7 @@ class UpComingEventsListView extends StatelessWidget {
                     var evensData = _homeController.upComingEvensList[index];
                     return Padding(
                       padding: EdgeInsets.only(
+                        bottom: 16.h,
                           left:  Dimensions.paddingSizeDefault.w,
                           right: Dimensions.paddingSizeDefault.w),
                       child: CustomEventsCard(

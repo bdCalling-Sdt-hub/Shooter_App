@@ -57,6 +57,9 @@ class Themes {
         ),
       ),
 
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: MaterialStatePropertyAll(Colors.red.withOpacity(.50))
+      ),
 
       ///-----------------app bar theme------------------>
       appBarTheme: const AppBarTheme(
