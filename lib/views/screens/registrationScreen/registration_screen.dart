@@ -11,7 +11,6 @@ import '../../widgets/custom_text.dart';
 import '../../widgets/custom_text_field.dart';
 import 'inner_widgets/drop_down_container.dart';
 
-
 class RegistrationScreen extends StatefulWidget {
   RegistrationScreen({super.key});
 
@@ -25,12 +24,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final ProfileController _profileController = Get.put(ProfileController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  /*void _handleRadioValueChange(String value) {
-    setState(() {
-      groupValue = value;
-    });
-  }*/
-
   @override
   void initState() {
     // TODO: implement initState
@@ -43,15 +36,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     registrationController.phoneNumberController.text = "${profileData.phone}";
   }
 
-  var parameter = Get.parameters;
-  String isDropDownItem = "";
-
-  Set<int> selectedIndexes = Set<int>();
   List<int> ss = [1, 2, 3, 4, 5];
+  var parameter = Get.parameters;
+  String dropDownItemName = "";
+
+  List selectedItems = [];
   var matches = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
-   print("=====> ${matches}");
+    print("====================>>><<< : $selectedItems");
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.black,
@@ -242,8 +236,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ///======================drop down =======================>
           CustomText(text: AppString.classChoose, bottom: 8.h, top: 16.h),
           DropDownContainer(
-            isDropDownItem: isDropDownItem,
-            dropDownItemsList: const ['a', "b", 'c'],
+            dropDownItemName: dropDownItemName,
+            dropDownItemsList: const ['a', "b", 'c', 'd', 'e', 'f'],
           ),
 
           CustomText(text: AppString.matchChoose, bottom: 8.h, top: 16.h),
@@ -254,49 +248,44 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: matches.length,
               itemBuilder: (context, index) {
-                final isSelected = selectedIndexes.contains(index);
+                final item = matches[index].matchName;
                 return InkWell(
                   onTap: () {
                     setState(() {
-                      if (isSelected) {
-                        selectedIndexes.remove(index);
+                      if (selectedItems.contains(item)) {
+                        selectedItems.remove(item);
                       } else {
-                        selectedIndexes.add(index);
+                        selectedItems.add(item);
                       }
                     });
+
                   },
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.5.h),
+                    padding: const EdgeInsets.symmetric(vertical: 8.5),
                     child: Row(
                       children: [
-
-                        isSelected ?
-                            Container(
-                              height: 28.h,
-                              width: 25.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4.r),
-                                border: Border.all(color: Colors.red)
+                        selectedItems.contains(item)
+                            ? Container(
+                                height: 26,
+                                width: 24,
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: const Icon(Icons.done, color: Colors.white),
+                              )
+                            : Container(
+                                height: 26,
+                                width: 24,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(color: Colors.red),
+                                ),
                               ),
-                            ) :
-
-                        Container(
-                          decoration: BoxDecoration(
-                              color:  Colors.red,
-                              borderRadius: BorderRadius.circular(4.r)),
-                          child:Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 1.h, vertical: 1.h),
-                                  child: const Icon(Icons.done,
-                                      color: Colors.white),
-                                )
-                        ),
-
-
                         CustomText(
                           text: '${matches[index].matchName}',
-                          fontsize: 16.h,
-                          left: 8.w,
+                          fontsize: 14,
+                          left: 8,
                         )
                       ],
                     ),
@@ -315,15 +304,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               if (_formKey.currentState!.validate()) {
                 registrationController.submitForm(
                     context,
-                    '${parameter['matchId']}',
+                    '${parameter['id']}',
                     '${parameter['price']}',
-                    '${parameter['matchName']}');
+                    '${parameter['eventName']}',
+                     "a",
+                  createMatchesList(selectedItems),
+                   );
               }
+              print("====> ${dropDownItemName}");
+
+
+              print(
+                  "===> ${parameter["id"]}  ==> ${parameter['price']}, ==> ${parameter['eventName']} === ${createMatchesList(selectedItems)}");
             },
           ),
           SizedBox(height: 74.h),
         ],
       ),
     );
+  }
+
+  List<Map<String, dynamic>> createMatchesList(List<dynamic> matches) {
+    return matches.map((matchName) => {"matchName": matchName}).toList();
   }
 }

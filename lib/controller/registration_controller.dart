@@ -16,7 +16,7 @@ class RegistrationController extends GetxController {
   final phoneNumberController = TextEditingController();
   final ageController = TextEditingController();
   final clubNameController = TextEditingController();
-  final classNameController = TextEditingController();
+  // final classNameController = TextEditingController();
 
   String groupValue = '';
   String shootterShoulder = '';
@@ -28,7 +28,7 @@ class RegistrationController extends GetxController {
 
   ///=================================================>
   RxBool submitFromLoading = false.obs;
-  void submitForm(BuildContext context, String? matchId, price, matchName) async {
+  void submitForm(BuildContext context, String? eventId, price, matchName, className, List matchList) async {
     submitFromLoading(true);
     // Replace the URL with your actual endpoint
     print("========================================dd==========$matchName");
@@ -60,7 +60,7 @@ class RegistrationController extends GetxController {
     );
 
     if (response.statusCode == 200||response.statusCode==302) {
-      Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, matchId: '$matchId', price: price,)));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=>FlutterLocalWebView(code: response.body, eventId: '$eventId', price: price, className: className, matchesList: matchList,)));
       // Handle successful response
       print('Form submitted successfully , ${response.body} ');
       submitFromLoading(false);
@@ -78,24 +78,32 @@ class RegistrationController extends GetxController {
 //=========================> Match Register <============================
   var registerLoading = false.obs;
   var bearerToken = ApiClient.bearerToken;
-  matchRegister(String matchId, price, transactionId) async {
+  matchRegister(String matchId, price, transactionId, className, List matchLists) async {
     Map<String, String> header = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $bearerToken'
     };
     var age = int.parse(ageController.text);
+
+
     var body = {
-      "fullName": nameController.text,
-      "email": emailController.text.trim(),
-      "phone": phoneNumberController.text,
-      "gender": groupValue.toString(),
-      "age": age.toInt(),
-      "clubName": clubNameController.text,
-      "transactionId":"$transactionId",
-      "price":"$price"
+        "fullName": nameController.text,
+        "email": emailController.text.trim(),
+        "phone": phoneNumberController.text,
+        "gender": groupValue.toString(),
+        "age": age.toInt(),
+        "shoulder": shootterShoulder.toString(),
+        "clubName": clubNameController.text,
+        "className": "className",
+        "matches": matchLists,
+        "sharingRifle": "Yes",
+        "transactionId":"123456578",
+        "price": 100,
     };
+
+
     var response = await ApiClient.postData(
-        ApiConstant.matchRegister(matchId), json.encode(body),
+        ApiConstant.eventsRegister(matchId), json.encode(body),
         headers: header);
     if (response.statusCode == 200) {
       print('==================> Register Success');

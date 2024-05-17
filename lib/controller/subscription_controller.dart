@@ -50,7 +50,7 @@ class SubscriptionController extends GetxController {
           MaterialPageRoute(
               builder: (_) => FlutterLocalWebView(
                     code: response.body,
-                    matchId: '',
+                    eventId: '',
                     startDate: startDate,
                 endDate: endDate,
                 subscription: subscription,

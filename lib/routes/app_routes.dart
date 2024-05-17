@@ -9,13 +9,11 @@ import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
 import '../views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import '../views/screens/event_details/event_details_screen.dart';
 import '../views/screens/home/home_screen.dart';
-import '../views/screens/my_matches/my_matches_screen.dart';
 import '../views/screens/notification/notification_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
 import '../views/screens/profile/editprofileScreen/editprofile_screen.dart';
 import '../views/screens/profile/profileScreen/profile_screen.dart';
 import '../views/screens/registrationScreen/registration_screen.dart';
-import '../views/screens/scoresScreen/myScores/inner_widgets/line_chart.dart';
 import '../views/screens/scoresScreen/myScores/my_scores_screen.dart';
 import '../views/screens/scoresScreen/scores/scores_screen.dart';
 import '../views/screens/settings/aboutusScreen/aboutus_screen.dart';
@@ -84,8 +82,6 @@ class AppRoutes {
         GetPage(name: eventDetailsScreen, page: () => EventDetailsScreen()),
         GetPage(name: myScoresScreen, page: () => MyScoresScreen()),
         GetPage(name: bottomNavBar, page: () => BottomNavBar(),binding:InitialScreenBindings()),
-        GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
-        //GetPage(name: lineChartScreen, page: () => LineChart()),
         GetPage(name: scoresScreen, page: () => ScoresScreen()),
       ];
 }

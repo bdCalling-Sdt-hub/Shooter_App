@@ -18,7 +18,7 @@ class HomeController {
 
   getAllData() async {
     await getUpComingEvents();
-    await getUpComingMatchs();
+    // await getUpComingMatchs();
   }
 
   ///==============================up Coming Events Get===============================>
@@ -47,29 +47,29 @@ class HomeController {
   }
 
 
-
-  ///===========================Up Coming Match Get ==================================>
-  RxBool matchLoading = false.obs;
-  RxList<UpComingMatchModel> upComingMatchList = <UpComingMatchModel>[].obs;
-  getUpComingMatchs() async {
-    matchLoading(true);
-    setRxRequestStatus(Status.loading);
-    var response = await ApiClient.getData(
-        '${ApiConstant.upComingMatch}?matchDate=${pickDateController.text}');
-
-    if (response.statusCode == 200) {
-      upComingMatchList.value = List<UpComingMatchModel>.from(response.body['data']['attributes'].map((x) => UpComingMatchModel.fromJson(x)));
-      setRxRequestStatus(Status.completed);
-      matchLoading(false);
-    } else {
-      if (response.statusText == ApiClient.noInternetMessage) {
-        setRxRequestStatus(Status.internetError);
-      } else {
-        setRxRequestStatus(Status.error);
-      }
-    }
-    //ApiChecker.checkApi(response);
-  }
+  //
+  // ///===========================Up Coming Match Get ==================================>
+  // RxBool matchLoading = false.obs;
+  // RxList<UpComingMatchModel> upComingMatchList = <UpComingMatchModel>[].obs;
+  // getUpComingMatchs() async {
+  //   matchLoading(true);
+  //   setRxRequestStatus(Status.loading);
+  //   var response = await ApiClient.getData(
+  //       '${ApiConstant.upComingMatch}?matchDate=${pickDateController.text}');
+  //
+  //   if (response.statusCode == 200) {
+  //     upComingMatchList.value = List<UpComingMatchModel>.from(response.body['data']['attributes'].map((x) => UpComingMatchModel.fromJson(x)));
+  //     setRxRequestStatus(Status.completed);
+  //     matchLoading(false);
+  //   } else {
+  //     if (response.statusText == ApiClient.noInternetMessage) {
+  //       setRxRequestStatus(Status.internetError);
+  //     } else {
+  //       setRxRequestStatus(Status.error);
+  //     }
+  //   }
+  //   //ApiChecker.checkApi(response);
+  // }
 
   Future<void> selectDate(BuildContext context) async {
     getAllData();

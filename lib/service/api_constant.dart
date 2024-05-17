@@ -22,5 +22,5 @@ class ApiConstant {
   static String scoresEndpoint(String matchId) => "/match/single-complete-match/$matchId";
   static String profileEndPoint(String userId) => "/user/$userId";
   static String updateUser(String userId) => "/user/update/$userId";
-  static String matchRegister(String matchId) => "/match/register/$matchId";
+  static String eventsRegister(String eventsId) => "/events/register/$eventsId";
 }
