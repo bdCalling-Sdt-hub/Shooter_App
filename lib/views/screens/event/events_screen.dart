@@ -27,7 +27,7 @@ class _EventsScreenState extends State<EventsScreen> {
 
 
 
-   ScrollController _scrollController = ScrollController();
+   final ScrollController _scrollController = ScrollController();
 
    @override
    void initState() {
@@ -90,17 +90,18 @@ class _EventsScreenState extends State<EventsScreen> {
                      children: [
                        index == 0 ? SizedBox(height: 12.h,) : const SizedBox(),
                        Container(
-                         height: 262.h,
+                         height: 300.h,
                          padding: EdgeInsets.symmetric(
                              horizontal: Dimensions.paddingSizeDefault.w),
                          child: CustomEventsCard(
-                           image: "${events.image?.publicFileUrl}",
-                           title: "${events.name}",
-                           location: " ${events.location}",
-                           eventDate: events.startedDate,
-                           registerClosingDate: events.startedDate,
+                           image: '${events.image?.publicFileUrl}',
+                           title: events.eventName,
+                           location: events.location,
+                           eventDate: events.eventDate,
+                           registerClosingDate: DateTime.now(), // events.closeDate,
                            onTap: () {
-                             Get.toNamed(AppRoutes.eventDetailsScreen, arguments : events);
+                             Get.toNamed(AppRoutes.eventDetailsScreen,
+                                 arguments: events);
                            },
                          ),
                        ),

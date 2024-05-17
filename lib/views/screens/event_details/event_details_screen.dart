@@ -266,7 +266,11 @@ class EventDetailsScreen extends StatelessWidget {
 
               CustomButton(title: "Register", onpress: (){
 
-                Get.toNamed(AppRoutes.registrationScreen, arguments: evensData.matches);
+                Get.toNamed(AppRoutes.registrationScreen, arguments: evensData.matches, parameters: {
+                  'id' : '${evensData.id}',
+                  'price' : '${evensData.fee}',
+                  'eventName' : '${evensData.eventName}',
+                });
               })
             ],
           ),

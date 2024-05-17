@@ -96,22 +96,22 @@ class DrawerSection extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24.h),
-              //=====================================>  MyMatches  Container <=============================
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoutes.myMatchesScreen);
-                },
-                child: CustomListTile(
-                  title: AppString.myMatches,
-                  borderColor: AppColors.fieldColor,
-                  prefixIcon: SvgPicture.asset(
-                    AppIcons.myMatch,
-                    height: 32.h,
-                    width: 32.w,
-                  ),
-                ),
-              ),
+              // SizedBox(height: 24.h),
+              // //=====================================>  MyMatches  Container <=============================
+              // GestureDetector(
+              //   onTap: () {
+              //     Get.toNamed(AppRoutes.myMatchesScreen);
+              //   },
+              //   child: CustomListTile(
+              //     title: AppString.myMatches,
+              //     borderColor: AppColors.fieldColor,
+              //     prefixIcon: SvgPicture.asset(
+              //       AppIcons.myMatch,
+              //       height: 32.h,
+              //       width: 32.w,
+              //     ),
+              //   ),
+              // ),
 
             SizedBox(height: 16.h),
             //=====================================>  My Scores  Container <=============================

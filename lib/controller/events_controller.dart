@@ -43,12 +43,12 @@ class EventsController extends GetxController {
       setRxRequestStatus(Status.loading);
     }
 
-    var response = await ApiClient.getData('${ApiConstant.allEvents}?limit=10&page=${page.value}');
+    var response = await ApiClient.getData('${ApiConstant.upComingEven}?limit=10&page=${page.value}');
     if (response.statusCode == 200) {
       if (response.body['data']['attributes'] != null) {
         totalPage = jsonDecode(response.body['pagination']['totalPages'].toString());
         currectPage = jsonDecode(response.body['pagination']['currentPage'].toString());
-        totalResult = jsonDecode(response.body['pagination']['totalEvents'].toString());
+        totalResult = jsonDecode(response.body['pagination']['totalEvents'].toString()) ?? 0;
         var eventData = List<EventsModel>.from(response.body['data']['attributes'].map((e) => EventsModel.fromJson(e)));
 
 
