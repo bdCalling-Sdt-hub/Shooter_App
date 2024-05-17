@@ -85,7 +85,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               AppIcons.profile_icon,
-              color: _selectedIndex == 3
+              color: _selectedIndex == 2
                   ? AppColors.primaryColor
                   : AppColors.whiteB5B5B5,
             ),

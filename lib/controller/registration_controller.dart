@@ -17,10 +17,13 @@ class RegistrationController extends GetxController {
   final ageController = TextEditingController();
   final clubNameController = TextEditingController();
 
+
   // final classNameController = TextEditingController();
 
   String groupValue = '';
   String shootterShoulder = '';
+  String dropDownItemName = "";
+
 
   AppConstants appConstants = AppConstants();
 
@@ -100,7 +103,7 @@ class RegistrationController extends GetxController {
       "age": age.toInt(),
       "shoulder": shootterShoulder.toString(),
       "clubName": clubNameController.text,
-      "className": "className",
+      "className": className,
       "matches": matchLists,
       "sharingRifle": "Yes",
       "transactionId": "123456578",

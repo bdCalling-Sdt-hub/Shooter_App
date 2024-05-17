@@ -38,7 +38,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   List<int> ss = [1, 2, 3, 4, 5];
   var parameter = Get.parameters;
-  String dropDownItemName = "";
 
   List selectedItems = [];
   var matches = Get.arguments;
@@ -236,7 +235,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ///======================drop down =======================>
           CustomText(text: AppString.classChoose, bottom: 8.h, top: 16.h),
           DropDownContainer(
-            dropDownItemName: dropDownItemName,
             dropDownItemsList: const ['a', "b", 'c', 'd', 'e', 'f'],
           ),
 
@@ -307,15 +305,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     '${parameter['id']}',
                     '${parameter['price']}',
                     '${parameter['eventName']}',
-                     "a",
+                      registrationController.dropDownItemName,
                   createMatchesList(selectedItems),
                    );
               }
-              print("====> ${dropDownItemName}");
 
 
               print(
-                  "===> ${parameter["id"]}  ==> ${parameter['price']}, ==> ${parameter['eventName']} === ${createMatchesList(selectedItems)}");
+                  "===> ${parameter["id"]}  ==> ${parameter['price']}, ==> ${parameter['eventName']} === ${createMatchesList(selectedItems)} ====> ${registrationController.dropDownItemName}");
             },
           ),
           SizedBox(height: 74.h),
