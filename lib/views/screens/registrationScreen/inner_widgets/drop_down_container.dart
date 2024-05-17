@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shooter_app/controller/registration_controller.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../widgets/custom_text.dart';
 
 class DropDownContainer extends StatefulWidget {
-  String dropDownItemName;
   final List? dropDownItemsList;
 
   DropDownContainer(
-      {super.key, required this.dropDownItemName, this.dropDownItemsList});
+      {super.key, this.dropDownItemsList});
 
   @override
   State<DropDownContainer> createState() => _DropDownContainerState();
@@ -22,11 +23,13 @@ class _DropDownContainerState extends State<DropDownContainer> {
   ScrollController scrollController = ScrollController();
 
   bool isDropDown = false;
-  String dropDownItemName = "";
+  // String dropDownItemName = "";
+
+  final RegistrationController _registrationController = Get.put(RegistrationController());
 
   @override
   Widget build(BuildContext context) {
-    print("===============> ${widget.dropDownItemName}");
+
     return Column(
       children: [
         isDropDown
@@ -67,7 +70,7 @@ class _DropDownContainerState extends State<DropDownContainer> {
                                 contentPadding: EdgeInsets.zero,
                                 onTap: () {
                                   setState(() {
-                                    widget.dropDownItemName =
+                                  _registrationController. dropDownItemName =
                                         '${widget.dropDownItemsList?[index]}';
                                     isDropDown = false;
                                   });
@@ -106,8 +109,8 @@ class _DropDownContainerState extends State<DropDownContainer> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: widget.dropDownItemName != ''
-                              ? widget.dropDownItemName
+                          text: _registrationController. dropDownItemName != ''
+                              ?_registrationController. dropDownItemName
                               : "Class",
                           color: AppColors.whiteB5B5B5,
                           fontsize: 20.h,
