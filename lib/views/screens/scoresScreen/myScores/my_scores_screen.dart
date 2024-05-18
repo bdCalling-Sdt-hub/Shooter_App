@@ -21,7 +21,6 @@ class MyScoresScreen extends StatefulWidget {
 }
 
 class _MyScoresScreenState extends State<MyScoresScreen> {
-  var _pickDateController = TextEditingController();
   final ScoresController _scoresController = Get.put(ScoresController());
   bool isComplete = true;
 
@@ -130,40 +129,6 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                 SizedBox(
                   height: 24.h,
                 ),
-
-                ///------------------------------date time pick from------------------->
-                // Align(
-                //   alignment: Alignment.centerRight,
-                //   child: Container(
-                //     width: 140.w,
-                //     decoration: BoxDecoration(
-                //         borderRadius:
-                //             BorderRadius.circular(Dimensions.radiusDefault.r)),
-                //     child: TextField(
-                //       controller: _pickDateController,
-                //       decoration: InputDecoration(
-                //           contentPadding:
-                //               EdgeInsets.symmetric(horizontal: 10.h,vertical: 1.h),
-                //           hintText: "Feb 02-2024",
-                //           hintStyle: TextStyle(
-                //               fontSize: 12.h,
-                //               fontWeight: FontWeight.w400,
-                //               color: AppColors.whiteE8E8E8),
-                //           suffixIcon: IconButton(
-                //             onPressed: () {
-                //               _selectDate(context);
-                //             },
-                //             icon: SvgPicture.asset(
-                //               AppIcons.calander,
-                //               width: 12.w,
-                //               height: 12.h,
-                //               color: AppColors.white,
-                //               fit: BoxFit.contain,
-                //             ),
-                //           )),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
 
@@ -171,29 +136,13 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
             ///---------------------table section----------------------------->
             isComplete
                 ? _TableSection()
-                : LineChart(),
+                :  LineChart(chartData: _scoresController.myScroesList,),
           ],
         ),
       ),
 
     );
   }
-
-  // ///--------------------------------calender------------------------------:>
-  // Future<void> _selectDate(BuildContext context) async {
-  //   final DateTime? pickedDate = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(1950),
-  //     lastDate: DateTime.now(),
-  //   );
-  //
-  //   if (pickedDate != null) {
-  //     print('Selected date: $pickedDate');
-  //     // Do something with the selected date
-  //   }
-  // }
-
   ///--------------------------row text-------------------------->
   _rowText(String title) {
     return Padding(
@@ -245,7 +194,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                     ),
                     children: [
                       _rowText(TimeFormatHelper.formatDate(DateTime.parse('${matchData["matchDate"]}'))),
-                      _rowText("${matchData["event"]}"),
+                      _rowText("${matchData["eventName"]}"),
                       _rowText("${matchData["matchName"]}"),
                       _rowText("${matchData["score"]}"),
                     ]);

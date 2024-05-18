@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:get/get.dart';
-// import 'package:shooter_app/controller/match_controller.dart';
+// import 'package:shooter_app/controller/my_complete_match_controller.dart';
 //
 // import '../../../routes/app_routes.dart';
 // import '../../../utils/app_colors.dart';

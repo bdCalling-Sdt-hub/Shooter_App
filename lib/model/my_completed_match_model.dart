@@ -1,222 +1,127 @@
-class MyCompletedMatchModel {
-  final String? id;
-  final String? fullName;
-  final String? email;
-  final DateTime? phone;
-  final String? gender;
-  final int? age;
-  final String? clubName;
-  final Match? match;
-  final User? user;
-  final int? v;
 
-  MyCompletedMatchModel({
-    this.id,
-    this.fullName,
-    this.email,
-    this.phone,
-    this.gender,
-    this.age,
-    this.clubName,
-    this.match,
-    this.user,
-    this.v,
-  });
 
-  factory MyCompletedMatchModel.fromJson(Map<String, dynamic> json) => MyCompletedMatchModel(
-    id: json["_id"],
-    fullName: json["fullName"],
-    email: json["email"],
-    phone: json["phone"] == null ? null : DateTime.parse(json["phone"]),
-    gender: json["gender"],
-    age: json["age"],
-    clubName: json["clubName"],
-    match: json["match"] == null ? null : Match.fromJson(json["match"]),
-    user: json["user"] == null ? null : User.fromJson(json["user"]),
-    v: json["__v"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "_id": id,
-    "fullName": fullName,
-    "email": email,
-    "phone": phone?.toIso8601String(),
-    "gender": gender,
-    "age": age,
-    "clubName": clubName,
-    "match": match?.toJson(),
-    "user": user?.toJson(),
-    "__v": v,
-  };
-}
-
-class Match {
+class MyCompleteMatchModel {
   final String? id;
   final String? matchName;
-  final String? gender;
-  final DateTime? matchDate;
-  final String? time;
-  final String? prone;
-  final String? fee;
-  final Image? image;
   final String? createdBy;
-  final String? event;
+  final String? description;
+  final String? eventId;
+  final EventDetails? eventDetails;
   final String? registrationStatus;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final int? v;
 
-  Match({
+  MyCompleteMatchModel({
     this.id,
     this.matchName,
-    this.gender,
-    this.matchDate,
-    this.time,
-    this.prone,
-    this.fee,
-    this.image,
     this.createdBy,
-    this.event,
+    this.description,
+    this.eventId,
+    this.eventDetails,
     this.registrationStatus,
+    this.createdAt,
+    this.updatedAt,
     this.v,
   });
 
-  factory Match.fromJson(Map<String, dynamic> json) => Match(
+  factory MyCompleteMatchModel.fromJson(Map<String, dynamic> json) => MyCompleteMatchModel(
     id: json["_id"],
     matchName: json["matchName"],
-    gender: json["gender"],
-    matchDate: json["matchDate"] == null ? null : DateTime.parse(json["matchDate"]),
-    time: json["time"],
-    prone: json["prone"],
-    fee: json["fee"],
-    image: json["image"] == null ? null : Image.fromJson(json["image"]),
     createdBy: json["createdBy"],
-    event: json["event"],
+    description: json["description"],
+    eventId: json["eventId"],
+    eventDetails: json["eventDetails"] == null ? null : EventDetails.fromJson(json["eventDetails"]),
     registrationStatus: json["registrationStatus"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id,
     "matchName": matchName,
-    "gender": gender,
-    "matchDate": matchDate?.toIso8601String(),
-    "time": time,
-    "prone": prone,
-    "fee": fee,
-    "image": image?.toJson(),
     "createdBy": createdBy,
-    "event": event,
+    "description": description,
+    "eventId": eventId,
+    "eventDetails": eventDetails?.toJson(),
     "registrationStatus": registrationStatus,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
   };
 }
 
-
-class User {
+class EventDetails {
   final String? id;
-  final String? name;
-  final String? email;
-  final bool? privacyPolicyAccepted;
-  final bool? isAdmin;
-  final bool? isVerified;
-  final bool? isDeleted;
-  final bool? isBlocked;
+  final String? eventName;
+  final String? location;
+  final String? eventTime;
+  final String? fee;
+  final DateTime? closeDate;
+  final DateTime? eventDate;
+  final String? description;
+  final List<Match>? matches;
   final Image? image;
-  final String? subscription;
-  final dynamic oneTimeCode;
-  final dynamic dateOfBirth;
-  final String? address;
-  final String? phone;
-  final String? club;
-  final String? userClass;
-  final int? score;
-  final DateTime? trialStartDate;
-  final DateTime? trialEndDate;
-  final dynamic subscriptionStartDate;
-  final dynamic subscriptionEndDate;
-  final String? paymentStatus;
+  final String? createdBy;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final int? v;
 
-  User({
+  EventDetails({
     this.id,
-    this.name,
-    this.email,
-    this.privacyPolicyAccepted,
-    this.isAdmin,
-    this.isVerified,
-    this.isDeleted,
-    this.isBlocked,
+    this.eventName,
+    this.location,
+    this.eventTime,
+    this.fee,
+    this.closeDate,
+    this.eventDate,
+    this.description,
+    this.matches,
     this.image,
-    this.subscription,
-    this.oneTimeCode,
-    this.dateOfBirth,
-    this.address,
-    this.phone,
-    this.club,
-    this.userClass,
-    this.score,
-    this.trialStartDate,
-    this.trialEndDate,
-    this.subscriptionStartDate,
-    this.subscriptionEndDate,
-    this.paymentStatus,
+    this.createdBy,
+    this.createdAt,
+    this.updatedAt,
     this.v,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory EventDetails.fromJson(Map<String, dynamic> json) => EventDetails(
     id: json["_id"],
-    name: json["name"],
-    email: json["email"],
-    privacyPolicyAccepted: json["privacyPolicyAccepted"],
-    isAdmin: json["isAdmin"],
-    isVerified: json["isVerified"],
-    isDeleted: json["isDeleted"],
-    isBlocked: json["isBlocked"],
+    eventName: json["eventName"],
+    location: json["location"],
+    eventTime: json["eventTime"],
+    fee: json["fee"],
+    closeDate: json["closeDate"] == null ? null : DateTime.parse(json["closeDate"]),
+    eventDate: json["eventDate"] == null ? null : DateTime.parse(json["eventDate"]),
+    description: json["description"],
+    matches: json["matches"] == null ? [] : List<Match>.from(json["matches"]!.map((x) => Match.fromJson(x))),
     image: json["image"] == null ? null : Image.fromJson(json["image"]),
-    subscription: json["subscription"],
-    oneTimeCode: json["oneTimeCode"],
-    dateOfBirth: json["dateOfBirth"],
-    address: json["address"],
-    phone: json["phone"],
-    club: json["club"],
-    userClass: json["userClass"],
-    score: json["score"],
-    trialStartDate: json["trialStartDate"] == null ? null : DateTime.parse(json["trialStartDate"]),
-    trialEndDate: json["trialEndDate"] == null ? null : DateTime.parse(json["trialEndDate"]),
-    subscriptionStartDate: json["subscriptionStartDate"],
-    subscriptionEndDate: json["subscriptionEndDate"],
-    paymentStatus: json["paymentStatus"],
+    createdBy: json["createdBy"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id,
-    "name": name,
-    "email": email,
-    "privacyPolicyAccepted": privacyPolicyAccepted,
-    "isAdmin": isAdmin,
-    "isVerified": isVerified,
-    "isDeleted": isDeleted,
-    "isBlocked": isBlocked,
+    "eventName": eventName,
+    "location": location,
+    "eventTime": eventTime,
+    "fee": fee,
+    "closeDate": closeDate?.toIso8601String(),
+    "eventDate": eventDate?.toIso8601String(),
+    "description": description,
+    "matches": matches == null ? [] : List<dynamic>.from(matches!.map((x) => x.toJson())),
     "image": image?.toJson(),
-    "subscription": subscription,
-    "oneTimeCode": oneTimeCode,
-    "dateOfBirth": dateOfBirth,
-    "address": address,
-    "phone": phone,
-    "club": club,
-    "userClass": userClass,
-    "score": score,
-    "trialStartDate": trialStartDate?.toIso8601String(),
-    "trialEndDate": trialEndDate?.toIso8601String(),
-    "subscriptionStartDate": subscriptionStartDate,
-    "subscriptionEndDate": subscriptionEndDate,
-    "paymentStatus": paymentStatus,
+    "createdBy": createdBy,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
   };
 }
 
 class Image {
-  final String? path;
+  final dynamic path;
   final String? publicFileUrl;
 
   Image({
@@ -235,3 +140,22 @@ class Image {
   };
 }
 
+class Match {
+  final String? matchName;
+  final String? description;
+
+  Match({
+    this.matchName,
+    this.description,
+  });
+
+  factory Match.fromJson(Map<String, dynamic> json) => Match(
+    matchName: json["matchName"],
+    description: json["description"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "matchName": matchName,
+    "description": description,
+  };
+}
