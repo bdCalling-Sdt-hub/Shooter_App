@@ -8,9 +8,10 @@ class ApiConstant {
   static String changePassword = "/user/change-password";
   static String setPassword = "/user/set-password";
   static String allEvents = "/events/all";
-  static String allMatch = "/match/all";
+  static String allMatch = "/events/my-complete-matches";
   static String upComingMatch = "/match/upcomming";
   static String upComingEven = "/events/upcomming";
+  static String myUpComingEven = "/events/my-upcoming-events";
   static String myUpComingMatchs = "/match/my-upcomming-matches";
   static String myCompletedMatches = "/match/my-complete-matches";
   static String aboutUsEndPoint = "/setting/about-us";

@@ -98,7 +98,7 @@ class _EventsScreenState extends State<EventsScreen> {
                            title: events.eventName,
                            location: events.location,
                            eventDate: events.eventDate,
-                           registerClosingDate: DateTime.now(), // events.closeDate,
+                           registerClosingDate: events.closeDate, // events.closeDate,
                            onTap: () {
                              Get.toNamed(AppRoutes.eventDetailsScreen,
                                  arguments: events);

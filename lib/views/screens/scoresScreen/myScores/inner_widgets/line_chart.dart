@@ -2,76 +2,72 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-
 import '../../../../../utils/app_colors.dart';
 
+class LineChart extends StatelessWidget {
+  final List chartData;
 
-class LineChart extends StatefulWidget {
-  const LineChart({super.key});
+  LineChart({super.key, required this.chartData});
 
+  // Function to convert the data to the required format
+  List<Map<String, dynamic>> _convertChartData() {
+    // Ensure the first data point starts at (x = 0, y = 0)
+    List<Map<String, dynamic>> convertedData = [
+      {"score": 0, "matchName": "Start"}
+    ];
 
-  @override
-  State<LineChart> createState() => _LineChartState();
-}
+    // Add the rest of the data points
+    convertedData.addAll(chartData.map((data) {
+      int score = int.parse(data["score"]);
+      String matchName = data["matchName"];
+      return {"score": score, "matchName": matchName};
+    }).toList());
 
-class _LineChartState extends State<LineChart> {
-  List chartData = [
-    [2024, 300, 30,120],
-    [2025, 200, 200, 85],
-    [2026, 400, 300,600],
-    [2027, 300, 100,500],
-    [2028, 700, 600,800],
-  ];
+    return convertedData;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    List<Map<String, dynamic>> convertedChartData = _convertChartData();
+
+    return SizedBox(
+      height: 400.h,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
         children: [
           Container(
             height: 400.h,
-            margin : const EdgeInsets.symmetric(horizontal: 3),
+            width: 326 + (10 * chartData.length).toDouble(),
+            margin: const EdgeInsets.symmetric(horizontal: 3),
             decoration: BoxDecoration(
-                color: const Color(0xff302d2d),
+              color: const Color(0xff302d2d),
               borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-              border: Border.all(color: AppColors.primaryColor)
+              border: Border.all(color: AppColors.primaryColor),
             ),
             child: SfCartesianChart(
+              primaryXAxis: const CategoryAxis(),
               legend: const Legend(isVisible: true),
               title: const ChartTitle(text: "Scores Ratio"),
               series: [
-                SplineSeries(
-                  dataSource: chartData,
-                  xValueMapper: (data, index) => data[0],
-                  yValueMapper: (data, index) => data[1],
-                  markerSettings: const MarkerSettings(shape: DataMarkerType.circle),
-                  color: const Color(0xff4B91F1),
-                  name: "Event 1",
+                SplineSeries<Map<String, dynamic>, String>(
+                  dataSource: convertedChartData,
+                  xValueMapper: (data, _) => data["matchName"],
+                  yValueMapper: (data, _) => data["score"],
+                  markerSettings: const MarkerSettings(
+                    shape: DataMarkerType.circle,
+                    isVisible: true,
+                  ),
+                  color: Colors.red,
+                  name: "Match Score",
                   legendIconType: LegendIconType.circle,
-                ),
-                SplineSeries(
-                  dataSource: chartData,
-                  xValueMapper: (data, index) => data[0],
-                  yValueMapper: (data, index) => data[2],
-                  markerSettings: const MarkerSettings(shape: DataMarkerType.circle),
-                  color: const Color(0xffFFFFFF),
-                  name: "Match 1",
-                  legendIconType: LegendIconType.circle,
-                ),
-
-                SplineSeries(
-                  dataSource: chartData,
-                  xValueMapper: (data, index) => data[0],
-                  yValueMapper: (data, index) => data[3],
-                  markerSettings: const MarkerSettings(shape: DataMarkerType.circle),
-                  color: const Color(0xffFA1131),
-                  name: "Match 2",
-                  legendIconType: LegendIconType.circle,
+                  dataLabelSettings:  const DataLabelSettings(isVisible: true),
                 ),
               ],
             ),
-          )
+          ),
         ],
-
+      ),
     );
   }
 }

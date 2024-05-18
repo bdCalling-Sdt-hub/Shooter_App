@@ -9,6 +9,7 @@ import '../views/screens/auth/verifyEmailScreen/verify_email_screen.dart';
 import '../views/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import '../views/screens/event_details/event_details_screen.dart';
 import '../views/screens/home/home_screen.dart';
+import '../views/screens/my_matches/my_matches_screen.dart';
 import '../views/screens/notification/notification_screen.dart';
 import '../views/screens/onboardingsScreen/onboardings_screen.dart';
 import '../views/screens/profile/editprofileScreen/editprofile_screen.dart';
@@ -81,7 +82,8 @@ class AppRoutes {
         GetPage(name: subscriptionScreen, page: () => SubscriptionScreen()),
         GetPage(name: eventDetailsScreen, page: () => EventDetailsScreen()),
         GetPage(name: myScoresScreen, page: () => MyScoresScreen()),
+        GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
         GetPage(name: bottomNavBar, page: () => BottomNavBar(),binding:InitialScreenBindings()),
-        GetPage(name: scoresScreen, page: () => ScoresScreen()),
+        // GetPage(name: scoresScreen, page: () => ScoresScreen()),
       ];
 }

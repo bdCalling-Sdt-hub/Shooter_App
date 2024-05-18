@@ -16,6 +16,7 @@ class CustomEventsCard extends StatelessWidget {
     super.key,
     this.eventDate,
     this.image,
+    this.btnName,
     this.location,
     this.title,
     this.registerClosingDate,
@@ -26,6 +27,7 @@ class CustomEventsCard extends StatelessWidget {
   final String? image;
   final String? location;
   final String? title;
+  final String? btnName;
   final DateTime? registerClosingDate;
   final Function()? onTap;
 
@@ -165,7 +167,7 @@ class CustomEventsCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: CustomButton(
-                title: "See Details",
+                title: btnName ?? "See Details",
                 height: 40.h,
                 fontSize: 12.h,
                 onpress: onTap ?? () {},
