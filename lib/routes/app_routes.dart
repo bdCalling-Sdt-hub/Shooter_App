@@ -74,8 +74,7 @@ class AppRoutes {
         GetPage(name: setnewpasswordScreen, page: () => SetnewpasswordScreen()),
         GetPage(name: getOtpSceeen, page: () => GetOtpSceeen()),
         GetPage(name: privacypolicyScreen, page: () => PrivacypolicyScreen()),
-        GetPage(
-            name: termsconditionsScreen, page: () => TermsconditionsScreen()),
+        GetPage(name: termsconditionsScreen, page: () => TermsconditionsScreen()),
         GetPage(name: aboutusScreen, page: () => AboutusScreen()),
         GetPage(name: registrationScreen, page: () => RegistrationScreen()),
         GetPage(name: freetrialScreen, page: () => FreetrialScreen()),
@@ -84,6 +83,6 @@ class AppRoutes {
         GetPage(name: myScoresScreen, page: () => MyScoresScreen()),
         GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),
         GetPage(name: bottomNavBar, page: () => BottomNavBar(),binding:InitialScreenBindings()),
-        // GetPage(name: scoresScreen, page: () => ScoresScreen()),
+        GetPage(name: scoresScreen, page: () => ScoresScreen()),
       ];
 }

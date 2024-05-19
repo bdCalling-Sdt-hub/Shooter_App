@@ -62,38 +62,21 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
                         itemCount: myUpcomingEvents.myCompleteMatchModel.length,
                         itemBuilder: (context, index) {
                           var myCompletedData = myUpcomingEvents.myCompleteMatchModel[index];
-                          return
-                            Container(
-                              padding: EdgeInsets.only(left: 12.w),
-                              margin: EdgeInsets.only(bottom: 12.h),
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffB5B5B5).withOpacity(.30),
-                                  borderRadius: BorderRadius.circular(8.r)),
-                              child: ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  leading: Container(
-                                    height: 48.h,
-                                    width: 48.h,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.red, width: 0.5),
-                                        color: Colors.grey,
-                                        shape: BoxShape.circle),
-                                    child: Center(
-                                        child: CustomText(
-                                            text: '${index + 1}',
-                                            color: const Color(0xffbacFA1131),
-                                            fontsize: 16.h)),
-                                  ),
+                          return CustomMatchesCard(
+                             image: myCompletedData.eventDetails?.image?.publicFileUrl,
+                             date: DateTime.now(),
+                             time:  "${myCompletedData.eventDetails?.eventTime}",
+                             onTap: (){
+                               Get.toNamed(AppRoutes.scoresScreen, parameters: {
+                                 'id' : '${myCompletedData.id}'
+                               });
+                             },
+                            entryFree: "${myCompletedData.registrationStatus}",
+                            buttonText: "see score",
+                            eventName: "${myCompletedData.eventDetails?.eventName}",
+                            matchName: '${myCompletedData.matchName}',
+                          );
 
-                                  title: CustomText(
-                                    text: "${myCompletedData.matchName}",
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  subtitle: CustomText(text: "${myCompletedData.description}", textAlign: TextAlign.start,fontsize: 10.h,)
-                              ),
-                            );
                         },
                       );
           })
