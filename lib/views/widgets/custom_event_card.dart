@@ -12,11 +12,12 @@ import 'custom_button.dart';
 import 'custom_text.dart';
 
 class CustomEventsCard extends StatelessWidget {
-  const CustomEventsCard({
+  const  CustomEventsCard({
     super.key,
     this.eventDate,
     this.image,
     this.btnName,
+    this.registationComplete,
     this.location,
     this.title,
     this.registerClosingDate,
@@ -25,6 +26,7 @@ class CustomEventsCard extends StatelessWidget {
 
   final DateTime? eventDate;
   final String? image;
+  final String? registationComplete;
   final String? location;
   final String? title;
   final String? btnName;
@@ -150,6 +152,7 @@ class CustomEventsCard extends StatelessWidget {
 
                     SizedBox(
                       height: 5.h,
+
                     ),
 
                     CustomText(
@@ -163,7 +166,10 @@ class CustomEventsCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 24.h),
+          SizedBox(height: 18.h),
+          registationComplete != null ? Align(
+              alignment: Alignment.centerLeft,
+              child: CustomText(text: "Registration status : $registationComplete",left: 12.w,fontWeight: FontWeight.w500, fontsize: 12.h)) :
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: CustomButton(

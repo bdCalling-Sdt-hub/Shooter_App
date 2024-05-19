@@ -114,7 +114,7 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
                                       location: events.event?.location,
                                       eventDate: events.event?.eventDate,
                                       registerClosingDate: events.event?.closeDate,
-                                      btnName: "Registration Completed",
+                                      registationComplete: "${events.eventRegisterStatus}",
                                       // events.closeDate,
                                       onTap: () {}
                                     ),
