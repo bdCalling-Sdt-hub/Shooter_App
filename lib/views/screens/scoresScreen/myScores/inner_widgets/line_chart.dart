@@ -9,14 +9,10 @@ class LineChart extends StatelessWidget {
 
   LineChart({super.key, required this.chartData});
 
-  // Function to convert the data to the required format
   List<Map<String, dynamic>> _convertChartData() {
-    // Ensure the first data point starts at (x = 0, y = 0)
     List<Map<String, dynamic>> convertedData = [
-      {"score": 0, "matchName": "Start"}
     ];
 
-    // Add the rest of the data points
     convertedData.addAll(chartData.map((data) {
       int score = int.parse(data["score"]);
       String matchName = data["matchName"];
@@ -46,11 +42,14 @@ class LineChart extends StatelessWidget {
               border: Border.all(color: AppColors.primaryColor),
             ),
             child: SfCartesianChart(
-              primaryXAxis: const CategoryAxis(),
+               primaryXAxis: CategoryAxis(),
+              primaryYAxis: NumericAxis(),
               legend: const Legend(isVisible: true),
               title: const ChartTitle(text: "Scores Ratio"),
               series: [
                 SplineSeries<Map<String, dynamic>, String>(
+                  initialIsVisible: true,
+                  isVisibleInLegend: true,
                   dataSource: convertedChartData,
                   xValueMapper: (data, _) => data["matchName"],
                   yValueMapper: (data, _) => data["score"],
@@ -61,7 +60,7 @@ class LineChart extends StatelessWidget {
                   color: Colors.red,
                   name: "Match Score",
                   legendIconType: LegendIconType.circle,
-                  dataLabelSettings:  const DataLabelSettings(isVisible: true),
+                  dataLabelSettings: const DataLabelSettings(isVisible: true, showZeroValue: true),
                 ),
               ],
             ),
