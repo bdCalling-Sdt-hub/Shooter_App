@@ -77,6 +77,8 @@ class AppString {
   static String registration = "Registration";
   static String fullName = "Full name";
   static String phoneNumber = "Phone number";
+  static String photo = "Photo";
+  static String document = "Document";
   static String gender = "Gender";
   static String shooterShoulderPreference = "Shooter shoulder preference";
   static String male = "Male";

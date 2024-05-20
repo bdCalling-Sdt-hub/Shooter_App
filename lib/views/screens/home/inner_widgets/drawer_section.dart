@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -18,13 +20,14 @@ import '../../../widgets/custom_list_tile.dart';
 import '../../../widgets/custom_text.dart';
 
 class DrawerSection extends StatelessWidget {
-   DrawerSection({
+  DrawerSection({
     super.key,
   });
 
-
   final ProfileController _profileController = Get.put(ProfileController());
   final AuthController _authController = Get.put(AuthController());
+  final ExpansionTileController controller = ExpansionTileController();
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -45,7 +48,8 @@ class DrawerSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Column(
                     children: [
                       //=====================================>  Top Section  <=============================
@@ -57,10 +61,16 @@ class DrawerSection extends StatelessWidget {
                             height: 64.h,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.white),
-                            child: profileData?.image?.publicFileUrl == null  ? Image.asset(
-                              AppImages.profileImg,
-                              fit: BoxFit.cover,
-                            ) : CachedNetworkImage(imageUrl: "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}",fit: BoxFit.cover,),
+                            child: profileData?.image?.publicFileUrl == null
+                                ? Image.asset(
+                                    AppImages.profileImg,
+                                    fit: BoxFit.cover,
+                                  )
+                                : CachedNetworkImage(
+                                    imageUrl:
+                                        "${ApiConstant.imageBaseUrl}/${profileData?.image?.publicFileUrl}",
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                           SizedBox(width: 8.w),
                           Expanded(
@@ -113,22 +123,22 @@ class DrawerSection extends StatelessWidget {
                 ),
               ),
 
-            SizedBox(height: 16.h),
-            //=====================================>  My Scores  Container <=============================
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.myScoresScreen);
-              },
-              child: CustomListTile(
-                title: AppString.myScores,
-                borderColor: AppColors.fieldColor,
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.myScores,
-                  height: 32.h,
-                  width: 32.w,
+              SizedBox(height: 16.h),
+              //=====================================>  My Scores  Container <=============================
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.myScoresScreen);
+                },
+                child: CustomListTile(
+                  title: AppString.myScores,
+                  borderColor: AppColors.fieldColor,
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.myScores,
+                    height: 32.h,
+                    width: 32.w,
+                  ),
                 ),
               ),
-            ),
               SizedBox(height: 16.h),
               //=====================================>  Subscription  Container <=============================
 
@@ -163,39 +173,82 @@ class DrawerSection extends StatelessWidget {
                 ),
               ),
 
-
-
-
-
-
-
               SizedBox(height: 16.h),
 
+              // GestureDetector(
+              //   onTap: () {
+              //     Get.toNamed(AppRoutes.libraryScreen);
+              //   },
+              //   child: CustomListTile(
+              //     title: AppString.library,
+              //     borderColor: AppColors.fieldColor,
+              //     sufixIcon: const Icon(
+              //       Icons.keyboard_arrow_down_rounded,
+              //       color: Colors.white,
+              //     ),
+              //     prefixIcon: SvgPicture.asset(
+              //       AppIcons.library,
+              //       height: 32.h,
+              //       width: 32.w,
+              //     ),
+              //   ),
+              // ),
 
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoutes.settingsScreen);
-                },
-                child: CustomListTile(
-                  title: AppString.library,
-                  borderColor: AppColors.fieldColor,
-                  sufixIcon: Icon(Icons.keyboard_arrow_down_rounded,color: Colors.white,),
-                  prefixIcon: SvgPicture.asset(
+              Container(
+                decoration: BoxDecoration(
+                    color: Color(0xffFFE7EA).withOpacity(.31),
+                    borderRadius: BorderRadius.circular(8.r),
+                    border: Border.all(color: Colors.grey, width: .5)),
+                child: ExpansionTile(
+                  childrenPadding: EdgeInsets.zero,
+                  controller: controller,
+                  leading: SvgPicture.asset(
                     AppIcons.library,
                     height: 32.h,
                     width: 32.w,
                   ),
+                  title: CustomText(
+                    text: AppString.library,
+                    fontsize: 14.h,
+                    fontWeight: FontWeight.w400,
+                    textAlign: TextAlign.start,
+                  ),
+                  children: <Widget>[
+                    ///=================Expansion Tile ====================>
+                    ///================Document and photos===================>
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.libraryScreen);
+                      },
+                      child: CustomListTile(
+                        title: AppString.document,
+                        borderColor: AppColors.fieldColor,
+                        prefixIcon: SvgPicture.asset(
+                          AppIcons.document,
+                          height: 32.h,
+                          width: 32.w,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.libraryScreen);
+                      },
+                      child: CustomListTile(
+                        title: AppString.photo,
+                        borderColor: AppColors.fieldColor,
+                        prefixIcon: SvgPicture.asset(
+                          AppIcons.photos,
+                          height: 32.h,
+                          width: 32.w,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
-
-
-
-
-
-
-
-
 
               const Spacer(),
               //====================================> LogOut Section <====================================
@@ -219,7 +272,7 @@ class DrawerSection extends StatelessWidget {
                                 SizedBox(height: 24.h),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
                                         width: 120.w,
@@ -239,17 +292,20 @@ class DrawerSection extends StatelessWidget {
                                         child: CustomButton(
                                             title: 'Yes',
                                             fontSize: 16.h,
-                                            onpress: () async{
-                                              await PrefsHelper.remove(AppConstants.isLogged);
-                                              await PrefsHelper.remove(AppConstants.userId);
+                                            onpress: () async {
+                                              await PrefsHelper.remove(
+                                                  AppConstants.isLogged);
+                                              await PrefsHelper.remove(
+                                                  AppConstants.userId);
                                               // await PrefsHelper.remove(AppConstants.bearerToken);
-                                              await PrefsHelper.remove(AppConstants.subscription);
-                                              _authController.googleSignIn.signOut();
+                                              await PrefsHelper.remove(
+                                                  AppConstants.subscription);
+                                              _authController.googleSignIn
+                                                  .signOut();
                                               Get.offNamed(
                                                   AppRoutes.signInScreen);
                                             })),
                                   ],
-
                                 )
                               ],
                             ),
@@ -257,7 +313,8 @@ class DrawerSection extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r),
                                 side: BorderSide(
-                                    width: 1.w, color: AppColors.primaryColor)));
+                                    width: 1.w,
+                                    color: AppColors.primaryColor)));
                       });
                 },
                 child: CustomListTile(
