@@ -57,6 +57,8 @@ class Themes {
         ),
       ),
 
+
+
       scrollbarTheme: ScrollbarThemeData(
         thumbColor: MaterialStatePropertyAll(Colors.red.withOpacity(.50))
       ),

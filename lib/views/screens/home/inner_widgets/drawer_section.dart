@@ -162,6 +162,41 @@ class DrawerSection extends StatelessWidget {
                   ),
                 ),
               ),
+
+
+
+
+
+
+
+              SizedBox(height: 16.h),
+
+
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.settingsScreen);
+                },
+                child: CustomListTile(
+                  title: AppString.library,
+                  borderColor: AppColors.fieldColor,
+                  sufixIcon: Icon(Icons.keyboard_arrow_down_rounded,color: Colors.white,),
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.library,
+                    height: 32.h,
+                    width: 32.w,
+                  ),
+                ),
+              ),
+
+
+
+
+
+
+
+
+
+
               const Spacer(),
               //====================================> LogOut Section <====================================
               GestureDetector(

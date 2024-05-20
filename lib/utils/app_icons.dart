@@ -42,4 +42,5 @@ class AppIcons{
   static const String matches = "assets/icons/matches.svg";
   static const String profile_icon = "assets/icons/profile_icon.svg";
   static const String home_icon = "assets/icons/home_icon.svg";
+  static const String library = "assets/icons/library.svg";
 }

@@ -59,6 +59,7 @@ class AppString {
 
   //================> Settings Screen <====================
   static String settings = "Settings";
+  static String library = "Library";
   static String changePassword = "Change password";
   static String privacyPolicy = "Privacy policy";
   static String termsConditions = "Terms & conditions";

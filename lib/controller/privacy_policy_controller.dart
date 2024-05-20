@@ -14,7 +14,7 @@ class PrivacyPolicyController extends GetxController {
         headers: header);
     if (response.statusCode == 200) {
       var data = response.body;
-      var attributes = data['data']['content'];
+      var attributes = data['data']['attributes']['content'];
       content.value = attributes;
       isLoading.value = false;
     }
