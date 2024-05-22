@@ -42,4 +42,9 @@ class AppIcons{
   static const String matches = "assets/icons/matches.svg";
   static const String profile_icon = "assets/icons/profile_icon.svg";
   static const String home_icon = "assets/icons/home_icon.svg";
+  static const String library = "assets/icons/library.svg";
+  static const String downloadIcon = "assets/icons/downloadIcon.svg";
+  static const String photos = "assets/icons/photos.svg";
+  static const String document = "assets/icons/documentep.svg";
+  static const String pdfImage = "assets/icons/pdf_image.svg";
 }

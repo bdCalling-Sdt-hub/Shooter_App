@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shooter_app/model/subscription_model.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:http/http.dart' as http;
@@ -8,31 +9,40 @@ import '../views/screens/payment/flutter_local_web_view.dart';
 
 class SubscriptionController extends GetxController {
   AppConstants appConstants = AppConstants();
-  RxList subsCriptionData = [
-    {
-      'duration': '6',
-      'price': '565',
-      'subscription': 'standard',
-    },
-    {
-      'duration': '12',
-      'price': '546',
-      'subscription': 'premium',
-    },
-  ].obs;
+  RxList<SubscriptionModel> subsCriptionData = <SubscriptionModel>[].obs;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getSubScription();
+  }
+
+  RxBool subscriptionLoading = false.obs;
+
+  getSubScription() async {
+    subscriptionLoading(true);
+    var response = await ApiClient.getData('/subscription/get-subscription');
+
+    if (response.statusCode == 200) {
+      subsCriptionData.value = List<SubscriptionModel>.from(response
+          .body['data']['attributes']
+          .map((e) => SubscriptionModel.fromJson(e)));
+
+      subscriptionLoading(false);
+    }
+  }
 
   RxInt selectedIndex = 0.obs;
   var subscriptionName = ''.obs;
 
   ///=================================================>
-  void submitForm(BuildContext context, String price, subscription,startDate, endDate) async {
+  void submitForm(BuildContext context, String price, subscription, startDate,
+      endDate) async {
     const url = 'https://www.payfast.co.za/eng/process';
-
-
 
     final response = await http.post(
       Uri.parse(url),
-
       body: {
         'merchant_id': appConstants.getMerchantId,
         'merchant_key': appConstants.getMerchantKey,
@@ -52,9 +62,9 @@ class SubscriptionController extends GetxController {
                     code: response.body,
                     eventId: '',
                     startDate: startDate,
-                endDate: endDate,
-                subscription: subscription,
-                subscriptionPrice: price,
+                    endDate: endDate,
+                    subscription: subscription,
+                    subscriptionPrice: price,
                   )));
       // Handle successful response
       print('Form submitted successfully');
@@ -66,15 +76,14 @@ class SubscriptionController extends GetxController {
     }
   }
 
-
   ///=====================Buy Subscription=========================>
-  buySubscription( String price, subscription,startDate, endDate) async {
+  buySubscription(String price, subscription, startDate, endDate) async {
     var body = {
       "subscription": "$subscription",
       "subscriptionStartDate": "$startDate",
       "subscriptionEndDate": "$endDate",
       "price": "$price",
-      "transactionId":"0012"
+      "transactionId": "0012"
     };
     var response =
         await ApiClient.postData(ApiConstant.subscriptionEndpoint, body);

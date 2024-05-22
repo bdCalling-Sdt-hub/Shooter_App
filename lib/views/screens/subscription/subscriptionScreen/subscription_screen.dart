@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/registration_controller.dart';
 import 'package:shooter_app/controller/subscription_controller.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
 import '../../../../utils/app_string.dart';
@@ -101,34 +102,42 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
                 SizedBox(height: 35.h),
 
-                Center(
+              Obx(() {
+                return                 Center(
                   child: SizedBox(
                     height: 140.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(
-                          _subscriptionController.subsCriptionData.value.length,
-                          (index) {
-                        var data = _subscriptionController
-                            .subsCriptionData.value[index];
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _subscriptionController.selectedIndex.value =
-                                  index;
-                            });
-                          },
-                          child: SubscriptionCard(
-                            duration: data['duration'],
-                            price: data['price'],
-                            isSelected: index ==
-                                _subscriptionController.selectedIndex.value,
-                          ),
-                        );
-                      }),
+                    child:       _subscriptionController.subscriptionLoading.value ?
+
+                    CustomLoader()
+
+
+                        : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children:
+                List.generate(
+                          _subscriptionController.subsCriptionData.length,
+                              (index) {
+                            var data = _subscriptionController
+                                .subsCriptionData[index];
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _subscriptionController.selectedIndex.value =
+                                      index;
+                                });
+                              },
+                              child: SubscriptionCard(
+                                duration: '${ data.duration}',
+                                price: '${data.price}',
+                                isSelected: index ==
+                                    _subscriptionController.selectedIndex.value,
+                              ),
+                            );
+                          }),
                     ),
                   ),
-                ),
+                );
+              }),
 
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
@@ -137,13 +146,15 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   onpress: () {
                     _subscriptionController.submitForm(
                       context,
-                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value]['price']}',
-                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value]['subscription']}',
+                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}',
+                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}',
                       startDate,
                       entDate
                     );
                     // _subscriptionController.buySubscription(startDate, entDate);
                     //Get.toNamed(AppRoutes.signUpScreen);
+                    print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}");
+                    print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}");
                   },
                 ),
                 SizedBox(height: 94.h),

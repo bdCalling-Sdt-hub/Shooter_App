@@ -59,6 +59,7 @@ class AppString {
 
   //================> Settings Screen <====================
   static String settings = "Settings";
+  static String library = "Library";
   static String changePassword = "Change password";
   static String privacyPolicy = "Privacy policy";
   static String termsConditions = "Terms & conditions";
@@ -76,6 +77,8 @@ class AppString {
   static String registration = "Registration";
   static String fullName = "Full name";
   static String phoneNumber = "Phone number";
+  static String photo = "Photo";
+  static String document = "Document";
   static String gender = "Gender";
   static String shooterShoulderPreference = "Shooter shoulder preference";
   static String male = "Male";

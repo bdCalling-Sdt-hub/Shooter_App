@@ -169,7 +169,7 @@ class AuthController extends GetxController {
         return null;
       }
       final credential =
-      FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
       // Sign in with credential
       UserCredential userCredential =
