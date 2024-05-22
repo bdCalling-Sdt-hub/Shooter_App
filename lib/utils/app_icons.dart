@@ -46,4 +46,5 @@ class AppIcons{
   static const String downloadIcon = "assets/icons/downloadIcon.svg";
   static const String photos = "assets/icons/photos.svg";
   static const String document = "assets/icons/documentep.svg";
+  static const String pdfImage = "assets/icons/pdf_image.svg";
 }
