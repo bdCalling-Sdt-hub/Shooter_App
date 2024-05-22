@@ -218,7 +218,7 @@ class DrawerSection extends StatelessWidget {
                     ///================Document and photos===================>
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(AppRoutes.libraryScreen);
+                        Get.toNamed(AppRoutes.documentScreen);
                       },
                       child: CustomListTile(
                         title: AppString.document,
@@ -234,7 +234,7 @@ class DrawerSection extends StatelessWidget {
 
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(AppRoutes.libraryScreen);
+                        Get.toNamed(AppRoutes.photosScreen);
                       },
                       child: CustomListTile(
                         title: AppString.photo,

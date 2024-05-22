@@ -7,8 +7,8 @@ import 'package:shooter_app/views/widgets/custom_text.dart';
 
 import '../../../utils/app_icons.dart';
 
-class LibraryScreen extends StatelessWidget {
-  const LibraryScreen({super.key});
+class PhotosScreen extends StatelessWidget {
+  const PhotosScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
