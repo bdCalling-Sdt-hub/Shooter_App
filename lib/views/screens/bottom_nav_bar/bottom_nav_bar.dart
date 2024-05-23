@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/utils/app_colors.dart';
 import 'package:shooter_app/views/screens/home/home_screen.dart';
+import 'package:shooter_app/views/screens/library_screen/library_screen.dart';
 import 'package:shooter_app/views/screens/profile/profileScreen/profile_screen.dart';
 import '../../../controller/home_controller.dart';
 import '../../../utils/app_icons.dart';
@@ -26,7 +27,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
   static final List _widgetOptions = [
     HomeScreen(),
      EventsScreen(),
-     // MatchesScreen(),
+     LibraryScreen(),
      ProfileScreen(),
   ];
 
@@ -70,22 +71,22 @@ class _BottomNavigationBarExampleState extends State<BottomNavBar> {
             label: 'Events',
           ),
 
-          ///---------------matches---------------->
-          // BottomNavigationBarItem(
-          //   icon: SvgPicture.asset(
-          //     AppIcons.matches,
-          //     color: _selectedIndex == 2
-          //         ? AppColors.primaryColor
-          //         : AppColors.whiteB5B5B5,
-          //   ),
-          //   label: 'Matches',
-          // ),
+          ///---------------Library---------------->
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AppIcons.libraryFolder,
+              color: _selectedIndex == 2
+                  ? AppColors.primaryColor
+                  : AppColors.whiteB5B5B5,
+            ),
+            label: 'Library',
+          ),
 
           ///---------------profile---------------->
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               AppIcons.profile_icon,
-              color: _selectedIndex == 2
+              color: _selectedIndex == 3
                   ? AppColors.primaryColor
                   : AppColors.whiteB5B5B5,
             ),

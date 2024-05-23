@@ -20,7 +20,10 @@ class UpComingEventsListView extends StatelessWidget {
     return Obx(() {
       _homeController.upComingEvensList;
       return _homeController.eventLoading.value
-          ? const CustomLoader()
+          ? const Center(
+          child: CustomText(
+            text: "No data found!",
+          ))
           : _homeController.upComingEvensList.isEmpty
               ? const Center(
                   child: CustomText(
