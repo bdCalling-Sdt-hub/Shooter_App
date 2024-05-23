@@ -77,7 +77,7 @@ class AuthController extends GetxController {
   Future<User?> signInWithGoogle(BuildContext context) async {
 
     try {
-      // googleSignIn.signOut();
+           // googleSignIn.signOut();
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
       print('===============================> google sign in');
       if (googleSignInAccount != null) {
@@ -96,16 +96,17 @@ class AuthController extends GetxController {
           Map<String, String> header = {'Content-Type': 'application/json'};
           var body = {
             'email': '${user.email}',
-            // 'password': passController.text,
             "loginType" : 1
           };
           var response = await ApiClient.postData(
               ApiConstant.signIn, json.encode(body),
               headers: header);
 
+
           print('================> response ${response.body}');
 
           if (response.statusCode == 200) {
+            print("==================================================================");
             Map<String, dynamic> data = response.body;
             if (!data['data']['attributes']['isAdmin']) {
               await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
@@ -129,7 +130,6 @@ class AuthController extends GetxController {
                 imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
                 userid: data['data']['attributes']['_id'] ?? "",
               );
-              debugPrint("ssss ${dataController.image}");
               Get.offAllNamed(AppRoutes.bottomNavBar);
 
               emailController.clear();
