@@ -235,7 +235,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ///======================drop down =======================>
           CustomText(text: AppString.classChoose, bottom: 8.h, top: 16.h),
           DropDownContainer(
-            dropDownItemsList: const ['a', "b", 'c', 'd', 'e', 'f'],
+            dropDownItemsList: const ['A', "B", 'C', 'F', 'H', 'PCP', "3P"],
           ),
 
           CustomText(text: AppString.matchChoose, bottom: 8.h, top: 16.h),
@@ -297,7 +297,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           CustomButton(
             title: AppString.makePayment,
             titlecolor: Colors.white,
-            loading: registrationController.submitFromLoading.value,
+            loading: registrationController.submitFromLoading.value ,
             onpress: () {
               if (_formKey.currentState!.validate()) {
                 registrationController.submitForm(

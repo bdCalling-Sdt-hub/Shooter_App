@@ -12,7 +12,6 @@ import '../../../widgets/custom_loader.dart';
 import '../../../widgets/custom_text.dart';
 import 'inner_widgets/line_chart.dart';
 
-
 class MyScoresScreen extends StatefulWidget {
   const MyScoresScreen({super.key});
 
@@ -46,8 +45,6 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
             // _TableSection(),
             Column(
               children: [
-
-
                 ///---------------------------------two bottom------------------------------>
                 Container(
                   width: double.infinity,
@@ -132,17 +129,18 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
               ],
             ),
 
-
             ///---------------------table section----------------------------->
             isComplete
                 ? _TableSection()
-                :  LineChart(chartData: _scoresController.myScroesList,),
+                : LineChart(
+                    chartData: _scoresController.myScroesList,
+                  ),
           ],
         ),
       ),
-
     );
   }
+
   ///--------------------------row text-------------------------->
   _rowText(String title) {
     return Padding(
@@ -159,48 +157,55 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
 
   _TableSection() {
     return Obx(
-
-          () => _scoresController.myScoresLoading.value
-          ? _scoresController.myScroesList.value.isEmpty ? const Center(child: CustomLoader()) :  const Center(child:  CustomText(text: "No date found",),)
-          : Column(
-        children: [
-          Container(
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.r),
-                    topRight: Radius.circular(8.r)),
+      () => _scoresController.myScroesList.value.isEmpty
+          ? Container(
+          height: 560.h,
+            child: const Center(
+                child: CustomText(
+                  text: "No date found!",
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  _rowText(AppString.date),
-                  _rowText(AppString.event),
-                  _rowText(AppString.match),
-                  _rowText(AppString.scores),
-                ],
-              )),
-          Table(
-              border: TableBorder.all(color: Colors.black26),
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              children: List.generate(
-                  _scoresController.myScroesList.length, (index) {
-                var matchData = _scoresController.myScroesList[index];
-                print("===============>... $matchData");
-                return TableRow(
-                    decoration: const BoxDecoration(
-                      color: Color(0xff5B5455),
+          )
+          : Column(
+              children: [
+                Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.r),
+                          topRight: Radius.circular(8.r)),
                     ),
-                    children: [
-                      _rowText(TimeFormatHelper.formatDate(DateTime.parse('${matchData["matchDate"]}'))),
-                      _rowText("${matchData["eventName"]}"),
-                      _rowText("${matchData["matchName"]}"),
-                      _rowText("${matchData["score"]}"),
-                    ]);
-              })),
-        ],
-      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        _rowText(AppString.date),
+                        _rowText(AppString.event),
+                        _rowText(AppString.match),
+                        _rowText(AppString.scores),
+                      ],
+                    )),
+                Table(
+                    border: TableBorder.all(color: Colors.black26),
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    children: List.generate(
+                        _scoresController.myScroesList.length, (index) {
+                      var matchData = _scoresController.myScroesList[index];
+                      print("===============>... $matchData");
+                      return TableRow(
+                          decoration: const BoxDecoration(
+                            color: Color(0xff5B5455),
+                          ),
+                          children: [
+                            _rowText(TimeFormatHelper.formatDate(
+                                DateTime.parse('${matchData["matchDate"]}'))),
+                            _rowText("${matchData["eventName"]}"),
+                            _rowText("${matchData["matchName"]}"),
+                            _rowText("${matchData["score"]}"),
+                          ]);
+                    })),
+              ],
+            ),
     );
   }
 }

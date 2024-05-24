@@ -54,7 +54,7 @@ class AppString {
 
   //================> Profile Screen <====================
   static String profile = "Profile";
-  static String editProfile = "Edit profile";
+  static String editProfile = "Edit Profile";
   static String update = "Update";
 
   //================> Settings Screen <====================
@@ -107,7 +107,7 @@ class AppString {
 
   ///---------------------------Events screen---------------------->?
   static String events = "Events";
-  static String eventdetails = "Event details";
+   static String eventdetails = "Event Details";
 
   ///------------------------Matches screen------------------------->
   static String matches = "Matches";

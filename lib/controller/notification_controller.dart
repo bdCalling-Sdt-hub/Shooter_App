@@ -42,7 +42,7 @@ class NotificationController extends GetxController{
     if(page == 1){
       notificationLoading(true);
     }
-    var response = await ApiClient.getData('${ApiConstant.notificationsEndPoint}?limit=10&page=$page');
+    var response = await ApiClient.getData('${ApiConstant.notificationsEndPoint}?limit=15&page=$page');
 
     if(response.statusCode == 200){
       if(response.body['data']['attributes'] != null){

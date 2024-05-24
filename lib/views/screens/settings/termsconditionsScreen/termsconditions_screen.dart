@@ -30,20 +30,21 @@ class TermsconditionsScreen extends StatelessWidget {
       body: Obx(
         () => _termsConditionsController.isLoading.value
             ? const CustomLoader()
-            : Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.paddingSizeDefault),
-                child: Column(
-                  children: [
-                    SizedBox(height: 24.h),
-                    Obx(
-                      () => Html(
-                        data: _termsConditionsController.content.value,
+            : SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: Dimensions.paddingSizeDefault),
+                  child: Column(
+                    children: [
+                      Obx(
+                        () => Html(
+                          data: _termsConditionsController.content.value,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+            ),
       ),
     );
   }

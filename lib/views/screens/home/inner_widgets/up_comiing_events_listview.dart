@@ -21,9 +21,7 @@ class UpComingEventsListView extends StatelessWidget {
       _homeController.upComingEvensList;
       return _homeController.eventLoading.value
           ? const Center(
-          child: CustomText(
-            text: "No data found!",
-          ))
+          child: CustomLoader())
           : _homeController.upComingEvensList.isEmpty
               ? const Center(
                   child: CustomText(
@@ -56,3 +54,4 @@ class UpComingEventsListView extends StatelessWidget {
     });
   }
 }
+

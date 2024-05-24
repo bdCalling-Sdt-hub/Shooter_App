@@ -30,19 +30,23 @@ class LibraryScreen extends StatelessWidget {
         padding:
             EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 136.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _LibraryContainer("${AppIcons.galary}", 'Photo', () {
-                  Get.toNamed(AppRoutes.photosScreen);
-                }),
-                _LibraryContainer(
-                    "${AppIcons.documentIcons}", 'Document', () {
-                  Get.toNamed(AppRoutes.documentScreen);
-                }),
-              ],
+            // SizedBox(height: 136.h),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _LibraryContainer(AppIcons.galary, 'Photo', () {
+                    Get.toNamed(AppRoutes.photosScreen);
+                  }),
+                  _LibraryContainer(
+                      AppIcons.documentIcons, 'Document', () {
+                    Get.toNamed(AppRoutes.documentScreen);
+                  }),
+                ],
+              ),
             )
           ],
         ),

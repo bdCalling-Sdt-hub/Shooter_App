@@ -53,28 +53,29 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
 
         ///------------------------------complete match------------------------------->
         Obx(() {
-            return myUpcomingEvents.myCompletMatchLoading.value
-                ? const Center(child: CustomLoader())
-                : myUpcomingEvents.myCompleteMatchModel.isEmpty
+            return  myUpcomingEvents.myCompleteMatchModel.isEmpty
                     ? const Center(child: CustomText(text: 'No data found!'))
                     : ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemCount: myUpcomingEvents.myCompleteMatchModel.length,
                         itemBuilder: (context, index) {
                           var myCompletedData = myUpcomingEvents.myCompleteMatchModel[index];
-                          return CustomMatchesCard(
-                             image: myCompletedData.eventDetails?.image?.publicFileUrl,
-                             date: DateTime.now(),
-                             time:  "${myCompletedData.eventDetails?.eventTime}",
-                             onTap: (){
-                               Get.toNamed(AppRoutes.scoresScreen, parameters: {
-                                 'id' : '${myCompletedData.id}'
-                               });
-                             },
-                            entryFree: "${myCompletedData.registrationStatus}",
-                            buttonText: "see score",
-                            eventName: "${myCompletedData.eventDetails?.eventName}",
-                            matchName: '${myCompletedData.matchName}',
+                          return Padding(
+                            padding:  EdgeInsets.only(bottom: 16.h),
+                            child: CustomMatchesCard(
+                               image: myCompletedData.eventDetails?.image?.publicFileUrl,
+                               date: DateTime.now(),
+                               time:  "${myCompletedData.eventDetails?.eventTime}",
+                               onTap: (){
+                                 Get.toNamed(AppRoutes.scoresScreen, parameters: {
+                                   'id' : '${myCompletedData.id}'
+                                 });
+                               },
+                              entryFree: "${myCompletedData.registrationStatus}",
+                              buttonText: "see score",
+                              eventName: "${myCompletedData.eventDetails?.eventName}",
+                              matchName: '${myCompletedData.matchName}',
+                            ),
                           );
 
                         },

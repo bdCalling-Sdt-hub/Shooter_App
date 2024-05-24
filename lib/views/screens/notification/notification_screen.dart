@@ -66,7 +66,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
       ///-----------------------------------body section-------------------------->
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 20.h),
         child: Column(
           children: [
 
@@ -89,7 +89,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       if(index < _notificationController.notificationsList.length){
                         var notifications = _notificationController.notificationsList[index];
                         return Padding(
-                          padding: EdgeInsets.only(bottom: 16.h),
+                          padding: EdgeInsets.only(bottom: 16.h, ),
                           child: _Notification('${notifications.message}' , notifications.createdAt!),
                         );
                       }else if(index >= _notificationController.totalResult){
