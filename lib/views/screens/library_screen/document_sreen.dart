@@ -1,15 +1,9 @@
 import 'dart:async';
-import 'dart:io';
-import 'dart:isolate';
-import 'dart:ui';
-
 import 'package:fl_downloader/fl_downloader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 
@@ -21,7 +15,7 @@ import '../../../utils/dimentions.dart';
 import '../../widgets/custom_text.dart';
 
 class DocumentScreen extends StatefulWidget {
-  DocumentScreen({Key? key}) : super(key: key);
+  const DocumentScreen({Key? key}) : super(key: key);
 
   @override
   State<DocumentScreen> createState() => _DocumentScreenState();
@@ -63,54 +57,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
     progressStream.cancel();
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   FlutterDownloader.registerCallback(downloadCallback);
-  //   _checkPermission();
-  // }
-  //
-  // void _checkPermission() async {
-  //   if (Platform.isAndroid) {
-  //     bool status = await Permission.storage.isGranted;
-  //     if (!status) {
-  //       await Permission.storage.request();
-  //     }
-  //   }
-  // }
-  //
-  // void _downloadFile(String url) async {
-  //   final fileName =  getFileNameUrl(url);
-  //   final directory = await getExternalStorageDirectory();
-  //   final taskId = await FlutterDownloader.enqueue(url: url,
-  //     // Replace with your file URL
-  //     savedDir: directory.path,
-  //     fileName: fileName,
-  //     showNotification: true,
-  //     openFileFromNotification: true,
-  //   );
-  // }
-  //
-  // String getFileNameUrl(String url) {
-  //   List<String> parts = url.split('/');
-  //   String fileName = parts.last;
-  //   if (fileName.contains('?')) {
-  //     fileName = fileName.split('?').first;
-  //   }
-  //   debugPrint("File name : $fileName");
-  //
-  //   return fileName;
-  // }
-  //
-  // @pragma('vm:entry-point')
-  // static void downloadCallback(String id, int status, int progress) {
-  //   final SendPort? send =
-  //   IsolateNameServer.lookupPortByName('downloader_send_port');
-  //   send!.send([
-  //     id,
-  //     status,
-  //   ]);
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,7 +98,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                           onTap: () async{
                            var permission = await FlDownloader.requestPermission();
                            if(permission == StoragePermissionStatus.granted){
-                             await  FlDownloader.download("${ApiConstant.imageBaseUrl}/${document.document?.publicFileUrl}", fileName: '${document.document?.publicFileUrl}');
+                             await  FlDownloader.download("https://bdcalling.hrmsoftwarebd.com/uploads/2024/05/510-663d93f647af4.pdf", fileName: '${document.document?.publicFileUrl}');
                            }
 
                           },
@@ -173,12 +119,4 @@ class _DocumentScreenState extends State<DocumentScreen> {
       ),
     );
   }
-}
-
-Future<Directory> getExternalStorageDirectory() async {
-  final directory = Directory('/storage/emulated/');
-  if (!await directory.exists()) {
-    await directory.create(recursive: true);
-  }
-  return directory;
 }
