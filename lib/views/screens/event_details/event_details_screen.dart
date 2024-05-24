@@ -254,7 +254,7 @@ class EventDetailsScreen extends StatelessWidget {
 
 
                         title: CustomText(text: "${matchInfo.matchName}",textAlign:TextAlign.start,),
-                         subtitle: CustomText(text: "${matchInfo.description}", textAlign: TextAlign.start,fontsize: 10.h,)
+                         subtitle: CustomText(text: "${matchInfo.description}", textAlign: TextAlign.start,fontsize: 10.h,maxline: 3, right: 10.w,)
                       ),
                     );
                   },

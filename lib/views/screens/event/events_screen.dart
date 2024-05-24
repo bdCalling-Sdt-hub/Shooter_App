@@ -76,7 +76,11 @@ class _EventsScreenState extends State<EventsScreen> {
          case Status.completed : return
            RefreshIndicator(
              onRefresh: ()async{
-               await _eventsController.evensLists;
+               _eventsController.page.value = 1;
+               _eventsController.evensLists.clear();
+               await _eventsController.getEvents();
+
+               print("=====total events : ${_eventsController.totalResult}");
              },
              child: ListView.builder(
                physics: const AlwaysScrollableScrollPhysics(),

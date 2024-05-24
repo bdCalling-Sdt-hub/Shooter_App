@@ -13,6 +13,7 @@ import 'package:shooter_app/service/api_check.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 
 import '../routes/app_routes.dart';
 import 'data_controller.dart';
@@ -92,6 +93,7 @@ class AuthController extends GetxController {
         final UserCredential authResult = await _auth.signInWithCredential(credential);
 
         final User? user = authResult.user;
+
         if (user != null) {
           Map<String, String> header = {'Content-Type': 'application/json'};
           var body = {
@@ -104,6 +106,7 @@ class AuthController extends GetxController {
 
 
           print('================> response ${response.body}');
+
 
           if (response.statusCode == 200) {
             print("==================================================================");
@@ -160,16 +163,15 @@ class AuthController extends GetxController {
   /// <=========== facebook auth ================>
 
   Future signInWithFacebook() async {
-    // Trigger Facebook login flow (customizable options available)
     try {
       final LoginResult loginResult = await FacebookAuth.instance.login();
 
-      // Check if login was cancelled
-      if (loginResult.status == LoginStatus.cancelled) {
-        return null;
-      }
+      // if (loginResult.status == LoginStatus.cancelled) {
+      //   return null;
+      // }
       final credential =
       FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
 
       // Sign in with credential
       UserCredential userCredential =

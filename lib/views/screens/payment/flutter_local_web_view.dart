@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/controller/registration_controller.dart';
 import 'package:shooter_app/controller/subscription_controller.dart';
+import 'package:shooter_app/utils/app_colors.dart';
+import 'package:shooter_app/views/widgets/custom_loader.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../utils/app_constants.dart';
@@ -41,6 +45,7 @@ class FlutterLocalWebView extends StatefulWidget {
 
 class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
   late WebViewController _webViewController;
+  bool loading = true;
 
   getUrlQueryPrams(String url) async {
     Uri uri = Uri.parse(url);
@@ -53,6 +58,14 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
   @override
   void initState() {
     super.initState();
+
+    Timer(Duration(seconds: 5), () {
+
+      setState(() {
+        loading = false;
+      });
+
+    });
 
     _webViewController = WebViewController()
       ..enableZoom(true)
@@ -113,6 +126,11 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
         ),
       )
       ..loadHtmlString(widget.code);
+
+
+
+
+
   }
 
   @override
@@ -129,12 +147,12 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.pink,
+        backgroundColor: AppColors.primaryColor,
         title: const Text('Payment'),
       ),
       body: Stack(
         children: [
-          WebViewWidget(controller: _webViewController),
+          loading? CustomLoader() :  WebViewWidget(controller: _webViewController),
         ],
       ),
     );

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/dimentions.dart';
-import '../../widgets/custom_matches_card.dart';
 import '../../widgets/custom_text.dart';
 import 'inner_widgets/comming_and_complete_card.dart';
 

@@ -151,7 +151,7 @@ final AuthController _authController = Get.put(AuthController());
           color: AppColors.fieldColor,
           border: Border.all(width: 1.w, color: AppColors.primaryColor)),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 9.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 9.h),
         child: Column(
           children: [
             CustomText(

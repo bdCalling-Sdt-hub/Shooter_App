@@ -30,21 +30,22 @@ class PrivacypolicyScreen extends StatelessWidget {
       body: Obx(
         () => _privacyPolicyController.isLoading.value
             ? const CustomLoader()
-            : Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.paddingSizeDefault),
-                child: Column(
-                  children: [
-                    SizedBox(height: 24.h),
-                    Obx(
-                      () => Html(
-                        shrinkWrap: true,
-                        data: _privacyPolicyController.content.value,
+            : SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: Dimensions.paddingSizeDefault),
+                  child: Column(
+                    children: [
+                      Obx(
+                        () => Html(
+                          shrinkWrap: true,
+                          data: _privacyPolicyController.content.value,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+            ),
       ),
     );
   }
