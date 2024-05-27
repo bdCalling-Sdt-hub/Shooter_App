@@ -107,7 +107,7 @@ class RegistrationController extends GetxController {
       "matches": matchLists,
       "sharingRifle": "Yes",
       "transactionId": "123456578",
-      "price": 100,
+      "price": price,
     };
 
     var response = await ApiClient.postData(

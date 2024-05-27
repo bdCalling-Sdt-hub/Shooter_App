@@ -58,6 +58,7 @@ class _ImageViewerState extends State<ImageViewer> {
       appBar: AppBar(title: const CustomText(text: 'Image',),centerTitle: true,
       actions: [
         IconButton(onPressed: ()async {
+
           var permission = await FlDownloader.requestPermission();
           if (permission == StoragePermissionStatus.granted) {
             String imageUrl = "url";
@@ -71,7 +72,7 @@ class _ImageViewerState extends State<ImageViewer> {
           }
         }, icon: Padding(
           padding:  EdgeInsets.only(right: 16.w),
-          child: SvgPicture.asset(AppIcons.threeDots, color: Colors.white,),
+          child: SvgPicture.asset(AppIcons.downloadIcon, color: Colors.white,),
         ))
       ],
       ),
