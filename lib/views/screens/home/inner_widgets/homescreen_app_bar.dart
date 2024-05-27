@@ -24,14 +24,14 @@ class HomeScreenAppBar extends StatelessWidget {
 
    final HomeController _homeController = Get.put(HomeController());
    final ProfileController _profileController = Get.put(ProfileController());
-   final dataController = Get.put(DataController());
+   // final dataController = Get.put(DataController());
 
 
   @override
   Widget build(BuildContext context) {
     _profileController.getProfileData();
-    dataController.getData();
-    debugPrint(" user name ${dataController.image.value}");
+    _profileController.getProfileData();
+    debugPrint(" user name ${_profileController.profileModel.value.data?.attributes?.image?.publicFileUrl}");
     return Obx(() {
    //   var profileData = _profileController.profileModel.value.data?.attributes;
       return Row(
@@ -79,7 +79,7 @@ class HomeScreenAppBar extends StatelessWidget {
                   ],
                 ),
                 CustomText(
-                  text: dataController.name.value ?? '',
+                  text: "${_profileController.profileModel.value.data?.attributes?.name}" ?? '',
                   fontsize: 20.h,
                   fontWeight: FontWeight.w400,
                   color: AppColors.white,

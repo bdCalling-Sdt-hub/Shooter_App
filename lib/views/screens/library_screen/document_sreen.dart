@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/helper/time_format.dart';
+import 'package:shooter_app/views/screens/pdf_view/pdf_viewer_screen.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 
 import '../../../controller/library_controller.dart';
@@ -76,39 +77,44 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   itemCount: _libraryController.documentLists.length,
                   itemBuilder: (context, index) {
                     var document = _libraryController.documentLists[index];
-                    return ListTile(
-                      title: CustomText(
-                        text: "${document.document?.fileName}",
-                        fontsize: 12.h,
-                        textAlign: TextAlign.start,
-                      ),
-                      subtitle: CustomText(
-                        text: TimeFormatHelper.formatDate(document.createdAt!),
-                        fontsize: 9.h,
-                        textAlign: TextAlign.start,
-                      ),
-                      trailing: Container(
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          border: Border.all(color: AppColors.primaryColor),
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => PDFVewierScreen(url: "${ApiConstant.imageBaseUrl}${document.document?.publicFileUrl}"),));
+                      },
+                      child: ListTile(
+                        title: CustomText(
+                          text: "${document.document?.fileName}",
+                          fontsize: 12.h,
+                          textAlign: TextAlign.start,
                         ),
-                        child: GestureDetector(
-                          onTap: () async{
-                           var permission = await FlDownloader.requestPermission();
-                           if(permission == StoragePermissionStatus.granted){
-                             await  FlDownloader.download("https://bdcalling.hrmsoftwarebd.com/uploads/2024/05/510-663d93f647af4.pdf", fileName: '${document.document?.publicFileUrl}');
-                           }
+                        subtitle: CustomText(
+                          text: TimeFormatHelper.formatDate(document.createdAt!),
+                          fontsize: 9.h,
+                          textAlign: TextAlign.start,
+                        ),
+                        trailing: Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            border: Border.all(color: AppColors.primaryColor),
+                          ),
+                          child: GestureDetector(
+                            onTap: () async{
+                             var permission = await FlDownloader.requestPermission();
+                             if(permission == StoragePermissionStatus.granted){
+                               await  FlDownloader.download("https://bdcalling.hrmsoftwarebd.com/uploads/2024/05/510-663d93f647af4.pdf", fileName: '${document.document?.publicFileUrl}');
+                             }
 
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.all(8.r),
-                            child: SvgPicture.asset(AppIcons.downloadIcon, color: AppColors.primaryColor),
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(8.r),
+                              child: SvgPicture.asset(AppIcons.downloadIcon, color: AppColors.primaryColor),
+                            ),
                           ),
                         ),
+                        leading: SvgPicture.asset(AppIcons.pdfImage),
                       ),
-                      leading: SvgPicture.asset(AppIcons.pdfImage),
                     );
                   },
                 ),

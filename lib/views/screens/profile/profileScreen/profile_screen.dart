@@ -8,7 +8,6 @@ import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 import 'package:shooter_app/views/widgets/no_internet_screen.dart';
-import '../../../../helper/birthday_time.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_icons.dart';

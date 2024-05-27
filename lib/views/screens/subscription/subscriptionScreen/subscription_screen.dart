@@ -141,21 +141,24 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
-                CustomButton(
-                  title: AppString.purchaseSubscription,
-                  onpress: () {
-                    _subscriptionController.submitForm(
-                      context,
-                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}',
-                      '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}',
-                      startDate,
-                      entDate
-                    );
-                    // _subscriptionController.buySubscription(startDate, entDate);
-                    //Get.toNamed(AppRoutes.signUpScreen);
-                    print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}");
-                    print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}");
-                  },
+                Obx(()=>
+                   CustomButton(
+                    title: AppString.purchaseSubscription,
+                    loading: _subscriptionController.submitFormLoading.value,
+                    onpress: () {
+                      _subscriptionController.submitForm(
+                        context,
+                        '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}',
+                        '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}',
+                        startDate,
+                        entDate
+                      );
+                      // _subscriptionController.buySubscription(startDate, entDate);
+                      //Get.toNamed(AppRoutes.signUpScreen);
+                      print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}");
+                      print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}");
+                    },
+                  ),
                 ),
                 SizedBox(height: 94.h),
               ],

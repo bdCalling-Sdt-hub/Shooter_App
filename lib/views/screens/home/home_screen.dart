@@ -10,6 +10,7 @@ import 'package:shooter_app/utils/app_string.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
 import 'package:shooter_app/views/widgets/custom_text_field.dart';
+import '../../../controller/profileController.dart';
 import '../../../utils/app_colors.dart';
 import 'inner_widgets/homescreen_app_bar.dart';
 import 'inner_widgets/up_comiing_events_listview.dart';
@@ -23,10 +24,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final HomeController _homeController = Get.put(HomeController());
+  final ProfileController _profileController = Get.put(ProfileController());
 
 
   @override
   Widget build(BuildContext context) {
+    _profileController.getProfileData();
     return Scaffold(
       ///-------------------------------app bar section-------------------------->
 
