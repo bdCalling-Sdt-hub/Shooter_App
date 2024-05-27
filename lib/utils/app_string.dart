@@ -2,7 +2,7 @@ class AppString {
   //================> Onboardings Screen <====================
   static String smallBore = "Small-Bore Shooting South Africa";
   static String southAfrica = "South Africa";
-  static String exciting ="“Experience the thrill of precision \nshooting amidst the vibrant competitions \nof South Africa, where every shot is a \ntestament to your skill and dedication.”";
+  // static String exciting ="“Experience the thrill of precision \nshooting amidst the vibrant competitions \nof South Africa, where every shot is a \ntestament to your skill and dedication.”";
   static String logIn = "Log In";
   static String signUp = "Sign Up";
   static String getStarted = "Get started";

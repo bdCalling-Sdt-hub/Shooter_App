@@ -37,7 +37,7 @@ class MyUpComingEventsController extends GetxController {
     }
 
     var response = await ApiClient.getData(
-        '${ApiConstant.myUpComingEven}?limit=10&page=${page.value}');
+        '${ApiConstant.myUpComingEven}?limit=15&page=${page.value}');
     if (response.statusCode == 200) {
       if (response.body['data']['attributes'] != null) {
         // totalPage = jsonDecode(response.body['pagination']['totalPages'].toString());

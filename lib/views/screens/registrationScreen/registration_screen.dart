@@ -135,6 +135,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           SizedBox(height: 16.h),
           CustomText(text: AppString.gender),
           //======================================>   Radio  Button Section <==============================
+          ///==================================male famail=======================>
           Row(
             children: [
               Radio(
@@ -169,10 +170,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
           CustomText(text: AppString.shooterShoulderPreference),
           //======================================>   Radio  Button Section <==============================
+
+          ///==============================shooter shoulder preference==========================>
           Row(
             children: [
               Radio(
-                  value: AppString.male,
+                  value: AppString.left,
                   activeColor: AppColors.primaryColor,
                   groupValue: registrationController.shootterShoulder,
                   onChanged: (value) {
@@ -186,7 +189,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               SizedBox(width: 16.w),
               Radio(
-                  value: AppString.female,
+                  value: AppString.right,
                   activeColor: AppColors.primaryColor,
                   groupValue: registrationController.shootterShoulder,
                   onChanged: (value) {

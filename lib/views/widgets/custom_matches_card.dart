@@ -143,31 +143,31 @@ class CustomMatchesCard extends StatelessWidget {
                 //       top: 5.h,
                 //     )),
 
-                SizedBox(
-                  height: 10.h,
-                ),
+                // SizedBox(
+                //   height: 10.h,
+                // ),
 
                 ///-----------------------amount ---------------------->
-
-                entryFree == null
-                    ? const SizedBox()
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(
-                            text: "Registration fee :",
-                            color: AppColors.white,
-                            fontsize: Dimensions.fontSizeDefault.h,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          CustomText(
-                            text: entryFree ?? "",
-                            color: AppColors.white,
-                            fontsize: Dimensions.fontSizeDefault.h,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ],
-                      ),
+                //
+                // entryFree == null
+                //     ? const SizedBox()
+                //     : Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           CustomText(
+                //             text: "Registration fee :",
+                //             color: AppColors.white,
+                //             fontsize: Dimensions.fontSizeDefault.h,
+                //             fontWeight: FontWeight.w400,
+                //           ),
+                //           CustomText(
+                //             text: entryFree ?? "",
+                //             color: AppColors.white,
+                //             fontsize: Dimensions.fontSizeDefault.h,
+                //             fontWeight: FontWeight.w400,
+                //           ),
+                //         ],
+                //       ),
 
                 SizedBox(
                   height: 16.h,

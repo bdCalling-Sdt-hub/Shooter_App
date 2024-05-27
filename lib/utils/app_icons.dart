@@ -50,4 +50,5 @@ class AppIcons{
   static const String libraryFolder = "assets/icons/folder.svg";
   static const String galary = "assets/icons/galary.svg";
   static const String documentIcons = "assets/icons/document_icons.svg";
+  static const String threeDots = "assets/icons/threeDots.svg";
 }

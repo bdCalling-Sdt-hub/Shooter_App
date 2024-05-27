@@ -54,7 +54,7 @@ class TopContainerSection extends StatelessWidget {
                 Flexible(
                   child: CustomText(
                     text: name == null ? "Name" : '$name',
-                    fontsize: 24.sp
+                    fontsize: 18.sp
                   ),
                 ),
                 IconButton(

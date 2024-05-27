@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shooter_app/helper/time_format.dart';
 import 'package:shooter_app/utils/app_colors.dart';
-import 'package:shooter_app/utils/app_icons.dart';
 import '../../../../controller/scores_controller.dart';
 import '../../../../utils/app_string.dart';
 import '../../../../utils/dimentions.dart';
-import '../../../widgets/custom_loader.dart';
 import '../../../widgets/custom_text.dart';
 import 'inner_widgets/line_chart.dart';
 
@@ -123,9 +120,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                   ),
                 ),
 
-                SizedBox(
-                  height: 24.h,
-                ),
+                SizedBox(height: 24.h),
               ],
             ),
 
@@ -158,14 +153,14 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
   _TableSection() {
     return Obx(
       () => _scoresController.myScroesList.value.isEmpty
-          ? Container(
-          height: 560.h,
-            child: const Center(
+          ? SizedBox(
+              height: 560.h,
+              child: const Center(
                 child: CustomText(
                   text: "No date found!",
                 ),
               ),
-          )
+            )
           : Column(
               children: [
                 Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:shooter_app/model/subscription_model.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
@@ -35,10 +36,11 @@ class SubscriptionController extends GetxController {
 
   RxInt selectedIndex = 0.obs;
   var subscriptionName = ''.obs;
+  RxBool submitFormLoading = false.obs;
 
   ///=================================================>
-  void submitForm(BuildContext context, String price, subscription, startDate,
-      endDate) async {
+  void submitForm(BuildContext context, String price, subscription, startDate, endDate) async {
+    submitFormLoading(true);
     const url = 'https://www.payfast.co.za/eng/process';
 
     final response = await http.post(
@@ -66,6 +68,8 @@ class SubscriptionController extends GetxController {
                     subscription: subscription,
                     subscriptionPrice: price,
                   )));
+
+      submitFormLoading(false);
       // Handle successful response
       print('Form submitted successfully');
     } else {
