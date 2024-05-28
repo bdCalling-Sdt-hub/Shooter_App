@@ -19,9 +19,8 @@ class CommingAndCompleteCard extends StatefulWidget {
 }
 
 class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
-  final MyCompleteMatchController myUpcomingEvents = Get.put(MyCompleteMatchController());
-  final MyUpComingEventsController _eventsController = Get.put(MyUpComingEventsController());
-
+  final MyCompleteMatchController myCompleteMatch = Get.put(MyCompleteMatchController());
+  final MyUpComingEventsController _myUpComingEventsController = Get.put(MyUpComingEventsController());
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -40,7 +39,7 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        _eventsController.loadMore();
+        _myUpComingEventsController.loadMore();
         print("load more true");
       }
     });
@@ -53,13 +52,13 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
 
         ///------------------------------complete match------------------------------->
         Obx(() {
-            return  myUpcomingEvents.myCompleteMatchModel.isEmpty
+            return  myCompleteMatch.myCompleteMatchModel.isEmpty
                     ? const Center(child: CustomText(text: 'No data found!'))
                     : ListView.builder(
                         scrollDirection: Axis.vertical,
-                        itemCount: myUpcomingEvents.myCompleteMatchModel.length,
+                        itemCount: myCompleteMatch.myCompleteMatchModel.length,
                         itemBuilder: (context, index) {
-                          var myCompletedData = myUpcomingEvents.myCompleteMatchModel[index];
+                          var myCompletedData = myCompleteMatch.myCompleteMatchModel[index];
                           return Padding(
                             padding:  EdgeInsets.only(bottom: 16.h),
                             child: CustomMatchesCard(
@@ -85,21 +84,21 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
         ///------------------------------upcoming event------------------------------->
 
         : Obx(() {
-            return _eventsController.myEventsLoading.value
-                ? const Center(child: CustomText(text: 'No data found!'))
-                : _eventsController.myEvensLists.isEmpty
+            return _myUpComingEventsController.myEventsLoading.value
+                ? const Center(child: CustomText(text: 'No data found'))
+                : _myUpComingEventsController.myEvensLists.isEmpty
                     ? const Center(child: CustomText(text: 'No data found!'))
                     : RefreshIndicator(
                         onRefresh: () async {
-                          await _eventsController.myEvensLists;
+                          await _myUpComingEventsController.myEvensLists;
                         },
                         child: ListView.builder(
                           physics: const AlwaysScrollableScrollPhysics(),
                           controller: _scrollController,
-                          itemCount: _eventsController.myEvensLists.length + 1,
+                          itemCount: _myUpComingEventsController.myEvensLists.length + 1,
                           itemBuilder: (context, index) {
-                            if (index < _eventsController.myEvensLists.length) {
-                              var events = _eventsController.myEvensLists[index];
+                            if (index < _myUpComingEventsController.myEvensLists.length) {
+                              var events = _myUpComingEventsController.myEvensLists[index];
                               return Column(
                                 children: [
                                   index == 0
@@ -125,7 +124,7 @@ class _CommingAndCompleteCardState extends State<CommingAndCompleteCard> {
                                   )
                                 ],
                               );
-                            } else if (index >= _eventsController.totalResult) {
+                            } else if (index >= _myUpComingEventsController.totalResult) {
                               return null;
                             } else {
                               return const CustomLoader();

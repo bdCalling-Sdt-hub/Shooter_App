@@ -1,10 +1,16 @@
+import 'dart:convert';
 
+List<MyUpComingEventsModel> myUpComingEventsModelFromJson(String str) =>
+    List<MyUpComingEventsModel>.from(
+        json.decode(str).map((x) => MyUpComingEventsModel.fromJson(x)));
+String myUpComingEventsModelToJson(List<MyUpComingEventsModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MyUpComingEventsModel {
   final String? id;
   final String? fullName;
   final String? email;
-  final DateTime? phone;
+  final String? phone;
   final String? gender;
   final int? age;
   final String? shoulder;
@@ -39,45 +45,55 @@ class MyUpComingEventsModel {
     this.v,
   });
 
-  factory MyUpComingEventsModel.fromJson(Map<String, dynamic> json) => MyUpComingEventsModel(
-    id: json["_id"],
-    fullName: json["fullName"],
-    email: json["email"],
-    phone: json["phone"] == null ? null : DateTime.parse(json["phone"]),
-    gender: json["gender"],
-    age: json["age"],
-    shoulder: json["shoulder"],
-    clubName: json["clubName"],
-    className: json["className"],
-    event: json["event"] == null ? null : Event.fromJson(json["event"]),
-    matches: json["matches"] == null ? [] : List<MyUpComingEventsModelMatch>.from(json["matches"]!.map((x) => MyUpComingEventsModelMatch.fromJson(x))),
-    sharingRifle: json["sharingRifle"],
-    user: json["user"],
-    eventRegisterStatus: json["eventRegisterStatus"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    v: json["__v"],
-  );
+  factory MyUpComingEventsModel.fromJson(Map<String, dynamic> json) =>
+      MyUpComingEventsModel(
+        id: json["_id"],
+        fullName: json["fullName"],
+        email: json["email"],
+        phone: json["phone"],
+        gender: json["gender"],
+        age: json["age"],
+        shoulder: json["shoulder"],
+        clubName: json["clubName"],
+        className: json["className"],
+        event: json["event"] == null ? null : Event.fromJson(json["event"]),
+        matches: json["matches"] == null
+            ? []
+            : List<MyUpComingEventsModelMatch>.from(json["matches"]!
+                .map((x) => MyUpComingEventsModelMatch.fromJson(x))),
+        sharingRifle: json["sharingRifle"],
+        user: json["user"],
+        eventRegisterStatus: json["eventRegisterStatus"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "fullName": fullName,
-    "email": email,
-    "phone": phone?.toIso8601String(),
-    "gender": gender,
-    "age": age,
-    "shoulder": shoulder,
-    "clubName": clubName,
-    "className": className,
-    "event": event?.toJson(),
-    "matches": matches == null ? [] : List<dynamic>.from(matches!.map((x) => x.toJson())),
-    "sharingRifle": sharingRifle,
-    "user": user,
-    "eventRegisterStatus": eventRegisterStatus,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "__v": v,
-  };
+        "_id": id,
+        "fullName": fullName,
+        "email": email,
+        "phone": phone,
+        "gender": gender,
+        "age": age,
+        "shoulder": shoulder,
+        "clubName": clubName,
+        "className": className,
+        "event": event?.toJson(),
+        "matches": matches == null
+            ? []
+            : List<dynamic>.from(matches!.map((x) => x.toJson())),
+        "sharingRifle": sharingRifle,
+        "user": user,
+        "eventRegisterStatus": eventRegisterStatus,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "__v": v,
+      };
 }
 
 class Event {
@@ -91,7 +107,6 @@ class Event {
   final String? description;
   final List<EventMatch>? matches;
   final Image? image;
-  final String? registrationStatus;
   final String? createdBy;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -108,7 +123,6 @@ class Event {
     this.description,
     this.matches,
     this.image,
-    this.registrationStatus,
     this.createdBy,
     this.createdAt,
     this.updatedAt,
@@ -116,40 +130,51 @@ class Event {
   });
 
   factory Event.fromJson(Map<String, dynamic> json) => Event(
-    id: json["_id"],
-    eventName: json["eventName"],
-    location: json["location"],
-    eventTime: json["eventTime"],
-    fee: json["fee"],
-    closeDate: json["closeDate"] == null ? null : DateTime.parse(json["closeDate"]),
-    eventDate: json["eventDate"] == null ? null : DateTime.parse(json["eventDate"]),
-    description: json["description"],
-    matches: json["matches"] == null ? [] : List<EventMatch>.from(json["matches"]!.map((x) => EventMatch.fromJson(x))),
-    image: json["image"] == null ? null : Image.fromJson(json["image"]),
-    registrationStatus: json["registrationStatus"],
-    createdBy: json["createdBy"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    v: json["__v"],
-  );
+        id: json["_id"],
+        eventName: json["eventName"],
+        location: json["location"],
+        eventTime: json["eventTime"],
+        fee: json["fee"],
+        closeDate: json["closeDate"] == null
+            ? null
+            : DateTime.parse(json["closeDate"]),
+        eventDate: json["eventDate"] == null
+            ? null
+            : DateTime.parse(json["eventDate"]),
+        description: json["description"],
+        matches: json["matches"] == null
+            ? []
+            : List<EventMatch>.from(
+                json["matches"]!.map((x) => EventMatch.fromJson(x))),
+        image: json["image"] == null ? null : Image.fromJson(json["image"]),
+        createdBy: json["createdBy"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "eventName": eventName,
-    "location": location,
-    "eventTime": eventTime,
-    "fee": fee,
-    "closeDate": closeDate?.toIso8601String(),
-    "eventDate": eventDate?.toIso8601String(),
-    "description": description,
-    "matches": matches == null ? [] : List<dynamic>.from(matches!.map((x) => x.toJson())),
-    "image": image?.toJson(),
-    "registrationStatus": registrationStatus,
-    "createdBy": createdBy,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "__v": v,
-  };
+        "_id": id,
+        "eventName": eventName,
+        "location": location,
+        "eventTime": eventTime,
+        "fee": fee,
+        "closeDate": closeDate?.toIso8601String(),
+        "eventDate": eventDate?.toIso8601String(),
+        "description": description,
+        "matches": matches == null
+            ? []
+            : List<dynamic>.from(matches!.map((x) => x.toJson())),
+        "image": image?.toJson(),
+        "createdBy": createdBy,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "__v": v,
+      };
 }
 
 class Image {
@@ -162,14 +187,14 @@ class Image {
   });
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-    path: json["path"],
-    publicFileUrl: json["publicFileURL"],
-  );
+        path: json["path"],
+        publicFileUrl: json["publicFileURL"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "path": path,
-    "publicFileURL": publicFileUrl,
-  };
+        "path": path,
+        "publicFileURL": publicFileUrl,
+      };
 }
 
 class EventMatch {
@@ -182,14 +207,14 @@ class EventMatch {
   });
 
   factory EventMatch.fromJson(Map<String, dynamic> json) => EventMatch(
-    matchName: json["matchName"],
-    description: json["description"],
-  );
+        matchName: json["matchName"],
+        description: json["description"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "matchName": matchName,
-    "description": description,
-  };
+        "matchName": matchName,
+        "description": description,
+      };
 }
 
 class MyUpComingEventsModelMatch {
@@ -217,29 +242,34 @@ class MyUpComingEventsModelMatch {
     this.v,
   });
 
-  factory MyUpComingEventsModelMatch.fromJson(Map<String, dynamic> json) => MyUpComingEventsModelMatch(
-    id: json["_id"],
-    matchName: json["matchName"],
-    createdBy: json["createdBy"],
-    description: json["description"],
-    eventId: json["eventId"],
-    eventDetails: json["eventDetails"],
-    registrationStatus: json["registrationStatus"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    v: json["__v"],
-  );
+  factory MyUpComingEventsModelMatch.fromJson(Map<String, dynamic> json) =>
+      MyUpComingEventsModelMatch(
+        id: json["_id"],
+        matchName: json["matchName"],
+        createdBy: json["createdBy"],
+        description: json["description"],
+        eventId: json["eventId"],
+        eventDetails: json["eventDetails"],
+        registrationStatus: json["registrationStatus"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "matchName": matchName,
-    "createdBy": createdBy,
-    "description": description,
-    "eventId": eventId,
-    "eventDetails": eventDetails,
-    "registrationStatus": registrationStatus,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "__v": v,
-  };
+        "_id": id,
+        "matchName": matchName,
+        "createdBy": createdBy,
+        "description": description,
+        "eventId": eventId,
+        "eventDetails": eventDetails,
+        "registrationStatus": registrationStatus,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "__v": v,
+      };
 }

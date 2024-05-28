@@ -74,8 +74,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                     : ListView.builder(
                         itemCount: _libraryController.documentLists.length,
                         itemBuilder: (context, index) {
-                          var document =
-                              _libraryController.documentLists[index];
+                          var document = _libraryController.documentLists[index];
 
                           return GestureDetector(
                             onTap: () {
