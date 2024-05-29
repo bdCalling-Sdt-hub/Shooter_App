@@ -14,7 +14,7 @@ class LineChart extends StatelessWidget {
 
   List<Map<String, dynamic>> _convertChartData() {
     List<Map<String, dynamic>> convertedData = [
-      { 'score' : 0, 'matchName' : '', 'matchDate':'' }
+      {'score': 0, 'matchName': '', 'matchDate': ''}
     ];
 
     convertedData.addAll(chartData.map((data) {
@@ -40,19 +40,21 @@ class LineChart extends StatelessWidget {
           Container(
             width: Get.width.w,
             alignment: Alignment.center,
-            child: convertedChartData.length == 1 ? const Center(child: CustomText(text: ' No data found!')) :
-            Container(
-              height: 440.h,
-              width: 326 + (10 * chartData.length).toDouble(),
-              margin: const EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(
-                color: const Color(0xff302d2d),
-                borderRadius: BorderRadius.circular(Dimensions.radiusDefault.r),
-                border: Border.all(color: AppColors.primaryColor),
-              ),
-              child:
+            child: convertedChartData.length == 1
+                ? const Center(child: CustomText(text: 'No data found!'))
+                : Container(
+                    height: 440.h,
+                    width: 326 + (10 * chartData.length).toDouble(),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xff302d2d),
+                      borderRadius:
+                          BorderRadius.circular(Dimensions.radiusDefault.r),
+                      border: Border.all(color: AppColors.primaryColor),
+                    ),
+                    child:
 
-              /*SfCartesianChart(
+                        /*SfCartesianChart(
                 primaryXAxis: const CategoryAxis(
                   initialVisibleMinimum: 0.0,
                   labelPosition: ChartDataLabelPosition.inside,
@@ -93,67 +95,61 @@ class LineChart extends StatelessWidget {
                   ),
                 ],
               )*/
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 1.0,
-                    child: SfCartesianChart(
-                      primaryXAxis: const CategoryAxis(
-                        //initialVisibleMinimum: 0.0,
-                        labelPosition: ChartDataLabelPosition.inside,
-                        title: AxisTitle(text: "Match Date"),
-                      ),
-                      primaryYAxis: const NumericAxis(
-                        initialVisibleMinimum: 0.0,
-                        title: AxisTitle(text: "Score"),
-                      ),
-                      legend: Legend(isVisible: true),
-                      title: ChartTitle(text: "Scores Ratio"),
-                      tooltipBehavior: TooltipBehavior(enable: true),
-                      series: [
-                        SplineSeries<Map<String, dynamic>, String>(
-                          initialIsVisible: true,
-                          isVisibleInLegend: true,
-                          dataSource: convertedChartData,
-                          xValueMapper:  (data, _) => data["matchName"],
-                              /*(data, _) {
-                            final matchDate = data["matchDate"];
-                            if (matchDate != null && matchDate.isNotEmpty) {
-                              final dateTime = DateFormat("yyyy-MM-dd").parse(matchDate);
-                              return DateFormat("MM-dd-yyyy").format(dateTime);
-                            } else {
-                              return null;
-                            }
-                          },*/
-                          yValueMapper: (data, _) => data["score"],
-                          markerSettings: const MarkerSettings(
-                            shape: DataMarkerType.circle,
-                            isVisible: true,
+                        SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          child: SfCartesianChart(
+                            primaryXAxis: const CategoryAxis(
+                              //initialVisibleMinimum: 0.0,
+                              labelPosition: ChartDataLabelPosition.inside,
+                              title: AxisTitle(text: "Match Name"),
+                            ),
+                            primaryYAxis: const NumericAxis(
+                              initialVisibleMinimum: 0.0,
+                              title: AxisTitle(text: "Score"),
+                            ),
+                            legend: Legend(isVisible: true),
+                            title: ChartTitle(text: "Scores Ratio"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: [
+                              SplineSeries<Map<String, dynamic>, String>(
+                                initialIsVisible: true,
+                                isVisibleInLegend: true,
+                                dataSource: convertedChartData,
+                                xValueMapper: (data, _) => data["matchName"],
+                                yValueMapper: (data, _) => data["score"],
+                                markerSettings: const MarkerSettings(
+                                  shape: DataMarkerType.circle,
+                                  isVisible: true,
+                                ),
+                                color: Colors.red,
+                                name: "Match Score",
+                                legendIconType: LegendIconType.circle,
+                                dataLabelSettings: const DataLabelSettings(
+                                    isVisible: true, showZeroValue: true),
+                                enableTooltip: true,
+                                dataLabelMapper: (data, _) {
+                                  final matchDate = data["matchDate"];
+                                  if (matchDate != null &&
+                                      matchDate.isNotEmpty) {
+                                    final dateTime = DateFormat("yyyy-MM-dd")
+                                        .parse(matchDate);
+                                    return DateFormat("MM-dd-yyyy")
+                                        .format(dateTime);
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                // (data, _) => data["matchDate"],
+                              ),
+                            ],
                           ),
-                          color: Colors.red,
-                          name: "Match Score",
-                          legendIconType: LegendIconType.circle,
-                          dataLabelSettings: const DataLabelSettings(isVisible: true, showZeroValue: true),
-                          enableTooltip: true,
-                          dataLabelMapper: (data, _) {
-                            final matchDate = data["matchDate"];
-                            if (matchDate != null && matchDate.isNotEmpty) {
-                              final dateTime = DateFormat("yyyy-MM-dd").parse(matchDate);
-                              return DateFormat("MM-dd-yyyy").format(dateTime);
-                            } else {
-                              return null;
-                            }
-                          },
-                             // (data, _) => data["matchDate"],
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ),
+                      ),
+                    )),
           ),
         ],
       ),
