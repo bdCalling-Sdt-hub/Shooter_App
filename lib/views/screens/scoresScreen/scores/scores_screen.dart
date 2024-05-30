@@ -73,8 +73,8 @@ class ScoresScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           _rowText(AppString.clasS),SizedBox(width: 5.w),
-                          _rowText(AppString.playerName),SizedBox(width: 5.w),
-                          _rowText(AppString.club),SizedBox(width: 20.w),
+                          _rowText(AppString.playerName),SizedBox(width: 25.w),
+                          _rowText(AppString.club),SizedBox(width: 25.w),
                           _rowText(AppString.scores),
                         ],
                       ),
@@ -83,8 +83,8 @@ class ScoresScreen extends StatelessWidget {
                   columnWidths: const {
                     0 : FractionColumnWidth(0.16),
                     1 : FractionColumnWidth(0.35),
-                    2 : FractionColumnWidth(0.25),
-                    3 : FractionColumnWidth(0.25),
+                    2 : FractionColumnWidth(0.30),
+                    3 : FractionColumnWidth(0.20),
                   },
                     border: TableBorder.all(color: Colors.black26),
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
