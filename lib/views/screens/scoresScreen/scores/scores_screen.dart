@@ -41,7 +41,7 @@ class ScoresScreen extends StatelessWidget {
   }
 
   //=====================> Row Text <==============================
-  _rowText(String title) {
+  Widget _rowText(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 16.w),
       child: CustomText(
@@ -53,57 +53,62 @@ class ScoresScreen extends StatelessWidget {
   }
 
   //=====================> Table method <==============================
-  _TableSection() {
+  Widget _TableSection() {
     return Obx(
       () => _scoresController.scoresLoading.value
-          ? const Center(child: CustomText(text: "Match score coming soon"))
+          ? const Center(child: CustomText(text: "Match score coming soon.."))
           : Column(
               children: [
                 Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.r),
-                          topRight: Radius.circular(8.r)),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.r),
+                      topRight: Radius.circular(8.r),
                     ),
-                    child: Flexible(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          _rowText(AppString.clasS),SizedBox(width: 5.w),
-                          _rowText(AppString.playerName),SizedBox(width: 25.w),
-                          _rowText(AppString.club),SizedBox(width: 25.w),
-                          _rowText(AppString.scores),
-                        ],
-                      ),
-                    )),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      _rowText(AppString.clasS),
+                      SizedBox(width: 5.w),
+                      _rowText(AppString.playerName),
+                      SizedBox(width: 25.w),
+                      _rowText(AppString.club),
+                      SizedBox(width: 25.w),
+                      _rowText(AppString.scores),
+                    ],
+                  ),
+                ),
                 Table(
                   columnWidths: const {
-                    0 : FractionColumnWidth(0.16),
-                    1 : FractionColumnWidth(0.35),
-                    2 : FractionColumnWidth(0.30),
-                    3 : FractionColumnWidth(0.20),
+                    0: FractionColumnWidth(0.16),
+                    1: FractionColumnWidth(0.35),
+                    2: FractionColumnWidth(0.30),
+                    3: FractionColumnWidth(0.20),
                   },
-                    border: TableBorder.all(color: Colors.black26),
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    children: List.generate(
-                        _scoresController.scoresModel.length, (index) {
-                      var matchData = _scoresController.scoresModel[index];
+                  border: TableBorder.all(color: Colors.black26),
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  children: List.generate(_scoresController.scoresModel.length,
+                      (index) {
+                    var matchData = _scoresController.scoresModel[index];
 
-                      print("=====================>.. $matchData");
-                      return TableRow(
-                          decoration: const BoxDecoration(
-                            color: Color(0xff5B5455),
-                          ),
-                          children: [
-                            _rowText("${matchData["Class"]}"),
-                            _rowText("${matchData["Name"]}"),
-                            _rowText("${matchData["Club"]}"),
-                            _rowText("${matchData["Score"]}"),
-                          ]);
-                    })),
+                    print("=====================>.. $matchData");
+                    return TableRow(
+                      decoration: const BoxDecoration(
+                        color: Color(0xff5B5455),
+                      ),
+                      children: [
+                        _rowText("${matchData["Class"]}"),
+                        _rowText("${matchData["Name"]}"),
+                        _rowText("${matchData["Club"]}"),
+                        _rowText("${matchData["Score"]}"),
+                      ],
+                    );
+                  }),
+                ),
               ],
             ),
     );
