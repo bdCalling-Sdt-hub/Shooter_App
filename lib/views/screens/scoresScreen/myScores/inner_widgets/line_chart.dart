@@ -45,7 +45,8 @@ class LineChart extends StatelessWidget {
                 : Container(
                     height: 440.h,
                     width: 326 + (10 * chartData.length).toDouble(),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    // margin: EdgeInsets.symmetric(horizontal: 4.w),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
                     decoration: BoxDecoration(
                       color: const Color(0xff302d2d),
                       borderRadius:
@@ -95,12 +96,13 @@ class LineChart extends StatelessWidget {
                   ),
                 ],
               )*/
+
                         SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 1.0,
+                          width: MediaQuery.of(context).size.width * 1.3,
                           child: SfCartesianChart(
                             primaryXAxis: const CategoryAxis(
                               //initialVisibleMinimum: 0.0,
@@ -111,8 +113,8 @@ class LineChart extends StatelessWidget {
                               initialVisibleMinimum: 0.0,
                               title: AxisTitle(text: "Score"),
                             ),
-                            legend: Legend(isVisible: true),
-                            title: ChartTitle(text: "Scores Ratio"),
+                            legend: const Legend(isVisible: true),
+                            title: const ChartTitle(text: "Scores Ratio"),
                             tooltipBehavior: TooltipBehavior(enable: true),
                             series: [
                               SplineSeries<Map<String, dynamic>, String>(
