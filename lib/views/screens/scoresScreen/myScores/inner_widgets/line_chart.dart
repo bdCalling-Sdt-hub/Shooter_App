@@ -105,7 +105,7 @@ class LineChart extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 1.5,
                           child: SfCartesianChart(
                             primaryXAxis: const CategoryAxis(
-                              //initialVisibleMinimum: 0.0,
+                              initialVisibleMinimum: 0.0,
                               labelPosition: ChartDataLabelPosition.inside,
                               title: AxisTitle(text: "Match Name"),
                             ),
