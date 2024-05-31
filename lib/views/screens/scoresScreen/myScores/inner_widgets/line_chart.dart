@@ -53,56 +53,12 @@ class LineChart extends StatelessWidget {
                           BorderRadius.circular(Dimensions.radiusDefault.r),
                       border: Border.all(color: AppColors.primaryColor),
                     ),
-                    child:
-
-                        /*SfCartesianChart(
-                primaryXAxis: const CategoryAxis(
-                  initialVisibleMinimum: 0.0,
-                  labelPosition: ChartDataLabelPosition.inside,
-                  title: AxisTitle(text: "Match Date"),
-                ),
-                primaryYAxis: const NumericAxis(
-                  initialVisibleMinimum: 0.0,
-                  title: AxisTitle(text: "Score"),
-                ),
-                legend: const Legend(isVisible: true),
-                title: const ChartTitle(text: "Scores Ratio"),
-                tooltipBehavior: TooltipBehavior(enable: true),
-                series: [
-                  SplineSeries<Map<String, dynamic>, String>(
-                    initialIsVisible: true,
-                    isVisibleInLegend: true,
-                    dataSource: convertedChartData,
-                    xValueMapper: (data, _) {
-                      final matchDate = data["matchDate"];
-                      if (matchDate != null && matchDate.isNotEmpty) {
-                        final dateTime = DateFormat("yyyy-MM-dd").parse(matchDate);
-                        return DateFormat("MM-dd-yyyy").format(dateTime);
-                      } else {
-                        return null;
-                      }
-                    },
-                    yValueMapper: (data, _) => data["score"],
-                    markerSettings: const MarkerSettings(
-                      shape: DataMarkerType.circle,
-                      isVisible: true,
-                    ),
-                    color: Colors.red,
-                    name: "Match Score",
-                    legendIconType: LegendIconType.circle,
-                    dataLabelSettings: const DataLabelSettings(isVisible: true, showZeroValue: true),
-                    enableTooltip: true,
-                    dataLabelMapper: (data, _) => data["matchName"],
-                  ),
-                ],
-              )*/
-
-                        SingleChildScrollView(
+                    child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: SizedBox(
-                          // width: MediaQuery.of(context).size.width * 1.5,
+                          width: MediaQuery.of(context).size.width * 1.5,
                           child: SfCartesianChart(
 
                             primaryXAxis: const CategoryAxis(
