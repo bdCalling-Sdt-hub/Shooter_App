@@ -56,7 +56,7 @@ class _FileVewierScreenState extends State<FileVewierScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: CustomText(text: 'PDF Viewer',),centerTitle: true,
+      appBar: AppBar(title: CustomText(text: 'Documents Viewer',),centerTitle: true,
       actions: [
         IconButton(onPressed: ()async {
 
