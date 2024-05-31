@@ -102,10 +102,11 @@ class LineChart extends StatelessWidget {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 1.5,
+                          // width: MediaQuery.of(context).size.width * 1.5,
                           child: SfCartesianChart(
+
                             primaryXAxis: const CategoryAxis(
-                              //initialVisibleMinimum: 0.0,
+                              initialVisibleMinimum: 0.0,
                               labelPosition: ChartDataLabelPosition.inside,
                               title: AxisTitle(text: "Match Name"),
                             ),
