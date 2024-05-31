@@ -56,10 +56,13 @@ class EventsController extends GetxController {
         setRxRequestStatus(Status.completed);
         update();
       }
+    }else if(response.statusCode == 404){
+      setRxRequestStatus(Status.completed);
     } else {
       if (response.statusText == ApiClient.noInternetMessage) {
         setRxRequestStatus(Status.internetError);
-      } else {
+      }
+      else{
         setRxRequestStatus(Status.error);
       }
     }

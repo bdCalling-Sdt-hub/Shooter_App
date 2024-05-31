@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../model/up_coming_match_model.dart';
 import '../model/upcoming_even_model.dart';
-import '../service/api_check.dart';
 import '../service/api_client.dart';
 import '../service/api_constant.dart';
 import '../utils/app_constants.dart';
@@ -28,13 +26,19 @@ class HomeController {
     setRxRequestStatus(Status.loading);
     eventLoading(true);
 
-    var response = await ApiClient.getData(
-        '${ApiConstant.upComingEven}?eventDate=${pickDateController.text}');
-    if (response.statusCode == 200) {
-      upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e) => UpComingEventModel.fromJson(e)));
+    var response = await ApiClient.getData('${ApiConstant.upComingEven}?eventDate=${pickDateController.text}');
+    print("=============> print here ${response.statusCode}");
+    if (response.statusCode == 200 || response.statusCode == 201) {
+
       eventLoading(false);
+      upComingEvensList.value = List<UpComingEventModel>.from(response.body['data']['attributes'].map((e) => UpComingEventModel.fromJson(e)));
+
       setRxRequestStatus(Status.completed);
 
+    }else if(response.statusCode == 404){
+      if(response.body['message'] == 'Events not found'){
+        eventLoading(false);
+      }
     } else {
       if (response.statusText == ApiClient.noInternetMessage) {
         setRxRequestStatus(Status.internetError);

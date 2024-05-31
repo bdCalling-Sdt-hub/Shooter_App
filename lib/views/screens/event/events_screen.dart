@@ -82,7 +82,9 @@ class _EventsScreenState extends State<EventsScreen> {
 
                print("=====total events : ${_eventsController.totalResult}");
              },
-             child: ListView.builder(
+             child:
+             eventsData.isEmpty ? const Center(child: CustomText(text: "No data found!",)) :
+             ListView.builder(
                physics: const AlwaysScrollableScrollPhysics(),
                controller: _scrollController,
                itemCount: eventsData.length+1,
