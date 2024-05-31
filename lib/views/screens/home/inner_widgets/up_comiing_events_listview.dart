@@ -15,13 +15,11 @@ class UpComingEventsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     _homeController.getUpComingEvents();
     return Obx(() {
       _homeController.upComingEvensList;
       return _homeController.eventLoading.value
-          ? const Center(
-          child: CustomLoader())
+          ? const Center(child: CustomLoader())
           : _homeController.upComingEvensList.isEmpty
               ? const Center(
                   child: CustomText(
@@ -29,13 +27,13 @@ class UpComingEventsListView extends StatelessWidget {
                 ))
               : ListView.builder(
                   // scrollDirection: Axis.horizontal,
-                  itemCount:  _homeController.upComingEvensList.length,
+                  itemCount: _homeController.upComingEvensList.length,
                   itemBuilder: (context, index) {
                     var evensData = _homeController.upComingEvensList[index];
                     return Padding(
                       padding: EdgeInsets.only(
-                        bottom: 16.h,
-                          left:  Dimensions.paddingSizeDefault.w,
+                          bottom: 16.h,
+                          left: Dimensions.paddingSizeDefault.w,
                           right: Dimensions.paddingSizeDefault.w),
                       child: CustomEventsCard(
                         image: '${evensData.image?.publicFileUrl}',
@@ -54,4 +52,3 @@ class UpComingEventsListView extends StatelessWidget {
     });
   }
 }
-
