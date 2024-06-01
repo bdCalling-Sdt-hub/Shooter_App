@@ -34,8 +34,8 @@ class LineChart extends StatelessWidget {
     return SizedBox(
       height: 550.h,
       child: ListView(
-        physics: const NeverScrollableScrollPhysics(),
-        //scrollDirection: Axis.horizontal,
+      physics: const NeverScrollableScrollPhysics(),
+      //scrollDirection: Axis.horizontal,
         children: [
           Container(
             width: Get.width.w,
