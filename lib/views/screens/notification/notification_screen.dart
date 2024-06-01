@@ -75,10 +75,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
             Expanded(
               child: Obx(()=>
               _notificationController.notificationLoading.value ? const CustomLoader() :
-                  _notificationController.notificationsList.isEmpty ? const CustomText(text: "No notifications yet",) :
+                  _notificationController.notificationsList.isEmpty ? const Center(child: CustomText(text: "No notifications yet",)) :
                 RefreshIndicator(
                   onRefresh: ()async{
-                    _notificationController.notificationsList.refresh();
+                    // _notificationController.notificationsList.refresh();
+                    _notificationController.page.value = 1;
+                    _notificationController.notificationsList.clear();
+                    await _notificationController.getNotifications();
                   },
                   child: ListView.builder(
                     controller: _scrollController,
