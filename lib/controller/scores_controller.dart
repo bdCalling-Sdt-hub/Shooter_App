@@ -30,6 +30,21 @@ class ScoresController extends GetxController {
   }
 
 
+//===============================> Get Event <=================================
+  RxList eventModel = [].obs;
+  RxBool eventLoading = false.obs;
+  getEvent([String matchId = '']) async {
+    scoresLoading(true);
+    var response = await ApiClient.getData(ApiConstant.myEventList);
+    if (response.statusCode == 200) {
+      eventModel.value = response.body['data']['attributes'];
+      print('========================>...$eventModel');
+      eventLoading(false);
+
+    }
+  }
+
+
 
 
 

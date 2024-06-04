@@ -20,6 +20,8 @@ class ApiConstant {
   static String subscriptionEndpoint = "/subscription/get-subscription";
   static String notificationsEndPoint = "/notification/user";
   static String myScoreEndPoint = "/user/my-score";
+  static String myEventList = "/user/my-event-list";
+  static String myScoreEndPointGraph(String eventName) => "/user/my-graph/$eventName";
   static String getPhoto = "/library/photos";
   static String getDocuments = "/library/documents";
   static String scoresEndpoint(String matchId) => "/events/my-single-completed-match/$matchId";
