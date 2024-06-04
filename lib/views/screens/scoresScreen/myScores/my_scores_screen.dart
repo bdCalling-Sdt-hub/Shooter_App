@@ -125,7 +125,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                 ],
               ),
         
-              ///---------------------table section----------------------------->
+              ///---------------------Overview section----------------------------->
               isComplete
                   ? _TableSection()
                   : LineChart(
