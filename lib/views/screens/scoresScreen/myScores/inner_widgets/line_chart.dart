@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:shooter_app/controller/my_event_list_controller.dart';
 import 'package:shooter_app/model/events_model.dart';
 import 'package:shooter_app/utils/dimentions.dart';
 import 'package:shooter_app/views/widgets/custom_text.dart';
@@ -52,41 +51,6 @@ class _LineChartState extends State<LineChart> {
       child: ListView(
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          // ===================================> Dropdown Button Container <=======================
-         /* Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Obx(() {
-              return DropdownButtonFormField(
-                  icon: const Icon(Icons.keyboard_arrow_down_sharp,
-                      color: Colors.white),
-                  value: _selectedItem,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedItem = value;
-                    });
-                  },
-                  validator: (value) {
-                    if (value == null) {
-                      return "Select Event";
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
-                    isDense: true,
-                    filled: true,
-                    hintText: 'Select Event',
-                    hintStyle: const TextStyle(color: Color(0xff767676)),
-                  ),
-                  items: List.generate(
-                    _scoresController.events.length,
-                    (index) =>
-                        _dropdownMenuItem(_scoresController.events[index]),
-                  ));
-            }),
-          ),
-          SizedBox(height: 12.h),*/
           //=====================================>  Line Chart Container <==================================
           Container(
             width: Get.width.w,
