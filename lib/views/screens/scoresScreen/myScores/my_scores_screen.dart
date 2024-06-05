@@ -21,6 +21,12 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
   bool isComplete = true;
 
   @override
+  void initState() {
+    _scoresController.getEvent();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -120,7 +126,6 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                       ],
                     ),
                   ),
-        
                   SizedBox(height: 24.h),
                 ],
               ),
