@@ -67,7 +67,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                                 isComplete = true;
                               });
                             },
-        
+
                             ///---------------------------Scores botton----------------------->
                             child: Container(
                               height: 44.h,
@@ -99,7 +99,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                                 isComplete = false;
                               });
                             },
-        
+
                             ///---------------------------Overview botton----------------------->
                             child: Container(
                               height: 44.h,
@@ -129,7 +129,7 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
                   SizedBox(height: 24.h),
                 ],
               ),
-        
+
               ///---------------------Overview section----------------------------->
               isComplete
                   ? _TableSection()
