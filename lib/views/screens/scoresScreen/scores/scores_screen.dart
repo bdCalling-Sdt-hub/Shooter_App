@@ -78,9 +78,11 @@ class ScoresScreen extends StatelessWidget {
                       _rowText(AppString.clasS),
                       // SizedBox(width: 5.w),
                       _rowText(AppString.playerName),
+
                       SizedBox(width: 20.w),
                       _rowText(AppString.club),
                       SizedBox(width: 20.w),
+
                       _rowText(AppString.scores),
                     ],
                   ),

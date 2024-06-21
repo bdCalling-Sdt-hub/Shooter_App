@@ -21,6 +21,12 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
   bool isComplete = true;
 
   @override
+  void initState() {
+    _scoresController.getEvent();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -33,104 +39,105 @@ class _MyScoresScreenState extends State<MyScoresScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 24.h),
-            // _TableSection(),
-            Column(
-              children: [
-                ///---------------------------------two bottom------------------------------>
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radiusDefault.r),
-                      border: Border.all(color: AppColors.primaryColor)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isComplete = true;
-                            });
-                          },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 24.h),
+              // _TableSection(),
+              Column(
+                children: [
+                  ///---------------------------------two bottom------------------------------>
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radiusDefault.r),
+                        border: Border.all(color: AppColors.primaryColor)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isComplete = true;
+                              });
+                            },
 
-                          ///---------------------------Scores botton----------------------->
-                          child: Container(
-                            height: 44.h,
-                            decoration: BoxDecoration(
-                                color: isComplete
-                                    ? AppColors.primaryColor
-                                    : AppColors.white,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8.r),
-                                    topLeft: Radius.circular(8.r))),
-                            child: Center(
-                              child: CustomText(
-                                text: AppString.scores,
-                                fontsize: Dimensions.fontSizeLarge.h,
-                                color: isComplete
-                                    ? AppColors.white
-                                    : AppColors.primaryColor,
-                                fontWeight: FontWeight.w400,
+                            ///---------------------------Scores botton----------------------->
+                            child: Container(
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                  color: isComplete
+                                      ? AppColors.primaryColor
+                                      : AppColors.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      topLeft: Radius.circular(8.r))),
+                              child: Center(
+                                child: CustomText(
+                                  text: AppString.scores,
+                                  fontsize: Dimensions.fontSizeLarge.h,
+                                  color: isComplete
+                                      ? AppColors.white
+                                      : AppColors.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isComplete = false;
-                            });
-                          },
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isComplete = false;
+                              });
+                            },
 
-                          ///---------------------------Overview botton----------------------->
-                          child: Container(
-                            height: 44.h,
-                            decoration: BoxDecoration(
-                                color: isComplete
-                                    ? AppColors.white
-                                    : AppColors.primaryColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(8.r),
-                                    topRight: Radius.circular(8.r))),
-                            child: Center(
-                              child: CustomText(
-                                text: AppString.overview,
-                                fontsize: Dimensions.fontSizeLarge.h,
-                                color: isComplete
-                                    ? AppColors.primaryColor
-                                    : AppColors.white,
-                                fontWeight: FontWeight.w400,
+                            ///---------------------------Overview botton----------------------->
+                            child: Container(
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                  color: isComplete
+                                      ? AppColors.white
+                                      : AppColors.primaryColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(8.r),
+                                      topRight: Radius.circular(8.r))),
+                              child: Center(
+                                child: CustomText(
+                                  text: AppString.overview,
+                                  fontsize: Dimensions.fontSizeLarge.h,
+                                  color: isComplete
+                                      ? AppColors.primaryColor
+                                      : AppColors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                  SizedBox(height: 24.h),
+                ],
+              ),
 
-                SizedBox(height: 24.h),
-              ],
-            ),
-
-            ///---------------------table section----------------------------->
-            isComplete
-                ? _TableSection()
-                : LineChart(
-                    chartData: _scoresController.myScroesList,
-                  ),
-          ],
+              ///---------------------Overview section----------------------------->
+              isComplete
+                  ? _TableSection()
+                  : LineChart(
+                      chartData: _scoresController.myScroesList,
+                    ),
+            ],
+          ),
         ),
       ),
     );
