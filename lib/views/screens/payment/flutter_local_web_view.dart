@@ -96,8 +96,7 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
                     widget.startDate,
                     widget.endDate);
               } else {
-                widget._registrationController
-                    .matchRegister(widget.eventId, widget.price, 'ddd', widget.className, widget.matchesList!.toList());
+                widget._registrationController.matchRegister(widget.eventId, widget.price, "", widget.className, widget.matchesList!.toList());
               }
 
               return NavigationDecision.prevent;
@@ -112,8 +111,7 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
                     widget.startDate,
                     widget.endDate);
               } else {
-                widget._registrationController
-                    .matchRegister(widget.eventId, widget.price, 'oidjof', widget.className, widget.matchesList!.toList());
+                // widget._registrationController.matchRegister(widget.eventId, widget.price, 'oidjof', widget.className, widget.matchesList!.toList());
               }
 
               // return NavigationDecision.prevent;

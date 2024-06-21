@@ -314,8 +314,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               }
 
 
-              print(
-                  "===> ${parameter["id"]}  ==> ${parameter['price']}, ==> ${parameter['eventName']} === ${createMatchesList(selectedItems)} ====> ${registrationController.dropDownItemName}");
+              print("===> ${parameter["id"]}  ==> ${parameter['price']}, ==> ${parameter['eventName']} === ${createMatchesList(selectedItems)} ====> ${registrationController.dropDownItemName}");
             },
           ),
           SizedBox(height: 74.h),

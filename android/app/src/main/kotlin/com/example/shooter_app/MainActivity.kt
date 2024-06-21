@@ -1,4 +1,4 @@
-package com.example.shooter_app
+package com.arnold.shooter
 
 import io.flutter.embedding.android.FlutterActivity
 

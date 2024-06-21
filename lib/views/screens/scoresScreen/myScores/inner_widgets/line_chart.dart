@@ -72,7 +72,12 @@ class _LineChartState extends State<LineChart> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: SizedBox(
+<<<<<<< HEAD
                           width: MediaQuery.of(context).size.width * 1.5,
+=======
+                           width: 326 + (40 * chartData.length).toDouble(),
+                            // width: MediaQuery.of(context).size.width * 1.5,
+>>>>>>> 6ae3f81353fd61bcad742b9cff797c4abf0cb696
                           child: SfCartesianChart(
                             primaryXAxis: const CategoryAxis(
                               initialVisibleMinimum: 0.0,

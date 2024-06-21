@@ -32,16 +32,13 @@ class MyCompleteMatchController extends GetxController {
     }
 
     var response =
-        await ApiClient.getData('${ApiConstant.allMatch}?limit=10&page=$page');
+        await ApiClient.getData('${ApiConstant.allMatch}?limit=20&page=$page');
 
     if (response.statusCode == 200) {
       if (response.body['data']['attributes'] != null) {
-        // totalPage =
-        //     jsonDecode(response.body['pagination']['totalPages'].toString());
-        // currectPage =
-        //     jsonDecode(response.body['pagination']['currentPage'].toString());
-        // totalResult =
-        //     jsonDecode(response.body['pagination']['totalMatches'].toString());
+        // totalPage =jsonDecode(response.body['pagination']['totalPages'].toString());
+        // currectPage =jsonDecode(response.body['pagination']['currentPage'].toString());
+        // totalResult =jsonDecode(response.body['pagination']['totalMatches'].toString());
         var matchData = List<MyCompleteMatchModel>.from(response.body['data']['attributes'].map((e) => MyCompleteMatchModel.fromJson(e)));
         myCompleteMatchModel.addAll(matchData);
        myCompletMatchLoading(false);
