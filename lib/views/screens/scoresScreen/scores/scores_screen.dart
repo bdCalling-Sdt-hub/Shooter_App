@@ -8,6 +8,7 @@ import '../../../widgets/custom_text.dart';
 
 class ScoresScreen extends StatelessWidget {
   ScoresScreen({super.key});
+
   final ScoresController _scoresController = Get.put(ScoresController());
 
   @override
@@ -43,11 +44,13 @@ class ScoresScreen extends StatelessWidget {
   //=====================> Row Text <==============================
   Widget _rowText(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 16.w),
-      child: CustomText(
-        text: title,
-        fontsize: 13.h,
-        maxline: 1,
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.w),
+      child: SizedBox(
+        child: CustomText(
+          text: title,
+          fontsize: 13.h,
+          maxline: 1,
+        ),
       ),
     );
   }
@@ -73,11 +76,13 @@ class ScoresScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       _rowText(AppString.clasS),
-                      SizedBox(width: 5.w),
+                      // SizedBox(width: 5.w),
                       _rowText(AppString.playerName),
-                      SizedBox(width: 15.w),
+
+                      SizedBox(width: 20.w),
                       _rowText(AppString.club),
-                      SizedBox(width: 15.w),
+                      SizedBox(width: 20.w),
+
                       _rowText(AppString.scores),
                     ],
                   ),
