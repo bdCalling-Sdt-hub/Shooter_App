@@ -40,7 +40,6 @@ final AuthController _authController = Get.put(AuthController());
       ),
       body: Obx(() {
         var profileData =_profileController.profileModel.value.data?.attributes;
-        print('=========================> $profileData');
         switch (_profileController.rxRequestStatus.value) {
           case Status.loading:
             return const CustomLoader();

@@ -77,6 +77,7 @@ class AuthController extends GetxController {
 
   Future<User?> signInWithGoogle(BuildContext context) async {
 
+
     try {
            // googleSignIn.signOut();
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
@@ -109,13 +110,12 @@ class AuthController extends GetxController {
 
 
           if (response.statusCode == 200) {
-            print("==================================================================");
+            print("================================================================== ${response.body}");
             Map<String, dynamic> data = response.body;
             if (!data['data']['attributes']['isAdmin']) {
               await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
               await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
-              await PrefsHelper.setString(
-                  AppConstants.bearerToken, data['data']['token']);
+              await PrefsHelper.setString(AppConstants.bearerToken, data['data']['token']);
               await PrefsHelper.setBool(AppConstants.isLogged, true);
               await PrefsHelper.setString(AppConstants.subscription,
                   data['data']['attributes']['subscription']);

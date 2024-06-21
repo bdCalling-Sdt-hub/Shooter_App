@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCaGCTew6ETTLPXWAsacRN2GbG02Nn0Jso',
-    appId: '1:97366805463:android:247c03c31071e8ad805992',
+    appId: '1:97366805463:android:c64ac0745418da3d805992',
     messagingSenderId: '97366805463',
     projectId: 'shooter-app-12a65',
     storageBucket: 'shooter-app-12a65.appspot.com',
@@ -63,6 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '97366805463',
     projectId: 'shooter-app-12a65',
     storageBucket: 'shooter-app-12a65.appspot.com',
+    androidClientId: '97366805463-851fon112u4jd4f6p6ilplhjh4qugb22.apps.googleusercontent.com',
+    iosClientId: '97366805463-9esripbvkp3u15lsod0475dvc1j7qcam.apps.googleusercontent.com',
     iosBundleId: 'com.example.shooterApp',
   );
+
 }

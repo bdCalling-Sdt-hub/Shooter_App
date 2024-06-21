@@ -1,6 +1,6 @@
 class ApiConstant {
-  static String baseUrl = "http://139.59.92.140:3232/api/v1";
-  static String imageBaseUrl = "http://139.59.92.140:3232/";
+  static String baseUrl = "https://api.techaim.technology/api/v1";
+  static String imageBaseUrl = "https://api.techaim.technology";
   static String signUp = "/user/sign-up";
   static String signIn = "/user/sign-in";
   static String forgot = "/user/forgot-password";

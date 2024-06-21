@@ -73,7 +73,7 @@ class _LineChartState extends State<LineChart> {
                         scrollDirection: Axis.vertical,
                         child: SizedBox(
 
-                           width: 326 + (40 * chartData.length).toDouble(),
+                           width: 326 + (40 * convertedChartData.length).toDouble(),
                             // width: MediaQuery.of(context).size.width * 1.5,
 
                           child: SfCartesianChart(

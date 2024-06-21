@@ -1,6 +1,6 @@
 <resources>
-    <string name="fb_login_protocol_scheme">fb407590412168051</string>
-    <string name="facebook_app_id">407590412168051</string>
-    <string name="facebook_client_token">a211b00f08f5314f2d87cc3de6ca3074</string>
-    <string name="app_name">shooter_app</string>
+    <string name="fb_login_protocol_scheme">fb330731506743478</string>
+    <string name="facebook_app_id">330731506743478</string>
+    <string name="facebook_client_token">53d9d961a5b5edc9d4522ae706824b7d</string>
+    <string name="app_name">shooter</string>
 </resources>
