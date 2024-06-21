@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:97366805463:android:c64ac0745418da3d805992",
+        "mobilesdk_app_id": "1:97366805463:android:247c03c31071e8ad805992",
         "android_client_info": {
-          "package_name": "com.arnold.shooter"
+          "package_name": "com.example.shooter_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "97366805463-7hfjpvh09jnhllpheloqidba14innl07.apps.googleusercontent.com",
+          "client_id": "97366805463-851fon112u4jd4f6p6ilplhjh4qugb22.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.arnold.shooter",
+            "package_name": "com.example.shooter_app",
             "certificate_hash": "42010f6d184fdda6018918dd0df54b7dc51a0294"
           }
         },
@@ -51,17 +51,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:97366805463:android:247c03c31071e8ad805992",
+        "mobilesdk_app_id": "1:97366805463:android:e52bad4f1a5086cf805992",
         "android_client_info": {
-          "package_name": "com.example.shooter_app"
+          "package_name": "com.techaimshooting.shooter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "97366805463-851fon112u4jd4f6p6ilplhjh4qugb22.apps.googleusercontent.com",
+          "client_id": "97366805463-46j4riijjekr6np9ipv90i0dujqeoi7a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.shooter_app",
+            "package_name": "com.techaimshooting.shooter",
             "certificate_hash": "42010f6d184fdda6018918dd0df54b7dc51a0294"
           }
         },
