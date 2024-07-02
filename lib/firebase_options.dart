@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCaGCTew6ETTLPXWAsacRN2GbG02Nn0Jso',
-    appId: '1:97366805463:android:e52bad4f1a5086cf805992',
+    appId: '1:97366805463:android:f16c0208f4b24f48805992',
     messagingSenderId: '97366805463',
     projectId: 'shooter-app-12a65',
     storageBucket: 'shooter-app-12a65.appspot.com',
@@ -59,13 +59,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB_3MEOdjjDc76shB3E3Hl6EyJFw26nTtQ',
-    appId: '1:97366805463:ios:2391a2047874733f805992',
+    appId: '1:97366805463:ios:f144cc3e16ba02d4805992',
     messagingSenderId: '97366805463',
     projectId: 'shooter-app-12a65',
     storageBucket: 'shooter-app-12a65.appspot.com',
-    androidClientId: '97366805463-7hfjpvh09jnhllpheloqidba14innl07.apps.googleusercontent.com',
-    iosClientId: '97366805463-9esripbvkp3u15lsod0475dvc1j7qcam.apps.googleusercontent.com',
-    iosBundleId: 'com.example.shooterApp',
+    androidClientId: '97366805463-46j4riijjekr6np9ipv90i0dujqeoi7a.apps.googleusercontent.com',
+    iosClientId: '97366805463-kl1r45idhn7bmpchp0243o70inaa3i48.apps.googleusercontent.com',
+    iosBundleId: 'com.arnold.techaimshooting',
   );
 
 }

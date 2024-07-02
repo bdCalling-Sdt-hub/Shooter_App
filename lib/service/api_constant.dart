@@ -28,4 +28,5 @@ class ApiConstant {
   static String profileEndPoint(String userId) => "/user/$userId";
   static String updateUser(String userId) => "/user/update/$userId";
   static String eventsRegister(String eventsId) => "/events/register/$eventsId";
+
 }

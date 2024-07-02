@@ -1,4 +1,4 @@
-package com.techaimshooting.shooter
+package com.arnold.techaimshooting
 
 import io.flutter.embedding.android.FlutterActivity
 
