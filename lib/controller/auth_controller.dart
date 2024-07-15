@@ -72,6 +72,76 @@ class AuthController extends GetxController {
   }
 
   /// <======================  Google Sign in ===========>
+  Future<void> appleInWithGoogle() async {
+    // Trigger the authentication flow
+    try {
+
+      final authProvider =  AppleAuthProvider();
+
+      UserCredential userData =
+      await FirebaseAuth.instance.signInWithProvider(authProvider);
+      if(userData.user !=null){
+        print("=======> Apple Sign in Complete ");
+          var user=userData.user;
+        Map<String, String> header = {'Content-Type': 'application/json'};
+        var body = {
+          'email': '${user!.email}',
+          "loginType" : 1
+        };
+        var response = await ApiClient.postData(
+            ApiConstant.signIn, json.encode(body),
+            headers: header);
+
+
+        print('================> response ${response.body}');
+
+
+        if (response.statusCode == 200) {
+          print("================================================================== ${response.body}");
+          Map<String, dynamic> data = response.body;
+          if (!data['data']['attributes']['isAdmin']) {
+            await PrefsHelper.setString(AppConstants.userId, data['data']['attributes']['_id']);
+            await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
+            await PrefsHelper.setString(AppConstants.bearerToken, data['data']['token']);
+            await PrefsHelper.setBool(AppConstants.isLogged, true);
+            await PrefsHelper.setString(AppConstants.subscription,
+                data['data']['attributes']['subscription']);
+
+            ///=========================Check Subscription============================>
+            await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
+
+
+
+            await PrefsHelper.setString(AppConstants.signInType, "General User");
+            await dataController.setData(
+              nameD: data['data']['attributes']['name'] ?? "",
+              emailD: data['data']['attributes']['email'] ?? "",
+              passwordD: "",
+              imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
+              userid: data['data']['attributes']['_id'] ?? "",
+            );
+            Get.offAllNamed(AppRoutes.bottomNavBar);
+
+            emailController.clear();
+            passController.clear();
+          }
+        }
+
+
+        print("====================${user.email}");
+        print("====================${user.displayName}");
+
+
+
+
+      }
+    } on Exception catch (e) {
+      debugPrint("Oops, Something wrong error $e");
+
+    }
+  }
+
+  /// <======================  Google Sign in ===========>
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 

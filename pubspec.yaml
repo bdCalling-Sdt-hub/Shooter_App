@@ -54,6 +54,7 @@ dependencies:
   flutter_facebook_auth_platform_interface:
   flutter_spinkit: ^5.2.1
   mime_type: ^1.0.0
+  sign_in_with_apple:
   cached_network_image: ^3.3.1
   intl:
   timeago: ^3.6.1
