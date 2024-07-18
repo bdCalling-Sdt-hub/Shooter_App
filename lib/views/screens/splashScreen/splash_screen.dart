@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shooter_app/controller/profileController.dart';
@@ -99,21 +100,18 @@ class _SplashScreenState extends State<SplashScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 242.h),
           Stack(
             clipBehavior: Clip.none,
             children: [
               Opacity(
                 opacity: 0.6,
-                child: Image.asset(
-                  AppImages.splashBg,
+                child: SvgPicture.asset(
+                 "assets/images/splash.svg",
                   fit: BoxFit.cover,
-                  height: 610.h,
-                  width: 393.w,
                 ),
               ),
               Positioned(
-                top: -160.h,
+                top: 100.h,
                 right: 50.w,
                 left: 50.w,
                 child: AnimatedBuilder(
