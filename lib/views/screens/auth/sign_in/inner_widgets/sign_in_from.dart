@@ -246,6 +246,7 @@ class SignInForm extends StatelessWidget {
           contenpaddingVertical: 16.h,
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
+          maxLines: 1,
           isPassword: true,
           validator: (value) {
             if (value == null || value.isEmpty) {
