@@ -102,61 +102,61 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
                 SizedBox(height: 35.h),
 
-              Obx(() {
-                return                 Center(
-                  child: SizedBox(
-                    height: 140.h,
-                    child:       _subscriptionController.subscriptionLoading.value ?
-
-                    CustomLoader()
-
-
-                        : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:
-                List.generate(
-                          _subscriptionController.subsCriptionData.length,
-                              (index) {
-                            var data = _subscriptionController
-                                .subsCriptionData[index];
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _subscriptionController.selectedIndex.value =
-                                      index;
-                                });
-                              },
-                              child: SubscriptionCard(
-                                duration: '${ data.duration}',
-                                price: '${data.price}',
-                                isSelected: index ==
-                                    _subscriptionController.selectedIndex.value,
-                              ),
-                            );
-                          }),
+                Obx(() {
+                  return Center(
+                    child: SizedBox(
+                      height: 140.h,
+                      child: _subscriptionController.subscriptionLoading.value
+                          ? CustomLoader()
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: List.generate(
+                                  _subscriptionController
+                                      .subsCriptionData.length, (index) {
+                                var data = _subscriptionController
+                                    .subsCriptionData[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _subscriptionController
+                                          .selectedIndex.value = index;
+                                    });
+                                  },
+                                  child: SubscriptionCard(
+                                    description: data.description??"",
+                                    name: data.name??"",
+                                    duration: '${data.duration}',
+                                    price: '${data.price}',
+                                    isSelected: index ==
+                                        _subscriptionController
+                                            .selectedIndex.value,
+                                  ),
+                                );
+                              }),
+                            ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
 
                 SizedBox(height: 45.h),
                 //================================> Purchase Subscription Button Section <=======================
-                Obx(()=>
-                   CustomButton(
+                Obx(
+                  () => CustomButton(
                     title: AppString.purchaseSubscription,
                     loading: _subscriptionController.submitFormLoading.value,
                     onpress: () {
                       _subscriptionController.submitForm(
-                        context,
-                        '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}',
-                        '${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}',
-                        startDate,
-                        entDate
-                      );
+                          context,
+                          '${_subscriptionController.subsCriptionData[_subscriptionController.selectedIndex.value].price}',
+                          '${_subscriptionController.subsCriptionData[_subscriptionController.selectedIndex.value].type}',
+                          startDate,
+                          entDate);
                       // _subscriptionController.buySubscription(startDate, entDate);
                       //Get.toNamed(AppRoutes.signUpScreen);
-                      print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].type}");
-                      print("===================>${_subscriptionController.subsCriptionData.value[_subscriptionController.selectedIndex.value].price}");
+                      print(
+                          "===================>${_subscriptionController.subsCriptionData[_subscriptionController.selectedIndex.value].type}");
+                      print(
+                          "===================>${_subscriptionController.subsCriptionData[_subscriptionController.selectedIndex.value].price}");
                     },
                   ),
                 ),
@@ -171,6 +171,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 class SubscriptionCard extends StatelessWidget {
   final String? duration;
   final String? price;
+  final String name;
+  final String description;
   final bool isSelected;
   final VoidCallback? onTap;
 
@@ -178,6 +180,8 @@ class SubscriptionCard extends StatelessWidget {
       {super.key,
       this.duration,
       this.price,
+      required this.description,
+      required this.name,
       required this.isSelected,
       this.onTap});
 
