@@ -307,7 +307,7 @@ class DrawerSection extends StatelessWidget {
                                                     AppConstants.subscription);
                                                 _authController.googleSignIn
                                                     .signOut();
-                                                Get.offNamed(
+                                                Get.offAllNamed(
                                                     AppRoutes.signInScreen);
                                               })),
                                     ],

@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires access to your photo library to allow you to select photos for upload and sharing.</string>
-
-    <key>NSCameraUsageDescription</key>
-    <string>This app requires access to your camera to allow you to take photos and videos directly within the app.</string>
-
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app requires access to your microphone to record audio during video capture.</string>
+ <key>NSPhotoLibraryUsageDescription</key>
+  <string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
 
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
@@ -104,6 +100,31 @@
     </array>
     <key>GIDClientID</key>
     <string>97366805463-kl1r45idhn7bmpchp0243o70inaa3i48.apps.googleusercontent.com</string>
+
+
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb330731506743478</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>330731506743478</string>
+    <key>FacebookClientToken</key>
+    <string>CLIENT-TOKEN</string>
+    <key>FacebookDisplayName</key>
+    <string>Small Bore SA</string>
+
+
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-share-api</string>
+    </array>
 
 
 </dict>

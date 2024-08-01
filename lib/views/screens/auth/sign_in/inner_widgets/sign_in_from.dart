@@ -150,7 +150,7 @@ class SignInForm extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                      _authController.appleInWithGoogle();
+                      _authController.signInWithApple();
                     },
                     child: Container(
                       padding: EdgeInsets.all(16.r),
