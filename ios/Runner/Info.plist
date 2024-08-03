@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
- <key>NSPhotoLibraryUsageDescription</key>
-  <string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
-  <key>NSCameraUsageDescription</key>
-  <string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+         <string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
+    <key>NSCameraUsageDescription</key>
+       <string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
+    <key>NSMicrophoneUsageDescription</key>
+    	<string>Our app uses microphone access for audio recording.</string>
 
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
