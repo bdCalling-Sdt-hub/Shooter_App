@@ -62,7 +62,13 @@ class AuthController extends GetxController {
           userid: data['data']['attributes']['_id'] ?? "",
         );
         debugPrint("ssss ${dataController.image}");
-        Get.offAllNamed(AppRoutes.bottomNavBar);
+        var isSubscription= await PrefsHelper.getBool(AppConstants.isFutureDate);
+        if(isSubscription){
+          Get.offAllNamed(AppRoutes.bottomNavBar);
+        }else{
+          Get.offAllNamed(AppRoutes.subscriptionScreen);
+        }
+
 
         emailController.clear();
         passController.clear();
@@ -120,7 +126,13 @@ class AuthController extends GetxController {
               imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
               userid: data['data']['attributes']['_id'] ?? "",
             );
-            Get.offAllNamed(AppRoutes.bottomNavBar);
+            var isSubscription= await PrefsHelper.getBool(AppConstants.isFutureDate);
+            if(isSubscription){
+              Get.offAllNamed(AppRoutes.bottomNavBar);
+            }else{
+              Get.offAllNamed(AppRoutes.subscriptionScreen);
+            }
+
 
             emailController.clear();
             passController.clear();
@@ -203,7 +215,14 @@ class AuthController extends GetxController {
                 imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
                 userid: data['data']['attributes']['_id'] ?? "",
               );
-              Get.offAllNamed(AppRoutes.bottomNavBar);
+              var isSubscription= await PrefsHelper.getBool(AppConstants.isFutureDate);
+              if(isSubscription){
+                Get.offAllNamed(AppRoutes.bottomNavBar);
+              }else{
+                Get.offAllNamed(AppRoutes.subscriptionScreen);
+              }
+
+
 
               emailController.clear();
               passController.clear();
@@ -276,6 +295,8 @@ class AuthController extends GetxController {
 
 
 
+
+
             await PrefsHelper.setString(AppConstants.signInType, "General User");
             await dataController.setData(
               nameD: data['data']['attributes']['name'] ?? "",
@@ -284,7 +305,14 @@ class AuthController extends GetxController {
               imageD: data['data']['attributes']['image']['publicFileURL'] ?? "",
               userid: data['data']['attributes']['_id'] ?? "",
             );
-            Get.offAllNamed(AppRoutes.bottomNavBar);
+
+            var isSubscription= await PrefsHelper.getBool(AppConstants.isFutureDate);
+            if(isSubscription){
+              Get.offAllNamed(AppRoutes.bottomNavBar);
+            }else{
+              Get.offAllNamed(AppRoutes.subscriptionScreen);
+            }
+
 
             emailController.clear();
             passController.clear();

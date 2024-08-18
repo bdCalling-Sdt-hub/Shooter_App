@@ -196,19 +196,19 @@ class SubscriptionCard extends StatelessWidget {
             border: Border.all(
                 width: 1.w,
                 color: isSelected ? AppColors.primaryColor : Colors.white38)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
-          child: Column(
-            children: [
-              CustomText(text: '$duration Months', fontsize: 14.h),
-              SizedBox(height: 12.h),
-              Expanded(
-                  child: CustomText(text: "Rand $price/Month", fontsize: 16.h)),
-              SizedBox(height: 12.h),
-              CustomText(
-                text: AppString.days10,
-              ),
-            ],
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomText(text: '$duration Months', fontsize: 14.h),
+                SizedBox(height: 12.h),
+                CustomText(text: "Rand $price/$description", fontsize: 16.h),
+                SizedBox(height: 12.h),
+
+              ],
+            ),
           ),
         ),
       ),
