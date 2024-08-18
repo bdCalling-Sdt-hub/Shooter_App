@@ -49,14 +49,13 @@ class AccountDelete extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 20.h,),
-              CustomTextField(controller: emailCtrl,hintText: "Enter your email",isEmail: true,),
-              SizedBox(height: 10.h,),
               CustomTextField(controller: description,maxLines: 4,hintText: "Enter description",),
               SizedBox(height: 20.h,),
               Obx(()=>
                  CustomButton(title: "Submit", onpress: (){
                    if(_globalKey.currentState!.validate()){
-                     submit();
+                     _showDeleteAccountDialog(context);
+
                    }
 
                 },
@@ -69,6 +68,40 @@ class AccountDelete extends StatelessWidget {
       ),
     );
   }
+
+
+
+   void _showDeleteAccountDialog(BuildContext context) {
+     showDialog(
+       context: context,
+       builder: (BuildContext context) {
+         return AlertDialog(
+           title: Text('Delete Account'),
+           content: Text('Are you sure you want to delete your account? This action cannot be undone.'),
+           actions: <Widget>[
+             TextButton(
+               onPressed: () {
+                 // Close the dialog
+                 Navigator.of(context).pop();
+               },
+               child: Text('Cancel'),
+             ),
+             TextButton(
+               onPressed: () {
+                 Get.back();
+                 submit();
+               },
+               child: Text(
+                 'Delete',
+                 style: TextStyle(color: Colors.red),
+               ),
+             ),
+           ],
+         );
+       },
+     );
+   }
+
 
 
 
