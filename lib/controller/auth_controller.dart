@@ -15,6 +15,7 @@ import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
 
+
 import '../routes/app_routes.dart';
 import 'data_controller.dart';
 
@@ -77,7 +78,7 @@ class AuthController extends GetxController {
     signInLoading(false);
   }
 
-  /// <======================  Google Sign in ===========>
+  /// <======================  Apple Sign in ===========>
   Future<void> signInWithApple() async {
     // Trigger the authentication flow
     try {

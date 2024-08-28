@@ -1,0 +1,105 @@
+{
+  "identifier" : "568C7426",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "105ED6C6",
+      "localizations" : [
+        {
+          "description" : "6 Month",
+          "displayName" : "Starndard",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "6 Month",
+          "displayName" : "Starndard",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "standard",
+      "referenceName" : "Standard",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "33B8273A",
+      "localizations" : [
+        {
+          "description" : "1 Year",
+          "displayName" : "Premium",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "1 Year",
+          "displayName" : "Premium",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "premium",
+      "referenceName" : "Premium",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
