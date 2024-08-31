@@ -20,12 +20,9 @@ import '../../../../utils/app_constants.dart';
 
 const String _kStandardSubscriptionId = 'standard';
 const String _kPremiumSubscriptionId = 'premium';
-const List<String> _kProductIds = <String>[
-  _kPremiumSubscriptionId,
-  _kStandardSubscriptionId
-];
 
-const Set<String> _kIds = <String>{_kStandardSubscriptionId, _kPremiumSubscriptionId};
+
+ const Set<String> _kIds = <String>{_kStandardSubscriptionId, _kPremiumSubscriptionId};
 
 class InAppPurchaseScreen extends StatefulWidget {
   const InAppPurchaseScreen({super.key});
@@ -215,7 +212,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                                   color: Colors.redAccent),
                             ),
                             subtitle: Text(productDetails.description),
-                            trailing:purchasedId==productDetails.id? Text("Purchased",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp,color:AppColors.primaryColor),):
+                            trailing:purchasedId==productDetails.id+"s"? Text("Purchased",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp,color:AppColors.primaryColor),):
                             Text("${productDetails.price}/$duration",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp),),
                           ),
                         ),
@@ -223,7 +220,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                     );
                   }),
             ),
-            if(!subscriptionDateAvaible)
+            if(subscriptionDateAvaible)
             NewCustomButton(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 onTap: () {

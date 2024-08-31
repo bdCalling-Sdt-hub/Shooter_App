@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        title: 'shooter app',
+        title: 'Small Bore SA',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
         supportedLocales: <Locale>[Locale('en', 'US'), Locale('zh', 'CN')],

@@ -25,38 +25,13 @@ class _SplashScreenState extends State<SplashScreen>
       AnimationController(duration: const Duration(seconds: 10), vsync: this)
         ..repeat();
 
-  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+
  /// final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   void initState() {
     super.initState();
     ///_profileController.getProfileData();
-    bool firstTime = true;
-    _onConnectivityChanged = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
-      if (!firstTime) {
-        bool isNotConnected = result != ConnectivityResult.wifi &&
-            result != ConnectivityResult.mobile;
-        isNotConnected
-            ? const SizedBox()
-            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: isNotConnected ? Colors.red : Colors.green,
-          duration: Duration(seconds: isNotConnected ? 6000 : 3),
-          content: Text(
-            isNotConnected ? 'No connection' : 'Connected',
-            textAlign: TextAlign.center,
-          ),
-        ));
-        if (!isNotConnected) {
-          debugPrint("========> in connect change $isNotConnected");
-          _route();
-        }
-      }
-      firstTime = false;
-    });
 
     debugPrint("========> Out change out");
      _route();
@@ -88,7 +63,6 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void dispose() {
     _animationController.dispose();
-    _onConnectivityChanged.cancel();
     super.dispose();
   }
 
