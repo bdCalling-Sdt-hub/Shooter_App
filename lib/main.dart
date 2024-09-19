@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         title: 'Small Bore SA',
         theme: Themes().darkTheme,
         darkTheme: Themes().darkTheme,
-        supportedLocales: <Locale>[Locale('en', 'US'), Locale('zh', 'CN')],
+        supportedLocales: const <Locale>[Locale('en', 'US'), Locale('zh', 'CN')],
         initialRoute: AppRoutes.splashScreen,
         getPages: AppRoutes.routes,
         home: const SplashScreen(),
