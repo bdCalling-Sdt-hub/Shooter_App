@@ -298,17 +298,12 @@ class DrawerSection extends StatelessWidget {
                                               title: 'Yes',
                                               fontSize: 16.h,
                                               onpress: () async {
-                                                await PrefsHelper.remove(
-                                                    AppConstants.isLogged);
-                                                await PrefsHelper.remove(
-                                                    AppConstants.userId);
+                                                await PrefsHelper.remove(AppConstants.isLogged);
+                                                await PrefsHelper.remove(AppConstants.userId);
                                                 // await PrefsHelper.remove(AppConstants.bearerToken);
-                                                await PrefsHelper.remove(
-                                                    AppConstants.subscription);
-                                                _authController.googleSignIn
-                                                    .signOut();
-                                                Get.offAllNamed(
-                                                    AppRoutes.signInScreen);
+                                                await PrefsHelper.remove(AppConstants.subscription);
+                                                _authController.googleSignIn.signOut();
+                                                Get.offAllNamed(AppRoutes.signInScreen);
                                               })),
                                     ],
                                   )

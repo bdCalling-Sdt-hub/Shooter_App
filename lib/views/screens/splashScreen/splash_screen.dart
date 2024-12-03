@@ -24,7 +24,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _animationController =
-      AnimationController(duration: const Duration(seconds: 10), vsync: this)
+      AnimationController(duration: const Duration(seconds: 3), vsync: this)
         ..repeat();
 
 
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   _route() {
-    Timer(const Duration(seconds: 10), () async {
+    Timer(const Duration(seconds: 3), () async {
       var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
       var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
       var subscription = await PrefsHelper.getString(AppConstants.subscription);
