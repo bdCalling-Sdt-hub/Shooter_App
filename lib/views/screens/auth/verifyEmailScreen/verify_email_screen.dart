@@ -97,6 +97,7 @@ class VerifyEmailScreen extends StatelessWidget {
                       InkWell(
                         onTap: (){
                           _authController.resendOtp(Get.parameters['email']!);
+                          pinCodeCtrl.clear();
                         },
                         child: CustomText(
                           color: AppColors.primaryColor,
@@ -116,6 +117,7 @@ class VerifyEmailScreen extends StatelessWidget {
                      title: AppString.verifyEmail,
                      onpress: () {
                       _authController.verifyEmail(Get.parameters, pinCodeCtrl.text);
+                      pinCodeCtrl.clear();
                     },
                   ),
                 ),

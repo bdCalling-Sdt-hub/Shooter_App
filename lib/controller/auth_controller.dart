@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,15 +8,14 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shooter_app/helper/prefs_helper.dart';
 import 'package:shooter_app/helper/time_format.dart';
-import 'package:shooter_app/service/api_check.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
-
-
 import '../routes/app_routes.dart';
 import 'data_controller.dart';
+
+
 
 class AuthController extends GetxController {
   ///<===== ============== sign in =========== =====>
@@ -160,15 +158,11 @@ class AuthController extends GetxController {
 
   Future<User?> signInWithGoogle(BuildContext context) async {
 
-
-    try {
-           // googleSignIn.signOut();
+    try {// googleSignIn.signOut();
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
       print('===============================> google sign in');
       if (googleSignInAccount != null) {
-
         final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
-
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
@@ -188,9 +182,7 @@ class AuthController extends GetxController {
               ApiConstant.signIn, json.encode(body),
               headers: header);
 
-
           print('================> response ${response.body}');
-
 
           if (response.statusCode == 200) {
             print("================================================================== ${response.body}");
@@ -200,14 +192,9 @@ class AuthController extends GetxController {
               await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
               await PrefsHelper.setString(AppConstants.bearerToken, data['data']['token']);
               await PrefsHelper.setBool(AppConstants.isLogged, true);
-              await PrefsHelper.setString(AppConstants.subscription,
-                  data['data']['attributes']['subscription']);
-
+              await PrefsHelper.setString(AppConstants.subscription, data['data']['attributes']['subscription']);
               ///=========================Check Subscription============================>
               await TimeFormatHelper.isFutureDate(data['data']['attributes']['subscriptionEndDate']);
-
-
-
               await PrefsHelper.setString(AppConstants.signInType, "General User");
               await dataController.setData(
                 nameD: data['data']['attributes']['name'] ?? "",
@@ -229,12 +216,8 @@ class AuthController extends GetxController {
               passController.clear();
             }
           }
-
-
           print("====================${user.email}");
           print("====================${user.displayName}");
-
-
 
           // Get.offAllNamed(AppRoutes.bottomNavBar);
         }
@@ -250,18 +233,21 @@ class AuthController extends GetxController {
       return null;
     }
   }
-  /// <=========== facebook auth ================>
 
+
+  /// <=========== facebook auth ================>
   Future signInWithFacebook() async {
     try {
+
+//       final LoginResult loginResult = await FacebookAuth.instance.login();
+
       final LoginResult loginResult = await FacebookAuth.instance.login(permissions:["public_profile","email"]);
+
 
       // if (loginResult.status == LoginStatus.cancelled) {
       //   return null;
       // }
-      final credential =
-      FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
-
+      final credential = FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
       // Sign in with credential
       UserCredential userCredential =
@@ -334,6 +320,7 @@ class AuthController extends GetxController {
     }
   }
 
+
   ///<===== ============== sign up =============== =====>
 
   final userNameController = TextEditingController();
@@ -397,6 +384,11 @@ class AuthController extends GetxController {
         ApiConstant.forgot, json.encode(body),
         headers: header);
     if (response.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: response.body["message"] ?? "",
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          gravity: ToastGravity.TOP);
     } else {
       Fluttertoast.showToast(
           msg: response.statusText ?? "",
