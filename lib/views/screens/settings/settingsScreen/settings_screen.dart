@@ -8,6 +8,7 @@ import 'package:shooter_app/views/widgets/custom_list_tile.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
 import '../../../widgets/custom_text.dart';
+import '../AccountDelete/account_delete.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -97,6 +98,23 @@ class SettingsScreen extends StatelessWidget {
                   title: AppString.aboutUs,
                   prefixIcon: SvgPicture.asset(
                     AppIcons.about,
+                    color: Colors.white,
+                  ),
+                  sufixIcon: SvgPicture.asset(
+                    AppIcons.rightArrow,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 16.h),
+              GestureDetector(
+                onTap: () {
+                  Get.to(AccountDelete());
+                },
+                child: CustomListTile(
+                  title: "Delete Account",
+                  prefixIcon: SvgPicture.asset(
+                   "assets/icons/Delete_Column.svg",
                     color: Colors.white,
                   ),
                   sufixIcon: SvgPicture.asset(

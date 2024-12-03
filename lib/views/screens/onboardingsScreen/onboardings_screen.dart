@@ -48,7 +48,7 @@ class OnboardingsScreen extends StatelessWidget {
               //   textAlign: TextAlign.justify,
               //   style: TextStyle(fontSize: 14.sp, fontFamily: 'Aldrich'),
               // ),
-              SizedBox(height: 136.h),
+              SizedBox(height: 100.h),
               CustomButton(
                 title: AppString.getStarted,
                 onpress: ()async{

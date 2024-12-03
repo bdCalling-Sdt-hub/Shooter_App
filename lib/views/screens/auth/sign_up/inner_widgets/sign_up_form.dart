@@ -93,6 +93,7 @@ class SignUpForm extends StatelessWidget {
                 contenpaddingHorizontal: 12.w,
                 contenpaddingVertical: 16.h,
                 hintText: AppString.password,
+                maxLines: 1,
                 filColor: AppColors.fieldColor,
                 isPassword: true,
                 validator: (value) {

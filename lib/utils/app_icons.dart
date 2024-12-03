@@ -25,6 +25,7 @@ class AppIcons{
   static const String myScores = "assets/icons/myScores.svg";
   static const String eye = "assets/icons/eye.svg";
   static const String dropDown = "assets/icons/drop_down.svg";
+  static const String appleIcon="assets/icons/apple_icon.svg";
 
 
   ///--------------------------------home screen----------------------------->

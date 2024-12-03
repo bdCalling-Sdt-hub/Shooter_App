@@ -23,6 +23,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final bool? isEmail;
   final bool? readOnly;
+  final int? maxLines;
 
   const CustomTextField({
     super.key,
@@ -42,6 +43,7 @@ class CustomTextField extends StatefulWidget {
     this.isPassword = false,
     this.readOnly = false,
     this.onTab,
+    this.maxLines
   });
 
   @override
@@ -63,6 +65,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       onTap: widget.onTab,
       readOnly: widget.readOnly!,
       controller: widget.controller,
+      maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,
       obscuringCharacter: widget.obscureCharacrter!,
       // validator: widget.validator,

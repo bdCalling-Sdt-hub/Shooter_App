@@ -144,6 +144,28 @@ class SignInForm extends StatelessWidget {
                             height: 24.h,
                           )),
                     ),
+                  ),
+                  SizedBox(
+                    width: 12.w,
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      _authController.signInWithApple();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16.r),
+                      decoration: BoxDecoration(
+                          color: AppColors.fieldColor,
+                          borderRadius:
+                          BorderRadius.circular(Dimensions.radiusDefault),
+                          border: Border.all(color: const Color(0xFFFD92A0))),
+                      child: Center(
+                          child: SvgPicture.asset(
+                            AppIcons.appleIcon,
+                            width: 24.w,
+                            height: 24.h,
+                          )),
+                    ),
                   )
                 ],
               ),
@@ -224,6 +246,7 @@ class SignInForm extends StatelessWidget {
           contenpaddingVertical: 16.h,
           hintText: AppString.password,
           filColor: AppColors.fieldColor,
+          maxLines: 1,
           isPassword: true,
           validator: (value) {
             if (value == null || value.isEmpty) {

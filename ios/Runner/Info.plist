@@ -2,21 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires access to your photo library to allow you to select photos for upload and sharing.</string>
-
-    <key>NSCameraUsageDescription</key>
-    <string>This app requires access to your camera to allow you to take photos and videos directly within the app.</string>
-
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app requires access to your microphone to record audio during video capture.</string>
-
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>TechAimShooting</string>
+	<string>Small Bore SA</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>shooter_app</string>
+	<string>Small Bore SA</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -36,7 +27,15 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb407590412168051</string>
+				<string>fb330731506743478</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.97366805463-kl1r45idhn7bmpchp0243o70inaa3i48</string>
 			</array>
 		</dict>
 	</array>
@@ -47,11 +46,18 @@
 	<key>FLTEnableImpeller</key>
 	<false/>
 	<key>FacebookAppID</key>
-	<string>407590412168051</string>
+	<string>330731506743478</string>
 	<key>FacebookClientToken</key>
 	<string>CLIENT-TOKEN</string>
 	<key>FacebookDisplayName</key>
-	<string>TechAimShooting</string>
+	<string>Small Bore SA</string>
+	<key>GIDClientID</key>
+	<string>97366805463-kl1r45idhn7bmpchp0243o70inaa3i48.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -59,6 +65,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Our app uses microphone access for audio recording.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Our app uses the photo library to update profiles, enhancing the user experience with uploaded images</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

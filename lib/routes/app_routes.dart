@@ -28,6 +28,7 @@ import '../views/screens/settings/setnewpasswordScreen/setnewpassword_screen.dar
 import '../views/screens/settings/settingsScreen/settings_screen.dart';
 import '../views/screens/settings/termsconditionsScreen/termsconditions_screen.dart';
 import '../views/screens/subscription/freetrialScreen/freetrial_screen.dart';
+import '../views/screens/subscription/subscriptionScreen/in_app_purchase.dart';
 import '../views/screens/subscription/subscriptionScreen/subscription_screen.dart';
 
 class AppRoutes {
@@ -84,7 +85,7 @@ class AppRoutes {
         GetPage(name: aboutusScreen, page: () => AboutusScreen()),
         GetPage(name: registrationScreen, page: () => RegistrationScreen()),
         GetPage(name: freetrialScreen, page: () => FreetrialScreen()),
-        GetPage(name: subscriptionScreen, page: () => SubscriptionScreen()),
+        GetPage(name: subscriptionScreen, page: () => InAppPurchaseScreen()),
         GetPage(name: eventDetailsScreen, page: () => EventDetailsScreen()),
         GetPage(name: myScoresScreen, page: () => MyScoresScreen()),
         GetPage(name: myMatchesScreen, page: () => MyMatchesScreen()),

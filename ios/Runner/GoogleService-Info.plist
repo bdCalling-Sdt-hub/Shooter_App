@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>97366805463-kl1r45idhn7bmpchp0243o70inaa3i48.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.97366805463-kl1r45idhn7bmpchp0243o70inaa3i48</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>97366805463-46j4riijjekr6np9ipv90i0dujqeoi7a.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBVj6EnldYVnW74jGXy9zfBuFHQybaxl7s</string>
+	<string>AIzaSyB_3MEOdjjDc76shB3E3Hl6EyJFw26nTtQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>389699724415</string>
+	<string>97366805463</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.shooterApp</string>
+	<string>com.arnold.techaimshooting</string>
 	<key>PROJECT_ID</key>
-	<string>shotting-app</string>
+	<string>shooter-app-12a65</string>
 	<key>STORAGE_BUCKET</key>
-	<string>shotting-app.appspot.com</string>
+	<string>shooter-app-12a65.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:389699724415:ios:7e4578f30c5db0d5814b4a</string>
+	<string>1:97366805463:ios:f144cc3e16ba02d4805992</string>
 </dict>
 </plist>

@@ -90,11 +90,7 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
               Map<String, String> data = await getUrlQueryPrams(request.url);
               print("==============data = $data");
               if (widget.eventId == "") {
-                widget._subscriptionController.buySubscription(
-                    "${widget.subscriptionPrice}",
-                    widget.subscription,
-                    widget.startDate,
-                    widget.endDate);
+
               } else {
                 widget._registrationController.matchRegister(widget.eventId, widget.price, "", widget.className, widget.matchesList!.toList());
               }
@@ -105,11 +101,7 @@ class FlutterLocalWebViewState extends State<FlutterLocalWebView> {
               print("==============data = $data");
 
               if (widget.eventId == "") {
-                widget._subscriptionController.buySubscription(
-                    "${widget.subscriptionPrice}",
-                    widget.subscription,
-                    widget.startDate,
-                    widget.endDate);
+
               } else {
                 // widget._registrationController.matchRegister(widget.eventId, widget.price, 'oidjof', widget.className, widget.matchesList!.toList());
               }
