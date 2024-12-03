@@ -176,7 +176,7 @@ class _EditprofileScreenState extends State<EditprofileScreen> {
                       controller: _locationController,
                       contenpaddingHorizontal: 12.w,
                       contenpaddingVertical: 16.h,
-                      hintText: "Enter your location",
+                      hintText: "Enter your address",
                       prifixicon: _prefixIcon(
                         AppIcons.locationMarker,
                       ),
