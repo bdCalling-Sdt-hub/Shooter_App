@@ -118,7 +118,7 @@ class SetPasswordScreen extends StatelessWidget {
               return "Please enter ${AppString.confirmPassword}";
             } else if (!data) {
               return "Insecure password detected.";
-            }else if(_setPassController.text !=value){
+            }else if(_setPassController.text != value){
                 return "Password did not match.";
             }
             return null;
