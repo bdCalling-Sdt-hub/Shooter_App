@@ -33,7 +33,7 @@ class ProfileController extends GetxController{
 
     if(response.statusCode == 200){
       profileModel.value = ProfileModel.fromJson(response.body);
-      await PrefsHelper.setString(AppConstants.subscription, profileModel.value.data?.attributes?.subscription);
+      await PrefsHelper.setString(AppConstants.subscription, profileModel.value.data?.attributes?.subscription ?? "");
 
 
      await TimeFormatHelper.isFutureDate('${profileModel.value.data?.attributes?.subscriptionEndDate}');
@@ -80,7 +80,7 @@ class ProfileController extends GetxController{
     if (response.statusCode == 200 || response.statusCode == 201) {
       profileModel.value = ProfileModel.fromJson(response.body['data']['attributes']);
       getProfileData();
-      profileModel.refresh();
+      update();
       Get.back();
     }else{
       ApiChecker.checkApi(response);
