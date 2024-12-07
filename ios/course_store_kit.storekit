@@ -20,7 +20,7 @@
           "locale" : "en_GB"
         }
       ],
-      "productID" : "standard",
+      "productID" : "standard_subcription",
       "referenceName" : "Standard",
       "type" : "NonConsumable"
     },
@@ -40,7 +40,7 @@
           "locale" : "en_GB"
         }
       ],
-      "productID" : "premium",
+      "productID" : "premium_subscription",
       "referenceName" : "Premium",
       "type" : "NonConsumable"
     }
