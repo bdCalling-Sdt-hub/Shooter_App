@@ -18,8 +18,8 @@ import '../../../../service/iap_service.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_constants.dart';
 
-const String _kStandardSubscriptionId = 'standard';
-const String _kPremiumSubscriptionId = 'premium';
+const String _kStandardSubscriptionId = 'standard_subcription';
+const String _kPremiumSubscriptionId = 'premium_subscription';
 
 
  const Set<String> _kIds = <String>{_kStandardSubscriptionId, _kPremiumSubscriptionId};
