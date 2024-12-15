@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -7,12 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shooter_app/service/iap_service.dart';
 
 import '../../../helper/prefs_helper.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/app_images.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,30 +26,28 @@ class _SplashScreenState extends State<SplashScreen>
       AnimationController(duration: const Duration(seconds: 3), vsync: this)
         ..repeat();
 
-
- /// final ProfileController _profileController = Get.put(ProfileController());
+  /// final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   void initState() {
     super.initState();
+
     ///_profileController.getProfileData();
 
     debugPrint("========> Out change out");
-     _route();
+    _route();
   }
 
   _route() {
     Timer(const Duration(seconds: 3), () async {
       var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
       var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
-      var subscription = await PrefsHelper.getString(AppConstants.subscription);
-      var subscriptionDateAviale = await PrefsHelper.getBool(AppConstants.isFutureDate);
       if (onBoard) {
-        if (isLogged ) {
-          if(subscriptionDateAviale){
+        if (isLogged) {
+          var isSubscribed = await IAPService.checkSubscription();
+          if (isSubscribed) {
             Get.offNamed(AppRoutes.bottomNavBar);
-            print("=================================================================>  $subscription and $subscriptionDateAviale");
-          }else{
+          } else {
             Get.offAllNamed(AppRoutes.subscriptionScreen);
           }
         } else {
@@ -84,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Opacity(
                   opacity: 0.6,
                   child: SvgPicture.asset(
-                   "assets/images/splash.svg",
+                    "assets/images/splash.svg",
                     fit: BoxFit.cover,
                   ),
                 ),

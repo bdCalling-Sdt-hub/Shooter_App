@@ -146,7 +146,7 @@ class DrawerSection extends StatelessWidget {
             
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRoutes.subscriptionScreen);
+                    Get.toNamed(AppRoutes.subscriptionScreen,);
                   },
                   child: CustomListTile(
                     title: AppString.subscription,

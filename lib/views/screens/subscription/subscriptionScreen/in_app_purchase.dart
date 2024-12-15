@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
@@ -44,6 +45,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
 
   @override
   void initState() {
+    Get.put(ProfileController());
     getOldSubscription();
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         _inAppPurchase.purchaseStream;
@@ -61,7 +63,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
 
   var subscriptionDateAvaible ;
    getOldSubscription()async{
-   subscriptionDateAvaible = await PrefsHelper.getBool(AppConstants.isFutureDate);
+   subscriptionDateAvaible = await IAPService.checkSubscription();
 }
 
   Future<void> initStoreInfo() async {
@@ -139,6 +141,41 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
     }
     _inAppPurchase.buyNonConsumable(purchaseParam: purchaseParam);
   }
+
+  void restorePurchases() async {
+    final bool available = await InAppPurchase.instance.isAvailable();
+    if (!available) {
+      showAlert('Error', 'In-app purchases are not available on this device.');
+      return;
+    }
+    try {
+      InAppPurchase.instance.restorePurchases();
+      showAlert('Restoring Purchases', 'Your purchases are being restored.');
+    } catch (e) {
+      showAlert('Error', 'Failed to restore purchases: $e');
+    }
+  }
+
+  void showAlert(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   void dispose() {
@@ -220,13 +257,30 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                     );
                   }),
             ),
-            if(subscriptionDateAvaible)
+
             NewCustomButton(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 onTap: () {
-                    payNow(_products[selectIndex.value]);
+                    if(subscriptionDateAvaible){
+                      Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
+                    }else{
+                      payNow(_products[selectIndex.value]);
+                    }
+
                 },
                 text: "Buy Now"),
+
+            const SizedBox(
+              height: 25,
+            ),
+
+            NewCustomButton(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                color: Colors.red.shade300,
+                onTap: () {
+                  restorePurchases();
+                },
+                text: "Restore"),
             const SizedBox(
               height: 50,
             )

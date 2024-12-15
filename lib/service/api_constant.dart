@@ -1,6 +1,6 @@
 class ApiConstant {
-  static String baseUrl = "https://api.techaim.technology/api/v1";
-  static String imageBaseUrl = "https://api.techaim.technology";
+   static String baseUrl = "https://api.techaim.technology/api/v1";
+   static String imageBaseUrl = "https://api.techaim.technology";
   // static String baseUrl = "http://192.168.10.149:3001/api/v1";
   // static String imageBaseUrl = "http://192.168.10.149:3001";
   static String signUp = "/user/sign-up";
@@ -21,6 +21,7 @@ class ApiConstant {
   static String termsConditionsEndPoint = "/setting/terms-condition";
   static String subscriptionEndpoint = "/subscription/get-subscription";
   static String subscriptionPurchase="/subscription/purchase-subscription";
+  static String checkSubscription="/user/is-subscribed";
   static String notificationsEndPoint = "/notification/user";
   static String myScoreEndPoint = "/user/my-score";
   static String myEventList = "/user/my-event-list";
