@@ -149,8 +149,15 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
       return;
     }
     try {
-      InAppPurchase.instance.restorePurchases();
-      showAlert('Restoring Purchases', 'Your purchases are being restored.');
+      var isSubscribed= await IAPService.checkSubscription();
+
+      if(isSubscribed){
+        showAlert('Restoring Purchases', 'Your purchases are being restored.');
+      }else{
+        showAlert('Restoring Purchases', 'Your purchase is not available.');
+      }
+
+
     } catch (e) {
       showAlert('Error', 'Failed to restore purchases: $e');
     }
@@ -168,7 +175,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -220,12 +227,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                         : "1 year";
 
 
-                    var purchasedId= "";
-                    if(Get.find<ProfileController>().profileModel.value.data!.attributes!.subscription=="premium"){
-                      purchasedId=_kPremiumSubscriptionId;
-                    }else if(Get.find<ProfileController>().profileModel.value.data!.attributes!.subscription=="standard"){
-                      purchasedId =_kStandardSubscriptionId;
-                    }
+
                     return Obx(
                           () => GestureDetector(
                         onTap: () {
@@ -249,8 +251,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                                   color: Colors.redAccent),
                             ),
                             subtitle: Text(productDetails.description),
-                            trailing:purchasedId==productDetails.id+"s"? Text("Purchased",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp,color:AppColors.primaryColor),):
-                            Text("${productDetails.price}/$duration",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp),),
+                            trailing:Text("${productDetails.price}/$duration",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp),),
                           ),
                         ),
                       ),
