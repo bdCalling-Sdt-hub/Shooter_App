@@ -38,6 +38,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     super.dispose();
   }
 
+
   void _addScrollListener() {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -158,7 +159,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   alignment: Alignment.centerLeft,
                   child: CustomText(
                     top: 2.h,
-
                     text: TimeAgo.format(time),
                     fontsize: Dimensions.fontSizeSmall.h,
                     fontWeight: FontWeight.w400,

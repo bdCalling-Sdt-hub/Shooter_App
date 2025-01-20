@@ -42,6 +42,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
   bool _purchasePending = false;
   bool _loading = true;
   var selectIndex = (-1).obs;
+  IAPService iapService = Get.put(IAPService());
 
   @override
   void initState() {
@@ -63,7 +64,11 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
 
   var subscriptionDateAvaible ;
    getOldSubscription()async{
-   subscriptionDateAvaible = await IAPService.checkSubscription();
+     subscriptionDateAvaible = await iapService.checkSubscription();
+     setState(() {
+
+       print("==================================================subscription === ${subscriptionDateAvaible}");
+     });
 }
 
   Future<void> initStoreInfo() async {
@@ -149,7 +154,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
       return;
     }
     try {
-      var isSubscribed= await IAPService.checkSubscription();
+      var isSubscribed= await iapService.checkSubscription();
 
       if(isSubscribed){
         showAlert('Restoring Purchases', 'Your purchases are being restored.');
@@ -259,17 +264,23 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                   }),
             ),
 
-            NewCustomButton(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                onTap: () {
-                    if(subscriptionDateAvaible){
+            Obx((){
+              IAPService.alReadySubscribed.value;
+              print("=========================================${IAPService.alReadySubscribed}");
+              return NewCustomButton(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  onTap: () {
+
+                    if(subscriptionDateAvaible && IAPService.alReadySubscribed.value){
                       Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
                     }else{
                       payNow(_products[selectIndex.value]);
                     }
 
-                },
-                text: "Buy Now"),
+                  },
+                  text: "Buy Now");
+            }
+            ),
 
             const SizedBox(
               height: 25,

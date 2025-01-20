@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -9,18 +8,16 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
-import 'package:shooter_app/utils/app_constants.dart';
 
 import '../controller/subscription_controller.dart';
 import '../routes/app_routes.dart';
 
-final SubscriptionController _subscriptionController =
-    Get.put(SubscriptionController());
+final SubscriptionController _subscriptionController = Get.put(SubscriptionController());
 
 const String _kStandardSubscriptionId = 'standard_subcription';
 const String _kPremiumSubscriptionId = 'premium_subscription';
 
-class IAPService {
+class IAPService extends GetxController{
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
   final bool _kAutoConsume = Platform.isIOS || true;
 
@@ -156,18 +153,40 @@ class IAPService {
     return Future<bool>.value(true);
   }
 
-  static Future<bool> checkSubscription() async {
+
+  static var alReadySubscribed = true.obs;
+   Future<bool> checkSubscription() async {
     try {
       // Check if subscription is still valid
       //  Called Api and check subscription
-      var response =
-      await ApiClient.getData(ApiConstant.checkSubscription);
+      var response = await ApiClient.getData(ApiConstant.checkSubscription);
       if(response.statusCode==200){
-        if(response.body['data']['attributes']["isSubscribed"]){
+
+        if (response.body['data']['attributes']["isSubscribed"]) {
+          print("======================== subscribed user");
           return true;
-        }else{
+        } else if (response.body['data']['attributes']["isFree"]) {
+
+          print("============================= free user");
+          if(response.body['data']['attributes']["isSubscribed"]){
+            alReadySubscribed(false);
+            update();
+          }else{
+            alReadySubscribed(true);
+            update();
+          }
+          return true;
+        } else {
+          print("============================= not free and not subscribed user");
           return false;
         }
+
+
+
+
+
+
+
       }
       return false;
     } catch (e) {

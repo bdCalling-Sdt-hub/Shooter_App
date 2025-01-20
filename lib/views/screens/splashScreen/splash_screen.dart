@@ -42,13 +42,14 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 3), () async {
       var onBoard = await PrefsHelper.getBool(AppConstants.isOnboard);
       var isLogged = await PrefsHelper.getBool(AppConstants.isLogged);
+      IAPService iapService = Get.put(IAPService());
       if (onBoard) {
         if (isLogged) {
-          var isSubscribed = await IAPService.checkSubscription();
-          if (isSubscribed) {
-            Get.offNamed(AppRoutes.bottomNavBar);
-          } else {
+          var isSubscribed = await iapService.checkSubscription();
+          if (!isSubscribed) {
             Get.offAllNamed(AppRoutes.subscriptionScreen);
+          } else {
+            Get.offNamed(AppRoutes.bottomNavBar);
           }
         } else {
           Get.offAllNamed(AppRoutes.signInScreen);
@@ -78,11 +79,18 @@ class _SplashScreenState extends State<SplashScreen>
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                Opacity(
-                  opacity: 0.6,
-                  child: SvgPicture.asset(
-                    "assets/images/splash.svg",
-                    fit: BoxFit.cover,
+
+                SizedBox(
+                  height: Get.height,
+                  width: Get.width,
+                  child: Opacity(
+                    opacity: 0.6,
+                    child: SvgPicture.asset(
+                      "assets/images/splash.svg",
+                      fit: BoxFit.cover,
+                      height: Get.height,
+                      width: Get.width,
+                    ),
                   ),
                 ),
                 Positioned(
