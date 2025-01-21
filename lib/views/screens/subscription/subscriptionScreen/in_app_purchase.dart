@@ -264,23 +264,61 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                   }),
             ),
 
-            Obx((){
+            // Obx((){
+            //   IAPService.alReadySubscribed.value;
+            //   print("=========================================${IAPService.alReadySubscribed}");
+            //   return NewCustomButton(
+            //       padding: EdgeInsets.symmetric(horizontal: 20.w),
+            //       onTap: () {
+            //
+            //         if(subscriptionDateAvaible){
+            //           Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
+            //         }else if(IAPService.alReadySubscribed.value){
+            //           Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
+            //         }else{
+            //           payNow(_products[selectIndex.value]);
+            //         }
+            //
+            //       },
+            //       text: "Buy Now");
+            // }),
+
+
+
+            Obx(() {
               IAPService.alReadySubscribed.value;
-              print("=========================================${IAPService.alReadySubscribed}");
               return NewCustomButton(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  onTap: () {
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                onTap: () {
+                  if (IAPService.alReadySubscribed.value) {
+                    // Purchased user
+                    Fluttertoast.showToast(
+                      msg: "You have already purchased.",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.TOP,
+                      fontSize: 16,
+                      backgroundColor: Colors.green,
+                    );
+                  } else if (IAPService.isFreeUser.value) {
+                    payNow(_products[selectIndex.value]);
+                  } else {
+                    // Neither free nor subscribed
+                    Fluttertoast.showToast(
+                      msg: "Please purchase to access the app.",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.TOP,
+                      fontSize: 16,
+                      backgroundColor: Colors.red,
+                    );
+                  }
+                },
+                text: "Buy Now",
+              );
+            }),
 
-                    if(subscriptionDateAvaible && IAPService.alReadySubscribed.value){
-                      Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
-                    }else{
-                      payNow(_products[selectIndex.value]);
-                    }
 
-                  },
-                  text: "Buy Now");
-            }
-            ),
+
+
 
             const SizedBox(
               height: 25,

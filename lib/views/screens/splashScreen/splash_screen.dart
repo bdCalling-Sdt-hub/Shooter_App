@@ -45,12 +45,24 @@ class _SplashScreenState extends State<SplashScreen>
       IAPService iapService = Get.put(IAPService());
       if (onBoard) {
         if (isLogged) {
+
+
+          // var isSubscribed = await iapService.checkSubscription();
+          // if (!isSubscribed) {
+          //   Get.offAllNamed(AppRoutes.subscriptionScreen);
+          // } else {
+          //   Get.offNamed(AppRoutes.bottomNavBar);
+          // }
+
           var isSubscribed = await iapService.checkSubscription();
           if (!isSubscribed) {
             Get.offAllNamed(AppRoutes.subscriptionScreen);
           } else {
             Get.offNamed(AppRoutes.bottomNavBar);
           }
+
+
+
         } else {
           Get.offAllNamed(AppRoutes.signInScreen);
         }

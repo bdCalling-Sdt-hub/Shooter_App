@@ -153,45 +153,70 @@ class IAPService extends GetxController{
     return Future<bool>.value(true);
   }
 
+  //
+  // static var alReadySubscribed = true.obs;
+  //  Future<bool> checkSubscription() async {
+  //   try {
+  //     // Check if subscription is still valid
+  //     //  Called Api and check subscription
+  //     var response = await ApiClient.getData(ApiConstant.checkSubscription);
+  //     if(response.statusCode==200){
+  //
+  //       if (response.body['data']['attributes']["isSubscribed"]) {
+  //         print("======================== subscribed user");
+  //         return true;
+  //       } else if (response.body['data']['attributes']["isFree"]) {
+  //         print("============================= free user");
+  //         if(response.body['data']['attributes']["isSubscribed"]){
+  //           alReadySubscribed(true);
+  //           update();
+  //         }else{
+  //           alReadySubscribed(false);
+  //           update();
+  //         }
+  //         return true;
+  //       } else {
+  //         print("============================= not free and not subscribed user");
+  //         return false;
+  //       }
+  //
+  //     }
+  //     return false;
+  //   } catch (e) {
+  //     print('Error checking subscription: $e');
+  //   }
+  //   return false; // Default to not subscribed
+  // }
 
-  static var alReadySubscribed = true.obs;
-   Future<bool> checkSubscription() async {
+
+
+  static var alReadySubscribed = false.obs;
+  static var isFreeUser = false.obs;
+
+  Future<bool> checkSubscription() async {
     try {
-      // Check if subscription is still valid
-      //  Called Api and check subscription
+      // API call to check subscription
       var response = await ApiClient.getData(ApiConstant.checkSubscription);
-      if(response.statusCode==200){
+      if (response.statusCode == 200) {
+        var attributes = response.body['data']['attributes'];
 
-        if (response.body['data']['attributes']["isSubscribed"]) {
-          print("======================== subscribed user");
-          return true;
-        } else if (response.body['data']['attributes']["isFree"]) {
+        // Update user status
+        isFreeUser.value = attributes["isFree"] ?? false;
+        alReadySubscribed.value = attributes["isSubscribed"] ?? false;
 
-          print("============================= free user");
-          if(response.body['data']['attributes']["isSubscribed"]){
-            alReadySubscribed(false);
-            update();
-          }else{
-            alReadySubscribed(true);
-            update();
-          }
-          return true;
+        if (alReadySubscribed.value || isFreeUser.value) {
+          print("======================== User can use the app");
+          return true; // App can be used
         } else {
-          print("============================= not free and not subscribed user");
-          return false;
+          print("======================== Redirecting to subscription screen");
+          return false; // Redirect to subscription screen
         }
-
-
-
-
-
-
-
       }
-      return false;
     } catch (e) {
       print('Error checking subscription: $e');
     }
-    return false; // Default to not subscribed
+    return false; // Default to redirect if there's an error
   }
+
+
 }
