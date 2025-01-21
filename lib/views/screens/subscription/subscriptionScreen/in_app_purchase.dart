@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
@@ -41,9 +42,11 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
   bool _purchasePending = false;
   bool _loading = true;
   var selectIndex = (-1).obs;
+  IAPService iapService = Get.put(IAPService());
 
   @override
   void initState() {
+    Get.put(ProfileController());
     getOldSubscription();
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         _inAppPurchase.purchaseStream;
@@ -61,7 +64,11 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
 
   var subscriptionDateAvaible ;
    getOldSubscription()async{
-   subscriptionDateAvaible = await PrefsHelper.getBool(AppConstants.isFutureDate);
+     subscriptionDateAvaible = await iapService.checkSubscription();
+     setState(() {
+
+       print("==================================================subscription === ${subscriptionDateAvaible}");
+     });
 }
 
   Future<void> initStoreInfo() async {
@@ -140,6 +147,48 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
     _inAppPurchase.buyNonConsumable(purchaseParam: purchaseParam);
   }
 
+  void restorePurchases() async {
+    final bool available = await InAppPurchase.instance.isAvailable();
+    if (!available) {
+      showAlert('Error', 'In-app purchases are not available on this device.');
+      return;
+    }
+    try {
+      var isSubscribed= await iapService.checkSubscription();
+
+      if(isSubscribed){
+        showAlert('Restoring Purchases', 'Your purchases are being restored.');
+      }else{
+        showAlert('Restoring Purchases', 'Your purchase is not available.');
+      }
+
+
+    } catch (e) {
+      showAlert('Error', 'Failed to restore purchases: $e');
+    }
+  }
+
+  void showAlert(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
   @override
   void dispose() {
     if (Platform.isIOS) {
@@ -183,12 +232,7 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                         : "1 year";
 
 
-                    var purchasedId= "";
-                    if(Get.find<ProfileController>().profileModel.value.data!.attributes!.subscription=="premium"){
-                      purchasedId=_kPremiumSubscriptionId;
-                    }else if(Get.find<ProfileController>().profileModel.value.data!.attributes!.subscription=="standard"){
-                      purchasedId =_kStandardSubscriptionId;
-                    }
+
                     return Obx(
                           () => GestureDetector(
                         onTap: () {
@@ -212,21 +256,81 @@ class _InAppPurchaseScreenState extends State<InAppPurchaseScreen> {
                                   color: Colors.redAccent),
                             ),
                             subtitle: Text(productDetails.description),
-                            trailing:purchasedId==productDetails.id+"s"? Text("Purchased",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp,color:AppColors.primaryColor),):
-                            Text("${productDetails.price}/$duration",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp),),
+                            trailing:Text("${productDetails.price}/$duration",style:TextStyle(fontWeight: FontWeight.w500,fontSize: 12.sp),),
                           ),
                         ),
                       ),
                     );
                   }),
             ),
-            if(subscriptionDateAvaible)
-            NewCustomButton(
+
+            // Obx((){
+            //   IAPService.alReadySubscribed.value;
+            //   print("=========================================${IAPService.alReadySubscribed}");
+            //   return NewCustomButton(
+            //       padding: EdgeInsets.symmetric(horizontal: 20.w),
+            //       onTap: () {
+            //
+            //         if(subscriptionDateAvaible){
+            //           Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
+            //         }else if(IAPService.alReadySubscribed.value){
+            //           Fluttertoast.showToast(msg: "You have already purchased.",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.TOP,fontSize: 16,backgroundColor: Colors.green);
+            //         }else{
+            //           payNow(_products[selectIndex.value]);
+            //         }
+            //
+            //       },
+            //       text: "Buy Now");
+            // }),
+
+
+
+            Obx(() {
+              IAPService.alReadySubscribed.value;
+              return NewCustomButton(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 onTap: () {
+                  if (IAPService.alReadySubscribed.value) {
+                    // Purchased user
+                    Fluttertoast.showToast(
+                      msg: "You have already purchased.",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.TOP,
+                      fontSize: 16,
+                      backgroundColor: Colors.green,
+                    );
+                  } else if (IAPService.isFreeUser.value) {
                     payNow(_products[selectIndex.value]);
+                  } else {
+                    // Neither free nor subscribed
+                    Fluttertoast.showToast(
+                      msg: "Please purchase to access the app.",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.TOP,
+                      fontSize: 16,
+                      backgroundColor: Colors.red,
+                    );
+                  }
                 },
-                text: "Buy Now"),
+                text: "Buy Now",
+              );
+            }),
+
+
+
+
+
+            const SizedBox(
+              height: 25,
+            ),
+
+            NewCustomButton(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                color: Colors.red.shade300,
+                onTap: () {
+                  restorePurchases();
+                },
+                text: "Restore"),
             const SizedBox(
               height: 50,
             )
