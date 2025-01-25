@@ -12,7 +12,9 @@ import 'package:shooter_app/service/api_client.dart';
 import 'package:shooter_app/service/api_constant.dart';
 import 'package:shooter_app/utils/app_constants.dart';
 import 'package:shooter_app/views/widgets/custom_loader.dart';
+import 'package:shooter_app/views/widgets/custom_snackbar.dart';
 import '../routes/app_routes.dart';
+import '../service/iap_service.dart';
 import 'data_controller.dart';
 
 
@@ -61,17 +63,27 @@ class AuthController extends GetxController {
           userid: data['data']['attributes']['_id'] ?? "",
         );
         debugPrint("ssss ${dataController.image}");
-        var isSubscription= await PrefsHelper.getBool(AppConstants.isFutureDate);
-        if(isSubscription){
-          Get.offAllNamed(AppRoutes.bottomNavBar);
-        }else{
+        // var isSubscription= await PrefsHelper.getBool(AppConstants.isFutureDate);
+        // if(isSubscription){
+        //   Get.offAllNamed(AppRoutes.bottomNavBar);
+        // }else{
+        //   Get.offAllNamed(AppRoutes.subscriptionScreen);
+        // }
+        IAPService iapService = Get.put(IAPService());
+        var isSubscribed = await iapService.checkSubscription();
+        if (!isSubscribed) {
           Get.offAllNamed(AppRoutes.subscriptionScreen);
+        } else {
+          Get.offNamed(AppRoutes.bottomNavBar);
         }
 
 
         emailController.clear();
         passController.clear();
       }
+    }else{
+      signInLoading(false);
+      showCustomSnackBar("${response.body["message"]}");
     }
     signInLoading(false);
   }
